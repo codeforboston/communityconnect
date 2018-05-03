@@ -1,0 +1,40 @@
+{
+  "name": "makao-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "mapbox-gl": "^0.45.0-beta.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-fontawesome": "^1.6.1",
+    "react-google-maps": "^9.4.5",
+    "react-mapbox-gl": "^3.8.0",
+    "react-redux": "^5.0.7",
+    "reactstrap": "^5.0.0",
+    "tabletop": "^1.5.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "deploy": "yarn build && aws s3 sync build/ s3://makao2.brez.io --acl public-read",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts": "2.0.0-next.66cc7a90"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
+  }
+}
