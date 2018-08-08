@@ -31,18 +31,20 @@ function coerceToBool(obj) {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      orgs: [], 
-      categories: [], 
+    this.state = {
+      orgs: [],
+      categories: [],
       tags: [],
       center: defaultCenter,
-      zoom: defaultZoom, 
+      zoom: defaultZoom,
     }
   }
 
   componentDidMount() {
-    Tabletop.init( { 
-      key: '1D0-5_phzq-mrXojcIgQlsNrUr0hGH8gWYRZlTMcLacM',
+    var revere_key = '108aVfUjdRr_je1Pzx-axkOZTMMtdug7iyVH1m3BsnRw'
+    var shelter_key = '1D0-5_phzq-mrXojcIgQlsNrUr0hGH8gWYRZlTMcLacM';
+    Tabletop.init( {
+      key: revere_key,
       simpleSheet: true,
       prettyColumnNames: false,
       postProcess: normalizeHeaders,
@@ -91,7 +93,7 @@ class App extends Component {
         <Header categories={this.state.categories} />
         <SplitScreen style={{ top: 56 }}>
           <SplitScreen.StaticPane>
-            <Map 
+            <Map
               center={this.state.center}
               zoom={this.state.zoom}
               organizations={this.state.orgs}
