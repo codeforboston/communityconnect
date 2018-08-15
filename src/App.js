@@ -54,7 +54,7 @@ class App extends Component {
 
         for(let project of data) {
           let category = project.category.split(',')
-          categories[category[0]] = "";
+          category.forEach(cat => categories[cat]= "");
           for(let tag of project.tags) { tags[tag] = "" };
         }
         
