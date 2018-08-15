@@ -11,7 +11,7 @@ class OrganizationCard extends Component {
                 <p>{this.props.organization.overview}</p>
                 
                 <p><span className="fa fa-map-o"></span> {this.props.organization.location}</p>
-                <p><span className="fa fa-link"></span> <a href="{this.props.organization.url}">Website</a></p>
+                {this.props.organization.website? <p><span className="fa fa-link"></span> <a href="{this.props.organization.url}">Website</a></p>:<div/>}
                 
                 <ul className="list-inline">
                     {this.props.organization.facebookUrl && <li><a href="{this.props.organization.facebookUrl}" data-type="social"><i className="fa fa-2x fa-facebook-square"></i></a></li>}
