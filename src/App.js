@@ -57,7 +57,6 @@ class App extends Component {
           category.forEach(cat => categories[cat]= "");
           for(let tag of project.tags) { tags[tag] = "" };
         }
-        
 
         this.setState({
           orgs: data,
