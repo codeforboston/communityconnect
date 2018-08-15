@@ -19,7 +19,7 @@ class Header extends Component {
       isOpen: false
     };
   }
-    
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -34,7 +34,7 @@ class Header extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Seeing Shelter</NavbarBrand>
+          <NavbarBrand href="/">Revere Resource Mapping</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
