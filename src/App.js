@@ -21,7 +21,7 @@ function normalizeHeaders(element) {
   if(element["latitude"] && element["longitude"]) {
     element["coordinates"] = { lat: parseFloat(element["latitude"]), lng: parseFloat(element["longitude"]) }
   }
-  element["location"] = element["address"] + " " + element["city"] + ", " + element["state"] + " " + element["zip"]
+  element["location"] = element["address"] + " " + element["city"] + ", " + element["state"] + " " + element["zipcode"]
 }
 
 function coerceToBool(obj) {
