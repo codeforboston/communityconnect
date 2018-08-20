@@ -1,5 +1,5 @@
 # Community Connect
-"Community Connect" is a mobile health application that aims to consolidate resources available in communities in order to promote healthy lifestyle choices. We are working in conjunction with Massachusetts General Hospital's [Center for Community Health Improvement](https://www.massgeneral.org/cchi/) and a community organization in Revere to create a database of resources that include substance abuse counseling, affordable healthy food options, child care, etc.
+"Community Connect" is a mobile health application that aims to consolidate resources available in communities in order to promote healthy lifestyle choices. We are working in conjunction with Massachusetts General Hospital's [Center for Community Health Improvement](https://www.massgeneral.org/cchi/) and Revere CARES Coalition to create a database of resources that include substance abuse counseling, affordable healthy food options, child care, and more.
 
 ## How this works
 Resources are stored in a google spreadsheet. https://docs.google.com/spreadsheets/d/108aVfUjdRr_je1Pzx-axkOZTMMtdug7iyVH1m3BsnRw/edit#gid=0
