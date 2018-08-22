@@ -13,4 +13,4 @@ class Program {
 	}
 }
 
-module.exports = Program;
+export default Program;
