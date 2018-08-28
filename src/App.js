@@ -53,7 +53,8 @@ class App extends Component {
         const tags = {};
 
         for(let project of data) {
-          categories[project.category] = "";
+          let category = project.category.split(',')
+          category.forEach(cat => categories[cat]= "");
           for(let tag of project.tags) { tags[tag] = "" };
         }
 
@@ -79,7 +80,8 @@ class App extends Component {
   }
 
   onOrganizationClick = (key) => {
-    const org = this.state.orgs.find(o => o.id == key);
+    
+    const org = this.state.orgs.find(o => o.id === key);
 
     this.setState({
       center: [org.longitude, org.latitude],
@@ -88,6 +90,7 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <div>
         <Header categories={this.state.categories} />
