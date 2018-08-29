@@ -27,7 +27,22 @@ class Header extends Component {
   }
 
   categoryMenuItems() {
-    return this.props.categories.map(cat => <DropdownItem key={cat}>{cat}</DropdownItem>);
+    let categorySet = new Set();
+    for(let i = 0; i < this.props.categories.length; i++){
+      var current = this.props.categories[i];
+      if(current.indexOf(", ") > 1){
+        var array = current.split(", ");
+        for(var j = 0; j < array.length; j++){
+          categorySet.add(array[j]);
+          console.log(categorySet);
+        }
+      }
+      else{
+        categorySet.add(current);
+      }
+    }
+    let category = Array.from(categorySet);
+    return category.map(cat => <DropdownItem key={cat}>{cat}</DropdownItem>);
   }
 
   render() {
