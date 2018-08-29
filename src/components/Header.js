@@ -8,7 +8,8 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem,
+  Form } from 'reactstrap';
 
 class Header extends Component {
   constructor(props) {
@@ -35,6 +36,15 @@ class Header extends Component {
       <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Revere Resource Mapping</NavbarBrand>
+          <div>
+              <form onSubmit={this.handleSubmit}>
+                <label>
+                  Search:
+                  <input type="text" value={this.state.value} onChange={this.handleChange} />
+                </label>
+                <input type="submit" value="Search" />
+              </form>
+          </div>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
