@@ -24,25 +24,17 @@ class Header extends Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
+    console.log('Toggle this is : ', this);
+  }
+
+  handleClick= (e) => {
+
+    console.log('this is : ', e.target.value);
+    this.props.handleEvent(e.target.value);
   }
 
   categoryMenuItems() {
-    let categorySet = new Set();
-    for(let i = 0; i < this.props.categories.length; i++){
-      var current = this.props.categories[i];
-      if(current.indexOf(", ") > 1){
-        var array = current.split(", ");
-        for(var j = 0; j < array.length; j++){
-          categorySet.add(array[j]);
-          console.log(categorySet);
-        }
-      }
-      else{
-        categorySet.add(current);
-      }
-    }
-    let category = Array.from(categorySet);
-    return category.map(cat => <DropdownItem key={cat}>{cat}</DropdownItem>);
+    return this.props.categories.map(cat => <DropdownItem value = {cat} onClick = {this.handleClick} key={cat}>{cat}</DropdownItem>);
   }
 
   render() {
