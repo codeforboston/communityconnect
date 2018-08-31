@@ -38,9 +38,20 @@ class App extends Component {
       center: defaultCenter,
       zoom: defaultZoom,
     }
+    this.callSheets = this.callSheets.bind(this);
   }
 
-  componentDidMount() {
+  find_in_object(my_object, my_criteria){
+
+  return my_object.filter(function(obj) {
+    return Object.keys(my_criteria).every(function(c) {
+      return obj[c] == my_criteria[c];
+    });
+  });
+
+}
+
+  callSheets(selected){
     var revere_key = '108aVfUjdRr_je1Pzx-axkOZTMMtdug7iyVH1m3BsnRw'
     var shelter_key = '1D0-5_phzq-mrXojcIgQlsNrUr0hGH8gWYRZlTMcLacM';
     Tabletop.init( {
@@ -57,13 +68,25 @@ class App extends Component {
           for(let tag of project.tags) { tags[tag] = "" };
         }
 
+        //We do that to ensure to get a correct JSON
+        var my_json = JSON.stringify(data)
+        //We can use {'name': 'Lenovo Thinkpad 41A429ff8'} as criteria too
+        if (selected == "")
+          var filtered_json = data;
+        else
+          var filtered_json = this.find_in_object(JSON.parse(my_json), {category: selected});
+
         this.setState({
-          orgs: data,
+          orgs: filtered_json,
           categories: Object.keys(categories),
           tags: Object.keys(tags)
         });
       }
     });
+  }
+  componentDidMount() {
+    this.callSheets("");
+    //console.log(this);
   }
 
   onMouseEnter = (key) => {
@@ -78,6 +101,7 @@ class App extends Component {
     });
   }
 
+
   onOrganizationClick = (key) => {
     const org = this.state.orgs.find(o => o.id == key);
 
@@ -90,7 +114,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header categories={this.state.categories} />
+        <Header categories={this.state.categories} handleEvent={this.callSheets}/>
         <SplitScreen style={{ top: 56 }}>
           <SplitScreen.StaticPane>
             <Map
