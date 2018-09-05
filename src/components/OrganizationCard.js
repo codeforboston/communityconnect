@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Card } from 'reactstrap';
 
 class OrganizationCard extends Component {
-
 	render() {
 		const { name, category, overview, location, website, facebookUrl,
 			instagramUrl, twitterUrl } = this.props.organization;
- 
+
 		return (
 			<Card>
 				<h3>{name}</h3>
