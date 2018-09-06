@@ -25,6 +25,13 @@ class Header extends Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
+    console.log('Toggle this is : ', this);
+  }
+
+  handleClick= (e) => {
+
+    console.log('this is : ', e.target.value);
+    this.props.handleEvent(e.target.value);
   }
 
   handleClick(e) {
@@ -36,8 +43,7 @@ class Header extends Component {
   }
 
   categoryMenuItems() {
-      return this.props.categories.map(cat => <DropdownItem value={cat} onClick = {this.handleClick} key={cat}>{cat}</DropdownItem>)
-
+    return this.props.categories.map(cat => <DropdownItem value = {cat} onClick = {this.handleClick} key={cat}>{cat}</DropdownItem>);
   }
 
   render() {
