@@ -68,10 +68,8 @@ class App extends Component {
           for(let tag of project.tags) { tags[tag] = "" };
         }
 
-        //We do that to ensure to get a correct JSON
         var my_json = JSON.stringify(data)
-        //We can use {'name': 'Lenovo Thinkpad 41A429ff8'} as criteria too
-        if (selected == "")
+        if (selected == "" || selected = "all")
           var filtered_json = data;
         else
           var filtered_json = this.find_in_object(JSON.parse(my_json), {category: selected});

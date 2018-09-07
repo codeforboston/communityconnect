@@ -28,14 +28,9 @@ class Header extends Component {
     console.log('Toggle this is : ', this);
   }
 
-  handleClick= (e) => {
-
-    console.log('this is : ', e.target.value);
-    this.props.handleEvent(e.target.value);
-  }
-
   handleClick(e) {
     var current = e.currentTarget.innerText;
+    console.log(current);
     this.props.handleEvent(e.target.value);
     this.setState(state => ({
       value : current
@@ -54,9 +49,7 @@ class Header extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <UncontrolledDropdown
-              setActiveFromChild
-               nav inNavbar>
+              <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>{this.state.value}</DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem value="all" onClick = {this.handleClick} key="all">All</DropdownItem>
