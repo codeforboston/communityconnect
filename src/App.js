@@ -69,7 +69,12 @@ class App extends Component {
         }
 
         var my_json = JSON.stringify(data)
+<<<<<<< HEAD
         if (selected == "" || selected = "all")
+=======
+        //We can use {'name': 'Lenovo Thinkpad 41A429ff8'} as criteria too
+        if (selected == "" || selected == "all")
+>>>>>>> efa37d47ed09325c7e6df690ebef3eea89ad0745
           var filtered_json = data;
         else
           var filtered_json = this.find_in_object(JSON.parse(my_json), {category: selected});
