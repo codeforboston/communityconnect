@@ -28,12 +28,6 @@ class Header extends Component {
     console.log('Toggle this is : ', this);
   }
 
-  handleClick= (e) => {
-
-    console.log('this is : ', e.target.value);
-    this.props.handleEvent(e.target.value);
-  }
-
   handleClick(e) {
     var current = e.currentTarget.innerText;
     this.props.handleEvent(e.target.value);
