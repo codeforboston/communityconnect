@@ -53,7 +53,7 @@ class Header extends Component {
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>{this.state.value}</DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem onClick = {() => this.handleClick("all", -1)} key="all">All</DropdownItem>
+                  <DropdownItem onClick = {() => this.handleClick("All", -1)} key="all">All</DropdownItem>
                   { this.categoryMenuItems() }
                 </DropdownMenu>
               </UncontrolledDropdown>

@@ -69,7 +69,7 @@ class App extends Component {
         }
 
         var my_json = JSON.stringify(data);
-        if(selected == "" || selected == "all")
+        if(selected == "" || selected == "All")
           var filtered_json = data;
         else
           var filtered_json = this.find_in_object(JSON.parse(my_json), {category: selected});
