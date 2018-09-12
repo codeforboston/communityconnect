@@ -6,6 +6,7 @@ import Header from './components/Header';
 import { SplitScreen } from './components/SplitScreen';
 import ResultList from './components/ResultList';
 import Map from './components/Map';
+import SortBar from './components/SortBar.js';
 
 const defaultZoom = 6;
 const defaultCenter = { lat: 42.3731, lng: -71.0162 };
@@ -81,11 +82,35 @@ class App extends Component {
           categories: Object.keys(categories),
           tags: Object.keys(tags)
         });
+
+        this.sortByDistance();
       }
     });
   }
+
+  getLocation =  () => {
+    if(window.navigator.geolocation){
+      window.navigator.geolocation.getCurrentPosition(
+
+
+        position => {
+
+          this.setState({position : {coordinates : {lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude)}}})
+          this.setState({haveCoords : true})
+
+        },
+        error => {
+          console.log('Unable to get Coordinates');
+          this.setState({haveCoords: false})
+        });
+    } else {
+      console.log('no geolocation');
+    }
+  }
+
   componentDidMount() {
     this.callSheets("");
+    this.getLocation();
     //console.log(this);
   }
 
@@ -101,6 +126,41 @@ class App extends Component {
     });
   }
 
+  getDistance = (a, b) => {
+    var latA = a.coordinates.lat;
+    var longA = a.coordinates.lng;
+
+    var latB = b.coordinates.lat;
+    var longB = b.coordinates.lng;
+
+    var radlat1 = Math.PI * latA/180;
+    var radlat2 = Math.PI * latB/180;
+
+    var radlon1 = Math.PI * longA/180;
+    var radlon2 = Math.PI * longB/180;
+
+    var theta = longA - longB;
+    var radtheta = Math.PI * theta/180;
+    var dist = Math.sin(radlat1) - Math.sin(radlat2);
+
+    dist = Math.acos(dist);
+    dist = dist * 180/Math.PI;
+    dist = dist * 60 * 1.1515;
+
+    dist = dist * 1.609344;
+
+    
+    return dist
+  }
+
+  sortByDistance = () => {
+
+    this.setState({orgs:
+      this.state.orgs.sort(this.getDistance)
+  });
+
+  }
+
 
   onOrganizationClick = (key) => {
     const org = this.state.orgs.find(o => o.id == key);
@@ -112,22 +172,39 @@ class App extends Component {
   }
 
   render() {
+    let map;
+
+    if(this.state.haveCoords === false){
+     map = <Map
+       center={this.state.center}
+       zoom={this.state.zoom}
+       organizations={this.state.orgs}
+       onMouseEnter={this.onMouseEnter}
+       onMouseLeave={this.onMouseLeave}
+       onOrganizationClick={this.onOrganizationClick}
+     />
+   } else if(this.state.haveCoords === true){
+     map = <Map
+       center={this.state.position.coordinates}
+       zoom={this.state.zoom}
+       organizations={this.state.orgs}
+       onMouseEnter={this.onMouseEnter}
+       onMouseLeave={this.onMouseLeave}
+       onOrganizationClick={this.onOrganizationClick}
+     />
+   }
+
     return (
       <div>
         <Header categories={this.state.categories} handleEvent={this.callSheets}/>
         <SplitScreen style={{ top: 56 }}>
           <SplitScreen.StaticPane>
-            <Map
-              center={this.state.center}
-              zoom={this.state.zoom}
-              organizations={this.state.orgs}
-              onMouseEnter={this.onMouseEnter}
-              onMouseLeave={this.onMouseLeave}
-              onOrganizationClick={this.onOrganizationClick}
-            />
+
+              {map}
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
-            <ResultList data={this.state.orgs} />
+              <SortBar sortByDistance={this.sortByDistance} haveCoords={this.state.haveCoords}/>
+              <ResultList data={this.state.orgs} />
           </SplitScreen.SlidingPane>
         </SplitScreen>
       </div>
