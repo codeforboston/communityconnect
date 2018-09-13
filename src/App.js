@@ -18,16 +18,10 @@ function normalizeHeaders(element) {
   element["facebookUrl"] = element["facebookurl"];
   element["instagramUrl"] = element["instagramurl"];
   element["open"] = coerceToBool(element["open"]);
-  if (element["latitude"] && element["longitude"]) {
+  if(element["latitude"] && element["longitude"]) {
     element["coordinates"] = { lat: parseFloat(element["latitude"]), lng: parseFloat(element["longitude"]) }
   }
-
-  if (element.city || element.address || element.state || element.zipcode) {
-    element.location = element.address+ " " + element.city + ", " + element.state + " " + element.zipcode;
-  } else {
-    element.location = "";
-  }
-
+  element["location"] = element["address"] + " " + element["city"] + ", " + element["state"] + " " + element["zipcode"]
 }
 
 function coerceToBool(obj) {
@@ -47,20 +41,20 @@ class App extends Component {
     this.callSheets = this.callSheets.bind(this);
   }
 
-  find_in_object(my_object, my_criteria) {
+  find_in_object(my_object, my_criteria){
 
-    return my_object.filter(function (obj) {
-      return Object.keys(my_criteria).every(function (c) {
-        return obj[c] == my_criteria[c];
-      });
+  return my_object.filter(function(obj) {
+    return Object.keys(my_criteria).every(function(c) {
+      return obj[c] == my_criteria[c];
     });
+  });
 
-  }
+}
 
-  callSheets(selected) {
+  callSheets(selected){
     var revere_key = '108aVfUjdRr_je1Pzx-axkOZTMMtdug7iyVH1m3BsnRw'
     var shelter_key = '1D0-5_phzq-mrXojcIgQlsNrUr0hGH8gWYRZlTMcLacM';
-    Tabletop.init({
+    Tabletop.init( {
       key: revere_key,
       simpleSheet: true,
       prettyColumnNames: false,
@@ -69,16 +63,16 @@ class App extends Component {
         const categories = {};
         const tags = {};
 
-        for (let project of data) {
+        for(let project of data) {
           categories[project.category] = "";
-          for (let tag of project.tags) { tags[tag] = "" };
+          for(let tag of project.tags) { tags[tag] = "" };
         }
 
         var my_json = JSON.stringify(data);
         if(selected == "" || selected == "All")
           var filtered_json = data;
         else
-          var filtered_json = this.find_in_object(JSON.parse(my_json), { category: selected });
+          var filtered_json = this.find_in_object(JSON.parse(my_json), {category: selected});
 
         this.setState({
           orgs: filtered_json,
@@ -117,7 +111,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header categories={this.state.categories} handleEvent={this.callSheets} />
+        <Header categories={this.state.categories} handleEvent={this.callSheets}/>
         <SplitScreen style={{ top: 56 }}>
           <SplitScreen.StaticPane>
             <Map
