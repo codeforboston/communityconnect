@@ -46,7 +46,7 @@ class Header extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Revere Resource Mapping</NavbarBrand>
+          <NavbarBrand href="/">Revere Resource Mapping - netlify test</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
