@@ -13,10 +13,12 @@ import {
 class Header extends Component {
   constructor(props) {
     super(props);
-
+    this.handleClick = this.handleClick.bind(this);
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      activeItem: -1,
+      value : "Categories"
     };
   }
 
@@ -24,17 +26,20 @@ class Header extends Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
-    console.log('Toggle this is : ', this);
   }
 
-  handleClick= (e) => {
-
-    console.log('this is : ', e.target.value);
-    this.props.handleEvent(e.target.value);
+  handleClick(cat, index) {
+    console.log(index);
+    this.props.handleEvent(cat);
+    this.setState(state => ({
+      value : cat,
+      activeItem: index
+    }));
   }
 
   categoryMenuItems() {
-    return this.props.categories.map(cat => <DropdownItem value = {cat} onClick = {this.handleClick} key={cat}>{cat}</DropdownItem>);
+    return this.props.categories.map((cat, index) =><DropdownItem onClick = {() => this.handleClick(cat, index)} key={cat}>
+    {this.state.activeItem === index ? <span>&#10004; {cat}</span>: cat}</DropdownItem>);
   }
 
   render() {
@@ -46,8 +51,11 @@ class Header extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>Categories</DropdownToggle>
-                <DropdownMenu right>{ this.categoryMenuItems() }</DropdownMenu>
+                <DropdownToggle nav caret>{this.state.value}</DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem onClick = {() => this.handleClick("All", -1)} key="all">All</DropdownItem>
+                  { this.categoryMenuItems() }
+                </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
           </Collapse>
