@@ -11,9 +11,9 @@ const defaultZoom = 6;
 const defaultCenter = { lat: 42.3731, lng: -71.0162 };
 
 function normalizeHeaders(element) {
-  element["name"] = element["organizationname"];
+  element["name"] = element["name"];
   element["id"] = element["rowNumber"];
-  element["tags"] = String(element["tags"]).split(", ");
+  element["tags"] = String(element["serviceprovided"]).split(", ");
   element["twitterUrl"] = element["twitterurl"];
   element["facebookUrl"] = element["facebookurl"];
   element["instagramUrl"] = element["instagramurl"];
@@ -21,7 +21,7 @@ function normalizeHeaders(element) {
   if(element["latitude"] && element["longitude"]) {
     element["coordinates"] = { lat: parseFloat(element["latitude"]), lng: parseFloat(element["longitude"]) }
   }
-  element["location"] = element["address"] + " " + element["city"] + ", " + element["state"] + " " + element["zipcode"]
+  element["location"] = element["combinedaddress"];
 }
 
 function coerceToBool(obj) {
@@ -52,34 +52,32 @@ class App extends Component {
 }
 
   callSheets(selected){
-    var revere_key = '108aVfUjdRr_je1Pzx-axkOZTMMtdug7iyVH1m3BsnRw'
-    var shelter_key = '1D0-5_phzq-mrXojcIgQlsNrUr0hGH8gWYRZlTMcLacM';
+    var revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
     Tabletop.init( {
       key: revere_key,
       simpleSheet: true,
       prettyColumnNames: false,
       postProcess: normalizeHeaders,
-      callback: (data) => {
+      callback: (data, tabletop) => {
         const categories = {};
         const tags = {};
-
-        for(let project of data) {
-          categories[project.category] = "";
-          for(let tag of project.tags) { tags[tag] = "" };
+        //console.log(tabletop.sheets("Data").elements);
+        var sheetData = tabletop.sheets("Data").elements;
+        
+        for(let project of sheetData) {
+          categories[project.categoryautosortscript] = "";
+          for(let tag of project.serviceprovided) { tags[tag] = "" };
         }
 
-        //We do that to ensure to get a correct JSON
-        var my_json = JSON.stringify(data)
-        //We can use {'name': 'Lenovo Thinkpad 41A429ff8'} as criteria too
+        var my_json = JSON.stringify(sheetData)
         if (selected == "")
-          var filtered_json = data;
+          var filtered_json = sheetData;
         else
-          var filtered_json = this.find_in_object(JSON.parse(my_json), {category: selected});
+          var filtered_json = this.find_in_object(JSON.parse(my_json), {categoryautosortscript: selected});
 
         this.setState({
           orgs: filtered_json,
-          categories: Object.keys(categories),
-          tags: Object.keys(tags)
+          categories: Object.keys(categories)
         });
       }
     });
