@@ -84,7 +84,7 @@ class App extends Component {
           tags: Object.keys(tags)
         });
 
-        
+
 
 
       }
@@ -175,7 +175,7 @@ class App extends Component {
      />
    } else if(this.state.haveCoords === true){
      map = <Map
-       center={this.state.position}
+       center={this.state.position.coordinates}
        zoom={this.state.zoom}
        organizations={this.state.orgs}
        onMouseEnter={this.onMouseEnter}
