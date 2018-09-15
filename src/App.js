@@ -7,6 +7,7 @@ import { SplitScreen } from './components/SplitScreen';
 import ResultList from './components/ResultList';
 import Map from './components/Map';
 import SortBar from './components/SortBar.js';
+import {getDistance} from './utils/distance.js';
 
 const defaultZoom = 6;
 const defaultCenter = { lat: 42.3731, lng: -71.0162 };
@@ -83,7 +84,9 @@ class App extends Component {
           tags: Object.keys(tags)
         });
 
-        this.sortByDistance();
+        
+
+
       }
     });
   }
@@ -94,9 +97,11 @@ class App extends Component {
 
 
         position => {
+          console.log(position)
 
           this.setState({position : {coordinates : {lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude)}}})
           this.setState({haveCoords : true})
+
 
         },
         error => {
@@ -105,6 +110,7 @@ class App extends Component {
         });
     } else {
       console.log('no geolocation');
+      this.setState({haveCoords: false})
     }
   }
 
@@ -126,37 +132,21 @@ class App extends Component {
     });
   }
 
-  getDistance = (a, b) => {
-    var latA = a.coordinates.lat;
-    var longA = a.coordinates.lng;
 
-    var latB = b.coordinates.lat;
-    var longB = b.coordinates.lng;
+  getCloserResource = (a , b) => {
+    if(getDistance(a,this.state.position)
+      > getDistance(b,this.state.position)){
+      return 1;
+    }
 
-    var radlat1 = Math.PI * latA/180;
-    var radlat2 = Math.PI * latB/180;
-
-    var radlon1 = Math.PI * longA/180;
-    var radlon2 = Math.PI * longB/180;
-
-    var theta = longA - longB;
-    var radtheta = Math.PI * theta/180;
-    var dist = Math.sin(radlat1) - Math.sin(radlat2);
-
-    dist = Math.acos(dist);
-    dist = dist * 180/Math.PI;
-    dist = dist * 60 * 1.1515;
-
-    dist = dist * 1.609344;
-
-    
-    return dist
+    return -1;
   }
+
 
   sortByDistance = () => {
 
     this.setState({orgs:
-      this.state.orgs.sort(this.getDistance)
+      this.state.orgs.sort(this.getCloserResource)
   });
 
   }
@@ -185,7 +175,7 @@ class App extends Component {
      />
    } else if(this.state.haveCoords === true){
      map = <Map
-       center={this.state.position.coordinates}
+       center={this.state.position}
        zoom={this.state.zoom}
        organizations={this.state.orgs}
        onMouseEnter={this.onMouseEnter}
@@ -204,7 +194,7 @@ class App extends Component {
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
               <SortBar sortByDistance={this.sortByDistance} haveCoords={this.state.haveCoords}/>
-              <ResultList data={this.state.orgs} />
+              <ResultList data={this.state.orgs} haveCoords={this.state.haveCoords} currentPos={this.state.position}/>
           </SplitScreen.SlidingPane>
         </SplitScreen>
       </div>
