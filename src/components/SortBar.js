@@ -25,7 +25,7 @@ class SortBar extends React.Component {
           <div  className={styles.result}>
               <ButtonGroup>
                 <select>
-                  <option value="0">Alphabeticqally</option>
+                  <option value="0">Alphabetically</option>
                   {option}
                 </select>
               </ButtonGroup>
