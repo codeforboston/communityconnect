@@ -6,16 +6,29 @@ class SortBar extends React.Component {
 
   constructor(props) {
     super(props);
+
+
   }
 
+
+  handleClick = (e) => {
+    if(e.target.value === '1'){
+      this.props.sortByDistance();
+    } else if(e.target.value === '0'){
+      this.props.sortByAlphabet();
+    } else {
+      this.props.sortByAlphabet();
+    }
+
+  }
 
   render(){
     let option;
 
     if(this.props.haveCoords === false){
-     option = <option value="1" disabled onClick={this.props.sortByDistance}>Distance</option>
+     option = <option value="1" disabled onClick={this.handleClick}>Distance</option>
    } else if(this.props.haveCoords === true){
-     option = <option value="1" onClick={this.props.sortByDistance}>Distance</option>
+     option = <option value='1' onClick={this.handleClick}>Distance</option>
    }
     return (
         <div align="right">
@@ -24,7 +37,7 @@ class SortBar extends React.Component {
           </div>
           <div  className={styles.result}>
               <ButtonGroup>
-                <select>
+                <select onChange={this.handleClick}>
                   <option value="0">Alphabeticqally</option>
                   {option}
                 </select>

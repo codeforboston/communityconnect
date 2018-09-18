@@ -39,8 +39,11 @@ class App extends Component {
       tags: [],
       center: defaultCenter,
       zoom: defaultZoom,
+      haveCoords: false
     }
     this.callSheets = this.callSheets.bind(this);
+    this.sortByDistance = this.sortByDistance.bind(this);
+    this.getCloserResource = this.getCloserResource.bind(this);
   }
 
   find_in_object(my_object, my_criteria){
@@ -84,7 +87,7 @@ class App extends Component {
           tags: Object.keys(tags)
         });
 
-
+        this.sortByAlphabet()
 
 
       }
@@ -142,9 +145,22 @@ class App extends Component {
     return -1;
   }
 
+  getCloserName = (a, b) => {
+    if(a.organizationname > b.organizationname) return 1
+    else if(a.organizationname < b.organizationname ) return -1
+    else return 0
+
+  }
+
+  sortByAlphabet = () => {
+
+    this.setState({orgs:
+      this.state.orgs.sort(this.getCloserName)})
+  }
+
 
   sortByDistance = () => {
-
+    console.log(this.state.orgs);
     this.setState({orgs:
       this.state.orgs.sort(this.getCloserResource)
   });
@@ -193,7 +209,7 @@ class App extends Component {
               {map}
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
-              <SortBar sortByDistance={this.sortByDistance} haveCoords={this.state.haveCoords}/>
+              <SortBar sortByDistance={this.sortByDistance} sortByAlphabet={this.sortByAlphabet} haveCoords={this.state.haveCoords}/>
               <ResultList data={this.state.orgs} haveCoords={this.state.haveCoords} currentPos={this.state.position}/>
           </SplitScreen.SlidingPane>
         </SplitScreen>
