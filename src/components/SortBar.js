@@ -26,9 +26,9 @@ class SortBar extends React.Component {
     let option;
 
     if(this.props.haveCoords === false){
-     option = <option value="1" disabled onClick={this.handleClick}>Distance</option>
+     option = <option value="1" disabled>Distance</option>
    } else if(this.props.haveCoords === true){
-     option = <option value='1' onClick={this.handleClick}>Distance</option>
+     option = <option value='1'>Distance</option>
    }
     return (
         <div align="right">
@@ -38,7 +38,7 @@ class SortBar extends React.Component {
           <div  className={styles.result}>
               <ButtonGroup>
                 <select onChange={this.handleClick}>
-                  <option value="0">Alphabeticqally</option>
+                  <option value="0">Alphabetically</option>
                   {option}
                 </select>
               </ButtonGroup>

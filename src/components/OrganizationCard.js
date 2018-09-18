@@ -10,7 +10,7 @@ class OrganizationCard extends Component {
 
     let distance;
     if(this.props.haveCoords){
-      distance = <p>distance from location: {getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos ).toPrecision(4)} miles</p>
+      distance = <p>Distance from your Location: {getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos ).toPrecision(4)} miles</p>
     }
 
     return (
