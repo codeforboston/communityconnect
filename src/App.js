@@ -11,9 +11,9 @@ const defaultZoom = 6;
 const defaultCenter = { lat: 42.3731, lng: -71.0162 };
 
 function normalizeHeaders(element) {
-  element["name"] = element["organizationname"];
+  element["name"] = element["name"];
   element["id"] = element["rowNumber"];
-  element["tags"] = String(element["tags"]).split(", ");
+  element["tags"] = String(element["serviceprovided"]).split(", ");
   element["twitterUrl"] = element["twitterurl"];
   element["facebookUrl"] = element["facebookurl"];
   element["instagramUrl"] = element["instagramurl"];
@@ -21,6 +21,7 @@ function normalizeHeaders(element) {
   if (element["latitude"] && element["longitude"]) {
     element["coordinates"] = { lat: parseFloat(element["latitude"]), lng: parseFloat(element["longitude"]) }
   }
+<<<<<<< HEAD
 
   if (element.city || element.address || element.state || element.zipcode) {
     element.location = element.address+ " " + element.city + ", " + element.state + " " + element.zipcode;
@@ -28,6 +29,9 @@ function normalizeHeaders(element) {
     element.location = "";
   }
 
+=======
+  element["location"] = element["combinedaddress"];
+>>>>>>> 5c717b0760b8cc7e7c48c4a07f89659e393e7247
 }
 
 function coerceToBool(obj) {
@@ -57,17 +61,24 @@ class App extends Component {
 
   }
 
+<<<<<<< HEAD
   callSheets(selected) {
     var revere_key = '108aVfUjdRr_je1Pzx-axkOZTMMtdug7iyVH1m3BsnRw'
     var shelter_key = '1D0-5_phzq-mrXojcIgQlsNrUr0hGH8gWYRZlTMcLacM';
     Tabletop.init({
+=======
+  callSheets(selected){
+    var revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
+    Tabletop.init( {
+>>>>>>> 5c717b0760b8cc7e7c48c4a07f89659e393e7247
       key: revere_key,
       simpleSheet: true,
       prettyColumnNames: false,
       postProcess: normalizeHeaders,
-      callback: (data) => {
+      callback: (data, tabletop) => {
         const categories = {};
         const tags = {};
+<<<<<<< HEAD
 
         for (let project of data) {
           categories[project.category] = "";
@@ -79,11 +90,25 @@ class App extends Component {
           var filtered_json = data;
         else
           var filtered_json = this.find_in_object(JSON.parse(my_json), { category: selected });
+=======
+        //console.log(tabletop.sheets("Data").elements);
+        var sheetData = tabletop.sheets("Data").elements;
+        
+        for(let project of sheetData) {
+          categories[project.categoryautosortscript] = "";
+          for(let tag of project.serviceprovided) { tags[tag] = "" };
+        }
+
+        var my_json = JSON.stringify(sheetData)
+        if (selected == "")
+          var filtered_json = sheetData;
+        else
+          var filtered_json = this.find_in_object(JSON.parse(my_json), {categoryautosortscript: selected});
+>>>>>>> 5c717b0760b8cc7e7c48c4a07f89659e393e7247
 
         this.setState({
           orgs: filtered_json,
-          categories: Object.keys(categories),
-          tags: Object.keys(tags)
+          categories: Object.keys(categories)
         });
       }
     });
