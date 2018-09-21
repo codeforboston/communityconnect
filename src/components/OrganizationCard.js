@@ -3,7 +3,6 @@ import { Card } from 'reactstrap';
 
 class OrganizationCard extends Component {
     render() {
-console.log(this.props.organization.category)
         return (
             <Card>
                 <h3>{this.props.organization.name}</h3>

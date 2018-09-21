@@ -49,19 +49,18 @@ class App extends Component {
       prettyColumnNames: false,
       postProcess: normalizeHeaders,
       callback: (data) => {
-        const categories = {};
+        const categoryItems = {};
         const tags = {};
-        console.log('This is original data: ', data);
-        for(let item of data) {
-          let category = item.category.split(',')
-          category.forEach(cat => categories[cat]= "");
-          for(let tag of item.tags) { tags[tag] = "" };
-          console.log('Data after split', category);
-        }
 
+        for(let project of data) {
+          let category = project.category.split(',');
+          category.forEach(cat => categoryItems[cat]= cat.trim());
+          for(let tag of project.tags) { tags[tag] = "" };
+        }
+        const categoryList = [...(new Set(Object.values(categoryItems)))];
         this.setState({
           orgs: data,
-          categories: Object.keys(categories),
+          categories: categoryList,
           tags: Object.keys(tags)
         });
       }
