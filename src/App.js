@@ -51,11 +51,12 @@ class App extends Component {
       callback: (data) => {
         const categories = {};
         const tags = {};
-
-        for(let project of data) {
-          let category = project.category.split(',')
+        console.log('This is original data: ', data);
+        for(let item of data) {
+          let category = item.category.split(',')
           category.forEach(cat => categories[cat]= "");
-          for(let tag of project.tags) { tags[tag] = "" };
+          for(let tag of item.tags) { tags[tag] = "" };
+          console.log('Data after split', category);
         }
 
         this.setState({
@@ -80,7 +81,7 @@ class App extends Component {
   }
 
   onOrganizationClick = (key) => {
-    
+
     const org = this.state.orgs.find(o => o.id === key);
 
     this.setState({
@@ -90,7 +91,7 @@ class App extends Component {
   }
 
   render() {
-    
+
     return (
       <div>
         <Header categories={this.state.categories} />
