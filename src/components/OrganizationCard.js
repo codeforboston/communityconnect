@@ -3,13 +3,13 @@ import { Card } from 'reactstrap';
 
 class OrganizationCard extends Component {
   render() {
-    const { name, category, overview, location, website, facebookUrl,
+    const { name, categoryautosortscript, overview, location, website, facebookUrl,
       instagramUrl, twitterUrl, phone } = this.props.organization;
 
     return (
       <Card>
         <h3>{name}</h3>
-        <p className="lead">{category}</p>
+        <p className="lead">{categoryautosortscript}</p>
         {overview && <p>{overview}</p>}
         {location && <p><span className="fa fa-map-o"></span> {location}</p>}
         {phone && <p>{phone}</p>}
