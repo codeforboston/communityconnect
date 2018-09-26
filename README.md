@@ -13,7 +13,7 @@ Note that this project was bootstrapped with [Create React App](https://github.c
 1) clone the repo
 1) install npm (it may be installed already)
 1) install dependencies `npm install`
-1) start sever `npm start`
+1) start server `npm start`
 
 ## Editor setup
 *Syntax highlighting* To configure the syntax highlighting in your favorite text editor, head to the [relevant Babel documentation page](https://babeljs.io/docs/editors) and follow the instructions. Some of the most popular editors are covered.
