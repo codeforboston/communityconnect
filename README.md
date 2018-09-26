@@ -4,9 +4,6 @@
 ## How this works
 Resources are stored in a google spreadsheet (New). https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit?usp=sharing
 
-Currently, we are using the following spreadsheet (Old). We aspire to use the one above^^^.
-https://docs.google.com/spreadsheets/d/108aVfUjdRr_je1Pzx-axkOZTMMtdug7iyVH1m3BsnRw/edit#gid=0
-
 The spreadsheet automatically publishes its contents to a json endpoint that this app consumes. Members of the community can add unvetted resources to the spreadsheet via a google form. Trusted members with access to the spreadsheet will vet submitted
 resources &  mark them as vetted. The app will only display vetted resources.
 
