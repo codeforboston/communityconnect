@@ -17,7 +17,6 @@ function normalizeHeaders(element) {
   element["twitterUrl"] = element["twitterurl"];
   element["facebookUrl"] = element["facebookurl"];
   element["instagramUrl"] = element["instagramurl"];
-  element["open"] = coerceToBool(element["open"]);
   if (element["latitude"] && element["longitude"]) {
     element["coordinates"] = { lat: parseFloat(element["latitude"]), lng: parseFloat(element["longitude"]) }
   }
@@ -28,10 +27,6 @@ function normalizeHeaders(element) {
     element.location = "";
   }
 
-}
-
-function coerceToBool(obj) {
-  return String(obj).toLowerCase() === "TRUE";
 }
 
 class App extends Component {
@@ -79,6 +74,8 @@ class App extends Component {
           var filtered_json = data;
         else
           var filtered_json = this.find_in_object(JSON.parse(my_json), { category: selected });
+
+        filtered_json = filtered_json.filter(function(org){ return org.truefalsevetting.toLowerCase() == 'true' });
 
         this.setState({
           orgs: filtered_json,
