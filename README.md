@@ -2,7 +2,10 @@
 "Community Connect" is a mobile health application that aims to consolidate resources available in communities in order to promote healthy lifestyle choices. We are working in conjunction with Massachusetts General Hospital's [Center for Community Health Improvement](https://www.massgeneral.org/cchi/) and Revere CARES Coalition to create a database of resources that include substance abuse counseling, affordable healthy food options, child care, and more.
 
 ## How this works
-Resources are stored in a google spreadsheet. https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit?usp=sharing
+Resources are stored in a google spreadsheet (New). https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit?usp=sharing
+
+Currently, we are using the following spreadsheet (Old). We aspire to use the one above^^^.
+https://docs.google.com/spreadsheets/d/108aVfUjdRr_je1Pzx-axkOZTMMtdug7iyVH1m3BsnRw/edit#gid=0
 
 The spreadsheet automatically publishes its contents to a json endpoint that this app consumes. Members of the community can add unvetted resources to the spreadsheet via a google form. Trusted members with access to the spreadsheet will vet submitted
 resources &  mark them as vetted. The app will only display vetted resources.
