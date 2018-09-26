@@ -71,10 +71,12 @@ class App extends Component {
         const tags = {};
         var data = tabletop.sheets("Data").elements;
 
-        for (let project of data) {
-          categories[project.categoryautosortscript] = "";
-          for (let tag of project.tags) { tags[tag] = "" };
+        for(let project of data) {
+          let category = project.categoryautosortscript.split(',');
+          category.forEach(cat => categories[cat] = cat.trim());
+          for(let tag of project.tags) { tags[tag] = "" };
         }
+        const categoryList = [...(new Set(Object.values(categories)))];
 
         var my_json = JSON.stringify(data);
         if(selected == "" || selected == "All")
@@ -84,7 +86,7 @@ class App extends Component {
 
         this.setState({
           orgs: filtered_json,
-          categories: Object.keys(categories),
+          categories: categoryList,
           tags: Object.keys(tags)
         });
       }
