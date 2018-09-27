@@ -6,6 +6,8 @@ import Header from './components/Header';
 import { SplitScreen } from './components/SplitScreen';
 import ResultList from './components/ResultList';
 import Map from './components/Map';
+import SortBar from './components/SortBar.js';
+import {getDistance} from './utils/distance.js';
 
 const defaultZoom = 6;
 const defaultCenter = { lat: 42.3731, lng: -71.0162 };
@@ -39,8 +41,11 @@ class App extends Component {
       tags: [],
       center: defaultCenter,
       zoom: defaultZoom,
+      haveCoords: false
     }
     this.callSheets = this.callSheets.bind(this);
+    this.sortByDistance = this.sortByDistance.bind(this);
+    this.getCloserResource = this.getCloserResource.bind(this);
   }
 
   find_in_object(my_object, my_criteria) {
@@ -86,11 +91,41 @@ class App extends Component {
           categories: categoryList,
           tags: Object.keys(tags)
         });
+
+        this.sortByAlphabet()
+
+
       }
     });
   }
+
+  getLocation =  () => {
+    if(window.navigator.geolocation){
+      window.navigator.geolocation.getCurrentPosition(
+
+
+        position => {
+          console.log(position)
+
+          this.setState({position : {coordinates : {lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude)}}})
+          this.setState({haveCoords : true})
+
+
+        },
+        error => {
+          console.log('Unable to get Coordinates');
+          this.setState({haveCoords: false})
+        });
+    } else {
+      console.log('no geolocation');
+      this.setState({haveCoords: false})
+    }
+  }
+
   componentDidMount() {
     this.callSheets("");
+    this.getLocation();
+    //console.log(this);
   }
 
   onMouseEnter = (key) => {
@@ -106,6 +141,38 @@ class App extends Component {
   }
 
 
+  getCloserResource = (a , b) => {
+    if(getDistance(a,this.state.position)
+      > getDistance(b,this.state.position)){
+      return 1;
+    }
+
+    return -1;
+  }
+
+  getCloserName = (a, b) => {
+    if(a.organizationname > b.organizationname) return 1
+    else if(a.organizationname < b.organizationname ) return -1
+    else return 0
+
+  }
+
+  sortByAlphabet = () => {
+
+    this.setState({orgs:
+      this.state.orgs.sort(this.getCloserName)})
+  }
+
+
+  sortByDistance = () => {
+    console.log(this.state.orgs);
+    this.setState({orgs:
+      this.state.orgs.sort(this.getCloserResource)
+  });
+
+  }
+
+
   onOrganizationClick = (key) => {
     const org = this.state.orgs.find(o => o.id == key);
 
@@ -116,22 +183,39 @@ class App extends Component {
   }
 
   render() {
+    let map;
+
+    if(this.state.haveCoords === false){
+     map = <Map
+       center={this.state.center}
+       zoom={this.state.zoom}
+       organizations={this.state.orgs}
+       onMouseEnter={this.onMouseEnter}
+       onMouseLeave={this.onMouseLeave}
+       onOrganizationClick={this.onOrganizationClick}
+     />
+   } else if(this.state.haveCoords === true){
+     map = <Map
+       center={this.state.position.coordinates}
+       zoom={this.state.zoom}
+       organizations={this.state.orgs}
+       onMouseEnter={this.onMouseEnter}
+       onMouseLeave={this.onMouseLeave}
+       onOrganizationClick={this.onOrganizationClick}
+     />
+   }
+
     return (
       <div>
         <Header categories={this.state.categories} handleEvent={this.callSheets} />
         <SplitScreen style={{ top: 56 }}>
           <SplitScreen.StaticPane>
-            <Map
-              center={this.state.center}
-              zoom={this.state.zoom}
-              organizations={this.state.orgs}
-              onMouseEnter={this.onMouseEnter}
-              onMouseLeave={this.onMouseLeave}
-              onOrganizationClick={this.onOrganizationClick}
-            />
+
+              {map}
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
-            <ResultList data={this.state.orgs} />
+              <SortBar sortByDistance={this.sortByDistance} sortByAlphabet={this.sortByAlphabet} haveCoords={this.state.haveCoords}/>
+              <ResultList data={this.state.orgs} haveCoords={this.state.haveCoords} currentPos={this.state.position}/>
           </SplitScreen.SlidingPane>
         </SplitScreen>
       </div>
