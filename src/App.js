@@ -13,21 +13,23 @@ const defaultZoom = 6;
 const defaultCenter = { lat: 42.3731, lng: -71.0162 };
 
 function normalizeHeaders(element) {
-  element["name"] = element["organizationname"];
+  element["name"] = element["name"];
   element["id"] = element["rowNumber"];
-  element["tags"] = String(element["tags"]).split(", ");
+  element["tags"] = String(element["serviceprovided"]).split(", ");
   element["twitterUrl"] = element["twitterurl"];
   element["facebookUrl"] = element["facebookurl"];
   element["instagramUrl"] = element["instagramurl"];
-  element["open"] = coerceToBool(element["open"]);
-  if(element["latitude"] && element["longitude"]) {
+  if (element["latitude"] && element["longitude"]) {
     element["coordinates"] = { lat: parseFloat(element["latitude"]), lng: parseFloat(element["longitude"]) }
   }
-  element["location"] = element["address"] + " " + element["city"] + ", " + element["state"] + " " + element["zipcode"]
-}
 
-function coerceToBool(obj) {
-  return String(obj).toLowerCase() === "TRUE";
+  if (element.city || element.address || element.state || element.zipcode) {
+    // element.location = element.address+ " " + element.city + ", " + element.state + " " + element.zipcode;
+    element.location = element["combinedaddress"];
+  } else {
+    element.location = "";
+  }
+
 }
 
 class App extends Component {
@@ -46,44 +48,47 @@ class App extends Component {
     this.getCloserResource = this.getCloserResource.bind(this);
   }
 
-  find_in_object(my_object, my_criteria){
+  find_in_object(my_object, my_criteria) {
 
-  return my_object.filter(function(obj) {
-    return Object.keys(my_criteria).every(function(c) {
-      return obj[c] == my_criteria[c];
+    return my_object.filter(function (obj) {
+      return Object.keys(my_criteria).every(function (c) {
+        return obj[c] == my_criteria[c];
+      });
     });
-  });
 
-}
+  }
 
-  callSheets(selected){
-    var revere_key = '108aVfUjdRr_je1Pzx-axkOZTMMtdug7iyVH1m3BsnRw'
-    var shelter_key = '1D0-5_phzq-mrXojcIgQlsNrUr0hGH8gWYRZlTMcLacM';
-    Tabletop.init( {
+  callSheets(selected) {
+    var revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
+
+    Tabletop.init({
       key: revere_key,
       simpleSheet: true,
       prettyColumnNames: false,
       postProcess: normalizeHeaders,
-      callback: (data) => {
+      callback: (_data, tabletop) => {
         const categories = {};
         const tags = {};
+        var data = tabletop.sheets("Data").elements;
 
         for(let project of data) {
-          categories[project.category] = "";
+          let category = project.categoryautosortscript.split(',');
+          category.forEach(cat => categories[cat] = cat.trim());
           for(let tag of project.tags) { tags[tag] = "" };
         }
+        const categoryList = [...(new Set(Object.values(categories)))];
 
-        //We do that to ensure to get a correct JSON
-        var my_json = JSON.stringify(data)
-        //We can use {'name': 'Lenovo Thinkpad 41A429ff8'} as criteria too
-        if (selected == "")
+        var my_json = JSON.stringify(data);
+        if(selected == "" || selected == "All")
           var filtered_json = data;
         else
-          var filtered_json = this.find_in_object(JSON.parse(my_json), {category: selected});
+          var filtered_json = this.find_in_object(JSON.parse(my_json), { categoryautosortscript: selected });
+
+        filtered_json = filtered_json.filter(function(org){ return org.truefalsevetting === 'TRUE' });
 
         this.setState({
           orgs: filtered_json,
-          categories: Object.keys(categories),
+          categories: categoryList,
           tags: Object.keys(tags)
         });
 
@@ -202,7 +207,7 @@ class App extends Component {
 
     return (
       <div>
-        <Header categories={this.state.categories} handleEvent={this.callSheets}/>
+        <Header categories={this.state.categories} handleEvent={this.callSheets} />
         <SplitScreen style={{ top: 56 }}>
           <SplitScreen.StaticPane>
 
