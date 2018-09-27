@@ -18,6 +18,35 @@ Note that this project was bootstrapped with [Create React App](https://github.c
 1) install dependencies `npm install`
 1) start server `npm start`
 
+## Want your own spreadsheet?
+
+*Prefer to see a gif of this process instead of reading steps? Click [here](https://imgur.com/a/N6kdSjC)*
+
+1) Visit the [current spreadsheet](https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit#gid=0)
+1) Click File and select Make a Copy
+1) Click OK
+1) When viewing your copy, click SHARE in the upper-right hand corner.
+1) Click "Get shareable link" in the upper-right hand corner of the modal.
+1) Ensure that "Anyone with the link can view" is selected.
+1) Copy link
+1) Click done
+1) Click File and select "Publish to the web"
+1) Click Publish
+1) Open "src/App.js" in the codebase
+1) Replace "revere_key" with a portion of the URL in your clipboard
+
+Example:
+https://docs.google.com/spreadsheets/d/1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M/edit?usp=sharing
+
+Replace the "revere_key" value with "1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M"
+
+Start your server using `npm start`
+
+## Why would I want my own spreadsheet?
+
+1) Some features may require you to modify the data to validate your code.
+1) The production spreadsheet should not be modified for testing purposes.
+
 ## Editor setup
 *Syntax highlighting* To configure the syntax highlighting in your favorite text editor, head to the [relevant Babel documentation page](https://babeljs.io/docs/editors) and follow the instructions. Some of the most popular editors are covered.
 
