@@ -19,7 +19,7 @@ Note that this project was bootstrapped with [Create React App](https://github.c
 
 *Prefer to see a gif of this process instead of reading steps? Click [here](https://imgur.com/a/N6kdSjC)*
 
-1) Visit the [current spreadsheet](https://docs.google.com/spreadsheets/d/108aVfUjdRr_je1Pzx-axkOZTMMtdug7iyVH1m3BsnRw/edit#gid=0)
+1) Visit the [current spreadsheet](https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit#gid=0)
 1) Click File and select Make a Copy
 1) Click OK
 1) When viewing your copy, click SHARE in the upper-right hand corner.
