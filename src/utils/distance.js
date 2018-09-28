@@ -1,5 +1,8 @@
 
 export const getDistance = (a, b) => {
+  if(!a.coordinates || !b.coordinates){
+    return;
+  }
 
   let radians = (degrees) => {
     return degrees * Math.PI / 180;

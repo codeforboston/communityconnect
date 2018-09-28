@@ -8,9 +8,12 @@ class OrganizationCard extends Component {
       instagramUrl, twitterUrl, phone } = this.props.organization;
 
 
-    let distance;
+    let distance, distanceElement;
     if(this.props.haveCoords){
-      distance = <p>Distance from your Location: {getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos ).toPrecision(4)} miles</p>
+      distance = getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos )
+      if(distance){
+        distanceElement = <p>Distance from your Location: {distance.toPrecision(4)} miles</p>
+      }
     }
 
     return (
@@ -19,9 +22,7 @@ class OrganizationCard extends Component {
           <h3>{name}</h3>
           <p className="lead">{categoryautosortscript}</p>
         </div>
-        <div>
-          {distance}
-        </div>
+        {distance && <div>{distanceElement}</div>}
         {overview && <p>{overview}</p>}
         {location && <p><span className="fa fa-map-o"></span> {location}</p>}
         {phone && <p>{phone}</p>}
