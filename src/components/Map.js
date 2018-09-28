@@ -22,21 +22,31 @@ const mapStyle = {
 };
 
 export const Map = withScriptjs(withGoogleMap(props => (
+
+
   <GoogleMap
     ref={props.onMapLoad}
     {...props}
   >
+
     <MarkerClusterer
         averageCenter={true}
         enableRetinaIcons={true}
         gridSize={60}
     >
-      { 
+      {
+
+
+
+
         props.organizations.filter(org => org.coordinates).map(org =>
           <OrganizationMarker
+            handleClick={props.clickedMarker}
+            setOpenMarker={props.setOpenMarker}
             key={org.id}
+            id={org.id}
             organization={org}
-            open={org.showInfo}
+            open={org.isMarkerOpen}
           />
         )
       }
@@ -45,6 +55,24 @@ export const Map = withScriptjs(withGoogleMap(props => (
 )));
 
 class OrganizationMap extends Component {
+
+
+  constructor(props) {
+    super(props)
+    this.center = (this.props.center !== undefined) ? this.props.center: { lat: 42.3731, lng: -71.0162 } ;
+    this.zoom = (this.props.zoom !== undefined) ? this.props.zoom : 16 ;
+    this.state ={
+      center: this.center,
+      zoom: this.zoom
+    }
+    console.log(this.state)
+
+  }
+
+  handleClick =(e) => {
+    console.log(e.currentTarget)
+  }
+
   markerHover = (key, event) => {
     event.map.getCanvas().style.cursor = 'pointer';
     this.props.onMouseEnter(key);
@@ -59,15 +87,44 @@ class OrganizationMap extends Component {
     this.props.onOrganizationClick(key);
   }
 
+  clickedMarker = id => {
+
+    this.props.clickedMarker(id)
+  }
+
+
+
+  setOpenMarker = id => {
+
+    this.props.organizations.forEach(org => {
+
+      if(org != org.id && org.isMarkerOpen ){
+        org.isMarkerOpen = false
+      }
+
+      if(id == org.id){
+
+        org.isMarkerOpen = true;
+        this.setState({
+          center: org.coordinates,
+          zoom: 15
+        })
+    }});
+    this.forceUpdate();
+  }
+
   render() {
+
       return (
         <Map
+          clickedMarker={this.clickedMarker}
+          setOpenMarker={this.setOpenMarker}
           googleMapURL={googleMapURL}
           containerElement={ <div style={{ height: '100%' }} /> }
           mapElement={ <div style={{ height: '100%' }} /> }
           loadingElement={<div style={{ height: `100%` }} />}
-          zoom={this.props.zoom}
-          center={this.props.center}
+          zoom={this.state.zoom}
+          center={this.state.center}
           organizations={this.props.organizations}
         />
       );

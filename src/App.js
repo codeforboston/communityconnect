@@ -65,6 +65,7 @@ class App extends Component {
         const tags = {};
         var data = tabletop.sheets("Data").elements;
 
+
         for(let project of data) {
           let category = project.categoryautosortscript.split(',');
           category.forEach(cat => categories[cat] = cat.trim());
@@ -77,6 +78,10 @@ class App extends Component {
         var filtered_json = filter_criteria_list.length <= 1 ? data : find_in_object(JSON.parse(my_json), {categoryautosortscript : filter_criteria_list});
 
         filtered_json = filtered_json.filter(function(org){ return org.truefalsevetting === 'TRUE' });
+
+        filtered_json.forEach(obj => {obj.isMarkerOpen = false; });
+
+        console.log(filtered_json)
 
         this.setState({
           orgs: filtered_json,
@@ -163,6 +168,14 @@ class App extends Component {
 
       }
 
+  cardClick = (id ) => {
+      this.mapItem.setOpenMarker(id);
+  }
+
+  clickedMarker = id => {
+    this.resultListItem.scrollToElement(id);
+  }
+
 
       onOrganizationClick = (key) => {
         const org = this.state.orgs.find(o => o.id == key);
@@ -196,17 +209,56 @@ class App extends Component {
           />
         }
 
+<<<<<<< HEAD
         return (
           <div>
           <Header categories={this.state.categories} handleEvent={this.callSheets} />
           <SplitScreen style={{ top: 56 }}>
+=======
+  render() {
+    let map;
+
+    if(this.state.haveCoords === false){
+     map = <Map
+       clickedMarker={this.clickedMarker}
+       ref ={instance => {this.mapItem = instance}}
+       center={this.state.center}
+       zoom={this.state.zoom}
+       organizations={this.state.orgs}
+       onMouseEnter={this.onMouseEnter}
+       onMouseLeave={this.onMouseLeave}
+       onOrganizationClick={this.onOrganizationClick}
+     />
+   } else if(this.state.haveCoords === true){
+     map = <Map
+       clickedMarker={this.clickedMarker}
+       ref ={instance => {this.mapItem = instance}}
+       center={this.state.position.coordinates}
+       zoom={this.state.zoom}
+       organizations={this.state.orgs}
+       onMouseEnter={this.onMouseEnter}
+       onMouseLeave={this.onMouseLeave}
+       onOrganizationClick={this.onOrganizationClick}
+     />
+   }
+
+    return (
+      <div>
+        <Header categories={this.state.categories} handleEvent={this.callSheets} />
+        <SplitScreen style={{ top: 56 }}>
+>>>>>>> This commits connects both sides.
           <SplitScreen.StaticPane>
 
           {map}
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
+<<<<<<< HEAD
           <SortBar sortByDistance={this.sortByDistance} sortByAlphabet={this.sortByAlphabet} haveCoords={this.state.haveCoords}/>
           <ResultList data={this.state.orgs} haveCoords={this.state.haveCoords} currentPos={this.state.position}/>
+=======
+              <SortBar sortByDistance={this.sortByDistance} sortByAlphabet={this.sortByAlphabet} haveCoords={this.state.haveCoords}/>
+              <ResultList ref ={instance => {this.resultListItem = instance}} cardClick={this.cardClick} data={this.state.orgs} haveCoords={this.state.haveCoords} currentPos={this.state.position}/>
+>>>>>>> This commits connects both sides.
           </SplitScreen.SlidingPane>
           </SplitScreen>
           </div>
