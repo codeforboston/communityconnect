@@ -8,13 +8,13 @@ class OrganizationCard extends Component {
   constructor (props) {
     super(props)
 
-    this.myRef = React.createRef();
+    this.cardRef = React.createRef();
+
   }
 
-  handleScrollEvent= () => {
-    window.scrollTo(0, this.myRef)
+  getRef = () => {
+    this.refs.cardRef.scrollIntoView({block: "end", inline: "center"})
   }
-
 
   cardClick= (e) => {
     this.props.cardClick(e.currentTarget.id);
@@ -35,7 +35,9 @@ class OrganizationCard extends Component {
 
 
     return (
-      <Card onClick={this.cardClick} id={id} ref={this.myRef}>
+      <div ref="cardRef" >
+      <Card id={id} onClick={this.cardClick}>
+
         <div>
           <h3>{name}</h3>
           <p className="lead">{categoryautosortscript}</p>
@@ -52,6 +54,7 @@ class OrganizationCard extends Component {
         </ul>}
 
       </Card>
+      </div>
     );
   }
 }

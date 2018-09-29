@@ -6,23 +6,31 @@ import styles from './ResultList.module.css';
 
 export class ResultList extends Component {
 
-  scrollToElement = id => {
-    React.Children.forEach(this.props.children,
-      child => { 
-        console.log(child)
-      })
+  constructor(props){
+    super(props)
+
+    this.listRef = React.createRef()
   }
 
-  render() {
-    return(
-      <div>
-        <div className={styles.results}>
+  scrollToElement = (id) => {
+    this.refs[id].getRef()
 
-          { this.props.data.map(org => <OrganizationCard key={org.id} cardClick={this.props.cardClick} organization={org} haveCoords={this.props.haveCoords} currentPos={this.props.currentPos}/> ) }
-          </div>
+
+  }
+
+
+  render() {
+
+    return(
+      <div >
+        <div className={styles.results} ref={this.listRef}>
+
+          { this.props.data.map((org, i) => <OrganizationCard key={org.id} ref={i} cardClick={this.props.cardClick} organization={org} haveCoords={this.props.haveCoords} currentPos={this.props.currentPos}/> ) }
+        </div>
 
       </div>
     );
+
   }
 }
 

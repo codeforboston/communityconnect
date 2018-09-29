@@ -209,56 +209,17 @@ class App extends Component {
           />
         }
 
-<<<<<<< HEAD
         return (
           <div>
           <Header categories={this.state.categories} handleEvent={this.callSheets} />
           <SplitScreen style={{ top: 56 }}>
-=======
-  render() {
-    let map;
-
-    if(this.state.haveCoords === false){
-     map = <Map
-       clickedMarker={this.clickedMarker}
-       ref ={instance => {this.mapItem = instance}}
-       center={this.state.center}
-       zoom={this.state.zoom}
-       organizations={this.state.orgs}
-       onMouseEnter={this.onMouseEnter}
-       onMouseLeave={this.onMouseLeave}
-       onOrganizationClick={this.onOrganizationClick}
-     />
-   } else if(this.state.haveCoords === true){
-     map = <Map
-       clickedMarker={this.clickedMarker}
-       ref ={instance => {this.mapItem = instance}}
-       center={this.state.position.coordinates}
-       zoom={this.state.zoom}
-       organizations={this.state.orgs}
-       onMouseEnter={this.onMouseEnter}
-       onMouseLeave={this.onMouseLeave}
-       onOrganizationClick={this.onOrganizationClick}
-     />
-   }
-
-    return (
-      <div>
-        <Header categories={this.state.categories} handleEvent={this.callSheets} />
-        <SplitScreen style={{ top: 56 }}>
->>>>>>> This commits connects both sides.
           <SplitScreen.StaticPane>
 
           {map}
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
-<<<<<<< HEAD
           <SortBar sortByDistance={this.sortByDistance} sortByAlphabet={this.sortByAlphabet} haveCoords={this.state.haveCoords}/>
           <ResultList data={this.state.orgs} haveCoords={this.state.haveCoords} currentPos={this.state.position}/>
-=======
-              <SortBar sortByDistance={this.sortByDistance} sortByAlphabet={this.sortByAlphabet} haveCoords={this.state.haveCoords}/>
-              <ResultList ref ={instance => {this.resultListItem = instance}} cardClick={this.cardClick} data={this.state.orgs} haveCoords={this.state.haveCoords} currentPos={this.state.position}/>
->>>>>>> This commits connects both sides.
           </SplitScreen.SlidingPane>
           </SplitScreen>
           </div>
