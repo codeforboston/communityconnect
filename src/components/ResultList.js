@@ -25,7 +25,7 @@ export class ResultList extends Component {
       <div >
         <div className={styles.results} ref={this.listRef}>
 
-          { this.props.data.map((org, i) => <OrganizationCard key={org.id} ref={i} cardClick={this.props.cardClick} organization={org} haveCoords={this.props.haveCoords} currentPos={this.props.currentPos}/> ) }
+          { this.props.data.map((org, i) => <OrganizationCard key={org.id} ref={org.id} cardClick={this.props.cardClick} organization={org} haveCoords={this.props.haveCoords} currentPos={this.props.currentPos}/> ) }
         </div>
 
       </div>

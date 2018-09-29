@@ -13,7 +13,7 @@ class OrganizationCard extends Component {
   }
 
   getRef = () => {
-    this.refs.cardRef.scrollIntoView({block: "end", inline: "center"})
+    this.refs.cardRef.scrollIntoView({block: "center", inline: "center"})
   }
 
   cardClick= (e) => {
