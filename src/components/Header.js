@@ -31,7 +31,6 @@ class Header extends Component {
   }
 
   handleClick(cat, index) {
-    console.log(index);
     this.props.handleEvent(cat);
     this.setState(state => ({
       value : cat,

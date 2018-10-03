@@ -12,6 +12,10 @@ import {getDistance} from './utils/distance.js';
 const defaultZoom = 6;
 const defaultCenter = { lat: 42.3731, lng: -71.0162 };
 
+
+var category_obj = {};
+var category_list = [];
+
 function normalizeHeaders(element) {
   element["name"] = element["name"];
   element["id"] = element["rowNumber"];
@@ -48,19 +52,31 @@ class App extends Component {
     this.getCloserResource = this.getCloserResource.bind(this);
   }
 
-  find_in_object(my_object, my_criteria) {
 
-    return my_object.filter(function (obj) {
-      return Object.keys(my_criteria).every(function (c) {
-        return obj[c] == my_criteria[c];
-      });
-    });
+      find_in_object(my_object, my_criteria) {
+    /*  my_object.filter(o => Object.keys(my_criteria)
+        .every(k => my_criteria[k]
+          .some(f => o[k] === f)));*/
+      return my_object.filter(function (o) {
+          return Object.keys(my_criteria).every(function (k){
+            return my_criteria[k].some(function (f) {
+              return o[k] === f;
+            });
+          });
+        });
 
+      }
+
+
+  filter_category_by(cat_item){
+    console.log(category_list.includes(cat_item))
+    category_list.includes(cat_item) ?  category_list.filter( item => item !== cat_item) : category_list.push(cat_item);
+    Object.assign(category_obj, {categoryautosortscript : category_list});
+    console.log(category_list);
   }
 
   callSheets(selected) {
     var revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
-
     Tabletop.init({
       key: revere_key,
       simpleSheet: true,
@@ -82,7 +98,8 @@ class App extends Component {
         if(selected == "" || selected == "All")
           var filtered_json = data;
         else
-          var filtered_json = this.find_in_object(JSON.parse(my_json), { categoryautosortscript: selected });
+          this.filter_category_by(selected);
+          var filtered_json = this.find_in_object(JSON.parse(my_json), category_obj);
 
         filtered_json = filtered_json.filter(function(org){ return org.truefalsevetting === 'TRUE' });
 
