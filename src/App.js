@@ -58,7 +58,7 @@ class App extends Component {
 
   }
   
-  callSheets(selected) {
+  callSheets(selected, type) {
     //console.log(selected);
     var revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
 
@@ -78,21 +78,18 @@ class App extends Component {
           for(let tag of project.tags) { tags[tag] = "" };
         }
         const categoryList = [...(new Set(Object.values(categories)))];
-        console.log(selected);
+                
         var my_json = JSON.stringify(data);
-        if (selected.length > 0) {
+        if (selected.length > 0 && type == "name") {
           var filtered_json = JSON.parse(my_json).filter(function (i) {
             return i.name.toLowerCase().match( selected.toLowerCase() );
           });
           console.log(filtered_json);
         }
-        else
+        else if(selected == "" || selected == "All")
           var filtered_json = data; 
-        /*var my_json = JSON.stringify(data);
-        if(selected == "" || selected == "All")
-          var filtered_json = data; 
-        else
-          var filtered_json = this.find_in_object(JSON.parse(my_json), { categoryautosortscript: selected });*/
+        else if(type == "cat")
+          var filtered_json = this.find_in_object(JSON.parse(my_json), { categoryautosortscript: selected });
 
         filtered_json = filtered_json.filter(function(org){ return org.truefalsevetting === 'TRUE' });
 
@@ -133,7 +130,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.callSheets("");
+    this.callSheets("", "");
     this.getLocation();
     //console.log(this);
   }
