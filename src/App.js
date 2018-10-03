@@ -142,9 +142,15 @@ class App extends Component {
 
 
   getCloserResource = (a , b) => {
+
+    if(a.coordinates === undefined) {
+      return 1
+    } else if(b.coordinates === undefined){
+      return -1
+    }
     if(getDistance(a,this.state.position)
-      > getDistance(b,this.state.position)){
-      return 1;
+        > getDistance(b,this.state.position)){
+          return 1;
     }
 
     return -1;
@@ -158,7 +164,7 @@ class App extends Component {
   }
 
   sortByAlphabet = () => {
-
+    console.log(this.state.orgs);
     this.setState({orgs:
       this.state.orgs.sort(this.getCloserName)})
   }
