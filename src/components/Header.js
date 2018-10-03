@@ -17,11 +17,18 @@ class Header extends Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
     this.state = {
       isOpen: false,
       activeItem: -1,
-      value : "Categories"
+      value : "Categories",
+      searchString: '',
     };
+  }
+
+  handleFilter = (e) =>{    
+    this.setState({searchString : e.target.value});
+    this.props.handleFilter(this.state.searchString);
   }
 
   toggle() {
@@ -49,6 +56,7 @@ class Header extends Component {
       <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Community Connect - Revere</NavbarBrand>
+          <input type="text" value={this.state.searchString} onChange={this.handleFilter} placeholder="Type here..."/>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

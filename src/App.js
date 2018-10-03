@@ -40,11 +40,11 @@ class App extends Component {
       categories: [],
       tags: [],
       center: defaultCenter,
-      zoom: defaultZoom,
+      zoom: defaultZoom,      
       haveCoords: false
     }
     this.callSheets = this.callSheets.bind(this);
-    this.sortByDistance = this.sortByDistance.bind(this);
+    this.sortByDistance = this.sortByDistance.bind(this);    
     this.getCloserResource = this.getCloserResource.bind(this);
   }
 
@@ -57,8 +57,9 @@ class App extends Component {
     });
 
   }
-
+  
   callSheets(selected) {
+    //console.log(selected);
     var revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
 
     Tabletop.init({
@@ -77,12 +78,21 @@ class App extends Component {
           for(let tag of project.tags) { tags[tag] = "" };
         }
         const categoryList = [...(new Set(Object.values(categories)))];
-
+        console.log(selected);
         var my_json = JSON.stringify(data);
-        if(selected == "" || selected == "All")
-          var filtered_json = data;
+        if (selected.length > 0) {
+          var filtered_json = JSON.parse(my_json).filter(function (i) {
+            return i.name.toLowerCase().match( selected.toLowerCase() );
+          });
+          console.log(filtered_json);
+        }
         else
-          var filtered_json = this.find_in_object(JSON.parse(my_json), { categoryautosortscript: selected });
+          var filtered_json = data; 
+        /*var my_json = JSON.stringify(data);
+        if(selected == "" || selected == "All")
+          var filtered_json = data; 
+        else
+          var filtered_json = this.find_in_object(JSON.parse(my_json), { categoryautosortscript: selected });*/
 
         filtered_json = filtered_json.filter(function(org){ return org.truefalsevetting === 'TRUE' });
 
@@ -207,10 +217,9 @@ class App extends Component {
 
     return (
       <div>
-        <Header categories={this.state.categories} handleEvent={this.callSheets} />
+        <Header categories={this.state.categories} handleEvent={this.callSheets} handleFilter={this.callSheets} />        
         <SplitScreen style={{ top: 56 }}>
           <SplitScreen.StaticPane>
-
               {map}
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
