@@ -6,7 +6,7 @@
     top: 0;
     overflow: hidden;
   }
-  
+
   .slidingPane {
     position: absolute;
     top: 0;
@@ -16,7 +16,7 @@
     padding: 10px;
     transition: bottom 0.3s ease-in-out;
   }
-  
+
   .slidingPaneToggle {
     display: none;
     position: absolute;
@@ -30,15 +30,15 @@
     margin-left: -50px;
     font-size: 1.4rem;
   }
-  
+
   .staticPane {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
-    left: 50%;
+    left: 30%;
   }
-  
+
   @media (max-width: 768px) {
     .staticPane {
       left: 0;
