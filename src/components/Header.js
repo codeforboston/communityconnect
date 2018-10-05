@@ -52,9 +52,8 @@ class Header extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>{this.state.value}</DropdownToggle>
+                <DropdownToggle nav caret>Category</DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem onClick = {() => this.handleClick("All", -1)} key="all">All</DropdownItem>
                   { this.categoryMenuItems() }
                 </DropdownMenu>
               </UncontrolledDropdown>
