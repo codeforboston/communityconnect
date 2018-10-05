@@ -19,7 +19,7 @@ class Header extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
-      activeItem: -1,
+      activeItem: [],
       value : "Categories"
     };
   }
@@ -33,14 +33,14 @@ class Header extends Component {
   handleClick(cat, index) {
     this.props.handleEvent(cat);
     this.setState(state => ({
-      value : cat,
-      activeItem: index
+      value : cat
     }));
+    this.state.activeItem.includes(index) ?  this.setState({activeItem : this.state.activeItem.filter( selected => selected !== index)}) : this.state.activeItem.push(index);
   }
 
   categoryMenuItems() {
     return this.props.categories.map((cat, index) =><DropdownItem onClick = {() => this.handleClick(cat, index)} key={cat}>
-    {this.state.activeItem === index ? <span>&#10004; {cat}</span>: cat}</DropdownItem>);
+    {this.state.activeItem.includes(index) ? <span>&#10004; {cat}</span>: cat}</DropdownItem>);
   }
 
   render() {
