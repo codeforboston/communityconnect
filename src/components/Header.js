@@ -19,8 +19,7 @@ class Header extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
-      activeItem: [],
-      value : "Categories"
+      activeItem: []
     };
   }
 
@@ -32,9 +31,6 @@ class Header extends Component {
 
   handleClick(cat, index) {
     this.props.handleEvent(cat);
-    this.setState(state => ({
-      value : cat
-    }));
     this.state.activeItem.includes(index) ?  this.setState({activeItem : this.state.activeItem.filter( selected => selected !== index)}) : this.state.activeItem.push(index);
   }
 
