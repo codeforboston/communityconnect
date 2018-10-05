@@ -83,7 +83,6 @@ class App extends Component {
 
         filter_criteria_list.includes(selected) ?  filter_criteria_list = filter_criteria_list.filter( item => item !== selected) : filter_criteria_list.push(selected);
         var my_json = JSON.stringify(data);
-        console.log(filter_criteria_list);
         var filtered_json = filter_criteria_list.length == 1 ? data : this.find_in_object(JSON.parse(my_json), {categoryautosortscript : filter_criteria_list});
 
         filtered_json = filtered_json.filter(function(org){ return org.truefalsevetting === 'TRUE' });
@@ -127,7 +126,6 @@ class App extends Component {
     componentDidMount() {
       this.callSheets("");
       this.getLocation();
-      //console.log(this);
     }
 
     onMouseEnter = (key) => {
