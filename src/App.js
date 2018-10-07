@@ -8,6 +8,7 @@ import ResultList from './components/ResultList';
 import Map from './components/Map';
 import SortBar from './components/SortBar.js';
 import {getDistance} from './utils/distance.js';
+import {find_in_object, update_criteria, criteria_list} from './utils/FilterHelper.js';
 
 const defaultZoom = 6;
 const defaultCenter = { lat: 42.3731, lng: -71.0162 };
@@ -52,15 +53,6 @@ class App extends Component {
     this.getCloserResource = this.getCloserResource.bind(this);
   }
 
-
-  find_in_object(my_object, my_criteria) {
-
-    return my_object.filter(o => Object.keys(my_criteria)
-    .every(k => my_criteria[k]
-      .some(f => o[k] === f)));
-    }
-
-
   callSheets(selected) {
     var revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
     Tabletop.init({
@@ -80,10 +72,9 @@ class App extends Component {
         }
         const categoryList = [...(new Set(Object.values(categories)))];
 
-
-        filter_criteria_list.includes(selected) ?  filter_criteria_list = filter_criteria_list.filter( item => item !== selected) : filter_criteria_list.push(selected);
+        filter_criteria_list = update_criteria(selected, filter_criteria_list);
         var my_json = JSON.stringify(data);
-        var filtered_json = filter_criteria_list.length == 1 ? data : this.find_in_object(JSON.parse(my_json), {categoryautosortscript : filter_criteria_list});
+        var filtered_json = filter_criteria_list.length <= 1 ? data : find_in_object(JSON.parse(my_json), {categoryautosortscript : filter_criteria_list});
 
         filtered_json = filtered_json.filter(function(org){ return org.truefalsevetting === 'TRUE' });
 

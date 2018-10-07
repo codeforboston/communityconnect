@@ -31,7 +31,11 @@ class Header extends Component {
 
   handleClick(cat, index) {
     this.props.handleEvent(cat);
-    this.state.activeItem.includes(index) ?  this.setState({activeItem : this.state.activeItem.filter( selected => selected !== index)}) : this.state.activeItem.push(index);
+    if(index === -1) this.setState({activeItem:[]});
+    this.state.activeItem.includes(index) ?  this.setState({
+      activeItem : this.state.activeItem.filter( selected => selected !== index)
+    })
+    : this.state.activeItem.push(index);
   }
 
   categoryMenuItems() {
@@ -50,6 +54,8 @@ class Header extends Component {
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>Category</DropdownToggle>
                 <DropdownMenu right>
+                  <DropdownItem onClick = {() => this.handleClick("Clear", -1)} key={"Clear"}>Clear</DropdownItem>
+                  <DropdownItem divider/>
                   { this.categoryMenuItems() }
                 </DropdownMenu>
               </UncontrolledDropdown>
