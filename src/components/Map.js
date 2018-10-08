@@ -1,6 +1,7 @@
 import React, { Component, Props } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
+import InfoWindowComponent from './InfoWindowComponent'
 
 import OrganizationMarker from './OrganizationMarker';
 
@@ -21,24 +22,24 @@ const mapStyle = {
   right: 0
 };
 
-export const Map = withScriptjs(withGoogleMap(props => (
+const Map = withScriptjs(withGoogleMap(props => (
 
 
   <GoogleMap
     ref={props.onMapLoad}
     {...props}
+    ref={props.mapRef}
+
   >
 
     <MarkerClusterer
         averageCenter={true}
         enableRetinaIcons={true}
         gridSize={60}
+        ref={props.onMarkerClick}
+
     >
-      {
-
-
-
-
+      () => {
         props.organizations.filter(org => org.coordinates).map(org =>
           <OrganizationMarker
             handleClick={props.clickedMarker}
@@ -48,6 +49,17 @@ export const Map = withScriptjs(withGoogleMap(props => (
             organization={org}
             open={org.isMarkerOpen}
           />
+        ) }
+
+        () => {
+
+        props.organizations.filter(org => org.coordinates).map(org =>
+            <InfoWindowComponent
+                organization = {org}
+              />
+          )
+        }
+
         )
       }
     </MarkerClusterer>
@@ -107,16 +119,41 @@ class OrganizationMap extends Component {
         org.isMarkerOpen = true;
         this.setState({
           center: org.coordinates,
-          zoom: 15
+          zoom: 17
         })
     }});
     this.forceUpdate();
   }
 
+
+
+  onZoomChanged = ref=> {
+
+
+    this.setState({
+      zoom : this.mapReference.getZoom()
+    })
+
+    console.log("Map Zoom", this.mapReference.getZoom())
+    console.log("Sate zoom", this.state.zoom)
+  }
+
+  mapRef = ref => {
+    this.mapReference = ref
+  }
+
+  markerClick = event => {
+    console.log(event)
+  }
+
+
   render() {
 
       return (
         <Map
+          onMarkerClick={this.markerClick}
+          mapRef={this.mapRef}
+          onZoomChanged={this.onZoomChanged}
           clickedMarker={this.clickedMarker}
           setOpenMarker={this.setOpenMarker}
           googleMapURL={googleMapURL}
