@@ -48,17 +48,10 @@ const Map = withScriptjs(withGoogleMap(props => (
             id={org.id}
             organization={org}
             open={org.isMarkerOpen}
-          />
+          /> 
         ) }
 
-        () => {
 
-        props.organizations.filter(org => org.coordinates).map(org =>
-            <InfoWindowComponent
-                organization = {org}
-              />
-          )
-        }
 
         )
       }
