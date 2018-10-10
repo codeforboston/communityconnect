@@ -94,8 +94,6 @@ class App extends Component {
   getLocation =  () => {
     if(window.navigator.geolocation){
       window.navigator.geolocation.getCurrentPosition(
-
-
         position => {
           console.log(position)
 
@@ -131,7 +129,6 @@ class App extends Component {
       });
     }
 
-
     getCloserResource = (a , b) => {
       if(getDistance(a,this.state.position)
       > getDistance(b,this.state.position)){
@@ -166,10 +163,11 @@ class App extends Component {
 
       onOrganizationClick = (key) => {
         const org = this.state.orgs.find(o => o.id == key);
+        const organizationZoom = 11;
 
         this.setState({
           center: [org.longitude, org.latitude],
-          zoom: [11]
+          zoom: [organizationZoom]
         });
       }
 
