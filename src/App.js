@@ -188,17 +188,27 @@ class App extends Component {
 
         return (
           <div>
-          <Header categories={this.state.categories} handleEvent={this.callSheets} />
-          <SplitScreen style={{ top: 56 }}>
-          <SplitScreen.StaticPane>
-
-          {map}
-          </SplitScreen.StaticPane>
-          <SplitScreen.SlidingPane>
-          <SortBar sortByDistance={this.sortByDistance} sortByAlphabet={this.sortByAlphabet} haveCoords={this.state.haveCoords}/>
-          <ResultList data={this.state.orgs} haveCoords={this.state.haveCoords} currentPos={this.state.position}/>
-          </SplitScreen.SlidingPane>
-          </SplitScreen>
+            <Header 
+              categories={this.state.categories} 
+              handleEvent={this.callSheets} 
+            />
+            <SplitScreen style={{ top: navbarHeight }}>
+              <SplitScreen.StaticPane>
+                {map}
+              </SplitScreen.StaticPane>
+              <SplitScreen.SlidingPane>
+                <SortBar 
+                  sortByDistance={this.sortByDistance} 
+                  sortByAlphabet={this.sortByAlphabet} 
+                  haveCoords={this.state.haveCoords}
+                />
+                <ResultList 
+                  data={this.state.orgs} 
+                  haveCoords={this.state.haveCoords} 
+                  currentPos={this.state.position}
+                />
+              </SplitScreen.SlidingPane>
+            </SplitScreen>
           </div>
         );
       }
