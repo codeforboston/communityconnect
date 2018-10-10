@@ -112,104 +112,102 @@ class App extends Component {
       }
     }
 
-    componentDidMount() {
-      this.callSheets("");
-      this.getLocation();
+  componentDidMount() {
+    this.callSheets("");
+    this.getLocation();
+  }
+
+  onMouseEnter = (key) => {
+    this.setState({
+      hoveredItem: key
+    });
+  }
+
+  onMouseLeave = () => {
+    this.setState({
+      hoveredItem: ''
+    });
+  }
+
+  getCloserResource = (a , b) => {
+    if(getDistance(a,this.state.position)
+    > getDistance(b,this.state.position)){
+      return 1;
     }
 
-    onMouseEnter = (key) => {
-      this.setState({
-        hoveredItem: key
-      });
-    }
+    return -1;
+  }
 
-    onMouseLeave = () => {
-      this.setState({
-        hoveredItem: ''
-      });
-    }
+  getCloserName = (a, b) => {
+    if(a.organizationname > b.organizationname) return 1
+    else if(a.organizationname < b.organizationname ) return -1
+    else return 0
 
-    getCloserResource = (a , b) => {
-      if(getDistance(a,this.state.position)
-      > getDistance(b,this.state.position)){
-        return 1;
-      }
+  }
 
-      return -1;
-    }
+  sortByAlphabet = () => {
 
-    getCloserName = (a, b) => {
-      if(a.organizationname > b.organizationname) return 1
-      else if(a.organizationname < b.organizationname ) return -1
-      else return 0
+    this.setState({orgs:
+      this.state.orgs.sort(this.getCloserName)})
+  }
 
-    }
+  sortByDistance = () => {
+    console.log(this.state.orgs);
+    this.setState({orgs:
+      this.state.orgs.sort(this.getCloserResource)
+    });
 
-    sortByAlphabet = () => {
+  }
 
-      this.setState({orgs:
-        this.state.orgs.sort(this.getCloserName)})
-      }
+  onOrganizationClick = (key) => {
+    const org = this.state.orgs.find(o => o.id == key);
+    const organizationZoom = 11;
 
+    this.setState({
+      center: [org.longitude, org.latitude],
+      zoom: [organizationZoom]
+    });
+  }
 
-      sortByDistance = () => {
-        console.log(this.state.orgs);
-        this.setState({orgs:
-          this.state.orgs.sort(this.getCloserResource)
-        });
+  render() {
+    const navbarHeight = 56;
 
-      }
+    let map = 
+      <Map
+        center={this.state.haveCoords ? this.state.position.coordinates : this.state.center}
+        zoom={this.state.zoom}
+        organizations={this.state.orgs}
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
+        onOrganizationClick={this.onOrganizationClick}
+      />
 
-
-      onOrganizationClick = (key) => {
-        const org = this.state.orgs.find(o => o.id == key);
-        const organizationZoom = 11;
-
-        this.setState({
-          center: [org.longitude, org.latitude],
-          zoom: [organizationZoom]
-        });
-      }
-
-      render() {
-        const navbarHeight = 56;
-
-        let map = 
-          <Map
-            center={this.state.haveCoords ? this.state.position.coordinates : this.state.center}
-            zoom={this.state.zoom}
-            organizations={this.state.orgs}
-            onMouseEnter={this.onMouseEnter}
-            onMouseLeave={this.onMouseLeave}
-            onOrganizationClick={this.onOrganizationClick}
-          />
-
-        return (
-          <div>
-            <Header 
-              categories={this.state.categories} 
-              handleEvent={this.callSheets} 
+    return (
+      <div>
+        <Header 
+          categories={this.state.categories} 
+          handleEvent={this.callSheets} 
+        />
+        <SplitScreen style={{ top: navbarHeight }}>
+          <SplitScreen.StaticPane>
+            {map}
+          </SplitScreen.StaticPane>
+          <SplitScreen.SlidingPane>
+            <SortBar 
+              sortByDistance={this.sortByDistance} 
+              sortByAlphabet={this.sortByAlphabet} 
+              haveCoords={this.state.haveCoords}
             />
-            <SplitScreen style={{ top: navbarHeight }}>
-              <SplitScreen.StaticPane>
-                {map}
-              </SplitScreen.StaticPane>
-              <SplitScreen.SlidingPane>
-                <SortBar 
-                  sortByDistance={this.sortByDistance} 
-                  sortByAlphabet={this.sortByAlphabet} 
-                  haveCoords={this.state.haveCoords}
-                />
-                <ResultList 
-                  data={this.state.orgs} 
-                  haveCoords={this.state.haveCoords} 
-                  currentPos={this.state.position}
-                />
-              </SplitScreen.SlidingPane>
-            </SplitScreen>
-          </div>
-        );
-      }
-    }
+            <ResultList 
+              data={this.state.orgs} 
+              haveCoords={this.state.haveCoords} 
+              currentPos={this.state.position}
+            />
+          </SplitScreen.SlidingPane>
+        </SplitScreen>
+      </div>
+    );
+  }
+}
 
-    export default App;
+export default App;
