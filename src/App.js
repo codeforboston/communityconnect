@@ -91,7 +91,7 @@ class App extends Component {
     });
   }
 
-  getLocation =  () => {
+  getLocation = () => {
     if(window.navigator.geolocation){
       window.navigator.geolocation.getCurrentPosition(
         position => {
@@ -99,18 +99,16 @@ class App extends Component {
 
           this.setState({position : {coordinates : {lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude)}}})
           this.setState({haveCoords : true})
-
-
         },
         error => {
           console.log('Unable to get Coordinates');
           this.setState({haveCoords: false})
         });
-      } else {
-        console.log('no geolocation');
-        this.setState({haveCoords: false})
-      }
+    } else {
+      console.log('no geolocation');
+      this.setState({haveCoords: false})
     }
+  }
 
   componentDidMount() {
     this.callSheets("");
