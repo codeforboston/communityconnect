@@ -7,5 +7,10 @@
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   width: 60%;
+}
 
+@media (max-width: 767px) {
+  .results {
+    width: 100%;
+  }
 }
