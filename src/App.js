@@ -174,27 +174,17 @@ class App extends Component {
       }
 
       render() {
-        let map;
+        const navbarHeight = 56;
 
-        if(this.state.haveCoords === false){
-          map = <Map
-          center={this.state.center}
-          zoom={this.state.zoom}
-          organizations={this.state.orgs}
-          onMouseEnter={this.onMouseEnter}
-          onMouseLeave={this.onMouseLeave}
-          onOrganizationClick={this.onOrganizationClick}
+        let map = 
+          <Map
+            center={this.state.haveCoords ? this.state.position.coordinates : this.state.center}
+            zoom={this.state.zoom}
+            organizations={this.state.orgs}
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+            onOrganizationClick={this.onOrganizationClick}
           />
-        } else if(this.state.haveCoords === true){
-          map = <Map
-          center={this.state.position.coordinates}
-          zoom={this.state.zoom}
-          organizations={this.state.orgs}
-          onMouseEnter={this.onMouseEnter}
-          onMouseLeave={this.onMouseLeave}
-          onOrganizationClick={this.onOrganizationClick}
-          />
-        }
 
         return (
           <div>
