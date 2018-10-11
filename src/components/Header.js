@@ -45,8 +45,7 @@ class Header extends Component {
 
   handleClick(cat, index) {
     console.log(index);
-    this.props.handleEvent(cat, "cat");    
-    //his.props.handleEvent(cat);
+    this.props.handleEvent(cat, "category");        
     if(index === -1) this.setState({activeItem:[]});
     this.state.activeItem.includes(index) ?  this.setState({
       activeItem : this.state.activeItem.filter( selected => selected !== index)

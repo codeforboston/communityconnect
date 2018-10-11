@@ -4,8 +4,25 @@ import styles from './OrganizationCard.module.css'
 import { getDistance } from '../utils/distance.js';
 
 class OrganizationCard extends Component {
+
+  constructor (props) {
+    super(props)
+
+    this.cardRef = React.createRef();
+
+  }
+
+  getRef = () => {
+    this.refs.cardRef.scrollIntoView({block: "center", inline: "center"})
+  }
+
+  cardClick= (e) => {
+    console.log("Click");
+    this.props.cardClick(e.currentTarget.id);
+  }
+
   render() {
-    const { name, categoryautosortscript, overview, location, website, facebookUrl,
+    const { id , name, categoryautosortscript, overview, location, website, facebookUrl,
       instagramUrl, twitterUrl, phone } = this.props.organization;
 
 
@@ -17,8 +34,10 @@ class OrganizationCard extends Component {
       }
     }
 
+
     return (
-      <Card className={styles.Card}>
+      <div ref="cardRef" >
+      <Card className={styles.Card} id={id} onClick={this.cardClick}>
         <CardBody>
           {website && <span><a href={website}>&#128279;</a></span>}
           <h3 className={styles.CardBody_headline}>{name}</h3>
@@ -33,7 +52,8 @@ class OrganizationCard extends Component {
             {twitterUrl && <li><a href="{twitterUrl}" data-type="social"><i className="fa fa-2x fa-facebook-square">{twitterUrl}</i></a></li>}
           </ul>}
         </CardBody>
-      </Card>
+       </Card>
+      </div>
     );
   }
 }

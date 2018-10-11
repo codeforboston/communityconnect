@@ -9,25 +9,23 @@ export class OrganizationMarker extends Component {
   constructor(props) {
     super(props);
 
-    if (props.open) {
-      this.state.open = props.open;
+
+    this.state.open = props.open;
+
+  }
+
+
+  componentDidUpdate(prevProps){
+    if(prevProps.open != this.props.open){
+      this.setState({open: this.props.open})
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.open !== this.state.open) {
-      this.setState({
-        open: nextProps.open,
-      });
-    }
-  }
-
-  componentDidUpdate() {
-    const { open } = this.state;
-  }
 
   handleClick = (e) => {
-    this.setState({ open: true });
+
+    this.props.setOpenMarker(this.props.id)
+    this.props.handleClick(this.props.organization.id)
   }
 
   handleClose = () => {
