@@ -20,9 +20,9 @@ class Header extends Component {
     this.handleFilter = this.handleFilter.bind(this);
     this.state = {
       isOpen: false,
-      activeItem: -1,
       value : "Categories",
       searchString: '',
+      activeItem: []
     };
   }
  
@@ -45,16 +45,18 @@ class Header extends Component {
 
   handleClick(cat, index) {
     console.log(index);
-    this.props.handleEvent(cat, "cat");
-    this.setState(state => ({
-      value : cat,
-      activeItem: index
-    }));
+    this.props.handleEvent(cat, "cat");    
+    //his.props.handleEvent(cat);
+    if(index === -1) this.setState({activeItem:[]});
+    this.state.activeItem.includes(index) ?  this.setState({
+      activeItem : this.state.activeItem.filter( selected => selected !== index)
+    })
+    : this.state.activeItem.push(index);
   }
 
   categoryMenuItems() {
     return this.props.categories.map((cat, index) =><DropdownItem onClick = {() => this.handleClick(cat, index)} key={cat}>
-    {this.state.activeItem === index ? <span>&#10004; {cat}</span>: cat}</DropdownItem>);
+    {this.state.activeItem.includes(index) ? <span>&#10004; {cat}</span>: cat}</DropdownItem>);
   }
 
   render() {
@@ -67,9 +69,10 @@ class Header extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>{this.state.value}</DropdownToggle>
+                <DropdownToggle nav caret>Category</DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem onClick = {() => this.handleClick("All", -1)} key="all">All</DropdownItem>
+                  <DropdownItem onClick = {() => this.handleClick("Clear", -1)} key={"Clear"}>Clear</DropdownItem>
+                  <DropdownItem divider/>
                   { this.categoryMenuItems() }
                 </DropdownMenu>
               </UncontrolledDropdown>
