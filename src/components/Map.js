@@ -1,7 +1,7 @@
 import React, { Component, Props } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
-import InfoWindowComponent from './InfoWindowComponent'
+
 
 import OrganizationMarker from './OrganizationMarker';
 
@@ -48,7 +48,7 @@ const Map = withScriptjs(withGoogleMap(props => (
             id={org.id}
             organization={org}
             open={org.isMarkerOpen}
-          /> 
+          />
         ) }
 
 
