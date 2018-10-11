@@ -157,12 +157,9 @@ class App extends Component {
 
   }
 
-  onOrganizationClick = (key) => {
-    const org = this.state.orgs.find(o => o.id == key);
-    const organizationZoom = 11;
-
+  onOrganizationClick = (longitude, latitude, organizationZoom) => {
     this.setState({
-      center: [org.longitude, org.latitude],
+      center: [longitude, latitude],
       zoom: [organizationZoom]
     });
   }
