@@ -65,6 +65,7 @@ class App extends Component {
         const tags = {};
         var data = tabletop.sheets("Data").elements;
 
+
         for(let project of data) {
           let category = project.categoryautosortscript.split(',');
           category.forEach(cat => categories[cat] = cat.trim());
@@ -77,6 +78,10 @@ class App extends Component {
         var filtered_json = filter_criteria_list.length <= 1 ? data : find_in_object(JSON.parse(my_json), {categoryautosortscript : filter_criteria_list});
 
         filtered_json = filtered_json.filter(function(org){ return org.truefalsevetting === 'TRUE' });
+
+        filtered_json.forEach(obj => {obj.isMarkerOpen = false; });
+
+        console.log(filtered_json)
 
         this.setState({
           orgs: filtered_json,
@@ -163,6 +168,14 @@ class App extends Component {
 
       }
 
+  cardClick = (id ) => {
+      this.mapItem.setOpenMarker(id);
+  }
+
+  clickedMarker = id => {
+    this.resultListItem.scrollToElement(id);
+  }
+
 
       onOrganizationClick = (key) => {
         const org = this.state.orgs.find(o => o.id == key);
@@ -184,6 +197,8 @@ class App extends Component {
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
           onOrganizationClick={this.onOrganizationClick}
+          clickedMarker={this.clickedMarker}
+          ref ={instance => {this.mapItem = instance}}
           />
         } else if(this.state.haveCoords === true){
           map = <Map
@@ -193,6 +208,8 @@ class App extends Component {
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
           onOrganizationClick={this.onOrganizationClick}
+          clickedMarker={this.clickedMarker}
+          ref ={instance => {this.mapItem = instance}}
           />
         }
 
@@ -206,7 +223,7 @@ class App extends Component {
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
           <SortBar sortByDistance={this.sortByDistance} sortByAlphabet={this.sortByAlphabet} haveCoords={this.state.haveCoords}/>
-          <ResultList data={this.state.orgs} haveCoords={this.state.haveCoords} currentPos={this.state.position}/>
+          <ResultList ref ={instance => {this.resultListItem = instance}} cardClick={this.cardClick} data={this.state.orgs} haveCoords={this.state.haveCoords} currentPos={this.state.position}/>
           </SplitScreen.SlidingPane>
           </SplitScreen>
           </div>
