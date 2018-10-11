@@ -197,6 +197,8 @@ class App extends Component {
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
           onOrganizationClick={this.onOrganizationClick}
+          clickedMarker={this.clickedMarker}
+          ref ={instance => {this.mapItem = instance}}
           />
         } else if(this.state.haveCoords === true){
           map = <Map
@@ -206,6 +208,8 @@ class App extends Component {
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
           onOrganizationClick={this.onOrganizationClick}
+          clickedMarker={this.clickedMarker}
+          ref ={instance => {this.mapItem = instance}}
           />
         }
 
@@ -219,7 +223,7 @@ class App extends Component {
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
           <SortBar sortByDistance={this.sortByDistance} sortByAlphabet={this.sortByAlphabet} haveCoords={this.state.haveCoords}/>
-          <ResultList data={this.state.orgs} haveCoords={this.state.haveCoords} currentPos={this.state.position}/>
+          <ResultList ref ={instance => {this.resultListItem = instance}} cardClick={this.cardClick} data={this.state.orgs} haveCoords={this.state.haveCoords} currentPos={this.state.position}/>
           </SplitScreen.SlidingPane>
           </SplitScreen>
           </div>
