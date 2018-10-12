@@ -33,10 +33,10 @@ const Map = withScriptjs(withGoogleMap(props => (
   >
 
     <MarkerClusterer
-        averageCenter={true}
-        enableRetinaIcons={true}
-        gridSize={60}
-        ref={props.onMarkerClick}
+      averageCenter={true}
+      enableRetinaIcons={true}
+      gridSize={60}
+      ref={props.onMarkerClick}
 
     >
       () => {
@@ -49,12 +49,12 @@ const Map = withScriptjs(withGoogleMap(props => (
             organization={org}
             open={org.isMarkerOpen}
           />
-        ) }
+        )}
 
 
 
-        )
-      }
+      )
+    }
     </MarkerClusterer>
   </GoogleMap>
 )));
@@ -64,9 +64,9 @@ class OrganizationMap extends Component {
 
   constructor(props) {
     super(props)
-    this.center = (this.props.center !== undefined) ? this.props.center: { lat: 42.3731, lng: -71.0162 } ;
-    this.zoom = (this.props.zoom !== undefined) ? this.props.zoom : 16 ;
-    this.state ={
+    this.center = (this.props.center !== undefined) ? this.props.center : { lat: 42.3731, lng: -71.0162 };
+    this.zoom = (this.props.zoom !== undefined) ? this.props.zoom : 16;
+    this.state = {
       center: this.center,
       zoom: this.zoom
     }
@@ -74,7 +74,7 @@ class OrganizationMap extends Component {
 
   }
 
-  handleClick =(e) => {
+  handleClick = (e) => {
     console.log(e.currentTarget)
   }
 
@@ -103,28 +103,29 @@ class OrganizationMap extends Component {
 
     this.props.organizations.forEach(org => {
 
-      if(org != org.id && org.isMarkerOpen ){
+      if (org != org.id && org.isMarkerOpen) {
         org.isMarkerOpen = false
       }
 
-      if(id == org.id){
+      if (id == org.id) {
 
         org.isMarkerOpen = true;
         this.setState({
           center: org.coordinates,
           zoom: 17
         })
-    }});
+      }
+    });
     this.forceUpdate();
   }
 
 
 
-  onZoomChanged = ref=> {
+  onZoomChanged = ref => {
 
 
     this.setState({
-      zoom : this.mapReference.getZoom()
+      zoom: this.mapReference.getZoom()
     })
 
     console.log("Map Zoom", this.mapReference.getZoom())
@@ -142,22 +143,22 @@ class OrganizationMap extends Component {
 
   render() {
 
-      return (
-        <Map
-          onMarkerClick={this.markerClick}
-          mapRef={this.mapRef}
-          onZoomChanged={this.onZoomChanged}
-          clickedMarker={this.clickedMarker}
-          setOpenMarker={this.setOpenMarker}
-          googleMapURL={googleMapURL}
-          containerElement={ <div style={{ height: '100%' }} /> }
-          mapElement={ <div style={{ height: '100%' }} /> }
-          loadingElement={<div style={{ height: `100%` }} />}
-          zoom={this.state.zoom}
-          center={this.state.center}
-          organizations={this.props.organizations}
-        />
-      );
+    return (
+      <Map
+        onMarkerClick={this.markerClick}
+        mapRef={this.mapRef}
+        onZoomChanged={this.onZoomChanged}
+        clickedMarker={this.clickedMarker}
+        setOpenMarker={this.setOpenMarker}
+        googleMapURL={googleMapURL}
+        containerElement={<div style={{ height: '100%' }} />}
+        mapElement={<div style={{ height: '100%' }} />}
+        loadingElement={<div style={{ height: `100%` }} />}
+        zoom={this.state.zoom}
+        center={this.state.center}
+        organizations={this.props.organizations}
+      />
+    );
   }
 }
 

@@ -17,6 +17,7 @@ class OrganizationCard extends Component {
   }
 
   cardClick= (e) => {
+    console.log("Click");
     this.props.cardClick(e.currentTarget.id);
   }
 
@@ -36,24 +37,22 @@ class OrganizationCard extends Component {
 
     return (
       <div ref="cardRef" >
-      <Card id={id} onClick={this.cardClick}>
-
-        <div>
-          <h3>{name}</h3>
-          <p className="lead">{categoryautosortscript}</p>
-        </div>
-        {distance && <div>{distanceElement}</div>}
-        {overview && <p>{overview}</p>}
-        {location && <p><span className="fa fa-map-o"></span> {location}</p>}
-        {phone && <p>{phone}</p>}
-        {website && <p><span className="fa fa-link"></span> <a href={website}>Website</a></p>}
-        {(facebookUrl || instagramUrl || twitterUrl) && <ul className="list-inline">
-          {facebookUrl && <li><a href="{facebookUrl}" data-type="social"><i className="fa fa-2x fa-facebook-square">{facebookUrl}</i></a></li>}
-          {instagramUrl && <li><a href="{instagramUrl}" data-type="social"><i className="fa fa-2x fa-facebook-square">{instagramUrl}</i></a></li>}
-          {twitterUrl && <li><a href="{twitterUrl}" data-type="social"><i className="fa fa-2x fa-facebook-square">{twitterUrl}</i></a></li>}
-        </ul>}
-
-      </Card>
+      <Card className={styles.Card} id={id} onClick={this.cardClick}>
+        <CardBody>
+          {website && <span><a href={website}>&#128279;</a></span>}
+          <h3 className={styles.CardBody_headline}>{name}</h3>
+          <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
+          {distance && <div>{distanceElement}</div>}
+          {overview && <p>{overview}</p>}
+          {location && <p><span className="fa fa-map-o"></span> {location}</p>}
+          {phone && <p> &#128222; {phone}</p>}
+          {(facebookUrl || instagramUrl || twitterUrl) && <ul className="list-inline">
+            {facebookUrl && <li><a href="{facebookUrl}" data-type="social"><i className="fa fa-2x fa-facebook-square">{facebookUrl}</i></a></li>}
+            {instagramUrl && <li><a href="{instagramUrl}" data-type="social"><i className="fa fa-2x fa-facebook-square">{instagramUrl}</i></a></li>}
+            {twitterUrl && <li><a href="{twitterUrl}" data-type="social"><i className="fa fa-2x fa-facebook-square">{twitterUrl}</i></a></li>}
+          </ul>}
+        </CardBody>
+       </Card>
       </div>
     );
   }

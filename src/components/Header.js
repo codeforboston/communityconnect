@@ -17,10 +17,24 @@ class Header extends Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
     this.state = {
       isOpen: false,
+      value : "Categories",
+      searchString: '',
       activeItem: []
     };
+  }
+ 
+
+  handleSubmit(txt){
+    this.props.handleFilter(txt, "name");
+  }
+
+
+  handleFilter (e) {
+    this.setState({searchString : e.target.value});
+    this.handleSubmit(e.target.value);       
   }
 
   toggle() {
@@ -30,7 +44,8 @@ class Header extends Component {
   }
 
   handleClick(cat, index) {
-    this.props.handleEvent(cat);
+    console.log(index);
+    this.props.handleEvent(cat, "category");        
     if(index === -1) this.setState({activeItem:[]});
     this.state.activeItem.includes(index) ?  this.setState({
       activeItem : this.state.activeItem.filter( selected => selected !== index)
@@ -48,6 +63,7 @@ class Header extends Component {
       <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Community Connect - Revere</NavbarBrand>
+          <input type="text" value={this.state.searchString} onChange={this.handleFilter} placeholder="Search Resources"/>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
