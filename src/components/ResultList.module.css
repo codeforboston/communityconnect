@@ -6,7 +6,15 @@
   top: 0;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
+}
+
+.resultsPartialWidth {
+  width: 60%;
+}
+.resultsFullWidth {
   width: 100%;
+  position: relative;
+  height: calc(100vh - 200px);
 }
 
 @media (max-width: 767px) {

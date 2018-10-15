@@ -52,6 +52,27 @@ export const SplitScreen = ({ children, ...other }) => (
   <div className={styles.viewport} {...other}>{children}</div>
 );
 
+export class SplitScreenTogglePane extends Component {
+  constructor(props){
+    super(props);
+  }
+
+  render() {
+    return (
+      <div style={{display: this.props.isOpen == true ? 'block' : 'none'}} className={styles.togglePane}>{this.props.children}</div>
+    );
+  }
+}
+
+// export const SplitScreenTogglePane = ({ children }) => (
+//   <div className={styles.togglePane}>{children}</div>
+// );
+
+SplitScreenTogglePane.propTypes = {
+  children: ChildrenPropType.isRequired,
+};
+
+SplitScreen.TogglePane = SplitScreenTogglePane;
 SplitScreen.StaticPane = SplitScreenStaticPane;
 SplitScreen.SlidingPane = SplitScreenSlidingPane;
 

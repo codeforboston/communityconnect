@@ -4,6 +4,8 @@ import { SplitScreen } from './components/SplitScreen';
 import ResultList from './components/ResultList';
 import Map from './components/Map/Map';
 import { callSheets } from './data/sheetLoadingHelpers.js';
+import ShoppingCart from './components/ShoppingCart';
+import SortBar from './components/SortBar.js';
 
 class App extends Component {
   constructor(props) {
@@ -12,9 +14,11 @@ class App extends Component {
       orgs: [],
       categories: [],
       tags: [],
-      haveCoords: false
+      haveCoords: false,
+      isSavedResourcePaneOpen: false,
     }
     this.callSheets = callSheets.bind(this);
+    this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
   }
 
   getLocation = () => {
@@ -55,6 +59,12 @@ class App extends Component {
     this.resultListItem.scrollToElement(id);
   }
 
+  toggleSavedResourcesPane = () => {
+    this.setState({
+      isSavedResourcePaneOpen: !this.state.isSavedResourcePaneOpen
+    });
+  }
+
   render() {
     const navbarHeight = 56;
 
@@ -72,6 +82,7 @@ class App extends Component {
           categories={this.state.categories} 
           handleEvent={this.callSheets} 
           handleFilter={this.callSheets}
+          toggleSavedResourcesPane={this.toggleSavedResourcesPane}
         />
         <SplitScreen style={{ top: navbarHeight }}>
           <SplitScreen.StaticPane>
@@ -85,8 +96,16 @@ class App extends Component {
               data={this.state.orgs} 
               haveCoords={this.state.haveCoords} 
               currentPos={this.state.position}
+              fullWidth={false}
             />
           </SplitScreen.SlidingPane>
+          <SplitScreen.TogglePane 
+            isOpen={this.state.isSavedResourcePaneOpen}>
+            <ShoppingCart 
+              instance={instance => { this.resultListItem = instance }} 
+              orgs={this.state.orgs}>
+            </ShoppingCart>
+          </SplitScreen.TogglePane>
         </SplitScreen>
       </div>
     );

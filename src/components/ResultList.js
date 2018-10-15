@@ -73,7 +73,10 @@ export class ResultList extends Component {
 
     return(
       <div >
-        <div className={styles.results} ref={this.listRef}>
+        <div 
+          className={[
+            styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}  
+          ref={this.listRef}>
         <SortBar 
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
@@ -90,7 +93,6 @@ export class ResultList extends Component {
           /> 
         )}
         </div>
-
       </div>
     );
 

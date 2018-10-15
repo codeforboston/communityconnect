@@ -4,7 +4,10 @@ import {
   Navbar,
   NavbarToggler,
   NavbarBrand,
-  Nav,} from 'reactstrap';
+  Nav,
+  DropdownItem,
+  Button,
+  } from 'reactstrap';
 
 import DropdownCategory from '../Header/DropdownCategory.js';
 import SearchBar from '../Header/SearchBar.js';
@@ -20,6 +23,12 @@ class Header extends Component {
             <Nav className="ml-auto" navbar>
               <DropdownCategory category={this.props.categories} handleEvent={this.props.handleEvent}/>
             </Nav>
+            <Button 
+              color="primary" 
+              onClick={() => this.props.toggleSavedResourcesPane()} 
+              style={{ marginBottom: '1rem' }}>
+              Saved Resources
+            </Button>
         </Navbar>
       </div>
     );

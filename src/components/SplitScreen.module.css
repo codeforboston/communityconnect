@@ -31,6 +31,23 @@
     font-size: 1.4rem;
   }
 
+  .togglePane {
+    display: block;
+    position: absolute;
+    height: calc(100% - 15px);
+    width: 33%;
+    border: 0;
+    top: -40px;
+    margin-top:40px;
+    right:0;
+    background-color: white;
+    border-radius: 4px 4px 0 0;
+    margin-left: -50px;
+    font-size: 1.4rem;
+    padding:15px;
+  }
+
+
   .staticPane {
     position: absolute;
     top: 0;
