@@ -92,7 +92,7 @@ class OrganizationMap extends Component {
     const organizationZoom = 11;
     const org = this.props.organizations.find(o => o.id == key);
 
-    this.props.onOrganizationClick(org.longitude, org.latitude, organizationZoom);
+    this.props.onOrganizationClick(key);
   }
 
   clickedMarker = id => {
