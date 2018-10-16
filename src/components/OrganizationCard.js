@@ -41,10 +41,14 @@ class OrganizationCard extends Component {
           <CardBody>
             {website && <span><a href={website}>&#128279;</a></span>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
+          <span onClick={(e)=> e.stopPropagation()}>
+            <span style={{cursor:'pointer', marginLeft:'15px'}} onClick={this.props.addItem}>Save </span>
+            <span style={{cursor:'pointer'}} onClick={this.props.removeItem}> Remove</span>
+          </span>
             <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
             {distance && <div>{distanceElement}</div>}
-            {overview && <p>{overview}</p>}
             {location && <p><span className="fa fa-map-o"></span> {location}</p>}
+            {overview && <p>{overview}</p>}
             {phone && <p> &#128222; {phone}</p>}
             {(facebookUrl || instagramUrl || twitterUrl) && <ul className="list-inline">
               {facebookUrl && <li><a href={facebookUrl} data-type="social"><i className="fa fa-2x fa-facebook-square">{facebookUrl}</i></a></li>}
