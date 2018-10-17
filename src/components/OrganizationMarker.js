@@ -47,6 +47,8 @@ export class OrganizationMarker extends Component {
               <h3>{organization.name}</h3>
               <div>{organization.location}</div>
               <div><a href={`tel:${organization.phone}`}>{organization.phone}</a></div>
+              <p></p>
+              <div>{organization.tags}</div>
             </div>
           </InfoWindow>
         }

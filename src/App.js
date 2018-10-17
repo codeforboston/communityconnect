@@ -17,7 +17,7 @@ const defaultCenter = { lat: 42.3731, lng: -71.0162 };
 function normalizeHeaders(element) {
   element["name"] = element["name"];
   element["id"] = element["rowNumber"];
-  element["tags"] = String(element["serviceprovided"]).split(", ");
+  element["tags"] = String(element["serviceprovided"]);
   element["twitterUrl"] = element["twitterurl"];
   element["facebookUrl"] = element["facebookurl"];
   element["instagramUrl"] = element["instagramurl"];
@@ -78,7 +78,7 @@ class App extends Component {
 
         if (selected.length > 0 && filterType == "category") {
           filter_criteria_list = update_criteria(selected, filter_criteria_list);
-        }        
+        }
 
         filtered_json = filter_criteria_list.length <= 0 ? data : find_in_object(JSON.parse(my_json), { categoryautosortscript: filter_criteria_list });
 
@@ -189,7 +189,7 @@ class App extends Component {
   render() {
     const navbarHeight = 56;
 
-    let map = 
+    let map =
       <Map
         center={this.state.haveCoords ? this.state.position.coordinates : this.state.center}
         zoom={this.state.zoom}
@@ -203,9 +203,9 @@ class App extends Component {
 
     return (
       <div>
-        <Header 
-          categories={this.state.categories} 
-          handleEvent={this.callSheets} 
+        <Header
+          categories={this.state.categories}
+          handleEvent={this.callSheets}
           handleFilter={this.callSheets}
         />
         <SplitScreen style={{ top: navbarHeight }}>
@@ -213,16 +213,16 @@ class App extends Component {
             {map}
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
-            <SortBar 
-              sortByDistance={this.sortByDistance} 
-              sortByAlphabet={this.sortByAlphabet} 
+            <SortBar
+              sortByDistance={this.sortByDistance}
+              sortByAlphabet={this.sortByAlphabet}
               haveCoords={this.state.haveCoords}
             />
-            <ResultList 
-              ref={instance => { this.resultListItem = instance }} 
-              cardClick={this.cardClick} 
-              data={this.state.orgs} 
-              haveCoords={this.state.haveCoords} 
+            <ResultList
+              ref={instance => { this.resultListItem = instance }}
+              cardClick={this.cardClick}
+              data={this.state.orgs}
+              haveCoords={this.state.haveCoords}
               currentPos={this.state.position}
             />
           </SplitScreen.SlidingPane>
