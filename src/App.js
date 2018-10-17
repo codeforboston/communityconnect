@@ -210,14 +210,14 @@ class App extends Component {
         />
         <SplitScreen style={{ top: navbarHeight }}>
           <SplitScreen.StaticPane>
-            {map}
-          </SplitScreen.StaticPane>
-          <SplitScreen.SlidingPane>
-            <SortBar 
+          <SortBar 
               sortByDistance={this.sortByDistance} 
               sortByAlphabet={this.sortByAlphabet} 
               haveCoords={this.state.haveCoords}
             />
+            {map}
+          </SplitScreen.StaticPane>
+          <SplitScreen.SlidingPane>
             <ResultList 
               ref={instance => { this.resultListItem = instance }} 
               cardClick={this.cardClick} 

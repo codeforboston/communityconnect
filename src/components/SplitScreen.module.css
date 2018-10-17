@@ -10,7 +10,7 @@
   .slidingPane {
     position: absolute;
     top: 0;
-    right: 50%;
+    right: 70%;
     bottom: 0;
     left: 0;
     padding: 10px;
@@ -50,6 +50,7 @@
       right: 0;
       top: auto;
       height: 70%;
+      left:30%;
       z-index: 10;
     }
     .slidingPane.open {
