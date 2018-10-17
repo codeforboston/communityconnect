@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Tabletop from 'tabletop';
 
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import { SplitScreen } from './components/SplitScreen';
 import ResultList from './components/ResultList';
 import Map from './components/Map';
