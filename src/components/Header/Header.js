@@ -10,7 +10,6 @@ import DropdownCategory from '../Header/DropdownCategory.js';
 import SearchBar from '../Header/SearchBar.js';
 
 
-
 class Header extends Component {
   render() {
     return (

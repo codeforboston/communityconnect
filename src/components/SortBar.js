@@ -31,7 +31,7 @@ class SortBar extends React.Component {
      option = <option value='1'>Distance</option>
    }
     return (
-        <div align="center">
+        <div align="right">
           <div  className={styles.result}>
               <p>Sort By:</p>
           </div>

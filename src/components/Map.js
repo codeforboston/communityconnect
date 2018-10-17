@@ -4,7 +4,6 @@ import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerC
 
 
 import OrganizationMarker from './OrganizationMarker';
-import SortBar from './SortBar.js';
 
 import styles from './Map.module.css';
 

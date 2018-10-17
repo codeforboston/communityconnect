@@ -6,7 +6,6 @@ import Header from './components/Header/Header';
 import { SplitScreen } from './components/SplitScreen';
 import ResultList from './components/ResultList';
 import Map from './components/Map';
-import SortBar from './components/SortBar.js';
 import { getDistance } from './utils/distance.js';
 import { find_in_object, update_criteria, criteria_list } from './utils/FilterHelper.js';
 
@@ -210,15 +209,13 @@ class App extends Component {
         />
         <SplitScreen style={{ top: navbarHeight }}>
           <SplitScreen.StaticPane>
-          <SortBar 
-              sortByDistance={this.sortByDistance} 
-              sortByAlphabet={this.sortByAlphabet} 
-              haveCoords={this.state.haveCoords}
-            />
             {map}
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
-            <ResultList 
+            <ResultList
+              sortByDistance={this.sortByDistance} 
+              sortByAlphabet={this.sortByAlphabet} 
+              haveCoords={this.state.haveCoords} 
               ref={instance => { this.resultListItem = instance }} 
               cardClick={this.cardClick} 
               data={this.state.orgs} 
