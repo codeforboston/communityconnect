@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Tabletop from 'tabletop';
 
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import { SplitScreen } from './components/SplitScreen';
 import ResultList from './components/ResultList';
 import Map from './components/Map';
@@ -78,7 +78,7 @@ class App extends Component {
 
         if (selected.length > 0 && filterType == "category") {
           filter_criteria_list = update_criteria(selected, filter_criteria_list);
-        }        
+        }
 
         filtered_json = filter_criteria_list.length <= 0 ? data : find_in_object(JSON.parse(my_json), { categoryautosortscript: filter_criteria_list });
 
