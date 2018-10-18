@@ -4,9 +4,9 @@
 To suggest businesses and/or organizations in the area that are not presently listed, please visit:
 https://goo.gl/forms/X2Nou8ZLtrmz0JGe2
 
-Stage 1 - Simple Name Search, Category Filter, Semi-clickable List, Map with Pins.
-Stage 2 - Fuzzy search, Mobile Compatibility, organized card with all relevant information about selected resource on Map, overlaying public transportation and other information to increase accessibility, import and maintain up-to-date information about resources.
-Stage 3 - Login form for Social Workers including "To-Do List" Feature, Expand Resources to Chelsea, Charlestown, and Boston.
+  1. Stage 1 - Simple Name Search, Category Filter, Semi-clickable List, Map with Pins.
+  2. Stage 2 - Fuzzy search, Mobile Compatibility, organized card with all relevant information about selected resource on Map, overlaying public transportation and other information to increase accessibility, import and maintain up-to-date information about resources.
+  3. Stage 3 - Login form for Social Workers including "To-Do List" Feature, Expand Resources to Chelsea, Charlestown, and Boston.
 
 ## How this works
 Resources are stored in a google spreadsheet (New). https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit?usp=sharing
