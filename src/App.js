@@ -1,41 +1,14 @@
 import React, { Component } from 'react';
-
-import Tabletop from 'tabletop';
-
 import Header from './components/Header/Header';
 import { SplitScreen } from './components/SplitScreen';
 import ResultList from './components/ResultList';
 import Map from './components/Map';
 import SortBar from './components/SortBar.js';
 import { getDistance } from './utils/distance.js';
-import { find_in_object, update_criteria, criteria_list } from './utils/FilterHelper.js';
+import { callSheets } from './data/sheetLoadingHelpers.js';
 
 const defaultZoom = 6;
 const defaultCenter = { lat: 42.3731, lng: -71.0162 };
-
-
-function normalizeHeaders(element) {
-  element["name"] = element["name"];
-  element["id"] = element["rowNumber"];
-  element["tags"] = String(element["serviceprovided"]).split(", ");
-  element["twitterUrl"] = element["twitterurl"];
-  element["facebookUrl"] = element["facebookurl"];
-  element["instagramUrl"] = element["instagramurl"];
-  if (element["latitude"] && element["longitude"]) {
-    element["coordinates"] = { lat: parseFloat(element["latitude"]), lng: parseFloat(element["longitude"]) }
-  }
-
-  if (element.city || element.address || element.state || element.zipcode) {
-    // element.location = element.address+ " " + element.city + ", " + element.state + " " + element.zipcode;
-    element.location = element["combinedaddress"];
-  } else {
-    element.location = "";
-  }
-
-}
-
-var filter_criteria_list = [];
-var filtered_json = {};
 
 class App extends Component {
   constructor(props) {
@@ -48,63 +21,9 @@ class App extends Component {
       zoom: defaultZoom,
       haveCoords: false
     }
-    this.callSheets = this.callSheets.bind(this);
+    this.callSheets = callSheets.bind(this);
     this.sortByDistance = this.sortByDistance.bind(this);
     this.getCloserResource = this.getCloserResource.bind(this);
-  }
-
-  callSheets(selected = "", filterType = "") {
-
-    var revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
-    Tabletop.init({
-      key: revere_key,
-      simpleSheet: true,
-      prettyColumnNames: false,
-      postProcess: normalizeHeaders,
-      callback: (_data, tabletop) => {
-        const categories = {};
-        const tags = {};
-        var data = tabletop.sheets("Data").elements;
-
-
-        for (let project of data) {
-          let category = project.categoryautosortscript.split(',');
-          category.forEach(cat => categories[cat] = cat.trim());
-          for (let tag of project.tags) { tags[tag] = "" };
-        }
-        const categoryList = [...(new Set(Object.values(categories)))];
-
-        var my_json = JSON.stringify(data);
-
-        if (selected.length > 0 && filterType == "category") {
-          filter_criteria_list = update_criteria(selected, filter_criteria_list);
-        }
-
-        filtered_json = filter_criteria_list.length <= 0 ? data : find_in_object(JSON.parse(my_json), { categoryautosortscript: filter_criteria_list });
-
-        if (selected.length > 0 && filterType == "name") {
-          filtered_json = filtered_json.filter(function (i) {
-            return i.name.toLowerCase().match(selected.toLowerCase());
-          });
-        }
-
-        filtered_json = filtered_json.filter(function (org) { return org.truefalsevetting === 'TRUE' });
-
-        filtered_json.forEach(obj => { obj.isMarkerOpen = false; });
-
-        //console.log(filtered_json)
-
-        this.setState({
-          orgs: filtered_json,
-          categories: categoryList,
-          tags: Object.keys(tags)
-        });
-
-        this.sortByAlphabet()
-
-
-      }
-    });
   }
 
   getLocation = () => {
