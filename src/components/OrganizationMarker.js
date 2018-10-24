@@ -8,8 +8,6 @@ export class OrganizationMarker extends Component {
 
   constructor(props) {
     super(props);
-
-
     this.state.open = props.open;
 
   }

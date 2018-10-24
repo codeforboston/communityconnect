@@ -31,7 +31,6 @@ const Map = withScriptjs(withGoogleMap(props => (
     ref={props.mapRef}
 
   >
-
     <MarkerClusterer
       averageCenter={true}
       enableRetinaIcons={true}

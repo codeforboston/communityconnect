@@ -3,7 +3,6 @@ import Header from './components/Header/Header';
 import { SplitScreen } from './components/SplitScreen';
 import ResultList from './components/ResultList';
 import Map from './components/Map';
-import SortBar from './components/SortBar.js';
 import { getDistance } from './utils/distance.js';
 import { callSheets } from './data/sheetLoadingHelpers.js';
 
@@ -132,12 +131,10 @@ class App extends Component {
             {map}
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
-            <SortBar 
+            <ResultList
               sortByDistance={this.sortByDistance} 
               sortByAlphabet={this.sortByAlphabet} 
-              haveCoords={this.state.haveCoords}
-            />
-            <ResultList 
+              haveCoords={this.state.haveCoords} 
               ref={instance => { this.resultListItem = instance }} 
               cardClick={this.cardClick} 
               data={this.state.orgs} 
