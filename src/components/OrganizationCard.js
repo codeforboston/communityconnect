@@ -47,9 +47,9 @@ class OrganizationCard extends Component {
           {location && <p><span className="fa fa-map-o"></span> {location}</p>}
           {phone && <p> &#128222; {phone}</p>}
           {(facebookUrl || instagramUrl || twitterUrl) && <ul className="list-inline">
-            {facebookUrl && <li><a href="{facebookUrl}" data-type="social"><i className="fa fa-2x fa-facebook-square">{facebookUrl}</i></a></li>}
-            {instagramUrl && <li><a href="{instagramUrl}" data-type="social"><i className="fa fa-2x fa-facebook-square">{instagramUrl}</i></a></li>}
-            {twitterUrl && <li><a href="{twitterUrl}" data-type="social"><i className="fa fa-2x fa-facebook-square">{twitterUrl}</i></a></li>}
+            {facebookUrl && <li><a href={facebookUrl} data-type="social"><i className="fa fa-2x fa-facebook-square">{facebookUrl}</i></a></li>}
+            {instagramUrl && <li><a href={instagramUrl} data-type="social"><i className="fa fa-2x fa-facebook-square">{instagramUrl}</i></a></li>}
+            {twitterUrl && <li><a href={twitterUrl} data-type="social"><i className="fa fa-2x fa-facebook-square">{twitterUrl}</i></a></li>}
           </ul>}
         </CardBody>
        </Card>
