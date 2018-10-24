@@ -7,7 +7,7 @@ import SortBar from './components/SortBar.js';
 import { getDistance } from './utils/distance.js';
 import { callSheets } from './data/sheetLoadingHelpers.js';
 
-const defaultZoom = 6;
+const defaultZoom = 12;
 const defaultCenter = { lat: 42.3731, lng: -71.0162 };
 
 class App extends Component {
