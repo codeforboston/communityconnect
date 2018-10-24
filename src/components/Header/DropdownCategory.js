@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {
   Dropdown,
   DropdownToggle,
+  UncontrolledDropdown,
+  NavItem,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
@@ -45,16 +47,18 @@ class DropdownCategory extends Component {
 
   render() {
     return (
-      <div>
-        <Dropdown toggle = {this.toggle} isOpen={this.state.dropdownOpen} nav inNavbar>
-          <DropdownToggle nav caret >Category</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem onClick = {() => this.handleClick("Clear", -1)} key={"Clear"}>Clear</DropdownItem>
-            <DropdownItem divider/>
-            { this.categoryMenuItems() }
-          </DropdownMenu>
-        </Dropdown>
-      </div>
+      <NavItem>
+        <UncontrolledDropdown nav inNavbar>
+          <Dropdown toggle = {this.toggle} isOpen={this.state.dropdownOpen} nav inNavbar>
+            <DropdownToggle nav caret >Category</DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem onClick = {() => this.handleClick("Clear", -1)} key={"Clear"}>Clear</DropdownItem>
+              <DropdownItem divider/>
+              { this.categoryMenuItems() }
+            </DropdownMenu>
+          </Dropdown>
+        </UncontrolledDropdown>
+      </NavItem>
     );
   }
 }

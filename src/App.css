@@ -1,0 +1,12 @@
+.wrapper{
+    margin-left:auto;
+    margin-right:auto;
+    height:auto;
+    width:auto;
+}
+.inner1{
+    float:left;
+}
+.inner2{
+    float:left;
+}

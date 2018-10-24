@@ -1,0 +1,10 @@
+.header{
+  z-index:1000;
+}
+
+
+@media (max-width: 768px) {
+  .header{
+    z-index: 100000;
+  }
+}

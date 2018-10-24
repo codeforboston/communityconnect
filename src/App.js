@@ -127,6 +127,12 @@ class App extends Component {
   componentDidMount() {
     this.callSheets("");
     this.getLocation();
+    var node = ReactDOM.findDOMNode(this.refs[myElement]);
+if (node){
+  var calculatedHeight = node.clientHeight;
+}
+console.log('height', calculatedHeight);
+
   }
 
   onMouseEnter = (key) => {
@@ -188,7 +194,7 @@ class App extends Component {
   render() {
     const navbarHeight = 56;
 
-    let map = 
+    let map =
       <Map
         center={this.state.haveCoords ? this.state.position.coordinates : this.state.center}
         zoom={this.state.zoom}
@@ -202,10 +208,11 @@ class App extends Component {
 
     return (
       <div>
-        <Header 
-          categories={this.state.categories} 
-          handleEvent={this.callSheets} 
+        <Header
+          categories={this.state.categories}
+          handleEvent={this.callSheets}
           handleFilter={this.callSheets}
+          ref={(input) => { this.myElement = input; }}
         />
         <SplitScreen style={{ top: navbarHeight }}>
           <SplitScreen.StaticPane>
@@ -213,13 +220,13 @@ class App extends Component {
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
             <ResultList
-              sortByDistance={this.sortByDistance} 
-              sortByAlphabet={this.sortByAlphabet} 
-              haveCoords={this.state.haveCoords} 
-              ref={instance => { this.resultListItem = instance }} 
-              cardClick={this.cardClick} 
-              data={this.state.orgs} 
-              haveCoords={this.state.haveCoords} 
+              sortByDistance={this.sortByDistance}
+              sortByAlphabet={this.sortByAlphabet}
+              haveCoords={this.state.haveCoords}
+              ref={instance => { this.resultListItem = instance }}
+              cardClick={this.cardClick}
+              data={this.state.orgs}
+              haveCoords={this.state.haveCoords}
               currentPos={this.state.position}
             />
           </SplitScreen.SlidingPane>

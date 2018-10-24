@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import {
+  NavItem} from 'reactstrap';
 class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,9 @@ class SearchBar extends Component {
 
   render() {
     return (
+      <NavItem>
       <input type="text" value={this.state.searchString} onChange={this.handleFilter} placeholder="Search Resources"/>
+      </NavItem>
     );
   }
 }
