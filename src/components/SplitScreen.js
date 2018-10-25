@@ -23,10 +23,11 @@ export class SplitScreenSlidingPane extends Component {
   render() {
     const classNames = [styles.slidingPane];
 
+
     if (this.state.isOpen) {
       classNames.push(styles.open);
     }
-
+    
     return (
       <div className={classNames.join(' ')}>
         <button className={styles.slidingPaneToggle} onClick={this.toggle}>☰</button>

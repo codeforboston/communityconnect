@@ -9,6 +9,8 @@ import Map from './components/Map';
 import { getDistance } from './utils/distance.js';
 import { find_in_object, update_criteria, criteria_list } from './utils/FilterHelper.js';
 
+import styles from './App.css';
+
 const defaultZoom = 6;
 const defaultCenter = { lat: 42.3731, lng: -71.0162 };
 
@@ -127,12 +129,6 @@ class App extends Component {
   componentDidMount() {
     this.callSheets("");
     this.getLocation();
-    var node = ReactDOM.findDOMNode(this.refs[myElement]);
-if (node){
-  var calculatedHeight = node.clientHeight;
-}
-console.log('height', calculatedHeight);
-
   }
 
   onMouseEnter = (key) => {

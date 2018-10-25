@@ -41,16 +41,16 @@
 
   @media (max-width: 768px) {
     .staticPane {
+      top: 9%;
       left: 0;
       z-index: 5;
     }
     .slidingPane {
       background-color: rgba(255, 255, 255, 0.9);
-      bottom: 70%;
+      bottom: -70%;
       right: 0;
       top: auto;
-      height: 45%;
-      left:0%;
+      height: 70%;
       z-index: 10;
     }
     .slidingPane.open {
