@@ -36,6 +36,7 @@ class OrganizationCard extends Component {
 
 
     return (
+      <div ref="cardRef">
       <Card className={styles.Card} id={id} onClick={this.cardClick}>
         <CardBody>
           {website && <span><a href={website}>&#128279;</a></span>}
@@ -52,7 +53,7 @@ class OrganizationCard extends Component {
           </ul>}
         </CardBody>
        </Card>
-      
+      </div>
     );
   }
 }
