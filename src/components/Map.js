@@ -62,12 +62,11 @@ class OrganizationMap extends Component {
 
 
   constructor(props) {
-    super(props)
-    this.center = (this.props.center !== undefined) ? this.props.center : { lat: 42.3731, lng: -71.0162 };
-    this.zoom = (this.props.zoom !== undefined) ? this.props.zoom : 16;
+    super(props);
+
     this.state = {
-      center: this.center,
-      zoom: this.zoom
+      center: this.props.center ? this.props.center : defaultCenter,
+      zoom: defaultZoom,
     }
     console.log(this.state)
 
