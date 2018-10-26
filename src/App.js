@@ -25,7 +25,14 @@ class App extends Component {
       window.navigator.geolocation.getCurrentPosition(
         position => {
           console.log(position)
-          this.setState({position : {coordinates : {lat: parseFloat(position.coords.latitude), lng: parseFloat(position.coords.longitude)}}})
+          this.setState({ 
+            position : {
+              coordinates : {
+                lat: parseFloat(position.coords.latitude), 
+                lng: parseFloat(position.coords.longitude)
+              }
+            }
+          })
           this.setState({haveCoords : true})
         },
         error => {
