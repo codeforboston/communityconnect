@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header/Header';
 import { SplitScreen } from './components/SplitScreen';
 import ResultList from './components/ResultList';
-import Map from './components/Map';
+import Map from './components/Map/Map';
 import { getDistance } from './utils/distance.js';
 import { callSheets } from './data/sheetLoadingHelpers.js';
 
