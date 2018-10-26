@@ -6,9 +6,6 @@ import Map from './components/Map';
 import { getDistance } from './utils/distance.js';
 import { callSheets } from './data/sheetLoadingHelpers.js';
 
-const defaultZoom = 12;
-const defaultCenter = { lat: 42.3731, lng: -71.0162 };
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,8 +13,6 @@ class App extends Component {
       orgs: [],
       categories: [],
       tags: [],
-      center: defaultCenter,
-      zoom: defaultZoom,
       haveCoords: false
     }
     this.callSheets = callSheets.bind(this);
@@ -109,8 +104,7 @@ class App extends Component {
 
     let map = 
       <Map
-        center={this.state.haveCoords ? this.state.position.coordinates : this.state.center}
-        zoom={this.state.zoom}
+        center={this.state.position ? this.state.position.coordinates : null}
         organizations={this.state.orgs}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
