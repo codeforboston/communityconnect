@@ -58,6 +58,9 @@ const Map = withScriptjs(withGoogleMap(props => (
   </GoogleMap>
 )));
 
+const defaultZoom = 12;
+const defaultCenter = { lat: 42.3731, lng: -71.0162 };
+
 class OrganizationMap extends Component {
 
 
@@ -78,27 +81,32 @@ class OrganizationMap extends Component {
 
   markerHover = (key, event) => {
     event.map.getCanvas().style.cursor = 'pointer';
-    this.props.onMouseEnter(key);
+    this.setState({
+      hoveredItem: key
+    });
   }
 
   markerEndHover = (key, event) => {
     event.map.getCanvas().style.cursor = '';
-    this.props.onMouseLeave();
+    this.setState({
+      hoveredItem: ''
+    });
   }
 
   onOrganizationClick = (key, event) => {
     const organizationZoom = 11;
     const org = this.props.organizations.find(o => o.id == key);
 
-    this.props.onOrganizationClick(key);
+    this.setState({
+      center: [org.position.longitude, org.position.latitude],
+      zoom: [organizationZoom]
+    });
   }
 
   clickedMarker = id => {
 
     this.props.clickedMarker(id)
   }
-
-
 
   setOpenMarker = id => {
 

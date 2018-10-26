@@ -43,25 +43,6 @@ class App extends Component {
     this.getLocation();
   }
 
-  onMouseEnter = (key) => {
-    this.setState({
-      hoveredItem: key
-    });
-  }
-
-  onMouseLeave = () => {
-    this.setState({
-      hoveredItem: ''
-    });
-  }
-
-  onOrganizationClick = (longitude, latitude, organizationZoom) => {
-    this.setState({
-      center: [longitude, latitude],
-      zoom: [organizationZoom]
-    });
-  }
-
   getCloserResource = (a , b) => {
     if(getDistance(a,this.state.position)
     > getDistance(b,this.state.position)){
@@ -75,7 +56,6 @@ class App extends Component {
     if(a.organizationname > b.organizationname) return 1
     else if(a.organizationname < b.organizationname ) return -1
     else return 0
-
   }
 
   sortByAlphabet = () => {
@@ -106,9 +86,6 @@ class App extends Component {
       <Map
         center={this.state.position ? this.state.position.coordinates : null}
         organizations={this.state.orgs}
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
-        onOrganizationClick={this.onOrganizationClick}
         clickedMarker={this.clickedMarker}
         ref={instance => { this.mapItem = instance }}
       />
