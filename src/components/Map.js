@@ -1,10 +1,7 @@
 import React, { Component, Props } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
-
-
 import OrganizationMarker from './OrganizationMarker';
-
 import styles from './Map.module.css';
 
 const googleMapKey = 'AIzaSyAwKdrqS2GfCt9b2K1wAopDc9Ga0N1BVUM';
@@ -24,19 +21,16 @@ const mapStyle = {
 
 const Map = withScriptjs(withGoogleMap(props => (
 
-
   <GoogleMap
     ref={props.onMapLoad}
     {...props}
     ref={props.mapRef}
-
   >
     <MarkerClusterer
       averageCenter={true}
       enableRetinaIcons={true}
       gridSize={60}
       ref={props.onMarkerClick}
-
     >
       () => {
         props.organizations.filter(org => org.coordinates).map(org =>
@@ -49,9 +43,6 @@ const Map = withScriptjs(withGoogleMap(props => (
             open={org.isMarkerOpen}
           />
         )}
-
-
-
       )
     }
     </MarkerClusterer>
@@ -63,7 +54,6 @@ const defaultCenter = { lat: 42.3731, lng: -71.0162 };
 
 class OrganizationMap extends Component {
 
-
   constructor(props) {
     super(props);
 
@@ -72,7 +62,6 @@ class OrganizationMap extends Component {
       zoom: defaultZoom,
     }
     console.log(this.state)
-
   }
 
   handleClick = (e) => {
@@ -128,10 +117,7 @@ class OrganizationMap extends Component {
     this.forceUpdate();
   }
 
-
-
   onZoomChanged = ref => {
-
 
     this.setState({
       zoom: this.mapReference.getZoom()
