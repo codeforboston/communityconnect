@@ -3,7 +3,6 @@ import Header from './components/Header/Header';
 import { SplitScreen } from './components/SplitScreen';
 import ResultList from './components/ResultList';
 import Map from './components/Map/Map';
-import { getDistance } from './utils/distance.js';
 import { callSheets } from './data/sheetLoadingHelpers.js';
 
 class App extends Component {
@@ -16,8 +15,6 @@ class App extends Component {
       haveCoords: false
     }
     this.callSheets = callSheets.bind(this);
-    this.sortByDistance = this.sortByDistance.bind(this);
-    this.getCloserResource = this.getCloserResource.bind(this);
   }
 
   getLocation = () => {
@@ -48,34 +45,6 @@ class App extends Component {
   componentDidMount() {
     this.callSheets("");
     this.getLocation();
-  }
-
-  getCloserResource = (a , b) => {
-    if(getDistance(a,this.state.position)
-    > getDistance(b,this.state.position)){
-      return 1;
-    }
-
-    return -1;
-  }
-
-  getCloserName = (a, b) => {
-    if(a.organizationname > b.organizationname) return 1
-    else if(a.organizationname < b.organizationname ) return -1
-    else return 0
-  }
-
-  sortByAlphabet = () => {
-    this.setState({orgs:
-      this.state.orgs.sort(this.getCloserName)})
-  }
-
-  sortByDistance = () => {
-    console.log(this.state.orgs);
-    this.setState({orgs:
-      this.state.orgs.sort(this.getCloserResource)
-    });
-
   }
 
   cardClick = (id) => {
@@ -110,8 +79,6 @@ class App extends Component {
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
             <ResultList
-              sortByDistance={this.sortByDistance} 
-              sortByAlphabet={this.sortByAlphabet} 
               haveCoords={this.state.haveCoords} 
               ref={instance => { this.resultListItem = instance }} 
               cardClick={this.cardClick} 
