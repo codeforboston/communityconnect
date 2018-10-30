@@ -69,7 +69,6 @@ export function callSheets(selected = "", filterType = "") {
         tags: Object.keys(tags)
       });
 
-      this.sortByAlphabet()
     }
   });
 }
