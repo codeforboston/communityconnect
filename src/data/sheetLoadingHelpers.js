@@ -3,7 +3,6 @@ import { find_in_object, update_criteria, criteria_list } from '../utils/FilterH
 
 function normalizeHeaders(element) {
   element["name"] = element["name"];
-  element["id"] = element["rowNumber"];
   element["tags"] = String(element["serviceprovided"]).split(", ");
   element["twitterUrl"] = element["twitterurl"];
   element["facebookUrl"] = element["facebookurl"];
@@ -47,7 +46,7 @@ export function callSheets(selected = "", filterType = "") {
 
       if (selected.length > 0 && filterType == "category") {
         filter_criteria_list = update_criteria(selected, filter_criteria_list);
-      }        
+      }
 
       filtered_json = filter_criteria_list.length <= 0 ? data : find_in_object(JSON.parse(my_json), { categoryautosortscript: filter_criteria_list });
 
