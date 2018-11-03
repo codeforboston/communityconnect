@@ -43,11 +43,11 @@ export class ResultList extends Component {
   }
 
   sortByAlphabet = () => {
-    return this.props.data.sort(this.getCloserName);
+    return this.props.data.slice().sort(this.getCloserName);
   }
 
   sortByDistance = () => {
-    return this.props.data.sort(this.getCloserResource);
+    return this.props.data.slice().sort(this.getCloserResource);
   }
 
   handleSortChange = (newSort) => {
@@ -56,6 +56,18 @@ export class ResultList extends Component {
         // Set the dataSort variable to whichever sort function is chosen
         dataSort: newSort,
       })
+  }
+
+  cardClick = (id) => {
+    debugger
+    var index = this.props.data.findIndex( org => {
+      if(org.id == id){
+        return true;
+      }
+    })
+
+    this.props.cardClick(index)
+
   }
 
   render() {
@@ -85,8 +97,8 @@ export class ResultList extends Component {
           <OrganizationCard
             key={org.id}
             ref={org.id}
-            index={index}
-            cardClick={this.props.cardClick}
+            index={org.id}
+            cardClick={this.cardClick}
             organization={org}
             haveCoords={this.props.haveCoords}
             currentPos={this.props.currentPos}

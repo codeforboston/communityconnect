@@ -110,7 +110,8 @@ class OrganizationMap extends Component {
           orgRef.isOpen = false;
         }
 
-        if(i == index){
+        //if(this.props.organizations[orgRef.orgs[0]].coordinates){
+          if(i == index){
           orgRef.isOpen = true
           this.setState({
                  center: this.props.organizations[orgRef.orgs[0]].coordinates,
@@ -119,6 +120,7 @@ class OrganizationMap extends Component {
 
           break;
         }
+      //}
 
 
 
