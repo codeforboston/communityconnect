@@ -23,7 +23,7 @@ export class ResultList extends Component {
     this.listRef = React.createRef()
   }
 
-  scrollToElement = (id) => {
+  scrollToElement = (index) => {
     this.refs[parseInt(index) + 1].getRef()
   }
 
@@ -74,30 +74,24 @@ export class ResultList extends Component {
     return(
       <div >
         <div className={styles.results} ref={this.listRef}>
-<<<<<<< HEAD
         <SortBar
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
           haveCoords={this.props.haveCoords}
         />
-        {sortedData.map((org, i) =>
+        {
+          sortedData.map((org, index) =>
+
           <OrganizationCard
             key={org.id}
             ref={org.id}
+            index={index}
             cardClick={this.props.cardClick}
             organization={org}
             haveCoords={this.props.haveCoords}
             currentPos={this.props.currentPos}
           />
         )}
-=======
-        <SortBar
-              sortByDistance={this.props.sortByDistance}
-              sortByAlphabet={this.props.sortByAlphabet}
-              haveCoords={this.props.haveCoords}
-            />
-          { this.props.data.map((org, index) => <OrganizationCard key={org.id} index={index} ref={org.id} cardClick={this.props.cardClick} organization={org} haveCoords={this.props.haveCoords} currentPos={this.props.currentPos}/> ) }
->>>>>>> Add multiple location to a single info window.
         </div>
 
       </div>

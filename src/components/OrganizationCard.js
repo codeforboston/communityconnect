@@ -17,7 +17,6 @@ class OrganizationCard extends Component {
   }
 
   cardClick= (e) => {
-    debugger
     this.props.cardClick(e.currentTarget.id);
   }
 

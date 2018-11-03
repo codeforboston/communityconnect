@@ -31,7 +31,6 @@ export class OrganizationMarker extends Component {
   }
 
   handleClickOfInfoWindow = (e) => {
-    console.log(e.currentTarget.id)
     this.props.scrollToElement(e.currentTarget.id)
   }
 

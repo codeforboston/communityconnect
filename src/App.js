@@ -50,12 +50,12 @@ class App extends Component {
     this.getLocation();
   }
 
-  cardClick = (id) => {
-    this.mapItem.setOpenMarker(id);
+  cardClick = (index) => {
+    this.mapItem.setOpenMarker(index);
   }
 
-  scrollToElement = id => {
-    this.resultListItem.scrollToElement(id);
+  scrollToElement = index => {
+    this.resultListItem.scrollToElement(index);
   }
 
   render() {
