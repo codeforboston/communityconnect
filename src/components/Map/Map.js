@@ -31,18 +31,31 @@ const Map = withScriptjs(withGoogleMap(props => (
       enableRetinaIcons={true}
       gridSize={60}
       ref={props.onMarkerClick}
+      defaultMaxZoom={16}
     >
+      () = > {
+        this.orgMarkers = []
+      }
+
       () => {
-        props.organizations.filter(org => org.coordinates).map(org =>
-          <OrganizationMarker
-            handleClick={props.clickedMarker}
+        Object.entries(props.locationAddressHashTable).forEach( ([hashIndex,  orgRefs]) => {
+
+          this.orgMarkers.push(<OrganizationMarker
+            scrollToElement={props.scrollToElement}
             setOpenMarker={props.setOpenMarker}
-            key={org.id}
-            id={org.id}
-            organization={org}
-            open={org.isMarkerOpen}
-          />
-        )}
+            key={hashIndex}
+            open={orgRefs.isOpen}
+            organizations={props.organizations}
+            orgIndexes={orgRefs.orgs}
+          />)
+        })}
+
+        () => {
+          this.orgMarkers
+        }
+
+
+        }
       )
     }
     </MarkerClusterer>
@@ -61,12 +74,8 @@ class OrganizationMap extends Component {
       center: this.props.center ? this.props.center : defaultCenter,
       zoom: defaultZoom,
     }
-    console.log(this.state)
   }
 
-  handleClick = (e) => {
-    console.log(e.currentTarget)
-  }
 
   markerHover = (key, event) => {
     event.map.getCanvas().style.cursor = 'pointer';
@@ -92,27 +101,29 @@ class OrganizationMap extends Component {
     });
   }
 
-  clickedMarker = id => {
+  setOpenMarker = index => {
 
-    this.props.clickedMarker(id)
-  }
+    Object.entries(this.props.locationAddressHashTable).forEach(([index2, orgRef])  => {
 
-  setOpenMarker = id => {
+      for(var i of orgRef.orgs){
+        if(i != index && orgRef.isOpen){
+          orgRef.isOpen = false;
+        }
 
-    this.props.organizations.forEach(org => {
+        if(i == index){
+          orgRef.isOpen = true
+          this.setState({
+                 center: this.props.organizations[orgRef.orgs[0]].coordinates,
+                 zoom: 17,
+               });
 
-      if (org != org.id && org.isMarkerOpen) {
-        org.isMarkerOpen = false
+          break;
+        }
+
+
+
       }
 
-      if (id == org.id) {
-
-        org.isMarkerOpen = true;
-        this.setState({
-          center: org.coordinates,
-          zoom: 17
-        })
-      }
     });
     this.forceUpdate();
   }
@@ -123,27 +134,19 @@ class OrganizationMap extends Component {
       zoom: this.mapReference.getZoom()
     })
 
-    console.log("Map Zoom", this.mapReference.getZoom())
-    console.log("Sate zoom", this.state.zoom)
   }
 
   mapRef = ref => {
     this.mapReference = ref
   }
 
-  markerClick = event => {
-    console.log(event)
-  }
-
-
   render() {
 
     return (
       <Map
-        onMarkerClick={this.markerClick}
         mapRef={this.mapRef}
         onZoomChanged={this.onZoomChanged}
-        clickedMarker={this.clickedMarker}
+        scrollToElement={this.props.scrollToElement}
         setOpenMarker={this.setOpenMarker}
         googleMapURL={googleMapURL}
         containerElement={<div style={{ height: '100%' }} />}
@@ -152,6 +155,7 @@ class OrganizationMap extends Component {
         zoom={this.state.zoom}
         center={this.state.center}
         organizations={this.props.organizations}
+        locationAddressHashTable={this.props.locationAddressHashTable}
       />
     );
   }

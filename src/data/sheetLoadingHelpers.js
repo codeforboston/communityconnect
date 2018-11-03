@@ -21,6 +21,11 @@ function normalizeHeaders(element) {
 
 }
 
+function createMarkerId({lat, lng}){
+  //console.log('createMarkerId ',  lat.toString(), lng.toString())
+  return lat.toString() + lng.toString();
+}
+
 export function callSheets(selected = "", filterType = "") {
   let filter_criteria_list = [];
   let filtered_json = {};
@@ -47,7 +52,7 @@ export function callSheets(selected = "", filterType = "") {
 
       if (selected.length > 0 && filterType == "category") {
         filter_criteria_list = update_criteria(selected, filter_criteria_list);
-      }        
+      }
 
       filtered_json = filter_criteria_list.length <= 0 ? data : find_in_object(JSON.parse(my_json), { categoryautosortscript: filter_criteria_list });
 
@@ -63,7 +68,26 @@ export function callSheets(selected = "", filterType = "") {
 
       //console.log(filtered_json)
 
+
+      //This creates a hash table based for the lat and long of each loction.
+      //This allows us to group all organizations at the same location together. 
+      var locationAddressHashTable = {};
+
+      Object.entries(filtered_json).forEach(([index,  org]) =>{
+
+      if(org.coordinates){
+
+        if(locationAddressHashTable.hasOwnProperty(createMarkerId(org.coordinates))){
+
+            locationAddressHashTable[createMarkerId(org.coordinates)]['orgs'].push(index)
+
+      } else {
+          locationAddressHashTable[createMarkerId(org.coordinates)] = {'orgs': [index] , isOpen: false }
+      }
+      }})
+
       this.setState({
+        locationAddressHashTable : locationAddressHashTable,
         orgs: filtered_json,
         categories: categoryList,
         tags: Object.keys(tags)

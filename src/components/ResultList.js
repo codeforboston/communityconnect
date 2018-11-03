@@ -24,7 +24,7 @@ export class ResultList extends Component {
   }
 
   scrollToElement = (id) => {
-    this.refs[id].getRef()
+    this.refs[parseInt(index) + 1].getRef()
   }
 
   getCloserResource = (a , b) => {
@@ -74,21 +74,30 @@ export class ResultList extends Component {
     return(
       <div >
         <div className={styles.results} ref={this.listRef}>
-        <SortBar 
+<<<<<<< HEAD
+        <SortBar
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
           haveCoords={this.props.haveCoords}
         />
-        {sortedData.map((org, i) => 
-          <OrganizationCard 
-            key={org.id} 
-            ref={org.id} 
-            cardClick={this.props.cardClick} 
-            organization={org} 
-            haveCoords={this.props.haveCoords} 
+        {sortedData.map((org, i) =>
+          <OrganizationCard
+            key={org.id}
+            ref={org.id}
+            cardClick={this.props.cardClick}
+            organization={org}
+            haveCoords={this.props.haveCoords}
             currentPos={this.props.currentPos}
-          /> 
+          />
         )}
+=======
+        <SortBar
+              sortByDistance={this.props.sortByDistance}
+              sortByAlphabet={this.props.sortByAlphabet}
+              haveCoords={this.props.haveCoords}
+            />
+          { this.props.data.map((org, index) => <OrganizationCard key={org.id} index={index} ref={org.id} cardClick={this.props.cardClick} organization={org} haveCoords={this.props.haveCoords} currentPos={this.props.currentPos}/> ) }
+>>>>>>> Add multiple location to a single info window.
         </div>
 
       </div>

@@ -17,7 +17,7 @@ class OrganizationCard extends Component {
   }
 
   cardClick= (e) => {
-    console.log("Click");
+    debugger
     this.props.cardClick(e.currentTarget.id);
   }
 
@@ -37,7 +37,7 @@ class OrganizationCard extends Component {
 
     return (
       <div ref="cardRef">
-        <Card className={styles.Card} id={id} onClick={this.cardClick}>
+        <Card className={styles.Card} id={this.props.index} onClick={this.cardClick}>
           <CardBody>
             {website && <span><a href={website}>&#128279;</a></span>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
