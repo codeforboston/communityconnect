@@ -1,8 +1,12 @@
 # Community Connect
-"Community Connect" is a health resource web application that aims to consolidate information about businesses and organization available in communities that promote healthy lifestyle choices. A health resource is defined as services or materials that improve the quality of life of others, ranging from affordable child care, substance abuse counseling, domestic violence support, and more. We are working in conjunction with Massachusetts General Hospital's [Center for Community Health Improvement](https://www.massgeneral.org/cchi/) and Revere CARES Coalition to create an extensive database in our pilot region of Revere, Charlestown, and Boston.
+"Community Connect" is a health resource web application that aims to consolidate information about businesses and organization available in communities that promote healthy lifestyle choices. A health resource is defined as services or materials that improve the quality of life of others, ranging from affordable child care, substance abuse counseling, domestic violence support, and more. We are working in conjunction with Massachusetts General Hospital's [Center for Community Health Improvement](https://www.massgeneral.org/cchi/), MGH Revere HealthCare Center, and Revere CARES Coalition to create an extensive database in our pilot region of Revere, Charlestown, and Boston.
 
 To suggest businesses and/or organizations in the area that are not presently listed, please visit:
 https://goo.gl/forms/X2Nou8ZLtrmz0JGe2
+
+  1. Stage 1 - Simple Name Search, Category Filter, Semi-clickable List, Map with Pins.
+  2. Stage 2 - Fuzzy search, Mobile Compatibility, organized card with all relevant information about selected resource on Map, overlaying public transportation and other information to increase accessibility, import and maintain up-to-date information about resources.
+  3. Stage 3 - Login form for Social Workers including "To-Do List" Feature, Expand Resources to Chelsea, Charlestown, and Boston.
 
 ## How this works
 Resources are stored in a google spreadsheet (New). https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit?usp=sharing

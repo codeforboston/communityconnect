@@ -1,10 +1,7 @@
 import React, { Component, Props } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
-
-
-import OrganizationMarker from './OrganizationMarker';
-
+import OrganizationMarker from './../OrganizationMarker';
 import styles from './Map.module.css';
 
 const googleMapKey = 'AIzaSyAwKdrqS2GfCt9b2K1wAopDc9Ga0N1BVUM';
@@ -24,19 +21,16 @@ const mapStyle = {
 
 const Map = withScriptjs(withGoogleMap(props => (
 
-
   <GoogleMap
     ref={props.onMapLoad}
     {...props}
     ref={props.mapRef}
-
   >
     <MarkerClusterer
       averageCenter={true}
       enableRetinaIcons={true}
       gridSize={60}
       ref={props.onMarkerClick}
-
     >
       () => {
         props.organizations.filter(org => org.coordinates).map(org =>
@@ -49,28 +43,25 @@ const Map = withScriptjs(withGoogleMap(props => (
             open={org.isMarkerOpen}
           />
         )}
-
-
-
       )
     }
     </MarkerClusterer>
   </GoogleMap>
 )));
 
+const defaultZoom = 12;
+const defaultCenter = { lat: 42.3731, lng: -71.0162 };
+
 class OrganizationMap extends Component {
 
-
   constructor(props) {
-    super(props)
-    this.center = (this.props.center !== undefined) ? this.props.center : { lat: 42.3731, lng: -71.0162 };
-    this.zoom = (this.props.zoom !== undefined) ? this.props.zoom : 16;
+    super(props);
+
     this.state = {
-      center: this.center,
-      zoom: this.zoom
+      center: this.props.center ? this.props.center : defaultCenter,
+      zoom: defaultZoom,
     }
     console.log(this.state)
-
   }
 
   handleClick = (e) => {
@@ -79,27 +70,32 @@ class OrganizationMap extends Component {
 
   markerHover = (key, event) => {
     event.map.getCanvas().style.cursor = 'pointer';
-    this.props.onMouseEnter(key);
+    this.setState({
+      hoveredItem: key
+    });
   }
 
   markerEndHover = (key, event) => {
     event.map.getCanvas().style.cursor = '';
-    this.props.onMouseLeave();
+    this.setState({
+      hoveredItem: ''
+    });
   }
 
   onOrganizationClick = (key, event) => {
     const organizationZoom = 11;
     const org = this.props.organizations.find(o => o.id == key);
 
-    this.props.onOrganizationClick(key);
+    this.setState({
+      center: [org.position.longitude, org.position.latitude],
+      zoom: [organizationZoom]
+    });
   }
 
   clickedMarker = id => {
 
     this.props.clickedMarker(id)
   }
-
-
 
   setOpenMarker = id => {
 
@@ -121,10 +117,7 @@ class OrganizationMap extends Component {
     this.forceUpdate();
   }
 
-
-
   onZoomChanged = ref => {
-
 
     this.setState({
       zoom: this.mapReference.getZoom()
