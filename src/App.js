@@ -45,12 +45,18 @@ class App extends Component {
       tags: [],
       center: defaultCenter,
       zoom: defaultZoom,
-      haveCoords: false
+      haveCoords: false,
+      width: window.innerWidth
     }
     this.callSheets = this.callSheets.bind(this);
     this.sortByDistance = this.sortByDistance.bind(this);
     this.getCloserResource = this.getCloserResource.bind(this);
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
+
+  updateWindowDimensions() {
+  this.setState({ width: window.innerWidth });
+}
 
   callSheets(selected = "", filterType = "") {
 
@@ -127,13 +133,14 @@ class App extends Component {
   componentDidMount() {
     this.callSheets("");
     this.getLocation();
-    var node = ReactDOM.findDOMNode(this.refs[myElement]);
-if (node){
-  var calculatedHeight = node.clientHeight;
-}
-console.log('height', calculatedHeight);
-
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+    console.log('Current width', this.state.width);
   }
+
+  componentWillUnmount() {
+  window.removeEventListener('resize', this.updateWindowDimensions);
+}
 
   onMouseEnter = (key) => {
     this.setState({
@@ -203,7 +210,6 @@ console.log('height', calculatedHeight);
         onMouseLeave={this.onMouseLeave}
         onOrganizationClick={this.onOrganizationClick}
         clickedMarker={this.clickedMarker}
-        ref={instance => { this.mapItem = instance }}
       />
 
     return (
@@ -212,7 +218,6 @@ console.log('height', calculatedHeight);
           categories={this.state.categories}
           handleEvent={this.callSheets}
           handleFilter={this.callSheets}
-          ref={(input) => { this.myElement = input; }}
         />
         <SplitScreen style={{ top: navbarHeight }}>
           <SplitScreen.StaticPane>

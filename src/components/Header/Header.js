@@ -39,7 +39,7 @@ class Header extends Component {
         <Navbar color="light" light expand="md">
         <NavbarBrand >Community Connect - Revere</NavbarBrand>
         <NavbarToggler onClick={this.toggleNavbar}  />
-        <Collapse isOpen={this.state.collapsed} navbar>
+        <Collapse isOpen={this.state.collapsed} navbar>        
             <Nav className="ml-auto" navbar>
               <SearchBar type="text" handleFilter={this.props.handleFilter} />
               <DropdownCategory category={this.props.categories} handleEvent={this.props.handleEvent}/>
