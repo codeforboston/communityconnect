@@ -9,6 +9,8 @@ import Map from './components/Map';
 import { getDistance } from './utils/distance.js';
 import { find_in_object, update_criteria, criteria_list } from './utils/FilterHelper.js';
 
+import styles from './App.css';
+
 const defaultZoom = 6;
 const defaultCenter = { lat: 42.3731, lng: -71.0162 };
 
@@ -133,9 +135,12 @@ class App extends Component {
   componentDidMount() {
     this.callSheets("");
     this.getLocation();
+<<<<<<< HEAD
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
     console.log('Current width', this.state.width);
+=======
+>>>>>>> a6ff26710256b7e1133d98f3ac9a9733c9c19b3c
   }
 
   componentWillUnmount() {
