@@ -23,8 +23,8 @@ export class ResultList extends Component {
     this.listRef = React.createRef()
   }
 
-  scrollToElement = (id) => {
-    this.refs[id].getRef()
+  scrollToElement = (index) => {
+    this.refs[parseInt(index) + 1].getRef()
   }
 
   getCloserResource = (a , b) => {
@@ -43,11 +43,11 @@ export class ResultList extends Component {
   }
 
   sortByAlphabet = () => {
-    return this.props.data.sort(this.getCloserName);
+    return this.props.data.slice().sort(this.getCloserName);
   }
 
   sortByDistance = () => {
-    return this.props.data.sort(this.getCloserResource);
+    return this.props.data.slice().sort(this.getCloserResource);
   }
 
   handleSortChange = (newSort) => {
@@ -56,6 +56,18 @@ export class ResultList extends Component {
         // Set the dataSort variable to whichever sort function is chosen
         dataSort: newSort,
       })
+  }
+
+  cardClick = (id) => {
+    debugger
+    var index = this.props.data.findIndex( org => {
+      if(org.id == id){
+        return true;
+      }
+    })
+
+    this.props.cardClick(index)
+
   }
 
   render() {
@@ -74,20 +86,23 @@ export class ResultList extends Component {
     return(
       <div >
         <div className={styles.results} ref={this.listRef}>
-        <SortBar 
+        <SortBar
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
           haveCoords={this.props.haveCoords}
         />
-        {sortedData.map((org, i) => 
-          <OrganizationCard 
-            key={org.id} 
-            ref={org.id} 
-            cardClick={this.props.cardClick} 
-            organization={org} 
-            haveCoords={this.props.haveCoords} 
+        {
+          sortedData.map((org, index) =>
+
+          <OrganizationCard
+            key={org.id}
+            ref={org.id}
+            index={org.id}
+            cardClick={this.cardClick}
+            organization={org}
+            haveCoords={this.props.haveCoords}
             currentPos={this.props.currentPos}
-          /> 
+          />
         )}
         </div>
 
