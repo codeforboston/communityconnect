@@ -6,6 +6,7 @@ const ChildrenPropType = PropTypes.oneOfType([
   PropTypes.arrayOf(PropTypes.node),
   PropTypes.node,
 ]);
+
 export class SplitScreenSlidingPane extends Component {
   state = {
     isOpen: true,
@@ -35,29 +36,4 @@ export class SplitScreenSlidingPane extends Component {
     );
   }
 }
-export const SplitScreenHeader = ({ children }) => (
-  <div className={styles.header}>{children}</div>
-);
-
-export const SplitScreenStaticPane = ({ children }) => (
-  <div className={styles.staticPane}>{children}</div>
-);
-
-export const SplitScreen = ({ children, ...other }) => (
-  <div className={styles.viewport} {...other}>{children}</div>
-);
-
-SplitScreenSlidingPane.propTypes = {
-  children: ChildrenPropType.isRequired,
-};
-
-SplitScreenStaticPane.propTypes = {
-  children: ChildrenPropType.isRequired,
-};
-
-SplitScreen.propTypes = {
-  children: ChildrenPropType.isRequired,
-};
-SplitScreen.Header = SplitScreenHeader;
-SplitScreen.StaticPane = SplitScreenStaticPane;
-SplitScreen.SlidingPane = SplitScreenSlidingPane;
+export default SplitScreenSlidingPane;

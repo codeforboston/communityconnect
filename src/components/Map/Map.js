@@ -146,9 +146,9 @@ class OrganizationMap extends Component {
         clickedMarker={this.clickedMarker}
         setOpenMarker={this.setOpenMarker}
         googleMapURL={googleMapURL}
-        containerElement={<div style={{ height: '100%' }} />}
+        containerElement={<div style={mapStyle} />}
         mapElement={<div style={{ height: '100%' }} />}
-        loadingElement={<div style={{ height: `100%` }} />}
+        loadingElement={<div style={{ height: '100%' }} />}
         zoom={this.state.zoom}
         center={this.state.center}
         organizations={this.props.organizations}

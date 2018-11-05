@@ -3,6 +3,8 @@ import OrganizationCard from './OrganizationCard';
 
 import styles from './ResultList.module.css';
 import SortBar from './SortBar.js';
+import { getDistance } from '../utils/distance.js';
+
 
 
 export class ResultList extends Component {
@@ -73,13 +75,6 @@ export class ResultList extends Component {
       <div >
         <div className={styles.results} ref={this.listRef}>
         <SortBar
-<<<<<<< HEAD
-              sortByDistance={this.props.sortByDistance}
-              sortByAlphabet={this.props.sortByAlphabet}
-              haveCoords={this.props.haveCoords}
-            />
-          { this.props.data.map((org, i) => <OrganizationCard key={org.id} ref={org.id} cardClick={this.props.cardClick} organization={org} haveCoords={this.props.haveCoords} currentPos={this.props.currentPos}/> ) }
-=======
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
           haveCoords={this.props.haveCoords}
@@ -94,7 +89,6 @@ export class ResultList extends Component {
             currentPos={this.props.currentPos}
           />
         )}
->>>>>>> master
         </div>
 
       </div>
