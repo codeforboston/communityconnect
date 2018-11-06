@@ -101,4 +101,4 @@ export class ResultList extends Component {
   }
 }
 
-export default ResultList;
+export default SavedResources;
