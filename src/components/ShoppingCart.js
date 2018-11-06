@@ -6,7 +6,8 @@ import {
   CardHeader,
   CardSubtitle
 } from 'reactstrap';
-import SavedResources from './SavedResources/SavedResources'
+import styles from './ShoppingCart.module.css';
+import SavedResources from './SavedResources/SavedResources';
 
 export class ShoppingCart extends React.Component {
 
@@ -19,8 +20,7 @@ export class ShoppingCart extends React.Component {
       <div>
         <Card>
           <CardHeader>Saved Resources</CardHeader>
-          <CardBody>
-            <CardSubtitle>Save, organize and re-order your resources here</CardSubtitle>
+          <CardBody className={styles['shopping-cart-card']}>
             <SavedResources 
               fullWidth={true} 
               // ref={instance => { this.resultListItem = this.props.instance }} 

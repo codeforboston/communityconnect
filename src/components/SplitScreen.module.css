@@ -34,7 +34,7 @@
   .togglePane {
     display: block;
     position: absolute;
-    height: calc(100% - 15px);
+    height: 100%;
     width: 33%;
     border: 0;
     top: -40px;
@@ -44,7 +44,6 @@
     border-radius: 4px 4px 0 0;
     margin-left: -50px;
     font-size: 1.4rem;
-    padding:15px;
   }
 
 
