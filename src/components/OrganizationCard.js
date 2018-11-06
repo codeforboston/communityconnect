@@ -38,11 +38,11 @@ class OrganizationCard extends Component {
       <div ref="cardRef">
         <Card className={styles.Card} id={this.props.index} onClick={this.cardClick}>
           <CardBody>
+            <span onClick={(e)=> e.stopPropagation()}>
+              <span title='Add item to Saved Resources' aria-label='Add item to Saved Resources' className={styles['save-item']} onClick={this.props.saveItem}>+</span>
+            </span>
             {website && <span><a href={website}>&#128279;</a></span>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
-          <span onClick={(e)=> e.stopPropagation()}>
-            <span style={{cursor:'pointer', marginLeft:'15px'}} onClick={this.props.addItem}>Save </span>
-          </span>
             <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
             {distance && <div>{distanceElement}</div>}
             {location && <p><span className="fa fa-map-o"></span> {location}</p>}
