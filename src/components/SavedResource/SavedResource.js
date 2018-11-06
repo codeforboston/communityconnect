@@ -53,7 +53,8 @@ class SavedResource extends Component {
               <a href={website}>&#128279;</a>
             </span>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
-            <span className={styles['remove-item']} onClick={this.props.removeItem}>
+            <span title='Remove item from Saved Resources' aria-label='Remove item from Saved Resources'
+                  className={styles['remove-item']} onClick={this.props.removeItem}>
               -
             </span>
             <CardSubtitle className={styles.CardBody_CardSubtitle}>
