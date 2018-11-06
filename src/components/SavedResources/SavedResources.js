@@ -78,17 +78,12 @@ export class ResultList extends Component {
     const sortedData = this.props.data; //this.state.dataSort();
 
     return(
-      <div >
+      <div>
         <div 
           className={[
-            styles.savedResources, 
-            styles.savedResourcesFullWidth].join(' ')}  
-          // ref={this.listRef}
+            styles['saved-resources'], 
+            styles['saved-resources-full-width']].join(' ')}  
         >
-        { /* <SortBar 
-          onSortChange={this.handleSortChange}
-          sortOptions={sortOptions}
-        /> */}
         {sortedData.map((item, i) => 
           <SavedResource 
             key={item.id} 
