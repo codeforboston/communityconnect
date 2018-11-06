@@ -93,13 +93,7 @@ class App extends Component {
             />
           </SplitScreenSlidingPane>
           <div className={styles.staticPane}>
-          <Map
-            center={this.state.position ? this.state.position.coordinates : null}
-            organizations={this.state.orgs}
-            scrollToElement={this.scrollToElement}
-            ref={instance => { this.mapItem = instance }}
-            locationAddressHashTable={this.state.locationAddressHashTable}
-          /></div>
+          {map}</div>
         </div>
       </div>
     );
