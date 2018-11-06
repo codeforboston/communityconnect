@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
-import { SplitScreen } from './components/SplitScreen';
 import ResultList from './components/ResultList';
 import Map from './components/Map/Map';
 import { callSheets } from './data/sheetLoadingHelpers.js';
+import styles from './App.module.css';
+import SplitScreenSlidingPane from './components/SlidingPane/SplitScreenSlidingPane.js';
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +17,6 @@ class App extends Component {
       locationAddressHashTable: []
     }
 
-
     this.callSheets = callSheets.bind(this);
   }
 
@@ -26,14 +26,14 @@ class App extends Component {
         position => {
           console.log(position)
           this.setState({
-            position : {
-              coordinates : {
+            position: {
+              coordinates: {
                 lat: parseFloat(position.coords.latitude),
                 lng: parseFloat(position.coords.longitude)
               }
             }
           })
-          this.setState({haveCoords : true})
+          this.setState({ haveCoords: true })
         },
         error => {
           console.log('Unable to get Coordinates');
@@ -41,7 +41,7 @@ class App extends Component {
         });
     } else {
       console.log('no geolocation');
-      this.setState({haveCoords: false})
+      this.setState({ haveCoords: false })
     }
   }
 
@@ -70,20 +70,17 @@ class App extends Component {
         locationAddressHashTable={this.state.locationAddressHashTable}
       />
 
-
     return (
-
-      <div>
-        <Header
-          categories={this.state.categories}
-          handleEvent={this.callSheets}
-          handleFilter={this.callSheets}
-        />
-        <SplitScreen style={{ top: navbarHeight }}>
-          <SplitScreen.StaticPane>
-            {map}
-          </SplitScreen.StaticPane>
-          <SplitScreen.SlidingPane>
+      <div className={styles.viewport}>
+        <div className={styles.header}>
+          <Header
+            categories={this.state.categories}
+            handleEvent={this.callSheets}
+            handleFilter={this.callSheets}
+          />
+        </div>
+        <div id={styles.container}>
+          <SplitScreenSlidingPane>
             <ResultList
               haveCoords={this.state.haveCoords}
               ref={instance => { this.resultListItem = instance }}
@@ -92,11 +89,14 @@ class App extends Component {
               haveCoords={this.state.haveCoords}
               currentPos={this.state.position}
             />
-          </SplitScreen.SlidingPane>
-        </SplitScreen>
+          </SplitScreenSlidingPane>
+          <div className={styles.staticPane}>
+            {map}</div>
+        </div>
       </div>
     );
   }
 }
+
 
 export default App;
