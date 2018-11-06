@@ -15,9 +15,11 @@ class App extends Component {
       categories: [],
       tags: [],
       haveCoords: false,
+      locationAddressHashTable: [],
       isSavedResourcePaneOpen: false,
       savedResources: [],
     }
+
     this.callSheets = callSheets.bind(this);
     this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
     this.saveResource = this.saveResource.bind(this);
@@ -29,10 +31,10 @@ class App extends Component {
       window.navigator.geolocation.getCurrentPosition(
         position => {
           console.log(position)
-          this.setState({ 
+          this.setState({
             position : {
               coordinates : {
-                lat: parseFloat(position.coords.latitude), 
+                lat: parseFloat(position.coords.latitude),
                 lng: parseFloat(position.coords.longitude)
               }
             }
@@ -54,12 +56,12 @@ class App extends Component {
     this.getLocation();
   }
 
-  cardClick = (id) => {
-    this.mapItem.setOpenMarker(id);
+  cardClick = (index) => {
+    this.mapItem.setOpenMarker(index);
   }
 
-  clickedMarker = id => {
-    this.resultListItem.scrollToElement(id);
+  scrollToElement = index => {
+    this.resultListItem.scrollToElement(index);
   }
 
   toggleSavedResourcesPane = () => {
@@ -93,19 +95,22 @@ class App extends Component {
   render() {
     const navbarHeight = 56;
 
-    let map = 
+    let map =
       <Map
         center={this.state.position ? this.state.position.coordinates : null}
         organizations={this.state.orgs}
-        clickedMarker={this.clickedMarker}
+        scrollToElement={this.scrollToElement}
         ref={instance => { this.mapItem = instance }}
+        locationAddressHashTable={this.state.locationAddressHashTable}
       />
 
+
     return (
+
       <div>
-        <Header 
-          categories={this.state.categories} 
-          handleEvent={this.callSheets} 
+        <Header
+          categories={this.state.categories}
+          handleEvent={this.callSheets}
           handleFilter={this.callSheets}
           toggleSavedResourcesPane={this.toggleSavedResourcesPane}
         />
@@ -115,11 +120,11 @@ class App extends Component {
           </SplitScreen.StaticPane>
           <SplitScreen.SlidingPane>
             <ResultList
-              haveCoords={this.state.haveCoords} 
-              ref={instance => { this.resultListItem = instance }} 
-              cardClick={this.cardClick} 
-              data={this.state.orgs} 
-              haveCoords={this.state.haveCoords} 
+              haveCoords={this.state.haveCoords}
+              ref={instance => { this.resultListItem = instance }}
+              cardClick={this.cardClick}
+              data={this.state.orgs}
+              haveCoords={this.state.haveCoords}
               currentPos={this.state.position}
               fullWidth={false}
               addItem={this.saveResource}
