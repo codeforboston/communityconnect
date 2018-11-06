@@ -130,12 +130,9 @@ class App extends Component {
               addItem={this.saveResource}
             />
           </SplitScreen.SlidingPane>
-          <SplitScreen.TogglePane 
-            isOpen={this.state.isSavedResourcePaneOpen}>
+          <SplitScreen.TogglePane isOpen={this.state.isSavedResourcePaneOpen}>
             <ShoppingCart 
-              instance={instance => { this.resultListItem = instance }} 
               orgs={this.state.savedResources}
-              addItem={this.addItem}
               removeItem={this.removeResource}>
             </ShoppingCart>
           </SplitScreen.TogglePane>

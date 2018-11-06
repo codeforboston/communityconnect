@@ -104,7 +104,6 @@ export class ResultList extends Component {
             haveCoords={this.props.haveCoords}
             currentPos={this.props.currentPos}
             addItem={() => this.props.addItem(org)}
-            removeItem={() => this.props.removeItem(org)}
           /> 
         )}
         </div>

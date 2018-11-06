@@ -42,7 +42,6 @@ class OrganizationCard extends Component {
             <h3 className={styles.CardBody_headline}>{name}</h3>
           <span onClick={(e)=> e.stopPropagation()}>
             <span style={{cursor:'pointer', marginLeft:'15px'}} onClick={this.props.addItem}>Save </span>
-            <span style={{cursor:'pointer'}} onClick={this.props.removeItem}> Remove</span>
           </span>
             <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
             {distance && <div>{distanceElement}</div>}
