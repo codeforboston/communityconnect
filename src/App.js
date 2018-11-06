@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
-import { SplitScreen } from './components/SplitScreen';
+import SplitScreenSlidingPane from './components/SplitScreenSlidingPane';
 import ResultList from './components/ResultList';
 import Map from './components/Map/Map';
 import { callSheets } from './data/sheetLoadingHelpers.js';
+import styles from './components/SplitScreen.module.css';
 
 class App extends Component {
   constructor(props) {
@@ -72,18 +73,17 @@ class App extends Component {
 
 
     return (
-
-      <div>
+      <div className={styles.viewport} >
+        <div className={styles.header}>
         <Header
           categories={this.state.categories}
           handleEvent={this.callSheets}
           handleFilter={this.callSheets}
         />
-        <SplitScreen style={{ top: navbarHeight }}>
-          <SplitScreen.StaticPane>
-            {map}
-          </SplitScreen.StaticPane>
-          <SplitScreen.SlidingPane>
+        </div>
+        <div id={styles.container}>
+
+          <SplitScreenSlidingPane>
             <ResultList
               haveCoords={this.state.haveCoords}
               ref={instance => { this.resultListItem = instance }}
@@ -92,8 +92,9 @@ class App extends Component {
               haveCoords={this.state.haveCoords}
               currentPos={this.state.position}
             />
-          </SplitScreen.SlidingPane>
-        </SplitScreen>
+          </SplitScreenSlidingPane>
+          <div className={styles.staticPane}>{map}</div>
+        </div>
       </div>
     );
   }

@@ -59,7 +59,6 @@ export class ResultList extends Component {
   }
 
   cardClick = (id) => {
-    debugger
     var index = this.props.data.findIndex( org => {
       if(org.id == id){
         return true;

@@ -35,7 +35,7 @@ export class SplitScreenSlidingPane extends Component {
     );
   }
 }
-
+export default SplitScreenSlidingPane;
 SplitScreenSlidingPane.propTypes = {
   children: ChildrenPropType.isRequired,
 };
