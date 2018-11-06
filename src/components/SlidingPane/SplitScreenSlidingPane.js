@@ -17,6 +17,7 @@ class SplitScreenSlidingPane extends Component {
   render() {
     const classNames = [styles.slidingPane];
 
+
     if (this.state.isOpen) {
       classNames.push(styles.open);
     }

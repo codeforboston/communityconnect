@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
-import SplitScreenSlidingPane from './components/SplitScreenSlidingPane';
 import ResultList from './components/ResultList';
 import Map from './components/Map/Map';
 import { callSheets } from './data/sheetLoadingHelpers.js';
-import styles from './components/SplitScreen.module.css';
+import styles from './App.module.css';
+import SplitScreenSlidingPane from './components/SlidingPane/SplitScreenSlidingPane.js';
 
 class App extends Component {
   constructor(props) {
@@ -82,7 +82,6 @@ class App extends Component {
         />
         </div>
         <div id={styles.container}>
-
           <SplitScreenSlidingPane>
             <ResultList
               haveCoords={this.state.haveCoords}
@@ -93,7 +92,14 @@ class App extends Component {
               currentPos={this.state.position}
             />
           </SplitScreenSlidingPane>
-          <div className={styles.staticPane}>{map}</div>
+          <div className={styles.staticPane}>
+          <Map
+            center={this.state.position ? this.state.position.coordinates : null}
+            organizations={this.state.orgs}
+            scrollToElement={this.scrollToElement}
+            ref={instance => { this.mapItem = instance }}
+            locationAddressHashTable={this.state.locationAddressHashTable}
+          /></div>
         </div>
       </div>
     );

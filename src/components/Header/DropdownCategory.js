@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import {
   Dropdown,
   DropdownToggle,
+  UncontrolledDropdown,
+  NavItem,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+import styles from './Header.module.css';
 
 
 
@@ -39,22 +42,24 @@ class DropdownCategory extends Component {
 
   categoryMenuItems() {
     return this.props.category.map((cat, index) =>
-    <DropdownItem toggle={true} toggle={false} onClick = {() => this.handleClick(cat, index)} key={cat}>
+    <DropdownItem className = {styles.dropdown} toggle={true} toggle={false} onClick = {() => this.handleClick(cat, index)} key={cat}>
     {this.state.activeItem.includes(index) ? <span>&#10004; {cat}</span>: cat}</DropdownItem>);
   }
 
   render() {
     return (
-      <div>
-        <Dropdown toggle = {this.toggle} isOpen={this.state.dropdownOpen} nav inNavbar>
-          <DropdownToggle nav caret >Category</DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem onClick = {() => this.handleClick("Clear", -1)} key={"Clear"}>Clear</DropdownItem>
-            <DropdownItem divider/>
-            { this.categoryMenuItems() }
-          </DropdownMenu>
-        </Dropdown>
-      </div>
+      <NavItem>
+        <UncontrolledDropdown nav inNavbar>
+          <Dropdown toggle = {this.toggle} isOpen={this.state.dropdownOpen} nav inNavbar>
+            <DropdownToggle nav caret >Category</DropdownToggle>
+            <DropdownMenu right className = {styles.dropdown}>
+              <DropdownItem onClick = {() => this.handleClick("Clear", -1)} key={"Clear"}>Clear</DropdownItem>
+              <DropdownItem divider/>
+              { this.categoryMenuItems() }
+            </DropdownMenu>
+          </Dropdown>
+        </UncontrolledDropdown>
+      </NavItem>
     );
   }
 }

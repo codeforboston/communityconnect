@@ -20,11 +20,11 @@ export class ResultList extends Component {
     this.sortByDistance = this.sortByDistance.bind(this);
     this.getCloserName = this.getCloserName.bind(this);
     this.getCloserResource = this.getCloserResource.bind(this);
-    this.listRef = React.createRef()
+    this.listRef = React.createRef();
   }
 
   scrollToElement = (index) => {
-    this.refs[parseInt(index) + 1].getRef()
+    this.refs[parseInt(index) + 1].getRef();
   }
 
   getCloserResource = (a , b) => {

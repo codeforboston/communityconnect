@@ -10,11 +10,11 @@ class OrganizationLayer extends Component {
   render() {
     return(
       <Layer type='circle' id='organizations' paint={paint}>
-        { 
-          this.props.organizations.map(org => 
-            <Feature 
-              key={org.id} 
-              coordinates={[org.longitude, org.latitude]} 
+        {
+          this.props.organizations.map(org =>
+            <Feature
+              key={org.id}
+              coordinates={[org.longitude, org.latitude]}
               onMouseEnter={this.props.markerHover.bind(null, org.id)}
               onMouseLeave={this.props.markerEndHover.bind(null, org.id)}
               onClick={this.props.onOrganizationClick.bind(null, org.id)}
@@ -27,4 +27,3 @@ class OrganizationLayer extends Component {
 }
 
 export default OrganizationLayer;
-
