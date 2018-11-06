@@ -85,7 +85,7 @@ class App extends Component {
     let savedResources = null;
     if(this.state.savedResources.includes(resource)){
       savedResources = this.state.savedResources.slice();
-      savedResources.splice(savedResources.indexOf(resource, 1));
+      savedResources.splice(savedResources.indexOf(resource), 1);
     }
     this.setState({
       savedResources: savedResources,
@@ -103,7 +103,6 @@ class App extends Component {
         ref={instance => { this.mapItem = instance }}
         locationAddressHashTable={this.state.locationAddressHashTable}
       />
-
 
     return (
 
