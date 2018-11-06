@@ -13,8 +13,6 @@
 }
 .resultsFullWidth {
   width: 100%;
-  position: relative;
-  height: calc(100vh - 200px);
 }
 
 @media (max-width: 767px) {

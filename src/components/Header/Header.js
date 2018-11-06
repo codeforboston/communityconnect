@@ -22,13 +22,12 @@ class Header extends Component {
           <SearchBar type="text" handleFilter={this.props.handleFilter} />
             <Nav className="ml-auto" navbar>
               <DropdownCategory category={this.props.categories} handleEvent={this.props.handleEvent}/>
+              <Button 
+                color="secondary" 
+                onClick={() => this.props.toggleSavedResourcesPane()}>
+                Saved Resources
+              </Button>
             </Nav>
-            <Button 
-              color="primary" 
-              onClick={() => this.props.toggleSavedResourcesPane()} 
-              style={{ marginBottom: '1rem' }}>
-              Saved Resources
-            </Button>
         </Navbar>
       </div>
     );
