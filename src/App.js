@@ -126,7 +126,7 @@ class App extends Component {
               data={this.state.orgs}
               haveCoords={this.state.haveCoords}
               currentPos={this.state.position}
-              fullWidth={false}
+              fullWidth={true}
               addItem={this.saveResource}
             />
           </SplitScreen.SlidingPane>
