@@ -32,3 +32,19 @@ a.CardBody_icon {
   color: purple;
   text-decoration: none;
 }
+
+.remove-item{
+  cursor: pointer;
+  float: right;
+  
+  text-align: center;
+  font-size: 35px;
+  height: 25px;
+  width: 25px;
+  line-height: 20px;
+  border-radius: 50%;
+
+  background-color: white;
+  color: black;
+  border:solid 1px black;
+}

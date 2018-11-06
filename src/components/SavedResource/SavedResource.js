@@ -53,8 +53,8 @@ class SavedResource extends Component {
               <a href={website}>&#128279;</a>
             </span>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
-            <span style={{cursor:'pointer'}} onClick={this.props.removeItem}>
-              Remove
+            <span className={styles['remove-item']} onClick={this.props.removeItem}>
+              -
             </span>
             <CardSubtitle className={styles.CardBody_CardSubtitle}>
               {categoryautosortscript}
