@@ -16,8 +16,7 @@ class OrganizationCard extends Component {
     this.refs.cardRef.scrollIntoView({block: "center", inline: "center"})
   }
 
-  cardClick= (e) => {
-    console.log("Click");
+  cardClick= (e) => {    
     this.props.cardClick(e.currentTarget.id);
   }
 
@@ -39,7 +38,7 @@ class OrganizationCard extends Component {
       <div ref="cardRef" >
       <Card className={styles.Card} id={id} onClick={this.cardClick}>
         <CardBody>
-          {website && <span><a href={website}>&#128279;</a></span>}
+          {website && <span><a href={website} target="_blank">&#128279;</a></span>}
           <h3 className={styles.CardBody_headline}>{name}</h3>
           <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
           {distance && <div>{distanceElement}</div>}
