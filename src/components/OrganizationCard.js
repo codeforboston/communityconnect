@@ -13,7 +13,9 @@ class OrganizationCard extends Component {
   }
 
   getRef = () => {
-    this.refs.cardRef.scrollIntoView({block: "center", inline: "center"})
+    this.refs.cardRef.parentNode.scrollTop = this.refs.cardRef.offsetTop - ((1.5) * this.refs.cardRef.offsetHeight);
+    // Using scrollIntoView shifted the page, hiding the header bar in mobile view
+    // this.refs.cardRef.scrollIntoView({block: "end", inline: "center"})
   }
 
   cardClick= (e) => {
