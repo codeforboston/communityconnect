@@ -1,16 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Card, 
   CardBody, 
-  CardText, 
   CardHeader,
-  CardSubtitle
 } from 'reactstrap';
 import styles from './ShoppingCart.module.css';
 import SavedResources from './SavedResources/SavedResources';
 
-export class ShoppingCart extends React.Component {
-
+class ShoppingCart extends React.Component {
   constructor(props){
     super(props);    
   }
@@ -33,6 +31,11 @@ export class ShoppingCart extends React.Component {
       </div>
       )
   }
+}
+
+ShoppingCart.propTypes = {
+  orgs: PropTypes.array.isRequired,
+  removeItem: PropTypes.func.isRequired,
 }
 
 export default ShoppingCart;
