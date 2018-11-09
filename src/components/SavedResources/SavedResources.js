@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import SavedResource from '../SavedResource/SavedResource';
-import styles from './SavedResources.module.css';
+import PropTypes from 'prop-types';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import SortBar from '../SortBar.js';
 import { getDistance } from '../../utils/distance.js';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import styles from './SavedResources.module.css';
+import SavedResource from '../SavedResource/SavedResource';
+
 
 // fake data generator
 // const getItems = count =>
@@ -43,7 +45,7 @@ const getListStyle = isDraggingOver => ({
   // width: 250,
 });
 
-export class SavedResources extends Component {
+class SavedResources extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -204,6 +206,12 @@ export class SavedResources extends Component {
     );
 
   }
+}
+
+SavedResources.PropTypes = {
+  fullWidth: PropTypes.bool,
+  data: PropTypes.array.isRequired,
+  removeItem: PropTypes.func.isRequired,
 }
 
 export default SavedResources;
