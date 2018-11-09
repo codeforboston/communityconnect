@@ -21,7 +21,9 @@ class App extends Component {
     }
 
     this.callSheets = callSheets.bind(this);
+    
     this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
+    this.orderResources = this.orderResources.bind(this);
     this.saveResource = this.saveResource.bind(this);
     this.removeResource = this.removeResource.bind(this);
   }
@@ -68,6 +70,18 @@ class App extends Component {
     this.setState({
       isSavedResourcePaneOpen: !this.state.isSavedResourcePaneOpen
     });
+  }
+
+  orderResources = (sourceIndex, destinationIndex) => {
+    let savedResources = this.state.savedResources.slice();
+
+    let movedResource = savedResources[sourceIndex];
+    savedResources.splice(sourceIndex, 1);
+    savedResources.splice(destinationIndex, 0, movedResource);
+
+    this.setState({
+      savedResources: savedResources,
+    })
   }
 
   saveResource = (resource) => {
@@ -132,6 +146,8 @@ class App extends Component {
           <SplitScreen.TogglePane isOpen={this.state.isSavedResourcePaneOpen}>
             <ShoppingCart 
               orgs={this.state.savedResources}
+              reOrder={this.orderResources}
+              addItem={this.saveResource}
               removeItem={this.removeResource}>
             </ShoppingCart>
           </SplitScreen.TogglePane>

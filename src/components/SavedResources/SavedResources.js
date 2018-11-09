@@ -6,26 +6,6 @@ import { getDistance } from '../../utils/distance.js';
 import styles from './SavedResources.module.css';
 import SavedResource from '../SavedResource/SavedResource';
 
-
-// fake data generator
-// const getItems = count =>
-//   Array.from({ length: count }, (v, k) => k).map(k => ({
-//     id: `item-${k}`,
-//     content: `item ${k}`,
-//   }));
-
-// a little function to help us with reordering the result
-const reorder = (list, startIndex, endIndex) => {
-  debugger;
-  const result = Array.from(list);
-  const [removed] = result.splice(startIndex, 1);
-  result.splice(endIndex, 0, removed);
-
-  return result;
-};
-
-// const grid = 8;
-
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
@@ -48,9 +28,7 @@ const getListStyle = isDraggingOver => ({
 class SavedResources extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      items: this.props.data,
-    };
+
     this.onDragEnd = this.onDragEnd.bind(this);
   }
 
@@ -60,65 +38,11 @@ class SavedResources extends Component {
       return;
     }
 
-    const items = reorder(
-      this.state.items,
+    this.props.reOrder(
       result.source.index,
       result.destination.index
     );
-
-    this.setState({
-      items,
-    });
   }
-
-  // constructor(props){
-  //   super(props)
-
-  //   // this.state = {
-  //   //   dataSort: this.sortByAlphabet,
-  //   // }
-
-  //   // this.sortByAlphabet = this.sortByAlphabet.bind(this);
-  //   // this.sortByDistance = this.sortByDistance.bind(this);
-  //   // this.getCloserName = this.getCloserName.bind(this);
-  //   // this.getCloserResource = this.getCloserResource.bind(this);
-  //   // this.listRef = React.createRef()
-  // }
-
-  // scrollToElement = (id) => {
-  //   this.refs[id].getRef()
-  // }
-
-  // getCloserResource = (a , b) => {
-  //   if(getDistance(a,this.props.currentPos)
-  //   > getDistance(b,this.props.currentPos)){
-  //     return 1;
-  //   }
-
-  //   return -1;
-  // }
-
-  // getCloserName = (a, b) => {
-  //   if(a.organizationname > b.organizationname) return 1
-  //   else if(a.organizationname < b.organizationname ) return -1
-  //   else return 0
-  // }
-
-  // sortByAlphabet = () => {
-  //   return this.props.data.sort(this.getCloserName);
-  // }
-
-  // sortByDistance = () => {
-  //   return this.props.data.sort(this.getCloserResource);
-  // }
-
-  // handleSortChange = (newSort) => {
-  //   if(this.state.dataSort != newSort)
-  //     this.setState({
-  //       // Set the dataSort variable to whichever sort function is chosen
-  //       dataSort: newSort,
-  //     })
-  // }
 
   render() {
 
@@ -140,7 +64,7 @@ class SavedResources extends Component {
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
     
-    const sortedData = this.props.data; //this.state.dataSort();
+    const orderedItems = this.props.data;
 
     return(
       <div>
@@ -157,7 +81,7 @@ class SavedResources extends Component {
                 ref={provided.innerRef}
                 style={getListStyle(snapshot.isDraggingOver)}
               >
-                {sortedData.map((item, index) => (
+                {orderedItems.map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id} index={index}>
                     {(provided, snapshot) => (
                       <div
@@ -186,31 +110,17 @@ class SavedResources extends Component {
             )}
           </Droppable>
         </DragDropContext>
-
-
-
-
-
-        {/*sortedData.map((item, i) => 
-          <SavedResource 
-            key={item.id} 
-            ref={item.id} 
-            // cardClick={this.props.cardClick} 
-            organization={item} 
-            currentPos={this.props.currentPos}
-            removeItem={() => this.props.removeItem(item)}
-          />
-        )*/}
         </div>
       </div>
     );
-
   }
 }
 
-SavedResources.PropTypes = {
+SavedResources.propTypes = {
   fullWidth: PropTypes.bool,
   data: PropTypes.array.isRequired,
+  reOrder: PropTypes.func.isRequired,
+  addItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
 }
 

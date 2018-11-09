@@ -21,20 +21,22 @@ class ShoppingCart extends React.Component {
           <CardBody className={styles['shopping-cart-card']}>
             <SavedResources 
               fullWidth={true} 
-              // ref={instance => { this.resultListItem = this.props.instance }} 
               data={this.props.orgs}
-              // addItem={this.props.addItem}
+              reOrder={this.props.reOrder}
+              addItem={this.props.addItem}
               removeItem={this.props.removeItem}
             />
           </CardBody>
         </Card>
       </div>
-      )
+    )
   }
 }
 
 ShoppingCart.propTypes = {
   orgs: PropTypes.array.isRequired,
+  reOrder: PropTypes.func.isRequired,
+  addItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
 }
 
