@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardSubtitle } from 'reactstrap';
+import { 
+  Card, 
+  CardBody, 
+  CardSubtitle, 
+  Button, 
+  Modal, 
+  ModalHeader, 
+  ModalBody, 
+  ModalFooter 
+} from 'reactstrap';
 import styles from './SavedResource.module.css';
 import { getDistance } from '../../utils/distance.js';
 
@@ -8,7 +17,29 @@ class SavedResource extends Component {
   constructor (props) {
     super(props)
 
+    this.state = {
+      modal: false
+    }
+
+    this.confirmationModalToggle = this.confirmationModalToggle.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    this.removalConfirmed = this.removalConfirmed.bind(this);
     // this.cardRef = React.createRef();
+  }
+
+  confirmationModalToggle = () => {
+    this.setState({
+      modal: !this.state.modal,
+    });
+  }
+
+  removeItem = () => {
+    this.confirmationModalToggle();
+  }
+
+  removalConfirmed = () => {
+    this.props.removeItem();
+    this.confirmationModalToggle();
   }
 
   // getRef = () => {
@@ -54,7 +85,7 @@ class SavedResource extends Component {
             </span>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
             <span title='Remove item from Saved Resources' aria-label='Remove item from Saved Resources'
-                  className={styles['remove-item']} onClick={this.props.removeItem}>
+                  className={styles['remove-item']} onClick={this.removeItem}>
               -
             </span>
             <CardSubtitle className={styles.CardBody_CardSubtitle}>
@@ -94,6 +125,14 @@ class SavedResource extends Component {
             </ul>}
           </CardBody>
         </Card>
+        <Modal isOpen={this.state.modal} toggle={this.confirmationModalToggle} onClosed={this.toggle}>
+          <ModalHeader>Are you sure?</ModalHeader>
+          <ModalBody>Would you like to remove '{name}'' from your saved resources?</ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.removalConfirmed}>Yes</Button>{' '}
+            <Button color="secondary" onClick={this.confirmationModalToggle}>No</Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }
