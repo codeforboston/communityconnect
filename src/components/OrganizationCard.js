@@ -7,9 +7,12 @@ class OrganizationCard extends Component {
 
   constructor (props) {
     super(props)
+    this.state = {
+      animateButtonInside: '',
+      animateButtonOutside: [''],
+    }
 
     this.cardRef = React.createRef();
-
   }
 
   getRef = () => {
@@ -18,6 +21,29 @@ class OrganizationCard extends Component {
 
   cardClick= (e) => {
     this.props.cardClick(e.currentTarget.id);
+  }
+
+  saveItem = () => {
+    this.props.saveItem();
+
+    let classes = [
+                    styles['cbutton--effect-radomir__after'],
+                    styles['cbutton--effect-radomir__cbutton--click__after'],
+                    styles['cbutton__after'],
+                  ];
+
+    this.setState({
+      animateButtonInside: styles['animate-button-click'],
+      animateButtonOutside: classes,
+    });    
+    setTimeout(() => {
+        this.setState({
+          animateButtonInside: '',
+          animateButtonOutside: [''],
+        });
+      }, 
+      500
+    );
   }
 
   render() {
@@ -39,7 +65,27 @@ class OrganizationCard extends Component {
         <Card className={styles.Card} id={this.props.index} onClick={this.cardClick}>
           <CardBody>
             <span onClick={(e)=> e.stopPropagation()}>
-              <span title='Add item to Saved Resources' aria-label='Add item to Saved Resources' className={styles['save-item']} onClick={this.props.saveItem}>+</span>
+              <button 
+                className={[
+                            styles['cbutton--effect-radomir'],
+                            styles['cbutton'],
+                          ].join(' ')}
+              >
+              <span
+                title='Add item to Saved Resources' 
+                aria-label='Add item to Saved Resources' 
+                className={[
+                            this.state.animateButtonInside, 
+                            styles['save-item'],
+                          ].join(' ')} 
+                onClick={this.saveItem}>
+              +
+              </span>
+                <span 
+                  className={this.state.animateButtonOutside.join(' ')}
+                >
+                </span>
+              </button>
             </span>
             {website && <span><a href={website}>&#128279;</a></span>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
