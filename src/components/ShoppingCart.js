@@ -5,23 +5,52 @@ import {
   CardBody, 
   CardHeader,
 } from 'reactstrap';
+import { downloadObjectAsJson } from '../utils/DownloadHelper.js';
+import FileUpload from './FileUpload/FileUpload.js';
 import styles from './ShoppingCart.module.css';
 import SavedResources from './SavedResources/SavedResources';
 
 class ShoppingCart extends React.Component {
   constructor(props){
-    super(props);    
+    super(props);
+
+    this.state = {
+      showUpload: false,
+    }
+
+    this.toggleUpload = this.toggleUpload.bind(this);
+  }
+  toggleUpload = () => {
+    this.setState({showUpload: !this.state.showUpload});
   }
 
   render() {
     return (
       <div>
         <Card>
-          <CardHeader>Saved Resources</CardHeader>
+          <CardHeader>Saved Resources 
+            <span>
+              <button 
+                title='Upload Resources' 
+                className={styles['upload-download-buttons']} 
+                onClick={() => this.toggleUpload()}
+              > 
+                ⬆️ 
+              </button>
+              <button 
+                title='Download Resources' 
+                className={styles['upload-download-buttons']} 
+                onClick={() => {downloadObjectAsJson(this.props.data, 'YourFile');}}
+              > 
+                ⬇️  
+              </button>
+            </span>
+          </CardHeader>
           <CardBody className={styles['shopping-cart-card']}>
+            { this.state.showUpload ? <FileUpload handleData={this.props.uploadItems} toggleUpload={this.toggleUpload}/> : null }
             <SavedResources 
               fullWidth={true} 
-              data={this.props.orgs}
+              data={this.props.data}
               reOrder={this.props.reOrder}
               addItem={this.props.addItem}
               removeItem={this.props.removeItem}
@@ -34,10 +63,11 @@ class ShoppingCart extends React.Component {
 }
 
 ShoppingCart.propTypes = {
-  orgs: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
   reOrder: PropTypes.func.isRequired,
   addItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
+  uploadItems: PropTypes.func.isRequired,
 }
 
 export default ShoppingCart;
