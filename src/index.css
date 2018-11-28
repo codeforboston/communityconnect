@@ -25,3 +25,9 @@ body {
     display: initial;
   }
 }
+
+.Logo-icon {
+  margin-top: -30px;
+  height: 20px;
+  width: 80px;
+}

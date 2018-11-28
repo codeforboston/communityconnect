@@ -14,7 +14,7 @@ import {
 
 import DropdownCategory from '../Header/DropdownCategory.js';
 import SearchBar from '../Header/SearchBar.js';
-
+import CClargelogo from '../Header/Images/CClargelogo.png';
 
 class Header extends Component {
   constructor(props) {
@@ -36,7 +36,9 @@ class Header extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-        <NavbarBrand >Community Connect - Revere</NavbarBrand>
+        <NavbarBrand className="Logo-icon">
+        <a className="Logo-icon" href="https://communityconnect.netlify.com/"><img src={CClargelogo}/></a>
+        </NavbarBrand>
         <NavbarToggler onClick={this.toggleNavbar}  />
         <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav className="ml-auto" navbar>
