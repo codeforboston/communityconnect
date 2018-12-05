@@ -22,6 +22,13 @@ Note that this project was bootstrapped with [Create React App](https://github.c
 1) install dependencies `npm install`
 1) start server `npm start`
 
+## Where to start
+Our open issues are listed on the project's [Issues](https://github.com/codeforboston/communityconnect/issues) tab. The best places to start are unassigned issues with the label "[good first issue](https://github.com/codeforboston/communityconnect/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22+no%3Aassignee)".
+Those with "bug" and "help wanted" are great too, but may require more experience. Avoid issues labeled "epic" until you're more familiar with the project.
+
+## Connect with the team
+Join our [Code for Boston](https://www.codeforboston.org/) slack channel: [#community-connect](https://cfb-public.slack.com/messages/CC85SAJ0Z/) or look for us at the [CfB Tuesday meet-ups](https://meetup.com/Code-For-Boston).
+
 ## Want your own spreadsheet?
 
 *Prefer to see a gif of this process instead of reading steps? Click [here](https://imgur.com/a/N6kdSjC)*
@@ -46,7 +53,7 @@ Replace the "revere_key" value with "1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6
 
 Start your server using `npm start`
 
-## Why would I want my own spreadsheet?
+### Why would I want my own spreadsheet?
 
 1) Some features may require you to modify the data to validate your code.
 1) The production spreadsheet should not be modified for testing purposes.
