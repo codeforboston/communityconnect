@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import queryString from 'query-string'
 
 import Header from '../components/Header/Header';
 import ResultList from '../components/ResultList';
@@ -61,7 +60,6 @@ class Homepage extends Component {
   }
 
   componentDidMount() {
-    const orgId = queryString.parse(this.props.location.search);
     this.callSheets("");
     this.getLocation();
   }
@@ -144,7 +142,6 @@ class Homepage extends Component {
                 ref={instance => { this.resultListItem = instance }}
                 cardClick={this.cardClick}
                 data={this.state.orgs}
-                haveCoords={this.state.haveCoords}
                 currentPos={this.state.position}
                 saveItem={this.saveResource}
                 fullWidth={true}

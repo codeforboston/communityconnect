@@ -50,7 +50,7 @@ export class ResultList extends Component {
   }
 
   handleSortChange = (newSort) => {
-    if(this.state.dataSort != newSort)
+    if(this.state.dataSort !== newSort)
       this.setState({
         // Set the dataSort variable to whichever sort function is chosen
         dataSort: newSort,
@@ -59,9 +59,10 @@ export class ResultList extends Component {
 
   cardClick = (id) => {
     var index = this.props.data.findIndex( org => {
-      if(org.id == id){
+      if(org.id === id){
         return true;
       }
+      return false;
     })
     this.props.cardClick(index)
 

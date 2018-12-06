@@ -37,13 +37,13 @@ class OrganizationCard extends Component {
     this.setState({
       animateButtonInside: styles['animate-button-click'],
       animateButtonOutside: classes,
-    });    
+    });
     setTimeout(() => {
         this.setState({
           animateButtonInside: '',
           animateButtonOutside: [''],
         });
-      }, 
+      },
       500
     );
   }
@@ -67,23 +67,23 @@ class OrganizationCard extends Component {
         <Card className={styles.Card} id={this.props.index} onClick={this.cardClick}>
           <CardBody>
             <span onClick={(e)=> e.stopPropagation()}>
-              <button 
+              <button
                 className={[
                             styles['cbutton--effect-radomir'],
                             styles['cbutton'],
                           ].join(' ')}
               >
               <span
-                title='Add item to Saved Resources' 
-                aria-label='Add item to Saved Resources' 
+                title='Add item to Saved Resources'
+                aria-label='Add item to Saved Resources'
                 className={[
-                            this.state.animateButtonInside, 
+                            this.state.animateButtonInside,
                             styles['save-item'],
-                          ].join(' ')} 
+                          ].join(' ')}
                 onClick={this.saveItem}>
               +
               </span>
-                <span 
+                <span
                   className={this.state.animateButtonOutside.join(' ')}
                 >
                 </span>

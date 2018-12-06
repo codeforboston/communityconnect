@@ -1,23 +1,10 @@
-import React, { Component, Props } from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import React, { Component } from 'react';
+import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import OrganizationMarker from './../OrganizationMarker';
-import styles from './Map.module.css';
 
 const googleMapKey = 'AIzaSyAwKdrqS2GfCt9b2K1wAopDc9Ga0N1BVUM';
 const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${googleMapKey}&v=3.exp&libraries=geometry,drawing,places`;
-
-const organizationLayout = {
-  'icon-image': 'nature'
-};
-
-const mapStyle = {
-  position: 'absolute',
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0
-};
 
 const Map = withScriptjs(withGoogleMap(props => (
 
@@ -93,7 +80,8 @@ class OrganizationMap extends Component {
 
   onOrganizationClick = (key, event) => {
     const organizationZoom = 11;
-    const org = this.props.organizations.find(o => o.id == key);
+    const org = this.props.organizations.find(o => o.id === key);
+
     this.setState({
       center: [org.position.longitude, org.position.latitude],
       zoom: [organizationZoom]
@@ -104,25 +92,19 @@ class OrganizationMap extends Component {
 
     Object.entries(this.props.locationAddressHashTable).forEach(([index2, orgRef])  => {
 
-      for(var i of orgRef.orgs){
-        if(i != index && orgRef.isOpen){
+      for(var i of orgRef.orgs) {
+        if(i !== index && orgRef.isOpen) {
           orgRef.isOpen = false;
         }
 
-        //if(this.props.organizations[orgRef.orgs[0]].coordinates){
-          if(i == index){
+        if(Number(i) === index) {
           orgRef.isOpen = true
           this.setState({
-                 center: this.props.organizations[orgRef.orgs[0]].coordinates,
-                 zoom: 17,
-               });
-
+            center: this.props.organizations[orgRef.orgs[0]].coordinates,
+            zoom: 17,
+          });
           break;
         }
-      //}
-
-
-
       }
 
     });

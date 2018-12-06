@@ -15,7 +15,7 @@ export class OrganizationMarker extends Component {
 
 
   componentDidUpdate(prevProps){
-    if(prevProps.open != this.props.open){
+    if(prevProps.open !== this.props.open){
       this.setState({open: this.props.open})
     }
   }
@@ -25,7 +25,7 @@ export class OrganizationMarker extends Component {
 
   scrollToElement = (e) => {
     this.props.setOpenMarker(this.props.orgIndexes[0])
-    if(this.props.orgIndexes.length == 1){
+    if(this.props.orgIndexes.length === 1){
       this.props.scrollToElement(this.props.orgIndexes[0])
     }
   }
@@ -40,7 +40,7 @@ export class OrganizationMarker extends Component {
 
   render() {
 
-    if(this.orgsArray.length == 0){
+    if(this.orgsArray.length === 0){
       for(var orgIndex of this.props.orgIndexes){
         this.orgsArray.push([this.props.organizations[orgIndex], orgIndex])
       }

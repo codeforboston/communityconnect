@@ -39,14 +39,14 @@ class DropdownCategory extends Component {
 
   categoryMenuItems() {
     return this.props.category.map((cat, index) =>
-    <DropdownItem toggle={true} toggle={false} onClick = {() => this.handleClick(cat, index)} key={cat}>
+    <DropdownItem onClick = {() => this.handleClick(cat, index)} key={cat}>
     {this.state.activeItem.includes(index) ? <span>&#10004; {cat}</span>: cat}</DropdownItem>);
   }
 
   render() {
     return (
       <div>
-        <Dropdown toggle = {this.toggle} isOpen={this.state.dropdownOpen} nav inNavbar>
+        <Dropdown toggle = {this.toggle} isOpen={this.state.dropdownOpen} inNavbar>
           <DropdownToggle nav caret >Category</DropdownToggle>
           <DropdownMenu right>
             <DropdownItem onClick = {() => this.handleClick("Clear", -1)} key={"Clear"}>Clear</DropdownItem>

@@ -50,8 +50,8 @@ class Header extends Component {
               <DropdownCategory category={this.props.categories} handleEvent={this.props.handleEvent}/>
               </NavItem>
               <NavItem>
-              <Button 
-                color="secondary" 
+              <Button
+                color="secondary"
                 onClick={() => this.props.toggleSavedResourcesPane()}>
                 Saved Resources
               </Button>
