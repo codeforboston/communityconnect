@@ -7,8 +7,8 @@ export const getDistance = (a, b) => {
   let radians = (degrees) => {
     return degrees * Math.PI / 180;
   };
-
-  const d2r = Math.PI / 180;
+  
+  //const d2r = Math.PI / 180;
   var latA = radians(a.coordinates.lat);
 
 
@@ -22,7 +22,7 @@ export const getDistance = (a, b) => {
 
   var c = 2 * Math.atan2(Math.sqrt(d), Math.sqrt(1-d));
 
-  var c = c * 6371000
+  c = c * 6371000
 
   return (.000621371 * c);
 

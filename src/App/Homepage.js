@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import Header from './components/Header/Header';
-import ResultList from './components/ResultList';
-import Map from './components/Map/Map';
-import { callSheets } from './data/sheetLoadingHelpers.js';
-import styles from './App.module.css';
-import SplitScreenSlidingPane from './components/SlidingPane/SplitScreenSlidingPane.js';
+import Header from '../components/Header/Header';
+import { createBrowserHistory } from 'history';
 
-class App extends Component {
+import ResultList from '../components/ResultList';
+import Map from '../components/Map/Map';
+import { callSheets } from '../data/sheetLoadingHelpers';
+import styles from './App.module.css';
+import SplitScreenSlidingPane from '../components/SlidingPane/SplitScreenSlidingPane.js';
+
+const history = createBrowserHistory();
+
+class Homepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,12 +18,12 @@ class App extends Component {
       categories: [],
       tags: [],
       haveCoords: false,
-      locationAddressHashTable: []
+      locationAddressHashTable: [],
+      cardClickedIndex: null
     }
 
     this.callSheets = callSheets.bind(this);
   }
-
   getLocation = () => {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(
@@ -51,6 +55,12 @@ class App extends Component {
   }
 
   cardClick = (index) => {
+    this.setState({cardClickedIndex: index});
+    this.props.history.push({
+      pathname: '/',
+      search: "?" + new URLSearchParams({id: index}).toString()
+  })
+    
     this.mapItem.setOpenMarker(index);
   }
 
@@ -99,4 +109,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default Homepage;
