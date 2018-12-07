@@ -59,10 +59,7 @@ export class ResultList extends Component {
 
   cardClick = (id) => {
     var index = this.props.data.findIndex( org => {
-      if(org.id === id){
-        return true;
-      }
-      return false;
+      return org.id === id;
     })
     this.props.cardClick(index)
 
