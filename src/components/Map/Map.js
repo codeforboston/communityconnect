@@ -93,7 +93,7 @@ class OrganizationMap extends Component {
     Object.entries(this.props.locationAddressHashTable).forEach(([index2, orgRef])  => {
 
       for(var i of orgRef.orgs) {
-        if(i !== index && orgRef.isOpen) {
+        if(Number(i) !== index && orgRef.isOpen) {
           orgRef.isOpen = false;
         }
 
