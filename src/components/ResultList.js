@@ -5,8 +5,6 @@ import styles from './ResultList.module.css';
 import SortBar from './SortBar.js';
 import { getDistance } from '../utils/distance.js';
 
-
-
 export class ResultList extends Component {
 
   constructor(props){
@@ -21,6 +19,7 @@ export class ResultList extends Component {
     this.getCloserName = this.getCloserName.bind(this);
     this.getCloserResource = this.getCloserResource.bind(this);
     this.listRef = React.createRef()
+    console.log("ResultList props: ", this.props);
   }
 
   scrollToElement = (index) => {
@@ -59,13 +58,11 @@ export class ResultList extends Component {
   }
 
   cardClick = (id) => {
-    debugger
     var index = this.props.data.findIndex( org => {
       if(org.id == id){
         return true;
       }
     })
-
     this.props.cardClick(index)
 
   }

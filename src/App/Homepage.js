@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import Header from '../components/Header/Header';
-import { createBrowserHistory } from 'history';
+import queryString from 'query-string'
 
+import Header from '../components/Header/Header';
 import ResultList from '../components/ResultList';
 import Map from '../components/Map/Map';
 import { callSheets } from '../data/sheetLoadingHelpers';
 import styles from './App.module.css';
+import { Route } from 'react-router';
 import SplitScreenSlidingPane from '../components/SlidingPane/SplitScreenSlidingPane.js';
-
-const history = createBrowserHistory();
 
 class Homepage extends Component {
   constructor(props) {
@@ -23,7 +22,9 @@ class Homepage extends Component {
     }
 
     this.callSheets = callSheets.bind(this);
+    console.log("Homepage props: ", this.props);
   }
+
   getLocation = () => {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(
@@ -50,17 +51,16 @@ class Homepage extends Component {
   }
 
   componentDidMount() {
+    const orgId = queryString.parse(this.props.location.search);
     this.callSheets("");
     this.getLocation();
   }
 
   cardClick = (index) => {
-    this.setState({cardClickedIndex: index});
     this.props.history.push({
       pathname: '/',
-      search: "?" + new URLSearchParams({id: index}).toString()
-  })
-    
+      search: '?id=' + index
+    });
     this.mapItem.setOpenMarker(index);
   }
 
@@ -69,17 +69,6 @@ class Homepage extends Component {
   }
 
   render() {
-    const navbarHeight = 56;
-
-    let map =
-      <Map
-        center={this.state.position ? this.state.position.coordinates : null}
-        organizations={this.state.orgs}
-        scrollToElement={this.scrollToElement}
-        ref={instance => { this.mapItem = instance }}
-        locationAddressHashTable={this.state.locationAddressHashTable}
-      />
-
     return (
       <div className={styles.viewport}>
         <div className={styles.header}>
@@ -91,18 +80,32 @@ class Homepage extends Component {
         </div>
         <div id={styles.container}>
           <SplitScreenSlidingPane>
-            <ResultList
-              haveCoords={this.state.haveCoords}
-              ref={instance => { this.resultListItem = instance }}
-              cardClick={this.cardClick}
-              data={this.state.orgs}
-              haveCoords={this.state.haveCoords}
-              currentPos={this.state.position}
-            />
+            <Route path='/' render={props => (
+              <ResultList
+                routerLocation = {props.location}
+                haveCoords={this.state.haveCoords}
+                ref={instance => { this.resultListItem = instance }}
+                cardClick={this.cardClick}
+                data={this.state.orgs}
+                haveCoords={this.state.haveCoords}
+                currentPos={this.state.position}
+              />
+            )} />
           </SplitScreenSlidingPane>
           <div className={styles.staticPane}>
-            {map}</div>
+            <Route path='/' render={props => (
+              <Map
+                routerLocation = {props.location}
+                center={this.state.position ? this.state.position.coordinates : null}
+                organizations={this.state.orgs}
+                scrollToElement={this.scrollToElement}
+                ref={instance => { this.mapItem = instance }}
+                locationAddressHashTable={this.state.locationAddressHashTable}
+              />
+            )} />
+          </div>
         </div>
+        )} />
       </div>
     );
   }

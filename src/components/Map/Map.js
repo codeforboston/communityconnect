@@ -94,7 +94,6 @@ class OrganizationMap extends Component {
   onOrganizationClick = (key, event) => {
     const organizationZoom = 11;
     const org = this.props.organizations.find(o => o.id == key);
-
     this.setState({
       center: [org.position.longitude, org.position.latitude],
       zoom: [organizationZoom]
