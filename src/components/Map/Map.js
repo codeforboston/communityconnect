@@ -1,5 +1,5 @@
 import React, { Component, Props } from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow, KmlLayer } from 'react-google-maps';
 import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import OrganizationMarker from './../OrganizationMarker';
 import styles from './Map.module.css';
@@ -26,6 +26,24 @@ const Map = withScriptjs(withGoogleMap(props => (
     {...props}
     ref={props.mapRef}
   >
+
+      { props.isWalkArlingtonVisible && <KmlLayer
+          url="https://raw.githubusercontent.com/microcat49/KMLFiles/master/Copy%20of%20WalkBoston%20-%20Arlington.kml"
+          options={{ preserveViewport: true }}
+      /> }
+
+      { props.isWalkCharlesTownVisible && <KmlLayer
+          url="https://raw.githubusercontent.com/microcat49/KMLFiles/master/WalkBoston%20-%20Charlestown.kml"
+          options={{ preserveViewport: true }}
+      /> }
+
+      { props.isBostonVisible && <KmlLayer
+          url="https://raw.githubusercontent.com/microcat49/KMLFiles/master/WalkBoston%20-%20Chelsea.kml"
+          options={{ preserveViewport: true }}
+      /> }
+
+      https://raw.githubusercontent.com/microcat49/KMLFiles/master/WalkBoston%20-%20Charlestown.kml
+
     <MarkerClusterer
       averageCenter={true}
       enableRetinaIcons={true}
@@ -33,6 +51,7 @@ const Map = withScriptjs(withGoogleMap(props => (
       ref={props.onMarkerClick}
       defaultMaxZoom={16}
     >
+
       () = > {
         this.orgMarkers = []
       }
@@ -73,6 +92,7 @@ class OrganizationMap extends Component {
     this.state = {
       center: this.props.center ? this.props.center : defaultCenter,
       zoom: defaultZoom,
+        isVisible: false
     }
   }
 
@@ -158,6 +178,9 @@ class OrganizationMap extends Component {
         center={this.state.center}
         organizations={this.props.organizations}
         locationAddressHashTable={this.props.locationAddressHashTable}
+        isBostonVisible={this.props.isBostonVisible}
+        isWalkArlingtonVisible={this.props.isWalkArlingtonVisible}
+        isWalkCharlesTownVisible={this.props.isWalkCharlesTownVisible}
       />
     );
   }
