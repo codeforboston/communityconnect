@@ -18,7 +18,7 @@ class DropdownCategory extends Component {
       value : "Categories",
       activeItem: [],
         activeWalkWayItems: {
-          boston: false,
+          arlington: false,
             chelsea: false,
             charlestown: false
         }
@@ -78,10 +78,10 @@ class DropdownCategory extends Component {
               <DropdownToggle nav caret >Walk Way</DropdownToggle>
               <DropdownMenu right>
                   <DropdownItem
-                      active={this.state.activeWalkWayItems.boston}
+                      active={this.state.activeWalkWayItems.arlington}
                       onClick={this.handleWalkWayClick}
-                      value="boston">
-                        Boston
+                      value="arlington">
+                        Arlington
                   </DropdownItem>
                   <DropdownItem
                       active={this.state.activeWalkWayItems.chelsea}

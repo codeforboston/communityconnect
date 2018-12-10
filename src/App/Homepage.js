@@ -73,13 +73,13 @@ class Homepage extends Component {
   }
 
     handleWalkWayClick = (value) => {
-      if(value === "boston"){
+      if(value === "chelsea"){
         this.setState((prevState) => {
-            return ({isBostonVisible : !prevState.isBostonVisible})
+            return ({isChelseaVisible : !prevState.isChelseaVisible})
         })
       }
 
-      if(value === "chelsea"){
+      if(value === "arlington"){
           this.setState((prevState) =>{
               return ({isWalkArlingtonVisible : !prevState.isWalkArlingtonVisible})
           })
@@ -95,6 +95,7 @@ class Homepage extends Component {
   render() {
 
     const navbarHeight = 56;
+
 
     return (
       <div className={styles.viewport}>

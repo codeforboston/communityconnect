@@ -37,7 +37,7 @@ const Map = withScriptjs(withGoogleMap(props => (
           options={{ preserveViewport: true }}
       /> }
 
-      { props.isBostonVisible && <KmlLayer
+      { props.isChelseaVisible && <KmlLayer
           url="https://raw.githubusercontent.com/microcat49/KMLFiles/master/WalkBoston%20-%20Chelsea.kml"
           options={{ preserveViewport: true }}
       /> }
@@ -177,7 +177,7 @@ class OrganizationMap extends Component {
         center={this.state.center}
         organizations={this.props.organizations}
         locationAddressHashTable={this.props.locationAddressHashTable}
-        isBostonVisible={this.props.isBostonVisible}
+        isChelseaVisible={this.props.isChelseaVisible}
         isWalkArlingtonVisible={this.props.isWalkArlingtonVisible}
         isWalkCharlesTownVisible={this.props.isWalkCharlesTownVisible}
       />
