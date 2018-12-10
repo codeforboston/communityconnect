@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>WalkBoston - Arlington</name>
+    <description><![CDATA[At first glance Arlington seems to be one more pleasant suburb of Boston—a good place to live without much for visitors to see.  Not so.  The town paid a pivotal role in the American Revolution, as this stroll down the popular new Minuteman Rail Trail and through the heart of town will reveal to you.  Along the way you’ll also discover its appealing restaurants, retail shops, and pond-studded green space.<br><br>Arlington, once known as Menotomy (its Native American name), stepped into American history on April 19, 1775.  On that date the townsfolk watched the main British force pass on their route to Concord.  When lightly protected supply trains followed, Arlingtonians attacked.  Their rewards were the first British prisoners and stores captured in the Revolution.  More than half of the casualties that day took place on this portion of the historic battle road.<br><br>Several buildings dating from the Revolutionary War period remain—surrounded now by an active, lively urban community.]]></description>
+    <NetworkLink>
+      <name>WalkBoston - Arlington</name>
+      <Link>
+        <href><![CDATA[http://www.google.com/maps/d/kml?forcekml=1&mid=1hzloPZ914R-OtZOHMezFWfj0NWw]]></href>
+      </Link>
+    </NetworkLink>
+  </Document>
+</kml>

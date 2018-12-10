@@ -14,8 +14,14 @@ class DropdownCategory extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
+        walkwayDropDownOpen: false,
       value : "Categories",
-      activeItem: []
+      activeItem: [],
+        activeWalkWayItems: {
+          boston: false,
+            chelsea: false,
+            charlestown: false
+        }
     };
   }
 
@@ -25,6 +31,28 @@ class DropdownCategory extends Component {
       dropdownOpen: !this.state.dropdownOpen
     });
   }
+
+    walkWayToggle = () => {
+        this.setState({
+            walkwayDropDownOpen: !this.state.walkwayDropDownOpen
+        });
+    }
+
+    handleWalkWayClick = (e) => {
+
+        const value = e.target.value;
+
+        this.props.handleWalkWayClick(value);
+
+        this.setState((prevState) => {
+
+            let activeWalkWayItemsCopy = prevState.activeWalkWayItems;
+
+            activeWalkWayItemsCopy[value] = !activeWalkWayItemsCopy[value];
+
+            return ({activeWalkWayItems: activeWalkWayItemsCopy })
+        })
+    }
 
   handleClick(cat, index) {
     this.props.handleEvent(cat, "category");
@@ -46,6 +74,29 @@ class DropdownCategory extends Component {
   render() {
     return (
       <div>
+          <Dropdown toggle = {this.walkWayToggle} isOpen={this.state.walkwayDropDownOpen} nav inNavbar>
+              <DropdownToggle nav caret >Walk Way</DropdownToggle>
+              <DropdownMenu right>
+                  <DropdownItem
+                      active={this.state.activeWalkWayItems.boston}
+                      onClick={this.handleWalkWayClick}
+                      value="boston">
+                        Boston
+                  </DropdownItem>
+                  <DropdownItem
+                      active={this.state.activeWalkWayItems.chelsea}
+                      onClick={this.handleWalkWayClick}
+                      value="chelsea">
+                        Chelsea
+                  </DropdownItem>
+                  <DropdownItem
+                      active={this.state.activeWalkWayItems.charlestown}
+                      onClick={this.handleWalkWayClick}
+                      value="charlestown">
+                        Charles Town
+                  </DropdownItem>
+              </DropdownMenu>
+          </Dropdown>
         <Dropdown toggle = {this.toggle} isOpen={this.state.dropdownOpen} nav inNavbar>
           <DropdownToggle nav caret >Category</DropdownToggle>
           <DropdownMenu right>

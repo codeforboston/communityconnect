@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>WalkBoston - Chelsea</name>
+    <description><![CDATA[An unexpected delight, Chelsea offers a glorious setting, restored downtown, civic center, and hilly views of the harbor and downtown skyline.  Looming over the city is the Tobin Bridge--a dramatic landmark that is stunning seen from below.  The bridge and harbor setting highlight Chelsea's traditional role as a gateway into Boston.<br><br>Chelsea fronts on Boston Harbor, at the merging of two rivers--the Mystic and Chelsea Creek.  This location has made it a natural way for products and people traveling into Boston.  As the metro area has grown, Chelsea has been a welcome haven for immigrants, providing inexpensive housing, ample job opportunities, and supportive social services.<br><br>This walk covers Chelsea end to end, ranging from Admiral Hill to Powderhorn Hill, both capped by old military hospitals.  Along the way you will see a dynamic city, always open to diversity.  Look for the influence of ethnic traditions on the street life, restaurants, and shops in this small gateway to Boston.]]></description>
+    <Style id="icon-115-normal">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/115-rail.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-115-highlight">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/115-rail.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-115">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-115-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-115-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-16-normal">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/16-POI.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-16-highlight">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/16-POI.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-16">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-16-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-16-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-22-normal">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/22-blue-dot.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-22-highlight">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/22-blue-dot.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-22">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-22-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-22-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-3366FF-6000-normal">
+      <LineStyle>
+        <color>ffff6633</color>
+        <width>6</width>
+      </LineStyle>
+    </Style>
+    <Style id="line-3366FF-6000-highlight">
+      <LineStyle>
+        <color>ffff6633</color>
+        <width>9</width>
+      </LineStyle>
+    </Style>
+    <StyleMap id="line-3366FF-6000">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-3366FF-6000-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-3366FF-6000-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Folder>
+      <name>Untitled layer</name>
+      <Placemark>
+        <name>Chelsea Station</name>
+        <description>Commuter Rail service to North Station, Boston and Newburyport.</description>
+        <styleUrl>#icon-115</styleUrl>
+        <Point>
+          <coordinates>
+            -71.034529,42.395684,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Walking Route</name>
+        <description><![CDATA[Start and finish: Bellingham Square, at the intersection of Fifth and Broadway in Chelsea<br>Getting there: Take the MBTA No. 111 Woodlawn--Haymarket bus from the MBTA's Haymarket Station, served by both the Green and Orange Lines.<br>Getting back: Take the MBTA no. 111 Woodlawn--Haymarket Bus to Haymarket Station, Boston.<br><br>Time: 2.5 hours<br>Distance: 3.5 miles<br>Difficulty: Moderate: some steps and gradual hills<br><br>Accessibility: Partially wheelchair accessible; two stairways that can be bypassed<br>Restrooms: Police station; public library<br><br>Prepared by members of WalkBoston.]]></description>
+        <styleUrl>#line-3366FF-6000</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -71.034138,42.392896,0
+            -71.034041,42.393191,0
+            -71.033913,42.393536,0
+            -71.03376,42.393952,0
+            -71.033698,42.394209,0
+            -71.033647,42.394255,0
+            -71.033516,42.394516,0
+            -71.033248,42.395029,0
+            -71.033009,42.395483,0
+            -71.03292,42.395643,0
+            -71.032612,42.396085,0
+            -71.032556,42.396186,0
+            -71.03251,42.396216,0
+            -71.032097,42.396638,0
+            -71.03211,42.396673,0
+            -71.032062,42.396735,0
+            -71.032003,42.396723,0
+            -71.031799,42.396931,0
+            -71.031788,42.396963,0
+            -71.031729,42.397016,0
+            -71.031695,42.397036,0
+            -71.03148,42.397278,0
+            -71.031282,42.397555,0
+            -71.031319,42.397583,0
+            -71.031282,42.397662,0
+            -71.03122,42.397662,0
+            -71.031048,42.398048,0
+            -71.031016,42.398256,0
+            -71.030882,42.398377,0
+            -71.030812,42.398341,0
+            -71.030758,42.398389,0
+            -71.030474,42.398939,0
+            -71.030238,42.399381,0
+            -71.030193,42.399462,0
+            -71.03005,42.399724,0
+            -71.030423,42.399888,0
+            -71.030775,42.400033,0
+            -71.030935,42.400122,0
+            -71.03145,42.40054,0
+            -71.031968,42.40098,0
+            -71.032652,42.40156,0
+            -71.033156,42.402,0
+            -71.033626,42.402415,0
+            -71.033459,42.402421,0
+            -71.033392,42.402415,0
+            -71.031839,42.402071,0
+            -71.030901,42.401869,0
+            -71.030834,42.40196,0
+            -71.030758,42.40195,0
+            -71.030243,42.401839,0
+            -71.030158,42.401809,0
+            -71.029291,42.401635,0
+            -71.029052,42.401566,0
+            -71.02909,42.401471,0
+            -71.028859,42.401259,0
+            -71.028736,42.401098,0
+            -71.028538,42.401063,0
+            -71.028412,42.400991,0
+            -71.027556,42.400738,0
+            -71.026325,42.400395,0
+            -71.025434,42.400146,0
+            -71.024721,42.399944,0
+            -71.024675,42.399914,0
+            -71.024265,42.399512,0
+            -71.024155,42.399405,0
+            -71.02427,42.399343,0
+            -71.024141,42.399248,0
+            -71.023905,42.399027,0
+            -71.023667,42.398797,0
+            -71.024361,42.398407,0
+            -71.025504,42.397769,0
+            -71.026513,42.39718,0
+            -71.026926,42.396951,0
+            -71.027483,42.397493,0
+            -71.027972,42.397969,0
+            -71.028527,42.398502,0
+            -71.028653,42.398428,0
+            -71.029388,42.398008,0
+            -71.030107,42.3976,0
+            -71.030104,42.397561,0
+            -71.030214,42.397495,0
+            -71.03063,42.396978,0
+            -71.030632,42.396939,0
+            -71.030681,42.396873,0
+            -71.030724,42.396875,0
+            -71.031265,42.396182,0
+            -71.031534,42.395863,0
+            -71.031552,42.39582,0
+            -71.031531,42.395766,0
+            -71.031467,42.395746,0
+            -71.031459,42.395727,0
+            -71.03085,42.395608,0
+            -71.030761,42.3956,0
+            -71.030517,42.395548,0
+            -71.030394,42.395515,0
+            -71.029643,42.39537,0
+            -71.029417,42.395328,0
+            -71.029651,42.395208,0
+            -71.030386,42.39479,0
+            -71.030879,42.394506,0
+            -71.031035,42.394419,0
+            -71.031756,42.394009,0
+            -71.03211,42.393815,0
+            -71.032582,42.393558,0
+            -71.032725,42.393462,0
+            -71.033121,42.393252,0
+            -71.033435,42.39306,0
+            -71.033749,42.3929,0
+            -71.033966,42.392803,0
+            -71.033966,42.392716,0
+            -71.034154,42.392498,0
+            -71.034358,42.392574,0
+            -71.035128,42.392119,0
+            -71.035836,42.391717,0
+            -71.036547,42.391319,0
+            -71.037459,42.39079,0
+            -71.03748,42.390756,0
+            -71.037585,42.390713,0
+            -71.037628,42.390705,0
+            -71.038092,42.390444,0
+            -71.038258,42.390325,0
+            -71.03833,42.390311,0
+            -71.038371,42.390277,0
+            -71.0388,42.389613,0
+            -71.039033,42.389544,0
+            -71.039089,42.389491,0
+            -71.039516,42.389382,0
+            -71.040191,42.3892,0
+            -71.040095,42.389103,0
+            -71.040699,42.388944,0
+            -71.040913,42.388807,0
+            -71.040903,42.388772,0
+            -71.041412,42.387991,0
+            -71.041847,42.387351,0
+            -71.041951,42.387203,0
+            -71.043432,42.387549,0
+            -71.043486,42.387446,0
+            -71.043789,42.387533,0
+            -71.044256,42.387339,0
+            -71.045124,42.386983,0
+            -71.045258,42.38709,0
+            -71.045617,42.386932,0
+            -71.045835,42.386959,0
+            -71.046111,42.387109,0
+            -71.046661,42.387388,0
+            -71.047143,42.387633,0
+            -71.047537,42.387811,0
+            -71.047957,42.387966,0
+            -71.04803,42.387995,0
+            -71.047981,42.38807,0
+            -71.047904,42.388172,0
+            -71.048002,42.388217,0
+            -71.048075,42.388248,0
+            -71.048197,42.388276,0
+            -71.048305,42.38832,0
+            -71.04839,42.388356,0
+            -71.048753,42.388443,0
+            -71.049062,42.388466,0
+            -71.049343,42.388482,0
+            -71.049362,42.388496,0
+            -71.049448,42.388517,0
+            -71.04953,42.388564,0
+            -71.049578,42.388629,0
+            -71.049583,42.388708,0
+            -71.049586,42.388771,0
+            -71.049565,42.388821,0
+            -71.049452,42.388819,0
+            -71.049421,42.388847,0
+            -71.049341,42.388862,0
+            -71.049231,42.38887,0
+            -71.049032,42.388854,0
+            -71.048544,42.388805,0
+            -71.048501,42.388797,0
+            -71.048478,42.388855,0
+            -71.048299,42.388818,0
+            -71.048088,42.388757,0
+            -71.04779,42.388642,0
+            -71.047345,42.388479,0
+            -71.047042,42.388419,0
+            -71.046901,42.388427,0
+            -71.046786,42.388481,0
+            -71.04664,42.388614,0
+            -71.046565,42.388706,0
+            -71.046406,42.388628,0
+            -71.046126,42.388497,0
+            -71.046044,42.388475,0
+            -71.04589,42.388628,0
+            -71.045807,42.388714,0
+            -71.045713,42.388778,0
+            -71.045595,42.388818,0
+            -71.045227,42.388884,0
+            -71.044637,42.388963,0
+            -71.044331,42.388809,0
+            -71.043805,42.388496,0
+            -71.043424,42.388724,0
+            -71.043295,42.388811,0
+            -71.043099,42.388611,0
+            -71.042861,42.388643,0
+            -71.0427,42.388514,0
+            -71.042405,42.388306,0
+            -71.04204,42.388453,0
+            -71.041892,42.388538,0
+            -71.04182,42.388556,0
+            -71.041292,42.388805,0
+            -71.040991,42.388958,0
+            -71.040962,42.389011,0
+            -71.040825,42.389079,0
+            -71.040216,42.389411,0
+            -71.039403,42.389881,0
+            -71.038711,42.390269,0
+            -71.038373,42.390461,0
+            -71.038354,42.390503,0
+            -71.038199,42.390588,0
+            -71.038143,42.390592,0
+            -71.037721,42.390838,0
+            -71.037569,42.390927,0
+            -71.036909,42.391295,0
+            -71.036056,42.391785,0
+            -71.03597,42.39184,0
+            -71.0356,42.392036,0
+            -71.035021,42.392357,0
+            -71.034323,42.392763,0
+            -71.034202,42.39285,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Start</name>
+        <description><![CDATA[Getting there: Take the MBTA No. 111 Woodlawn--Haymarket bus from the MBTA's Haymarket Station, served by both the Green and Orange Lines.<br>Getting back: Take the MBTA no. 111 Woodlawn--Haymarket Bus to Haymarket Station, Boston.]]></description>
+        <styleUrl>#icon-16</styleUrl>
+        <Point>
+          <coordinates>
+            -71.03417,42.392869,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bellingham Square</name>
+        <description>This is the busy center of Chelsea, with its principal public buildings and shopping area and a Civil War monument in the center.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.034143,42.392724,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>City Hall</name>
+        <description><![CDATA[The current city hall replaces buildings lost in the fire of 1908.  This fire began in the Rag District, home of rag and waste salvagers forced out of Boston by new fire codes legislated inthe wake of the Great Fire of 1872.  <br><br>The Rag District fire, spread by a high wind that blew burning rags high above the district, resulted in 492 acres burned to the ground along 18 miles of street, with 3,000 buildings lost and 18,000 people left homeless.<br><br>Postdisaster, the state appointed a board of control to rebuild the city.  Within twenty-nine months Chelsea had a new City Hall, new library, new hospitals, two new firehouses, and 860 new buildings.  The centerpiece was City Hall, designed by the Boston architectural firm of Peabody and Stearns.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.033349,42.393623,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Russian Church</name>
+        <description>This church, with its traditional onion domes, was built in 1924.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.032432,42.396727,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Malone Park</name>
+        <description>This park offers views over Chelsea from an alley of Scotch pines.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.03218,42.401824,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Old Soldiers Home and Quigley Hospital</name>
+        <description>Located on the hilltop of Malone Park, the Old Soldiers Home was opened in 1882 to assist Civil War veterans.  The home was taken over by the state in 1940.  Approximately 300 veterans are residents.  St. Elizabeth hospital administers the 120-bed hospital and a school for licensed practical nurses.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.02821,42.400667,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Governor Bellingham/Cary House</name>
+        <description><![CDATA[This is a two-story yellow clapboard farmhouse dating from 1659.  Built initially as a hunting lodge, the building was remodeled in the early 1700s.  In 1772 the Carys refurbished the house; the English white pine paneling that they added in 1791 is still in place.  At an angle to the street, the mansion faces directly south, unlike other nearby homes.  Legends of the mansion tell of a possible secret tunnel inside, and a duel on the farm's land.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.028124,42.398397,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Fritz Memorial Public Library</name>
+        <description><![CDATA[This library features a skylit hexagonal atrium.  Its fireplace is lined with tiles from the nearby factory of Low Art Tiles, known for high-relief carvings glazed in monochrome tints that pooled in recesses and thinned on elevations to create a feeling of depth.  Low's ceramic products were used as paperweights, inkwells, trivets, lamps, flower holders and planters, candlesticks, clock cases, insets for woodstoves, and large ceramic soda fountains.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.031992,42.393592,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Chelsea Square</name>
+        <description><![CDATA[Here longtime Chelsea educator Roman Pucko is remembered in a bronze statue.  The park is home to the Chelsea Square Fountain--a monument given by the Polish people to commemorate Casimir Pulaski's help in training colonial rivalry during the revolution. The old post office at 189 Winnisimmet Street replaced offices burned in 1908.  During the fire, postal employees saved the mail and sorted it in a nearby billiard parlor.  The building now houses the Chelsea Theatreworks, with professional performances, a theater school for adults, training programs for youth, and an exhibition space for local artists.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.039379,42.389519,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Chelsea Waterfront</name>
+        <description><![CDATA[The waterfront is dominated by gas storage tanks.  The industrial site is one of the few areas blurred in Google Maps for security purposes.  Near a well-maintained vest-pocket park on Medford Street is a row of late-19th-century, three-story brick townhouses that escaped the city's fires.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.044196,42.386516,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maurice J. Tobin Bridge</name>
+        <description>After World War II a major obstacle to commuter traffic was the Chelsea-Charlestown bridge, which opened 7,000 times a year (an average of 19 times daily) for ships on the Mystic River.  Eliminating the obstacle, the 2-mile-long Tobin Bridge opened in 1950,soaring 254 feet above high tide with an 800-foot main span.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.046267,42.386302,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Residence of the Bridge Keeper</name>
+        <description>Below the Tobin Bridge, the lone, two-story building is the Abel Gardner House, 28 Broadway, once the residence of the bridge keeper for the earlier bridges.  The first bridge, opened in 1802, charged a toll until 1869, when the state purchased it and made it free.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.044421,42.387546,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Mary O'Malley Park]]></name>
+        <description>This park slopes to a seawall at the Mystic River and enhances the former Naval Hospital.  At its wharf a compass rose and harbor map are carved in granite.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.050918,42.387863,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Naval Hospital</name>
+        <description>Facing the Mystic River, the former Naval Hospital served from1836 until 1974, when it was decommissioned.  The hospital played a critical role in the 1918 flu epidemic that ravaged the country, leaving more than half a million dead.  The best-known patient was Lieutenant John F. Kennedy, treated for wounds received when his PT boat was cut in half in the Pacific war.  Nearby was the Marine Hospital, dating from 1827 and burned in 1908.  It was replaced by the Shurtleff School, now converted to an early-learning center.  All hospital buildings on the hill have now been converted into condominiums.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.045489,42.3898,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>

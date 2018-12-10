@@ -18,7 +18,11 @@ class Homepage extends Component {
       tags: [],
       haveCoords: false,
       locationAddressHashTable: [],
-      cardClickedIndex: null
+      cardClickedIndex: null,
+
+        isBostonVisible: false,
+      isWalkArlingtonVisible: false,
+      isWalkCharlesTownVisible: false,
     }
 
     this.callSheets = callSheets.bind(this);
@@ -68,7 +72,30 @@ class Homepage extends Component {
     this.resultListItem.scrollToElement(index);
   }
 
+    handleWalkWayClick = (value) => {
+      if(value === "boston"){
+        this.setState((prevState) => {
+            return ({isBostonVisible : !prevState.isBostonVisible})
+        })
+      }
+
+      if(value === "chelsea"){
+          this.setState((prevState) =>{
+              return ({isWalkArlingtonVisible : !prevState.isWalkArlingtonVisible})
+          })
+      }
+
+      if(value === "charlestown"){
+          this.setState((prevState) => {
+              return ({isWalkCharlesTownVisible : !prevState.isWalkCharlesTownVisible})
+          })
+      }
+    }
+
   render() {
+
+    const navbarHeight = 56;
+
     return (
       <div className={styles.viewport}>
         <div className={styles.header}>
@@ -76,6 +103,7 @@ class Homepage extends Component {
             categories={this.state.categories}
             handleEvent={this.callSheets}
             handleFilter={this.callSheets}
+            handleWalkWayClick={this.handleWalkWayClick}
           />
         </div>
         <div id={styles.container}>
@@ -101,6 +129,9 @@ class Homepage extends Component {
                 scrollToElement={this.scrollToElement}
                 ref={instance => { this.mapItem = instance }}
                 locationAddressHashTable={this.state.locationAddressHashTable}
+                isBostonVisible={this.state.isBostonVisible}
+                isWalkArlingtonVisible={this.state.isWalkArlingtonVisible}
+                isWalkCharlesTownVisible={this.state.isWalkCharlesTownVisible}
               />
             )} />
           </div>

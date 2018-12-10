@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>WalkBoston - Charlestown</name>
+    <description>Charlestown is Boston’s oldest neighborhood—and over the years has arguably been its most volatile.  For centuries the town trained and outfitted the nation’s military forces; it has seen ethnic, racial, and labor tensions simmer and erupt into violence; it has hosted one of history’s most infamous executions.  And that’s not even to mention Charlestown’s two high points (literally!): Bunker Hill (where the first battle of the American Revolution was supposed to take place) and Breeds Hill (where it did).  This walk will take you through the town’s compact heart and past its most colorful and historic sites. </description>
+    <Style id="icon-191-normal">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/191-subway.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-191-highlight">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/191-subway.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-191">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-191-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-191-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-22-normal">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/22-blue-dot.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-22-highlight">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/22-blue-dot.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-22">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-22-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-22-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-3333FF-5000-normal">
+      <LineStyle>
+        <color>ffff3333</color>
+        <width>5</width>
+      </LineStyle>
+    </Style>
+    <Style id="line-3333FF-5000-highlight">
+      <LineStyle>
+        <color>ffff3333</color>
+        <width>7.5</width>
+      </LineStyle>
+    </Style>
+    <StyleMap id="line-3333FF-5000">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-3333FF-5000-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-3333FF-5000-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-FF6600-5000-normal">
+      <LineStyle>
+        <color>ff0066ff</color>
+        <width>5</width>
+      </LineStyle>
+    </Style>
+    <Style id="line-FF6600-5000-highlight">
+      <LineStyle>
+        <color>ff0066ff</color>
+        <width>7.5</width>
+      </LineStyle>
+    </Style>
+    <StyleMap id="line-FF6600-5000">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-FF6600-5000-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-FF6600-5000-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Folder>
+      <name>Untitled layer</name>
+      <Placemark>
+        <name>North Station</name>
+        <description>Orange and Green Line subways available here.</description>
+        <styleUrl>#icon-191</styleUrl>
+        <Point>
+          <coordinates>
+            -71.061046,42.365996,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Walking Route</name>
+        <description><![CDATA[Getting there: Take the ferry from Long Wharf (near the MBTA Blue Line Aquarium Station) to Charlestown Navy Yard or walk from North Station<br>Getting back: Take the MBTA Orange Line from Sullivan Square Station<br><br>Time: 2.5 hours<br>Distance: 3.5 miles<br>Difficulty: Moderate to strenuous; the climb up Bunker Hill Monument and the steps at Forty Flights can be omitted<br><br>Accessibility: Fully wheelchair accessible<br>Restrooms: At the Navy Yard's Drydock 2, Constitution Museum, and National Park Visitors Center; at the Bunker Hill Monument<br><br>Kathryn and Richard Downing have lived in Charlestown for 25 years.]]></description>
+        <styleUrl>#line-3333FF-5000</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -71.06115,42.3661,0
+            -71.0611,42.36612,0
+            -71.06084,42.36584,0
+            -71.05917,42.36663,0
+            -71.05875,42.36689,0
+            -71.05874,42.36695,0
+            -71.0609,42.37002,0
+            -71.06127,42.3704,0
+            -71.061523,42.370591,0
+            -71.06176,42.37074,0
+            -71.061848,42.370758,0
+            -71.06193,42.37073,0
+            -71.061979,42.370686,0
+            -71.06198,42.37064,0
+            -71.061947,42.370603,0
+            -71.061893,42.370572,0
+            -71.061807,42.370575,0
+            -71.061641,42.370625,0
+            -71.061013,42.370904,0
+            -71.061043,42.370928,0
+            -71.061161,42.370875,0
+            -71.06137,42.37098,0
+            -71.06157,42.37115,0
+            -71.06168,42.37115,0
+            -71.06197,42.37127,0
+            -71.06194,42.37135,0
+            -71.06204,42.37168,0
+            -71.06248,42.37184,0
+            -71.06302,42.37221,0
+            -71.0631,42.37233,0
+            -71.06309,42.37298,0
+            -71.06321,42.37373,0
+            -71.06317,42.37389,0
+            -71.06331,42.37397,0
+            -71.06366,42.37436,0
+            -71.06409,42.375,0
+            -71.06395,42.37506,0
+            -71.06395,42.37511,0
+            -71.06368,42.37515,0
+            -71.0616,42.37371,0
+            -71.0603,42.37478,0
+            -71.06032,42.37514,0
+            -71.06042,42.37524,0
+            -71.06032,42.37537,0
+            -71.06039,42.37552,0
+            -71.06282,42.37635,0
+            -71.06413,42.37686,0
+            -71.06497,42.37741,0
+            -71.06539,42.37779,0
+            -71.0662,42.3784,0
+            -71.06527,42.37893,0
+            -71.06496,42.37937,0
+            -71.06657,42.37985,0
+            -71.06788,42.38053,0
+            -71.06729,42.38118,0
+            -71.0678,42.38144,0
+            -71.06767,42.38165,0
+            -71.06771,42.38172,0
+            -71.06836,42.38204,0
+            -71.06847,42.38205,0
+            -71.0684,42.38216,0
+            -71.06829,42.38215,0
+            -71.06817,42.38219,0
+            -71.068,42.38251,0
+            -71.06787,42.38261,0
+            -71.06785,42.38275,0
+            -71.0677,42.38294,0
+            -71.06756,42.38301,0
+            -71.06752,42.38319,0
+            -71.06863,42.38365,0
+            -71.06914,42.38372,0
+            -71.06993,42.38266,0
+            -71.07223,42.3838,0
+            -71.07213,42.38405,0
+            -71.07252,42.38436,0
+            -71.07252,42.38444,0
+            -71.07036,42.38604,0
+            -71.07262,42.38451,0
+            -71.07278,42.38421,0
+            -71.07313,42.38379,0
+            -71.07375,42.38375,0
+            -71.07396,42.38388,0
+            -71.07429,42.38384,0
+            -71.07435,42.38394,0
+            -71.07453,42.38401,0
+            -71.07457,42.38394,0
+            -71.07513,42.38374,0
+            -71.07522,42.38378,0
+            -71.07544,42.38379,0
+            -71.07558,42.3837,0
+            -71.07606,42.38367,0
+            -71.07611,42.38424,0
+            -71.07636,42.38429,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Charlestown Navy Yard</name>
+        <description><![CDATA[Established in 1800 and decommissioned in 1974, the Charlestown Navy Yard has many opportunities for exploration: the octagonal brick 1854 Muster House; the quarter-mile-long granite 1834 Ropewalk was manufactured for the navy until 1960; the 1805 Commandant's House; the 1833 Drydock 1, still in use; the USS Cassin Young, of the World War II South Pacific "tin can fleet"; the USS Constitution, aka Old Ironsides, built in 1797 and the oldest commissioned ship in the U.S. Navy.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.05618,42.372908,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>City Square</name>
+        <description><![CDATA[The site of Charlestown's municipal government from 1630 until annexation by Boston in 1874, City Square languished until recently under both an elevated railway and an elevated highway.  A subway replaced the El, while the Big Dig replaced the elevated highway with a tunnel and a new park on top, designed with community help.  In the park's center are the preserved foundations of John Winthrop's 1639 Great House, torched during the Battle of Bunker Hill.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.061877,42.371743,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Town Hill</name>
+        <description>Town Hill was partially cut down after the fire during the Battle of Bunker Hill.  The local array of building styles follows the street plan that Thomas Graves prepared for John Winthrop in 1629.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.062821,42.3725,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Harvard Place</name>
+        <description><![CDATA[This gas-lit private lane off Harvard Street is paved with plate-shaped "hobblestones" set on end, believed to be original seventeenth-century paving.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.063454,42.37243,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>John Harvard Mall</name>
+        <description>This public space commemorates the church where Harvard preached until his death in 1638, when half his library was bequeathed to support his namesake university.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.06266,42.372632,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Austin Block</name>
+        <description><![CDATA[This block was built by General Nathaniel Austin in 1822 as one of Charlestown's first masonry buildings.  It was constructed from stone quarried at Outer Brewster Island in Boston Harbor.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.06313,42.373799,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Thompson Square</name>
+        <description>Federal-period buildings near Thompson Square, also on Main Street, survived mostly untouched until the 1970s because the El on Main Street discouraged new construction.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.063213,42.37397,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Thompson House</name>
+        <description><![CDATA[The 1794 Thompson House, built at 119 Main Street by Timothy Thompson, who fought at Bunker Hill, was also occupied by Timothy's son, a U.S. Congressman, and by Gardener Colby, who endowed Colby College.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.063776,42.374414,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Warren Tavern</name>
+        <description>The 1780 Warren Tavern commemorates General Joseph Warren, fallen hero of Bunker Hill.  Paul Revere convened his Masonic lodge here for twenty years.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.063122,42.37416,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Hurd House</name>
+        <description><![CDATA[The 1795 Hurd House, 65-71 Main Street, is Charlestown's best example of Georgian architecture.  Deacon John Larkin, who lived at 55-61 Main Street, loaned his horse Brown Beauty to Paul Revere for his midnight ride.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.062381,42.373657,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[St. Mary's Church]]></name>
+        <description><![CDATA[The church served Charlestown's growing Irish community.  Religious structures served as magnets for Yankee unease as Irish immigration increased; St. Mary's was attacked by an angry mob in 1853.  By the time the current church was built in 1887, Irish Catholics were the majority.  John Boyle O'Reilly, who personified the growing acceptance of Irish in Boston, lived nearby and was editor of the Pilot, the newspaper of Boston's Catholic archdiocese.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.061561,42.373907,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Training Field (Winthrop Square)</name>
+        <description><![CDATA[Military training dominated the Training Field (Winthrop Square) from 1632 until the Civil War.  The Training Field was part of the battlefield of Bunker Hill.  The heroic statue in the middle honors Charlestown's Civil War soldiers and sailors.  Surrounding the field is a colorful cluster of Federal-period clapboard houses, contrasting with larger, brick row houses.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.060123,42.374331,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bunker Hill Monument</name>
+        <description><![CDATA[This obelisk marks the battle on Breed's Hill (the original plan was to defend from Bunker Hill, the next hill over), when colonial troops, fueled by a little bravado (and perhaps a bit of rum), moved toward British troops massed on the harbor.  The monument was dedicated in 1843 with a stirring oration by Daniel Webster and a less memorable speech by John Tyler.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.060713,42.376356,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Monument Square</name>
+        <description><![CDATA[This square reflects Charlestown's social history.  The grand 1848 double bow-fronted house at 7 Monument Square was built for a Charlestown mayor; "The Bostonians" was in part filmed here.  Two mansions converted to rooming houses were the subject of the 1952 book Rooms to Let by Helen Rush, about World War II and the Navy Yard.  The old Charlestown High School at 30 Monument Square drew strife during busing for school desegregation, as documented in Common Ground by J. Anthony Lukas.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.061668,42.376316,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Knights of Columbus</name>
+        <description><![CDATA[Near Bunker Hill a workers' community took hold, transforming the Yankees' ancient Century Club, at 44 High Street, into the local home of the Knights of Columbus.  The Knights persuaded John Fitzgerald Kennedy, campaigning for his first congressional election, to undergo initiation by marching a goat through Charlestown streets.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.062902,42.376316,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Forty Flights</name>
+        <description>As the population of Charlestown increased to a peak of forty-two thousand by 1900--three times what it is today--every square inch of available land was covered with housing.  To improve access, Forty Flights (seven flights of stairs) were built.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.067614,42.380788,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bunker Hill</name>
+        <description><![CDATA[The effort of climbing Forty Flights is rewarded by an expansive view from the real Bunker Hill.  The peaceful burial ground for Irish immigrants (closed to the public) in back of the 1859 St. Francis de Sales Church was established in 1830, over opposition and lawsuits by Charlestown's city government.  Down below, Doherty Playground has sweeping views of the Mystic River.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.067295,42.381246,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Baldwin Street</name>
+        <description>The buildings of Baldwin Street are almost entirely brick, reminiscent of Beacon Hill.  A 95 Baldwin Street, a charming clapboard house is only 12 feet wide.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.069527,42.383104,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Charlestown Working Theatre</name>
+        <description>This lively community playhouse was once a fire barn.  Next to the theater, the award-winning Charlestown Community Garden welcomes visitors all day.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.071152,42.382946,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mystic River Waterfront</name>
+        <description><![CDATA[This area is dominated by the former Scrafft's candy factory, with its vintage hot pink neon sign and enormous illuminated clocks.  Behind Schrafft's are absorbing riverside views of natural gas tankers, vessels hauling mountains of scrap metal, and huge container ships.  Charlestown's waterfront sparked intensive union organizing in 1872 and remains an area of strong pro-labor sentiment.]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.070246,42.385937,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bunker Hill Community College</name>
+        <description>Visible from the train, Bunker Hill Community College was built on the site of Charlestown State Prison, where Italian anarchists Sacco and Vanzetti were executed in 1927, and where Malcolm Little discovered the Muslim religion in 1948 and became Malcolm X.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.06943,42.374802,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Phipps Street Burying Ground</name>
+        <description>Early Puritan colonists are buried in this seventeenth-century cemetery, along with come of the African Americans who lived in Charlestown before 1800.  The granite obelisk on top of the burial hill is an 1828 memorial to John Harvard</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -71.067617,42.376268,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Sullivan Square Station</name>
+        <description>Orange Line subway available here.</description>
+        <styleUrl>#icon-191</styleUrl>
+        <Point>
+          <coordinates>
+            -71.076382,42.384233,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Train/Subway Journey</name>
+        <description>Ride the Orange Line subway from Sullivan Square Station to North Station to complete the loop.</description>
+        <styleUrl>#line-FF6600-5000</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -71.077117,42.383964,0
+            -71.077005,42.381119,0
+            -71.077005,42.380699,0
+            -71.07694,42.380176,0
+            -71.07679,42.379692,0
+            -71.076522,42.379042,0
+            -71.076071,42.378297,0
+            -71.075063,42.377101,0
+            -71.073883,42.375912,0
+            -71.071908,42.374556,0
+            -71.069784,42.373677,0
+            -71.061137,42.366158,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Community College Station</name>
+        <description>Orange Line subway available here.</description>
+        <styleUrl>#icon-191</styleUrl>
+        <Point>
+          <coordinates>
+            -71.069637,42.373736,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>
