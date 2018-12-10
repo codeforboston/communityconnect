@@ -93,7 +93,7 @@ class DropdownCategory extends Component {
                       active={this.state.activeWalkWayItems.charlestown}
                       onClick={this.handleWalkWayClick}
                       value="charlestown">
-                        Charles Town
+                        Charlestown
                   </DropdownItem>
               </DropdownMenu>
           </Dropdown>
