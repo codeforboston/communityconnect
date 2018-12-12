@@ -1,4 +1,4 @@
-.results {
+.saved-resources {
   position: absolute;
   left: 0;
   right: 0;
@@ -6,17 +6,16 @@
   top: 0;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
+  height:calc(100vh - 150px);
 }
 
-.resultsPartialWidth {
-  width: 60%;
-}
-.resultsFullWidth {
+.saved-resources-full-width {
   width: 100%;
+  position: relative;
 }
 
 @media (max-width: 767px) {
-  .results {
+  .saved-resources {
     width: 100%;
   }
 }

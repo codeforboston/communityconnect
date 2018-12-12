@@ -8,6 +8,7 @@
     "npm": "^6.4.1",
     "query-string": "^6.2.0",
     "react": "^16.3.2",
+    "react-beautiful-dnd": "^9.0.2",
     "react-dom": "^16.3.2",
     "react-fontawesome": "^1.6.1",
     "react-google-maps": "^9.4.5",
