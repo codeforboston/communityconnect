@@ -9,7 +9,6 @@ const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${googleMapKey
 const Map = withScriptjs(withGoogleMap(props => (
 
   <GoogleMap
-    ref={props.onMapLoad}
     {...props}
     ref={props.mapRef}
   >
@@ -124,7 +123,6 @@ class OrganizationMap extends Component {
   }
 
   render() {
-
     return (
       <Map
         mapRef={this.mapRef}
