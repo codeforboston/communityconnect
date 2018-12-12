@@ -7,6 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink,
+  Button,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -47,6 +48,13 @@ class Header extends Component {
               </NavItem>
               <NavItem>
               <DropdownCategory category={this.props.categories} handleEvent={this.props.handleEvent}/>
+              </NavItem>
+              <NavItem>
+              <Button 
+                color="secondary" 
+                onClick={() => this.props.toggleSavedResourcesPane()}>
+                Saved Resources
+              </Button>
               </NavItem>
             </Nav>
           </Collapse>

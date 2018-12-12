@@ -7,9 +7,12 @@ class OrganizationCard extends Component {
 
   constructor (props) {
     super(props)
+    this.state = {
+      animateButtonInside: '',
+      animateButtonOutside: [''],
+    }
 
     this.cardRef = React.createRef();
-
   }
 
   getRef = () => {
@@ -20,6 +23,29 @@ class OrganizationCard extends Component {
 
   cardClick= (e) => {
     this.props.cardClick(e.currentTarget.id);
+  }
+
+  saveItem = () => {
+    this.props.saveItem();
+
+    let classes = [
+                    styles['cbutton--effect-radomir__after'],
+                    styles['cbutton--effect-radomir__cbutton--click__after'],
+                    styles['cbutton__after'],
+                  ];
+
+    this.setState({
+      animateButtonInside: styles['animate-button-click'],
+      animateButtonOutside: classes,
+    });    
+    setTimeout(() => {
+        this.setState({
+          animateButtonInside: '',
+          animateButtonOutside: [''],
+        });
+      }, 
+      500
+    );
   }
 
   render() {
@@ -40,12 +66,35 @@ class OrganizationCard extends Component {
       <div ref="cardRef">
         <Card className={styles.Card} id={this.props.index} onClick={this.cardClick}>
           <CardBody>
+            <span onClick={(e)=> e.stopPropagation()}>
+              <button 
+                className={[
+                            styles['cbutton--effect-radomir'],
+                            styles['cbutton'],
+                          ].join(' ')}
+              >
+              <span
+                title='Add item to Saved Resources' 
+                aria-label='Add item to Saved Resources' 
+                className={[
+                            this.state.animateButtonInside, 
+                            styles['save-item'],
+                          ].join(' ')} 
+                onClick={this.saveItem}>
+              +
+              </span>
+                <span 
+                  className={this.state.animateButtonOutside.join(' ')}
+                >
+                </span>
+              </button>
+            </span>
             {website && <span><a href={website} target="_blank">&#128279;</a></span>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
             <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
             {distance && <div>{distanceElement}</div>}
-            {overview && <p>{overview}</p>}
             {location && <p><span className="fa fa-map-o"></span> {location}</p>}
+            {overview && <p>{overview}</p>}
             {phone && <p> &#128222; {phone}</p>}
             {(facebookUrl || instagramUrl || twitterUrl) && <ul className="list-inline">
               {facebookUrl && <li><a href={facebookUrl} data-type="social"><i className="fa fa-2x fa-facebook-square">{facebookUrl}</i></a></li>}

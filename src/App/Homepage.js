@@ -7,7 +7,9 @@ import Map from '../components/Map/Map';
 import { callSheets } from '../data/sheetLoadingHelpers';
 import styles from './App.module.css';
 import { Route } from 'react-router';
-import SplitScreenSlidingPane from '../components/SlidingPane/SplitScreenSlidingPane.js';
+import { SplitScreenSlidingPane, SplitScreenTogglePane } from '../components/SlidingPane/SplitScreenSlidingPane.js';
+import ShoppingCart from '../components/ShoppingCart';
+import SortBar from '../components/SortBar.js';
 
 class Homepage extends Component {
   constructor(props) {
@@ -18,11 +20,19 @@ class Homepage extends Component {
       tags: [],
       haveCoords: false,
       locationAddressHashTable: [],
-      cardClickedIndex: null
+      cardClickedIndex: null,
+      isSavedResourcePaneOpen: false,
+      savedResources: [],
     }
 
     this.callSheets = callSheets.bind(this);
     console.log("Homepage props: ", this.props);
+
+    this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
+    this.orderResources = this.orderResources.bind(this);
+    this.saveResource = this.saveResource.bind(this);
+    this.removeResource = this.removeResource.bind(this);
+    this.uploadResources = this.uploadResources.bind(this);
   }
 
   getLocation = () => {
@@ -68,6 +78,52 @@ class Homepage extends Component {
     this.resultListItem.scrollToElement(index);
   }
 
+  toggleSavedResourcesPane = () => {
+    this.setState({
+      isSavedResourcePaneOpen: !this.state.isSavedResourcePaneOpen
+    });
+  }
+
+  orderResources = (sourceIndex, destinationIndex) => {
+    let savedResources = this.state.savedResources.slice();
+
+    let movedResource = savedResources[sourceIndex];
+    savedResources.splice(sourceIndex, 1);
+    savedResources.splice(destinationIndex, 0, movedResource);
+
+    this.setState({
+      savedResources: savedResources,
+    })
+  }
+
+  saveResource = (resource) => {
+    let savedResources = null;
+    if(!this.state.savedResources.some(r => r.id == resource.id)){
+      savedResources = this.state.savedResources.slice();
+      savedResources.push(resource);
+      this.setState({
+        savedResources: savedResources,
+      })
+    }
+  }
+
+  removeResource = (resource) => {
+    let savedResources = null;
+    if(this.state.savedResources.some(r => r.id == resource.id)){
+      savedResources = this.state.savedResources.slice();
+      savedResources.splice(savedResources.indexOf(resource), 1);
+    }
+    this.setState({
+      savedResources: savedResources,
+    })
+  }
+
+  uploadResources = (resources) => {
+    this.setState({
+      savedResources: resources.slice(),
+    })
+  }
+
   render() {
     return (
       <div className={styles.viewport}>
@@ -76,6 +132,7 @@ class Homepage extends Component {
             categories={this.state.categories}
             handleEvent={this.callSheets}
             handleFilter={this.callSheets}
+            toggleSavedResourcesPane={this.toggleSavedResourcesPane}
           />
         </div>
         <div id={styles.container}>
@@ -89,6 +146,8 @@ class Homepage extends Component {
                 data={this.state.orgs}
                 haveCoords={this.state.haveCoords}
                 currentPos={this.state.position}
+                saveItem={this.saveResource}
+                fullWidth={true}
               />
             )} />
           </SplitScreenSlidingPane>
@@ -104,6 +163,15 @@ class Homepage extends Component {
               />
             )} />
           </div>
+          <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
+            <ShoppingCart 
+              data={this.state.savedResources}
+              reOrder={this.orderResources}
+              addItem={this.saveResource}
+              removeItem={this.removeResource}
+              uploadItems={this.uploadResources}>
+            </ShoppingCart>
+          </SplitScreenTogglePane>
         </div>
       </div>
     );
