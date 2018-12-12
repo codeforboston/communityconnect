@@ -45,34 +45,19 @@ export function callSheets(selected = "", filterType = "") {
         category.forEach(cat => categories[cat] = cat.trim());
         for (let tag of project.tags) { tags[tag] = "" };
       }
+
       const categoryList = [...(new Set(Object.values(categories)))];
 
-      var my_json = JSON.stringify(data);
+        data = data.filter(function (org) { return org.truefalsevetting === 'TRUE' });
 
-      if (selected.length > 0 && filterType == "category") {
-        filter_criteria_list = update_criteria(selected, filter_criteria_list);
-      }
-
-      filtered_json = filter_criteria_list.length <= 0 ? data : find_in_object(JSON.parse(my_json), { categoryautosortscript: filter_criteria_list });
-
-      if (selected.length > 0 && filterType == "name") {
-        filtered_json = filtered_json.filter(function (i) {
-          return i.name.toLowerCase().match(selected.toLowerCase());
-        });
-      }
-
-      filtered_json = filtered_json.filter(function (org) { return org.truefalsevetting === 'TRUE' });
-
-      filtered_json.forEach(obj => { obj.isMarkerOpen = false; });
-
-      //console.log(filtered_json)
+        data.forEach(obj => { obj.isMarkerOpen = false; });
 
 
       //This creates a hash table based for the lat and long of each loction.
       //This allows us to group all organizations at the same location together. 
       var locationAddressHashTable = {};
 
-      Object.entries(filtered_json).forEach(([index,  org]) =>{
+      Object.entries(data).forEach(([index,  org]) =>{
 
       if(org.coordinates){
 
@@ -85,11 +70,16 @@ export function callSheets(selected = "", filterType = "") {
       }
       }})
 
+
+        // This creates a copy of the list of the original organizations.
+        // This allows for a list to be re-filtered when selecting categories.
+        this.originalOrgs = data.slice();
+
       this.setState({
         locationAddressHashTable : locationAddressHashTable,
-        orgs: filtered_json,
-        categories: categoryList,
-        tags: Object.keys(tags)
+        orgs: data,
+        tags: Object.keys(tags),
+          categories: categoryList
       });
 
     }

@@ -8,6 +8,7 @@ import { callSheets } from '../data/sheetLoadingHelpers';
 import styles from './App.module.css';
 import { Route } from 'react-router';
 import SplitScreenSlidingPane from '../components/SlidingPane/SplitScreenSlidingPane.js';
+import { find_in_object } from '../utils/FilterHelper.js';
 
 class Homepage extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class Homepage extends Component {
     }
 
     this.callSheets = callSheets.bind(this);
+    this.originalOrgs = [];
     console.log("Homepage props: ", this.props);
   }
 
@@ -68,13 +70,28 @@ class Homepage extends Component {
     this.resultListItem.scrollToElement(index);
   }
 
+  handleCategorySelection = (categories) => {
+        console.log(categories);
+
+        if(categories.length === 0 ) {
+
+            this.setState({orgs: this.originalOrgs})
+
+        } else {
+            let filter_criteria_list = find_in_object(this.originalOrgs, {categoryautosortscript: categories});
+            this.setState({orgs: filter_criteria_list})
+        }
+  }
+
+
+
   render() {
     return (
       <div className={styles.viewport}>
         <div className={styles.header}>
           <Header
             categories={this.state.categories}
-            handleEvent={this.callSheets}
+            handleCategorySelection={this.handleCategorySelection}
             handleFilter={this.callSheets}
           />
         </div>

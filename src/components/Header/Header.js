@@ -46,7 +46,7 @@ class Header extends Component {
               <SearchBar type="text" handleFilter={this.props.handleFilter} />
               </NavItem>
               <NavItem>
-              <DropdownCategory category={this.props.categories} handleEvent={this.props.handleEvent}/>
+              <DropdownCategory category={this.props.categories} handleCategorySelection={this.props.handleCategorySelection}/>
               </NavItem>
             </Nav>
           </Collapse>

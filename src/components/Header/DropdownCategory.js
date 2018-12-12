@@ -17,6 +17,8 @@ class DropdownCategory extends Component {
       value : "Categories",
       activeItem: []
     };
+
+    this.selectedCategories = []
   }
 
 
@@ -27,14 +29,30 @@ class DropdownCategory extends Component {
   }
 
   handleClick(cat, index) {
-    this.props.handleEvent(cat, "category");
-    if(index === -1) this.setState({
-      activeItem:[]
-    });
-    this.state.activeItem.includes(index) ?  this.setState({
+
+    if(index === -1) {
+        this.setState({
+            activeItem: []
+        });
+
+        // If the categories list is cleared this will send an empty array to tell
+        // App.js that there are no categories selected and to apply the original list.
+        this.props.handleCategorySelection([]);
+        this.selectedCategories = []
+
+        return
+    }
+    this.state.activeItem.includes(index) ? this.setState({
       activeItem : this.state.activeItem.filter( selected => selected !== index)
     })
     : this.state.activeItem.push(index);
+
+    this.selectedCategories.includes(cat) ?
+        this.selectedCategories = this.selectedCategories.filter( selected => selected !== cat)
+        : this.selectedCategories.push(cat);
+
+    // This sends a list to App.js of which categories are currently selected.
+      this.props.handleCategorySelection(this.selectedCategories);
   }
 
   categoryMenuItems() {
@@ -49,7 +67,7 @@ class DropdownCategory extends Component {
         <Dropdown toggle = {this.toggle} isOpen={this.state.dropdownOpen} nav inNavbar>
           <DropdownToggle nav caret >Category</DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem onClick = {() => this.handleClick("Clear", -1)} key={"Clear"}>Clear</DropdownItem>
+            <DropdownItem onClick = {() => this.handleClick([], -1)} key={"Clear"}>Clear</DropdownItem>
             <DropdownItem divider/>
             { this.categoryMenuItems() }
           </DropdownMenu>
