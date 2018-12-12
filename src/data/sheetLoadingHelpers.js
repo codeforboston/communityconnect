@@ -21,7 +21,6 @@ function normalizeHeaders(element) {
 }
 
 function createMarkerId({lat, lng}){
-  //console.log('createMarkerId ',  lat.toString(), lng.toString())
   return lat.toString() + lng.toString();
 }
 
@@ -64,9 +63,6 @@ export function callSheets(selected = "", filterType = "") {
       filtered_json = filtered_json.filter(function (org) { return org.truefalsevetting === 'TRUE' });
 
       filtered_json.forEach(obj => { obj.isMarkerOpen = false; });
-
-      //console.log(filtered_json)
-
 
       //This creates a hash table based for the lat and long of each loction.
       //This allows us to group all organizations at the same location together.
