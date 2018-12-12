@@ -35,8 +35,8 @@ export class ResultList extends Component {
   }
 
   getCloserName = (a, b) => {
-    if(a.organizationname > b.organizationname) return 1
-    else if(a.organizationname < b.organizationname ) return -1
+    if(a.name > b.name) return 1
+    else if(a.name < b.name ) return -1
     else return 0
   }
 
