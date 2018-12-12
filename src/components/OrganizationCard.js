@@ -26,12 +26,12 @@ class OrganizationCard extends Component {
     const { id , name, categoryautosortscript, overview, location, website, facebookUrl,
       instagramUrl, twitterUrl, phone } = this.props.organization;
 
-
+      console.log('name: ' + name);
     let distance, distanceElement;
     if(this.props.haveCoords){
       distance = getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos )
       if(distance){
-        distanceElement = <p>Distance from your Location: {distance.toPrecision(4)} miles</p>
+        distanceElement = <p>Distance from your Location: {distance} miles</p>
       }
     }
 
