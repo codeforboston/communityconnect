@@ -20,7 +20,8 @@ class DropdownCategory extends Component {
         activeWalkWayItems: {
           arlington: false,
             chelsea: false,
-            charlestown: false
+            charlestown: false,
+            revere : false
         }
     };
   }
@@ -94,6 +95,12 @@ class DropdownCategory extends Component {
                       onClick={this.handleWalkWayClick}
                       value="charlestown">
                         Charlestown
+                  </DropdownItem>
+                  <DropdownItem
+                      active={this.state.activeWalkWayItems.revere}
+                      onClick={this.handleWalkWayClick}
+                      value="revere">
+                      Revere
                   </DropdownItem>
               </DropdownMenu>
           </Dropdown>

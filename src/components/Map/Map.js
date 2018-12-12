@@ -42,7 +42,13 @@ const Map = withScriptjs(withGoogleMap(props => (
           options={{ preserveViewport: true }}
       /> }
 
-      https://raw.githubusercontent.com/microcat49/KMLFiles/master/WalkBoston%20-%20Charlestown.kml
+      { props.isWalkRevereVisible && <KmlLayer
+          url="https://raw.githubusercontent.com/microcat49/KMLFiles/master/WalkBoston%20-%20Revere%20Walking%20Routes.kml"
+          options={{ preserveViewport: true }}
+      />
+      }
+
+
 
     <MarkerClusterer
       averageCenter={true}
@@ -180,6 +186,7 @@ class OrganizationMap extends Component {
         isChelseaVisible={this.props.isChelseaVisible}
         isWalkArlingtonVisible={this.props.isWalkArlingtonVisible}
         isWalkCharlesTownVisible={this.props.isWalkCharlesTownVisible}
+        isWalkRevereVisible={this.props.isWalkRevereVisible}
       />
     );
   }

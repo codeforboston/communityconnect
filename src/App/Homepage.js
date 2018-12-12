@@ -23,6 +23,7 @@ class Homepage extends Component {
         isBostonVisible: false,
       isWalkArlingtonVisible: false,
       isWalkCharlesTownVisible: false,
+        isWalkRevereVisible: false
     }
 
     this.callSheets = callSheets.bind(this);
@@ -90,12 +91,17 @@ class Homepage extends Component {
               return ({isWalkCharlesTownVisible : !prevState.isWalkCharlesTownVisible})
           })
       }
+
+        if(value === "revere"){
+            this.setState((prevState) => {
+                return ({isWalkRevereVisible : !prevState.isWalkRevereVisible})
+            })
+        }
     }
 
   render() {
 
     const navbarHeight = 56;
-
 
     return (
       <div className={styles.viewport}>
@@ -133,6 +139,7 @@ class Homepage extends Component {
                 isBostonVisible={this.state.isBostonVisible}
                 isWalkArlingtonVisible={this.state.isWalkArlingtonVisible}
                 isWalkCharlesTownVisible={this.state.isWalkCharlesTownVisible}
+                isWalkRevereVisible={this.state.isWalkRevereVisible}
               />
             )} />
           </div>

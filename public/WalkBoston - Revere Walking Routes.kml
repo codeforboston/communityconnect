@@ -1,0 +1,1200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>WalkBoston - Revere Walking Routes</name>
+    <description><![CDATA[Learn more at : https://www.WalkBoston.org<br>]]></description>
+    <Style id="icon-1535-3949AB-nodesc-normal">
+      <IconStyle>
+        <color>ffab4939</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1535-3949AB-nodesc-highlight">
+      <IconStyle>
+        <color>ffab4939</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1535-3949AB-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1535-3949AB-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1535-3949AB-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1535-3F5BA9-nodesc-normal">
+      <IconStyle>
+        <color>ffa95b3f</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1535-3F5BA9-nodesc-highlight">
+      <IconStyle>
+        <color>ffa95b3f</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1535-3F5BA9-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1535-3F5BA9-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1535-3F5BA9-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1731-3F5BA9-nodesc-normal">
+      <IconStyle>
+        <color>ffa95b3f</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1731-3F5BA9-nodesc-highlight">
+      <IconStyle>
+        <color>ffa95b3f</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1731-3F5BA9-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1731-3F5BA9-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1731-3F5BA9-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-191-normal">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/191-subway.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-191-highlight">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/191-subway.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-191">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-191-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-191-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-191-nodesc-normal">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/191-subway.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-191-nodesc-highlight">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/191-subway.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-191-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-191-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-191-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-22-normal">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/22-blue-dot.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-22-highlight">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/22-blue-dot.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-22">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-22-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-22-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-22-nodesc-normal">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/22-blue-dot.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-22-nodesc-highlight">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/22-blue-dot.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-22-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-22-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-22-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-000000-1200-nodesc-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.2</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-000000-1200-nodesc-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.8</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-000000-1200-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-000000-1200-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-000000-1200-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-3F5BA9-2938-normal">
+      <LineStyle>
+        <color>ffa95b3f</color>
+        <width>2.938</width>
+      </LineStyle>
+    </Style>
+    <Style id="line-3F5BA9-2938-highlight">
+      <LineStyle>
+        <color>ffa95b3f</color>
+        <width>4.407</width>
+      </LineStyle>
+    </Style>
+    <StyleMap id="line-3F5BA9-2938">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-3F5BA9-2938-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-3F5BA9-2938-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-3F5BA9-3131-normal">
+      <LineStyle>
+        <color>ffa95b3f</color>
+        <width>3.131</width>
+      </LineStyle>
+    </Style>
+    <Style id="line-3F5BA9-3131-highlight">
+      <LineStyle>
+        <color>ffa95b3f</color>
+        <width>4.6965</width>
+      </LineStyle>
+    </Style>
+    <StyleMap id="line-3F5BA9-3131">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-3F5BA9-3131-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-3F5BA9-3131-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-3F5BA9-3519-normal">
+      <LineStyle>
+        <color>ffa95b3f</color>
+        <width>3.519</width>
+      </LineStyle>
+    </Style>
+    <Style id="line-3F5BA9-3519-highlight">
+      <LineStyle>
+        <color>ffa95b3f</color>
+        <width>5.2785</width>
+      </LineStyle>
+    </Style>
+    <StyleMap id="line-3F5BA9-3519">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-3F5BA9-3519-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-3F5BA9-3519-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-A7B5D7-3131-nodesc-normal">
+      <LineStyle>
+        <color>ffd7b5a7</color>
+        <width>3.131</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-A7B5D7-3131-nodesc-highlight">
+      <LineStyle>
+        <color>ffd7b5a7</color>
+        <width>4.6965</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-A7B5D7-3131-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-A7B5D7-3131-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-A7B5D7-3131-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-A7B5D7-3325-nodesc-normal">
+      <LineStyle>
+        <color>ffd7b5a7</color>
+        <width>3.325</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-A7B5D7-3325-nodesc-highlight">
+      <LineStyle>
+        <color>ffd7b5a7</color>
+        <width>4.9875</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-A7B5D7-3325-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-A7B5D7-3325-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-A7B5D7-3325-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-CCCCCC-4100-nodesc-normal">
+      <LineStyle>
+        <color>ffcccccc</color>
+        <width>4.1</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-CCCCCC-4100-nodesc-highlight">
+      <LineStyle>
+        <color>ffcccccc</color>
+        <width>6.15</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-CCCCCC-4100-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-CCCCCC-4100-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-CCCCCC-4100-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-3F5BA9-3401-0-normal">
+      <LineStyle>
+        <color>ffa95b3f</color>
+        <width>3.401</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>00a95b3f</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-3F5BA9-3401-0-highlight">
+      <LineStyle>
+        <color>ffa95b3f</color>
+        <width>5.1015</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>00a95b3f</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-3F5BA9-3401-0">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-3F5BA9-3401-0-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-3F5BA9-3401-0-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-3F5BA9-3601-0-normal">
+      <LineStyle>
+        <color>ffa95b3f</color>
+        <width>3.601</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>00a95b3f</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-3F5BA9-3601-0-highlight">
+      <LineStyle>
+        <color>ffa95b3f</color>
+        <width>5.4015</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>00a95b3f</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-3F5BA9-3601-0">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-3F5BA9-3601-0-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-3F5BA9-3601-0-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-3F5BA9-3801-0-normal">
+      <LineStyle>
+        <color>ffa95b3f</color>
+        <width>3.801</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>00a95b3f</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-3F5BA9-3801-0-highlight">
+      <LineStyle>
+        <color>ffa95b3f</color>
+        <width>5.7015</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>00a95b3f</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-3F5BA9-3801-0">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-3F5BA9-3801-0-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-3F5BA9-3801-0-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Folder>
+      <name>Revere Walking Routes</name>
+      <Placemark>
+        <name><![CDATA[Route 1: Great surf & beaches / 40 minutes]]></name>
+        <description>In 1895, landscape architect Charles Eliot was hired to restore the great crescent of the beach permanently for bathing, promenading, eating, socializing and ocean viewing. A narrow gauge railroad led to beach amenities like open-air bathhouses with bathing suits rented for 25 cents/hour. Rules of the era prohibited bathers from crossing the boulevard in bathing suits, so a tunnel was built under it. A clock faced the beach reminding bathers when their bathing suit rental period was ending.The beach was lined with grand hotels, four large roller coasters, carousels with handcarved horses five deep, fun houses and bowling alleys. The world-famous Cyclone Coaster had a vertical drop of 100 feet with speeds of 50 mph. Revere Beach has many historical structures preserved from its past: the clock, beachside pavilions, William G. Reinstein Bandstand, the Captain’s House and a police station topped with the 6-foot long copper codfish weathervane from the former bathhouse.</description>
+        <styleUrl>#line-3F5BA9-3131</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -70.9897732,42.4024859,0
+            -70.9907013,42.4038604,0
+            -70.991227,42.4052784,0
+            -70.9913451,42.405825,0
+            -70.9913772,42.4063716,0
+            -70.991388,42.4072193,0
+            -70.9912378,42.4086294,0
+            -70.9898645,42.4128753,0
+            -70.988577,42.4156635,0
+            -70.9870321,42.418705,0
+            -70.9833414,42.4240273,0
+            -70.9771963,42.4306631,0
+            -70.9696766,42.4356514,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Route 1 Start point</name>
+        <styleUrl>#icon-1731-3F5BA9-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -70.9897732,42.4024859,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Revere Beach Station</name>
+        <styleUrl>#icon-191-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -70.9924682,42.4075549,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wonderland Station</name>
+        <styleUrl>#icon-191-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -70.9919431,42.4132626,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wonderland Station to Route 1</name>
+        <styleUrl>#line-CCCCCC-4100-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -70.9915116,42.4136326,0
+            -70.9896662,42.4132762,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Point With a View</name>
+        <styleUrl>#icon-1535-3F5BA9-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -70.9896662,42.4132762,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Point with a view</name>
+        <styleUrl>#icon-1535-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -70.9876541,42.4186433,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Route 1 End Point
+</name>
+        <styleUrl>#icon-1731-3F5BA9-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -70.9696766,42.4356514,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Route 2: Point of Pines /10 minutes</name>
+        <description>On this peninsula, summer homes, now year-round, face the Art Deco Route 1A drawbridge over Pines River. Gibson Park on the riverside is a great place for relaxing or bird watching.</description>
+        <styleUrl>#line-3F5BA9-2938</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -70.9704137,42.4409892,0
+            -70.969953,42.4409902,0
+            -70.9696501,42.440937,0
+            -70.9696476,42.4408046,0
+            -70.9696426,42.4405082,0
+            -70.9691826,42.4404864,0
+            -70.9690391,42.4402667,0
+            -70.9688366,42.440237,0
+            -70.9687414,42.4399831,0
+            -70.9686723,42.4398463,0
+            -70.9685657,42.4397214,0
+            -70.9684248,42.4394695,0
+            -70.9683538,42.4392057,0
+            -70.968732,42.4385654,0
+            -70.9689371,42.4381541,0
+            -70.9690887,42.4377192,0
+            -70.9692604,42.4372916,0
+            -70.9693167,42.4370194,0
+            -70.9693247,42.4367472,0
+            -70.9693247,42.4363988,0
+            -70.9693274,42.4361989,0
+            -70.9693676,42.435999,0
+            -70.9694416,42.4358034,0
+            -70.9696766,42.4356514,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Route 2 Start Point
+</name>
+        <styleUrl>#icon-1731-3F5BA9-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -70.9696766,42.4356514,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Gibson Park</name>
+        <description>Gibson Park on the riverside is a great place for relaxing or bird watching.</description>
+        <styleUrl>#icon-22</styleUrl>
+        <Point>
+          <coordinates>
+            -70.9699118,42.4406001,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Route 2 End Point with a view</name>
+        <styleUrl>#icon-1535-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -70.9704137,42.4409892,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Route 3: Beachmont Urban Trail / 25 minutes</name>
+        <description><![CDATA[The city’s first resort neighborhood, Beachmont has hills, picturesque rooflines and public stairways set in<br>between the hills to make the climb easier. Look for Kimmerle, Cummings and Louis Pasteur parks and ocean and marsh views from Crescent and Summer Street.]]></description>
+        <styleUrl>#poly-3F5BA9-3401-0</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                -70.981863,42.3933859,0
+                -70.981854,42.3944243,0
+                -70.9825835,42.3954702,0
+                -70.9834418,42.3962308,0
+                -70.984343,42.397245,0
+                -70.9854588,42.3987979,0
+                -70.9875938,42.4009688,0
+                -70.988037,42.4013397,0
+                -70.9885553,42.4016551,0
+                -70.9894673,42.4022542,0
+                -70.9895753,42.4022022,0
+                -70.9897436,42.4022066,0
+                -70.98981,42.4022309,0
+                -70.9898737,42.4022799,0
+                -70.9900105,42.4021235,0
+                -70.9901902,42.4018759,0
+                -70.9902063,42.4017224,0
+                -70.9902009,42.4016006,0
+                -70.9901526,42.401254,0
+                -70.9905147,42.4002993,0
+                -70.9912523,42.3994,0
+                -70.991939,42.3973401,0
+                -70.9926256,42.3960407,0
+                -70.9912953,42.3952483,0
+                -70.9908661,42.3958505,0
+                -70.990446,42.3956361,0
+                -70.9897593,42.3956361,0
+                -70.9892229,42.3959372,0
+                -70.9887079,42.3950498,0
+                -70.9877852,42.3945427,0
+                -70.9850601,42.3935919,0
+                -70.9836869,42.3932433,0
+                -70.981863,42.3933859,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Beachmont Station</name>
+        <description>https://www.mbta.com/stops/place-bmmnl</description>
+        <styleUrl>#icon-191</styleUrl>
+        <Point>
+          <coordinates>
+            -70.9922068,42.3975633,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Point with a view</name>
+        <styleUrl>#icon-1535-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -70.9894673,42.4022542,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Louis Pasteur Park</name>
+        <description><![CDATA[<img src="https://lh3.googleusercontent.com/YVtvB41xfatM8pHnWCYmS8OLr9QSJs5OrqdidaGPUgos1rbDj_LrCqjcK_a31t4zT8m4quaKKNAfuVnc-GH2D0TKnYbVjn5F1iS7lIvbC2FLstRKZL_Tn3Idx_ccsj9yhc6C" height="200" width="auto" /><br><br>Photo Source: City of Revere]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://lh3.googleusercontent.com/YVtvB41xfatM8pHnWCYmS8OLr9QSJs5OrqdidaGPUgos1rbDj_LrCqjcK_a31t4zT8m4quaKKNAfuVnc-GH2D0TKnYbVjn5F1iS7lIvbC2FLstRKZL_Tn3Idx_ccsj9yhc6C</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -70.9868147,42.3984127,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mid-block Stairs</name>
+        <styleUrl>#line-000000-1200-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -70.9869809,42.3970622,0
+            -70.9865303,42.3975772,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Route 4: Shirley Avenue / 10 minutes</name>
+        <description>A diverse neighborhood ripe with history and Urban Renewal. The walking loop takes you to the Wall Mural, the 100-year-old Jewish temple and fire house, multicultural groceries, restaurants, bakeries and Costa Park. </description>
+        <styleUrl>#poly-3F5BA9-3801-0</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                -70.9926481,42.4072574,0
+                -70.9929485,42.4074792,0
+                -70.997004,42.4080021,0
+                -70.9975619,42.4081447,0
+                -70.9979052,42.4083665,0
+                -70.9979481,42.4074951,0
+                -70.9969611,42.4073525,0
+                -70.9970898,42.4067029,0
+                -70.9954805,42.40618,0
+                -70.9953303,42.4059265,0
+                -70.9926481,42.4069722,0
+                -70.9926481,42.4072574,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Route 4 and 5 Connection / 10 minutes</name>
+        <styleUrl>#line-A7B5D7-3131-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -70.9979079,42.4083672,0
+            -71.0000987,42.4095104,0
+            -71.0006137,42.4095579,0
+            -71.0013003,42.4094629,0
+            -71.0016866,42.4095421,0
+            -71.0020084,42.4094787,0
+            -71.0023303,42.4092569,0
+            -71.0028024,42.4091302,0
+            -71.0037465,42.4091143,0
+            -71.0044117,42.4091935,0
+            -71.0049052,42.409352,0
+            -71.0058279,42.4094787,0
+            -71.0064073,42.4094312,0
+            -71.0069008,42.4093361,0
+            -71.0072441,42.4092252,0
+            -71.0074384,42.4090728,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Connection</name>
+        <styleUrl>#line-A7B5D7-3131-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -71.0074384,42.4090728,0
+            -71.0076422,42.4090436,0
+            -71.0087366,42.4088852,0
+            -71.010067,42.4094238,0
+            -71.0121698,42.4103744,0
+            -71.012434,42.4099965,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Route 5: Broadway & City Hall / 30 minutes]]></name>
+        <description><![CDATA[Walk along Broadway, starting at the 1897 Revere City Hall. Follow Pleasant Street one block, to the Museum of the Revere Society for Cultural and Historic Preservation in the former rectory of the 1901 Immaculate Conception Church next to Sonny Myers Park. On nearby Beach Street is the 1903 Revere Public Library, constructed after a campaign by the Revere Women’s Club and the Revere Journal, with funding by philanthropist Andrew Carnegie. The picturesque Rumney Marsh Burying Ground on Butler Street was used between 1693 and 1929 to bury slaves, colonial residents and veterans of the Revolutionary and Civil Wars. Walk back to Broadway, turn left and walk down to Chelsea Creek at Revere Beach Parkway. <br>The Battle of Chelsea Creek – In 1775, when the British ship Diana used the creek to seize food and provisions from local towns, New England minutemen attacked the ship immobilized by the tide, in the first naval battle of the American Revolution, memorialized by a plaque. Further down Chelsea Creek, the 1734 Slade’s Mill used<br>tidal power to grind flour, snuff and spices for domestic use and for export. For tour info: 781.631.3945]]></description>
+        <styleUrl>#line-3F5BA9-2938</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -71.0099784,42.4022955,0
+            -71.0126606,42.4030085,0
+            -71.0145274,42.4033254,0
+            -71.0152355,42.4027233,0
+            -71.0163513,42.402549,0
+            -71.0175315,42.4025807,0
+            -71.01854,42.4030719,0
+            -71.0144845,42.4065101,0
+            -71.0133258,42.4085857,0
+            -71.0109869,42.4065577,0
+            -71.0092274,42.4083163,0
+            -71.0083262,42.4079361,0
+            -71.0075966,42.4085857,0
+            -71.0043565,42.4075558,0
+            -71.0040346,42.4082846,0
+            -71.0060905,42.4087629,0
+            -71.0063494,42.4087936,0
+            -71.0072184,42.408859,0
+            -71.0073673,42.4089481,0
+            -71.0074384,42.4090728,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Route 5 Start point</name>
+        <styleUrl>#icon-1731-3F5BA9-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -71.0074384,42.4090411,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Revere City Hall</name>
+        <styleUrl>#icon-22-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -71.0132144,42.4078995,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Revere Historical Society</name>
+        <styleUrl>#icon-22-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -71.011141,42.406981,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Immaculate Conception Church</name>
+        <styleUrl>#icon-22-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -71.0099903,42.4073011,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Sonny Myer's Park]]></name>
+        <description><![CDATA[<img src="https://lh5.googleusercontent.com/e3yS-x1OIJNszn7USAMVmceFOm0u3fQr8UwCM4gaIet1Q3f3nn-JZtosD0Miu6pvyl8PHu5gSfUq3HH9Dq0Zx-k-CWWpdcqARyHB3p-MwtJM5FQPraW6TdrzySh2C3mBxSa7KQQ" height="200" width="auto" /><br><br>Photo Source: City of Revere]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://lh5.googleusercontent.com/e3yS-x1OIJNszn7USAMVmceFOm0u3fQr8UwCM4gaIet1Q3f3nn-JZtosD0Miu6pvyl8PHu5gSfUq3HH9Dq0Zx-k-CWWpdcqARyHB3p-MwtJM5FQPraW6TdrzySh2C3mBxSa7KQQ</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -71.010682,42.4071769,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Revere Public Library</name>
+        <styleUrl>#icon-22-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -71.0091811,42.4080019,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Rumney Marsh Burying Ground</name>
+        <styleUrl>#icon-22-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -71.0056173,42.4078605,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Slade's Mill building]]></name>
+        <styleUrl>#icon-22-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -71.012565,42.402935,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Route 5 End Point B</name>
+        <styleUrl>#icon-1731-3F5BA9-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -71.0099784,42.4022955,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Route 5 and 6 connection / 5 minutes</name>
+        <styleUrl>#line-A7B5D7-3131-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -71.0133258,42.4085857,0
+            -71.012434,42.4099965,0
+            -71.0167685,42.4111847,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Route 6: Hills and ABC Streets /30 minutes</name>
+        <description>Mountain Avenue, where the hilly cross streets are alphabetized, sits atop a drumlin formed by a glacier. The top of Kilburn, Lambert, Madison, Newbury and Oxford Streets provide spectacular views of the Boston skyline.</description>
+        <styleUrl>#poly-3F5BA9-3401-0</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                -71.016067,42.4130689,0
+                -71.0276756,42.4162372,0
+                -71.0286412,42.4143362,0
+                -71.0169896,42.4111044,0
+                -71.016067,42.4130689,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Route 5 and 6 Connection/ 20 minutes</name>
+        <styleUrl>#line-A7B5D7-3131-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -71.0144845,42.4065101,0
+            -71.0157254,42.4066648,0
+            -71.0176995,42.4066014,0
+            -71.0195878,42.4065064,0
+            -71.0227635,42.4071084,0
+            -71.0248234,42.4078689,0
+            -71.0272267,42.4100553,0
+            -71.0279563,42.4104038,0
+            -71.0284712,42.4113861,0
+            -71.0292866,42.4116713,0
+            -71.0295441,42.4122416,0
+            -71.0278704,42.4131287,0
+            -71.0253706,42.413402,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Route 7: West Revere Urban Trail /35 minutes</name>
+        <description><![CDATA[Once home to farms, this area offers suburban<br>comforts, a marked walking trail, and a new<br>playground at DiSalvo Park.]]></description>
+        <styleUrl>#poly-3F5BA9-3601-0</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                -71.0226622,42.4274417,0
+                -71.0255805,42.4255411,0
+                -71.0256663,42.4249075,0
+                -71.0265676,42.4238304,0
+                -71.0284558,42.4236404,0
+                -71.0294,42.4219297,0
+                -71.0189714,42.4187299,0
+                -71.017169,42.421106,0
+                -71.0172977,42.4233236,0
+                -71.0226622,42.4274417,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Disalvo Park</name>
+        <description><![CDATA[<img src="https://lh4.googleusercontent.com/WIcGRkEHMRdSBhfuQwucZuXFevPN93JnJeKmTwt7mKvPFW7I1VKX4ep1YVQps2bstsMCJKVT3pGp0gJs-lOZGHoGhaiRRz7FbWDV0vtxhS1NQ_cUet8F7LoNaJlD8rbeSvSXtQ" height="200" width="auto" /><br><br>Photo Source: City of Revere]]></description>
+        <styleUrl>#icon-22</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://lh4.googleusercontent.com/WIcGRkEHMRdSBhfuQwucZuXFevPN93JnJeKmTwt7mKvPFW7I1VKX4ep1YVQps2bstsMCJKVT3pGp0gJs-lOZGHoGhaiRRz7FbWDV0vtxhS1NQ_cUet8F7LoNaJlD8rbeSvSXtQ</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -71.0191327,42.419672,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Route 7 and 8 Connection/ 10 minutes</name>
+        <styleUrl>#line-A7B5D7-3325-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -71.0226622,42.4274417,0
+            -71.022015,42.4282246,0
+            -71.0223154,42.4293016,0
+            -71.0228733,42.4302836,0
+            -71.0236887,42.4313606,0
+            -71.0247616,42.4318674,0
+            -71.0254053,42.4321208,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Route 8: North Revere /20 minutes (to 4 hours)</name>
+        <description>The Northern Strand Community Path is built on an abandoned rail line overlooking Rumney Marsh between Malden and Saugus. Access is at Salem St., Blodgett St. and Spring St. in Revere, and at Lynn St. in Malden.</description>
+        <styleUrl>#line-3F5BA9-3519</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -71.0148127,42.445703,0
+            -71.0146839,42.4405093,0
+            -71.0148449,42.4392503,0
+            -71.0148985,42.438989,0
+            -71.014987,42.438801,0
+            -71.0150701,42.4386486,0
+            -71.0152043,42.438417,0
+            -71.0153491,42.4382527,0
+            -71.0154993,42.4381022,0
+            -71.0160787,42.4376271,0
+            -71.0173018,42.4367087,0
+            -71.0185463,42.4360119,0
+            -71.019705,42.4354734,0
+            -71.0211641,42.4346499,0
+            -71.0225374,42.4338264,0
+            -71.0242326,42.4329395,0
+            -71.0254986,42.4322427,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Route 8 Start Point in Revere</name>
+        <styleUrl>#icon-1731-3F5BA9-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -71.0254986,42.4322427,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Route 8 End point in Revere</name>
+        <styleUrl>#icon-1731-3F5BA9-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -71.0148127,42.445703,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Route 8 Point with a View</name>
+        <styleUrl>#icon-1535-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -71.0148691,42.4397776,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Rumney Marsh Reservation</name>
+        <styleUrl>#icon-22-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -70.9938262,42.437941,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Connection Route</name>
+        <styleUrl>#line-A7B5D7-3131-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -71.0166542,42.4209712,0
+            -71.0154846,42.4221416,0
+            -71.0140574,42.4231218,0
+            -71.0113746,42.4250823,0
+            -71.0083695,42.4229844,0
+            -71.0067388,42.4221607,0
+            -71.0054084,42.4216539,0
+            -71.0050222,42.4212737,0
+            -71.0048934,42.4208618,0
+            -71.0055371,42.4201332,0
+            -71.0063954,42.4188659,0
+            -71.0072108,42.4177254,0
+            -71.0075542,42.4170601,0
+            -71.00764,42.4167432,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Route 1 and 7 Connection / 30 minutes</name>
+        <styleUrl>#line-A7B5D7-3131-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -71.0171449,42.4210565,0
+            -71.0142724,42.4201633,0
+            -71.0119764,42.4189436,0
+            -71.0103778,42.4177951,0
+            -71.0086934,42.4169318,0
+            -71.0080926,42.4168051,0
+            -71.0032003,42.4165516,0
+            -71.0008828,42.416615,0
+            -71.0000245,42.4183892,0
+            -70.9869999,42.4187367,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Route 5 and 7 Connection / 15 minutes</name>
+        <styleUrl>#line-A7B5D7-3325-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -71.0080926,42.4168051,0
+            -71.0110287,42.4122892,0
+            -71.012434,42.4099965,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>

@@ -68,7 +68,7 @@ export function callSheets(selected = "", filterType = "") {
       //console.log(filtered_json)
 
 
-      //This creates a hash table based for the lat and long of each loction.
+      //This creates a hash table based for the lat and long of each location.
       //This allows us to group all organizations at the same location together. 
       var locationAddressHashTable = {};
 
