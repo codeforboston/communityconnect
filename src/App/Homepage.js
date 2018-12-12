@@ -136,7 +136,7 @@ class Homepage extends Component {
                 scrollToElement={this.scrollToElement}
                 ref={instance => { this.mapItem = instance }}
                 locationAddressHashTable={this.state.locationAddressHashTable}
-                isBostonVisible={this.state.isBostonVisible}
+                isChelseaVisible={this.state.isChelseaVisible}
                 isWalkArlingtonVisible={this.state.isWalkArlingtonVisible}
                 isWalkCharlesTownVisible={this.state.isWalkCharlesTownVisible}
                 isWalkRevereVisible={this.state.isWalkRevereVisible}
