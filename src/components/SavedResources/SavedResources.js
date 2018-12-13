@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import SortBar from '../SortBar.js';
-import { getDistance } from '../../utils/distance.js';
 import styles from './SavedResources.module.css';
 import SavedResource from '../SavedResource/SavedResource';
 
@@ -47,14 +45,14 @@ class SavedResources extends Component {
   render() {
 
     // const sortOptions = [
-    //     { 
-    //       key: 'Alphabetically', 
-    //       sort: this.sortByAlphabet, 
+    //     {
+    //       key: 'Alphabetically',
+    //       sort: this.sortByAlphabet,
     //       disabled: false
     //     }
     //    ,{
-    //       key: 'Distance', 
-    //       sort: this.sortByDistance, 
+    //       key: 'Distance',
+    //       sort: this.sortByDistance,
     //       disabled: !this.props.haveCoords
     //     }
     // ];
@@ -63,15 +61,15 @@ class SavedResources extends Component {
     // updates the this.state.dataSort variable.
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
-    
+
     const orderedItems = this.props.data;
 
     return(
       <div>
-        <div 
+        <div
           className={[
-            styles['saved-resources'], 
-            styles['saved-resources-full-width']].join(' ')}  
+            styles['saved-resources'],
+            styles['saved-resources-full-width']].join(' ')}
         >
 
         <DragDropContext onDragEnd={this.onDragEnd}>
@@ -93,11 +91,11 @@ class SavedResources extends Component {
                           provided.draggableProps.style
                         )}
                       >
-                        <SavedResource 
-                          key={item.id} 
-                          ref={item.id} 
-                          // cardClick={this.props.cardClick} 
-                          organization={item} 
+                        <SavedResource
+                          key={item.id}
+                          ref={item.id}
+                          // cardClick={this.props.cardClick}
+                          organization={item}
                           currentPos={this.props.currentPos}
                           removeItem={() => this.props.removeItem(item)}
                         />
