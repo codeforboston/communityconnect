@@ -76,17 +76,17 @@ export class ResultList extends Component {
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
     const sortedData = this.state.dataSort();
-
+    console.log('haveCoords: ', this.props.haveCoords);
+    console.log('currentPos: ', this.props.currentPos);
     return(
       <div >
-        <div 
+        <div
           className={[
-            styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}  
+            styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}
           ref={this.listRef}>
-        <SortBar 
+        <SortBar
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
-          haveCoords={this.props.haveCoords}
         />
         {
           sortedData.map((org, index) =>
@@ -100,7 +100,7 @@ export class ResultList extends Component {
             haveCoords={this.props.haveCoords}
             currentPos={this.props.currentPos}
             saveItem={() => this.props.saveItem(org)}
-          /> 
+          />
         )}
         </div>
       </div>
