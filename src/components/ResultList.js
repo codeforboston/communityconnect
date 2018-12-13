@@ -19,7 +19,6 @@ export class ResultList extends Component {
     this.getCloserName = this.getCloserName.bind(this);
     this.getCloserResource = this.getCloserResource.bind(this);
     this.listRef = React.createRef()
-    console.log("ResultList props: ", this.props);
   }
 
   scrollToElement = (index) => {
@@ -50,7 +49,7 @@ export class ResultList extends Component {
   }
 
   handleSortChange = (newSort) => {
-    if(this.state.dataSort != newSort)
+    if(this.state.dataSort !== newSort)
       this.setState({
         // Set the dataSort variable to whichever sort function is chosen
         dataSort: newSort,
@@ -59,9 +58,7 @@ export class ResultList extends Component {
 
   cardClick = (id) => {
     var index = this.props.data.findIndex( org => {
-      if(org.id == id){
-        return true;
-      }
+      return org.id === id;
     })
     this.props.cardClick(index)
 

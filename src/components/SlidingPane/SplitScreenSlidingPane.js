@@ -31,13 +31,9 @@ export class SplitScreenSlidingPane extends Component {
 }
 
 export class SplitScreenTogglePane extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return (
-      <div style={{display: this.props.isOpen == true ? 'block' : 'none'}} className={styles.togglePane}>{this.props.children}</div>
+      <div style={{display: this.props.isOpen === true ? 'block' : 'none'}} className={styles.togglePane}>{this.props.children}</div>
     );
   }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import queryString from 'query-string'
 
 import Header from '../components/Header/Header';
 import ResultList from '../components/ResultList';
@@ -9,7 +8,6 @@ import styles from './App.module.css';
 import { Route } from 'react-router';
 import { SplitScreenSlidingPane, SplitScreenTogglePane } from '../components/SlidingPane/SplitScreenSlidingPane.js';
 import ShoppingCart from '../components/ShoppingCart';
-import SortBar from '../components/SortBar.js';
 
 class Homepage extends Component {
   constructor(props) {
@@ -26,7 +24,6 @@ class Homepage extends Component {
     }
 
     this.callSheets = callSheets.bind(this);
-    console.log("Homepage props: ", this.props);
 
     this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
     this.orderResources = this.orderResources.bind(this);
@@ -39,7 +36,6 @@ class Homepage extends Component {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(
         position => {
-          console.log(position)
           this.setState({
             position: {
               coordinates: {
@@ -51,17 +47,14 @@ class Homepage extends Component {
           this.setState({ haveCoords: true })
         },
         error => {
-          console.log('Unable to get Coordinates');
           this.setState({ haveCoords: false })
         });
     } else {
-      console.log('no geolocation');
       this.setState({ haveCoords: false })
     }
   }
 
   componentDidMount() {
-    const orgId = queryString.parse(this.props.location.search);
     this.callSheets("");
     this.getLocation();
   }
@@ -98,7 +91,7 @@ class Homepage extends Component {
 
   saveResource = (resource) => {
     let savedResources = null;
-    if(!this.state.savedResources.some(r => r.id == resource.id)){
+    if(!this.state.savedResources.some(r => r.id === resource.id)) {
       savedResources = this.state.savedResources.slice();
       savedResources.push(resource);
       this.setState({
@@ -109,7 +102,7 @@ class Homepage extends Component {
 
   removeResource = (resource) => {
     let savedResources = null;
-    if(this.state.savedResources.some(r => r.id == resource.id)){
+    if(this.state.savedResources.some(r => r.id === resource.id)){
       savedResources = this.state.savedResources.slice();
       savedResources.splice(savedResources.indexOf(resource), 1);
     }
@@ -144,7 +137,6 @@ class Homepage extends Component {
                 ref={instance => { this.resultListItem = instance }}
                 cardClick={this.cardClick}
                 data={this.state.orgs}
-                haveCoords={this.state.haveCoords}
                 currentPos={this.state.position}
                 saveItem={this.saveResource}
                 fullWidth={true}
@@ -164,7 +156,7 @@ class Homepage extends Component {
             )} />
           </div>
           <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
-            <ShoppingCart 
+            <ShoppingCart
               data={this.state.savedResources}
               reOrder={this.orderResources}
               addItem={this.saveResource}
@@ -177,6 +169,5 @@ class Homepage extends Component {
     );
   }
 }
-
 
 export default Homepage;

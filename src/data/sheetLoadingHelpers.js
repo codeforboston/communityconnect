@@ -1,5 +1,5 @@
 import Tabletop from 'tabletop';
-import { find_in_object, update_criteria, criteria_list } from '../utils/FilterHelper.js';
+import { find_in_object, update_criteria } from '../utils/FilterHelper.js';
 
 function normalizeHeaders(element) {
   element["name"] = element["name"];
@@ -21,7 +21,6 @@ function normalizeHeaders(element) {
 }
 
 function createMarkerId({lat, lng}){
-  //console.log('createMarkerId ',  lat.toString(), lng.toString())
   return lat.toString() + lng.toString();
 }
 
@@ -49,13 +48,13 @@ export function callSheets(selected = "", filterType = "") {
 
       var my_json = JSON.stringify(data);
 
-      if (selected.length > 0 && filterType == "category") {
+      if (selected.length > 0 && filterType === "category") {
         filter_criteria_list = update_criteria(selected, filter_criteria_list);
       }
 
       filtered_json = filter_criteria_list.length <= 0 ? data : find_in_object(JSON.parse(my_json), { categoryautosortscript: filter_criteria_list });
 
-      if (selected.length > 0 && filterType == "name") {
+      if (selected.length > 0 && filterType === "name") {
         filtered_json = filtered_json.filter(function (i) {
           return i.name.toLowerCase().match(selected.toLowerCase());
         });
@@ -65,11 +64,8 @@ export function callSheets(selected = "", filterType = "") {
 
       filtered_json.forEach(obj => { obj.isMarkerOpen = false; });
 
-      //console.log(filtered_json)
-
-
       //This creates a hash table based for the lat and long of each loction.
-      //This allows us to group all organizations at the same location together. 
+      //This allows us to group all organizations at the same location together.
       var locationAddressHashTable = {};
 
       Object.entries(filtered_json).forEach(([index,  org]) =>{
