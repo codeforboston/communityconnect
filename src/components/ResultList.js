@@ -68,7 +68,7 @@ export class ResultList extends Component {
 
     const sortOptions = [
       {key: 'Alphabetically', sort: this.sortByAlphabet, disabled: false}
-      ,{key: 'Distance', sort: this.sortByDistance, disabled: !this.props.haveCoords}
+      ,{key: 'Distance', sort: this.sortByDistance, disabled: !this.props.currentPos}
     ];
 
     // Render will be called every time this.props.data is updated, and every time handleSortChange
@@ -76,8 +76,6 @@ export class ResultList extends Component {
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
     const sortedData = this.state.dataSort();
-    console.log('haveCoords: ', this.props.haveCoords);
-    console.log('currentPos: ', this.props.currentPos);
     return(
       <div >
         <div
@@ -97,7 +95,6 @@ export class ResultList extends Component {
             index={org.id}
             cardClick={this.cardClick}
             organization={org}
-            haveCoords={this.props.haveCoords}
             currentPos={this.props.currentPos}
             saveItem={() => this.props.saveItem(org)}
           />

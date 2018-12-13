@@ -43,20 +43,6 @@ class SavedResources extends Component {
   }
 
   render() {
-
-    // const sortOptions = [
-    //     {
-    //       key: 'Alphabetically',
-    //       sort: this.sortByAlphabet,
-    //       disabled: false
-    //     }
-    //    ,{
-    //       key: 'Distance',
-    //       sort: this.sortByDistance,
-    //       disabled: !this.props.haveCoords
-    //     }
-    // ];
-
     // Render will be called every time this.props.data is updated, and every time handleSortChange
     // updates the this.state.dataSort variable.
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the

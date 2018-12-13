@@ -20,7 +20,7 @@ class SortBar extends React.Component {
               <ButtonGroup>
                 <select onChange={this.handleClick}>
                 {this.props.sortOptions.map((sortOption, i) =>
-                  <option  
+                  <option key={sortOption.key} value={i} disabled={sortOption.disabled}>
                     {sortOption.key}
                   </option>
                 )}

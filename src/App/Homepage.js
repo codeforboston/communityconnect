@@ -16,7 +16,6 @@ class Homepage extends Component {
       orgs: [],
       categories: [],
       tags: [],
-      haveCoords: false,
       locationAddressHashTable: [],
       cardClickedIndex: null,
       isSavedResourcePaneOpen: false,
@@ -44,13 +43,10 @@ class Homepage extends Component {
               }
             }
           })
-          this.setState({ haveCoords: true })
         },
         error => {
-          this.setState({ haveCoords: false })
         });
     } else {
-      this.setState({ haveCoords: false })
     }
   }
 
@@ -133,7 +129,6 @@ class Homepage extends Component {
             <Route path='/' render={props => (
               <ResultList
                 routerLocation = {props.location}
-                haveCoords={this.state.haveCoords}
                 ref={instance => { this.resultListItem = instance }}
                 cardClick={this.cardClick}
                 data={this.state.orgs}
