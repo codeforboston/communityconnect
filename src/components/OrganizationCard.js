@@ -53,7 +53,7 @@ class OrganizationCard extends Component {
       instagramUrl, twitterUrl, phone } = this.props.organization;
 
     let distance, distanceElement;
-    if(this.props.haveCoords) {
+    if(this.props.currentPos) {
       distance = getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos )
       if(distance){
         distanceElement = <p>Distance from your Location: {distance} miles</p>

@@ -68,7 +68,7 @@ export class ResultList extends Component {
 
     const sortOptions = [
       {key: 'Alphabetically', sort: this.sortByAlphabet, disabled: false}
-      ,{key: 'Distance', sort: this.sortByDistance, disabled: !this.props.haveCoords}
+      ,{key: 'Distance', sort: this.sortByDistance, disabled: !this.props.currentPos}
     ];
 
     // Render will be called every time this.props.data is updated, and every time handleSortChange
@@ -76,17 +76,15 @@ export class ResultList extends Component {
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
     const sortedData = this.state.dataSort();
-
     return(
       <div >
-        <div 
+        <div
           className={[
-            styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}  
+            styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}
           ref={this.listRef}>
-        <SortBar 
+        <SortBar
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
-          haveCoords={this.props.haveCoords}
         />
         {
           sortedData.map((org, index) =>
@@ -97,10 +95,9 @@ export class ResultList extends Component {
             index={org.id}
             cardClick={this.cardClick}
             organization={org}
-            haveCoords={this.props.haveCoords}
             currentPos={this.props.currentPos}
             saveItem={() => this.props.saveItem(org)}
-          /> 
+          />
         )}
         </div>
       </div>
