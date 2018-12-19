@@ -6,11 +6,11 @@ import { getDistance } from '../utils/distance.js';
 class OrganizationCard extends Component {
 
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
       animateButtonInside: '',
       animateButtonOutside: [''],
-    }
+    };
 
     this.cardRef = React.createRef();
   }
@@ -19,11 +19,11 @@ class OrganizationCard extends Component {
     this.refs.cardRef.parentNode.scrollTop = this.refs.cardRef.offsetTop - ((1.5) * this.refs.cardRef.offsetHeight);
     // Using scrollIntoView shifted the page, hiding the header bar in mobile view
     // this.refs.cardRef.scrollIntoView({block: "end", inline: "center"})
-  }
+  };
 
   cardClick= (e) => {
     this.props.cardClick(e.currentTarget.id);
-  }
+  };
 
   saveItem = () => {
     this.props.saveItem();
@@ -46,7 +46,7 @@ class OrganizationCard extends Component {
       },
       500
     );
-  }
+  };
 
   render() {
     const { name, categoryautosortscript, overview, location, website, facebookUrl,
@@ -54,7 +54,7 @@ class OrganizationCard extends Component {
 
     let distance, distanceElement;
     if(this.props.currentPos) {
-      distance = getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos )
+      distance = getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos );
       if(distance){
         distanceElement = <p>Distance from your Location: {distance} miles</p>
       }
@@ -88,7 +88,7 @@ class OrganizationCard extends Component {
                 </span>
               </button>
             </span>
-            {website && <a href={website} target="_blank"><span role="img" aria-label="Link to website">&#128279;</span></a>}
+            {website && <a href={website} target="_blank" rel="noopener noreferrer"><span role="img" aria-label="Link to website">&#128279;</span></a>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
             <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
             {distance && <div>{distanceElement}</div>}

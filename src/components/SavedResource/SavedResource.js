@@ -15,32 +15,31 @@ import { getDistance } from '../../utils/distance.js';
 class SavedResource extends Component {
 
   constructor (props) {
-    super(props)
+    super(props);
 
     this.state = {
       modal: false
-    }
+    };
 
     this.confirmationModalToggle = this.confirmationModalToggle.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.removalConfirmed = this.removalConfirmed.bind(this);
-    // this.cardRef = React.createRef();
   }
 
   confirmationModalToggle = () => {
     this.setState({
       modal: !this.state.modal,
     });
-  }
+  };
 
   removeItem = () => {
     this.confirmationModalToggle();
-  }
+  };
 
   removalConfirmed = () => {
     this.props.removeItem();
     this.confirmationModalToggle();
-  }
+  };
 
   render() {
     const {
@@ -60,7 +59,7 @@ class SavedResource extends Component {
     if(this.props.currentPos && this.props.currentPos.coordinates){
       distance = getDistance(
         {coordinates: this.props.organization.coordinates},
-        this.props.currentPos )
+        this.props.currentPos );
       if(distance){
         distanceElement = <p>Distance from your Location: {distance.toPrecision(4)} miles</p>
       }
@@ -72,7 +71,7 @@ class SavedResource extends Component {
           <CardBody>
             {website &&
             <span>
-              <a href={website}>&#128279;</a>
+              <a href={website}><span role={'img'} aria-label={'Link to website'}>&#128279;</span></a>
             </span>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
             <span title='Remove item from Saved Resources' aria-label='Remove item from Saved Resources'
@@ -92,7 +91,7 @@ class SavedResource extends Component {
             {overview &&
               <p>{overview}</p>}
             {phone &&
-              <p> &#128222; {phone}</p>}
+            <p> <span role={'img'} aria-label={'Phone number'}> &#128222;</span> {phone}</p>}
             {(facebookUrl || instagramUrl || twitterUrl) &&
             <ul className="list-inline">
               {facebookUrl &&

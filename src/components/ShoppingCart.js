@@ -16,13 +16,13 @@ class ShoppingCart extends React.Component {
 
     this.state = {
       showUpload: false,
-    }
+    };
 
     this.toggleUpload = this.toggleUpload.bind(this);
   }
   toggleUpload = () => {
     this.setState({showUpload: !this.state.showUpload});
-  }
+  };
 
   render() {
     return (
@@ -33,16 +33,16 @@ class ShoppingCart extends React.Component {
               <button 
                 title='Upload Resources' 
                 className={styles['upload-download-buttons']} 
-                onClick={() => this.toggleUpload()}
+                onClick={() => this.toggleUpload()} role={'img'} aria-label={'Upload Resources'}
               > 
-                ⬆️ 
+                ⬆ // eslint-disable-line jsx-a11y/accessible-emoji️
               </button>
               <button 
                 title='Download Resources' 
                 className={styles['upload-download-buttons']} 
                 onClick={() => {downloadObjectAsJson(this.props.data, 'YourFile');}}
               > 
-                ⬇️  
+                ⬇ // eslint-disable-line jsx-a11y/accessible-emoji
               </button>
             </span>
           </CardHeader>
@@ -68,6 +68,6 @@ ShoppingCart.propTypes = {
   addItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
   uploadItems: PropTypes.func.isRequired,
-}
+};
 
 export default ShoppingCart;
