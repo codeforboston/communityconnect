@@ -15,22 +15,28 @@ class DropdownCategory extends Component {
     this.state = {
       dropdownOpen: false,
       value : "Categories",
-      activeItem: []
+      activeItem: [],
+      categoryDropdownHeight: window.innerHeight
     };
   }
 
-
   toggle() {
+    const windowHeight = window.innerHeight;
+    const CATEGORY_DROPDOWN_HEIGHT_RATIO = 0.58;
+    const categoryDropdownHeight = windowHeight * CATEGORY_DROPDOWN_HEIGHT_RATIO;
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      dropdownOpen: !this.state.dropdownOpen,
+      categoryDropdownHeight: categoryDropdownHeight
     });
   }
 
   handleClick(cat, index) {
     this.props.handleEvent(cat, "category");
-    if(index === -1) this.setState({
-      activeItem:[]
-    });
+    if(index === -1) {
+      this.setState({
+        activeItem: []
+      });
+    }
     this.state.activeItem.includes(index) ?  this.setState({
       activeItem : this.state.activeItem.filter( selected => selected !== index)
     })
@@ -51,7 +57,7 @@ class DropdownCategory extends Component {
           <DropdownMenu right>
             <DropdownItem onClick = {() => this.handleClick("Clear", -1)} key={"Clear"}>Clear</DropdownItem>
             <DropdownItem divider/>
-            <div className={styles.dropdownCategoryDiv}>
+            <div className={styles.dropdownCategoryDiv} style={{height: this.state.categoryDropdownHeight}}>
               { this.categoryMenuItems() }
             </div>
           </DropdownMenu>
