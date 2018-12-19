@@ -30,7 +30,7 @@ export const getDistance = (targetLocation, myLocation) => {
   const metersToMiles = meters => meters / NUM_METERS_IN_ONE_MILE;
 
   // convert meters to miles and set to two decimal points
-  let distanceInMiles = +(metersToMiles(distanceInMeters)).toFixed(2);
+  const distanceInMiles = +(metersToMiles(distanceInMeters)).toFixed(2);
 
   return distanceInMiles;
 }
