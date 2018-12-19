@@ -16,19 +16,36 @@ class DropdownCategory extends Component {
       dropdownOpen: false,
       value : "Categories",
       activeItem: [],
-      categoryDropdownHeight: window.innerHeight
+      categoryDropdownHeight: 500
     };
   }
 
-  toggle() {
+  componentWillMount() {
+    this.updateCategoryDropdown();
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.updateCategoryDropdown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateCategoryDropdown);
+  }
+
+  updateCategoryDropdown = () => {
     // set category dropdown height based on window height when dropdown is opened
     const windowHeight = window.innerHeight;
     const CATEGORY_DROPDOWN_HEIGHT_RATIO = 0.58;
     const categoryDropdownHeight = windowHeight * CATEGORY_DROPDOWN_HEIGHT_RATIO;
 
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen,
       categoryDropdownHeight: categoryDropdownHeight
+    });
+  }
+
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
     });
   }
 
