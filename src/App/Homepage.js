@@ -9,6 +9,7 @@ import styles from './App.module.css';
 import { Route } from 'react-router';
 import { SplitScreenSlidingPane, SplitScreenTogglePane } from '../components/SlidingPane/SplitScreenSlidingPane.js';
 import ShoppingCart from '../components/ShoppingCart';
+import {connect} from 'react-redux';
 
 class Homepage extends Component {
   constructor(props) {
@@ -56,6 +57,7 @@ class Homepage extends Component {
   componentDidMount() {
     this.callSheets("");
     this.getLocation();
+    console.log("Resource data: ", this.state.resourceData);
   }
 
   cardClick = (index) => {
@@ -116,6 +118,7 @@ class Homepage extends Component {
     })
   }
 
+  
   render() {
     return (
       <div className={styles.viewport}>
@@ -169,4 +172,9 @@ class Homepage extends Component {
   }
 }
 
-export default Homepage;
+function mapStateToProps(state, ownProps) {
+  return {
+    resourceData: state.resourceData
+  }
+}
+export default connect(mapStateToProps)(Homepage)

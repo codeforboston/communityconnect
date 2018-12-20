@@ -16,6 +16,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "reactstrap": "^5.0.0",
+    "redux-thunk": "^2.3.0",
     "tabletop": "^1.5.2"
   },
   "scripts": {
