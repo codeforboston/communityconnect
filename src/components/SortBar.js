@@ -1,12 +1,12 @@
 import React from 'react';
-import {ButtonGroup, Button} from 'reactstrap';
+import {ButtonGroup} from 'reactstrap';
 import styles from './SortBar.module.css';
 
 class SortBar extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   handleClick = (e) => {
     // Get new sort based on index of sortOption array
@@ -24,7 +24,7 @@ class SortBar extends React.Component {
           <div className={styles.result}>
               <ButtonGroup>
                 <select onChange={this.handleClick}>
-                {this.props.sortOptions.map((sortOption, i) => 
+                {this.props.sortOptions.map((sortOption, i) =>
                   <option key={sortOption.key} value={i} disabled={sortOption.disabled}>
                     {sortOption.key}
                   </option>

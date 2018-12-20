@@ -6,11 +6,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem} from 'reactstrap';
+  Button} from 'reactstrap';
 
 import DropdownCategory from '../Header/DropdownCategory.js';
 import SearchBar from '../Header/SearchBar.js';
@@ -36,8 +32,8 @@ class Header extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-        <NavbarBrand className="Logo-icon">
-        <a className="Logo-icon" href="https://communityconnect.netlify.com/"><img src={CClargelogo}/></a>
+        <NavbarBrand className="Logo-icon" href="/">
+          <img src={CClargelogo} alt="Community Connect logo"/>
         </NavbarBrand>
         <NavbarToggler onClick={this.toggleNavbar}  />
         <Collapse isOpen={!this.state.collapsed} navbar>
@@ -47,6 +43,13 @@ class Header extends Component {
               </NavItem>
               <NavItem>
               <DropdownCategory category={this.props.categories} handleEvent={this.props.handleEvent}/>
+              </NavItem>
+              <NavItem>
+              <Button
+                color="secondary"
+                onClick={() => this.props.toggleSavedResourcesPane()}>
+                Saved Resources
+              </Button>
               </NavItem>
             </Nav>
           </Collapse>

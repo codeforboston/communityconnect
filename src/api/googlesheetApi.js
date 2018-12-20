@@ -1,17 +1,16 @@
 import Tabletop from 'tabletop';
 
 
-var communityConnectKey = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
+var revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
 
-var resource = Tabletop.init({ 
-  key: communityConnectKey, 
-  callback: showInfo 
-})
+Tabletop.init({
+    key: revere_key,
+    simpleSheet: true,
+    prettyColumnNames: false,
+    callback: showInfo
+    }
+  );
 
-export function showData(){
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(Object.assign([], resource));
-    });
-  });
-}
+export function showInfo(data, tabletop) {
+    console.log("Show data: ", tabletop.sheets("Data").elements);
+  }

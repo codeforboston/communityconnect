@@ -19,7 +19,6 @@ export class ResultList extends Component {
     this.getCloserName = this.getCloserName.bind(this);
     this.getCloserResource = this.getCloserResource.bind(this);
     this.listRef = React.createRef()
-    console.log("ResultList props: ", this.props);
   }
 
   scrollToElement = (index) => {
@@ -36,8 +35,8 @@ export class ResultList extends Component {
   }
 
   getCloserName = (a, b) => {
-    if(a.organizationname > b.organizationname) return 1
-    else if(a.organizationname < b.organizationname ) return -1
+    if(a.name > b.name) return 1
+    else if(a.name < b.name ) return -1
     else return 0
   }
 
@@ -50,7 +49,7 @@ export class ResultList extends Component {
   }
 
   handleSortChange = (newSort) => {
-    if(this.state.dataSort != newSort)
+    if(this.state.dataSort !== newSort)
       this.setState({
         // Set the dataSort variable to whichever sort function is chosen
         dataSort: newSort,
@@ -59,9 +58,7 @@ export class ResultList extends Component {
 
   cardClick = (id) => {
     var index = this.props.data.findIndex( org => {
-      if(org.id == id){
-        return true;
-      }
+      return org.id === id;
     })
     this.props.cardClick(index)
 
@@ -82,8 +79,11 @@ export class ResultList extends Component {
 
     return(
       <div >
-        <div className={styles.results} ref={this.listRef}>
-        <SortBar
+        <div 
+          className={[
+            styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}  
+          ref={this.listRef}>
+        <SortBar 
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
           haveCoords={this.props.haveCoords}
@@ -99,10 +99,10 @@ export class ResultList extends Component {
             organization={org}
             haveCoords={this.props.haveCoords}
             currentPos={this.props.currentPos}
-          />
+            saveItem={() => this.props.saveItem(org)}
+          /> 
         )}
         </div>
-
       </div>
     );
 
