@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import resourceData from './resourceReducer';
+import resource from './resourceReducer';
 
 const rootReducer = combineReducers({
-    resourceData
+    resource
 });
 
 export default rootReducer;

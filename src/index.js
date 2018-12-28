@@ -15,7 +15,6 @@ import { loadResources } from './action/resourceDataAction';
 const store = configureStore();
 // Dispatch actions to load initial state.
 store.dispatch(loadResources());
-
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>

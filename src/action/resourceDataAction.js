@@ -1,16 +1,17 @@
 import * as types from '../constants/resourceData';
-import api from '../api/googlesheetApi';
+import {promise} from '../api/googlesheetApi';
 
-const loadResourceDataStart = () => ({ type: types.LOAD_RESOURCE_DATA_START })
-const loadResourceDataSuccess = (resourceData ) => ({ type: types.LOAD_RESOURCE_DATA_SUCCESS, resourceData })
-const loadResourceDataFailure = (error) => ({ type: types.LOAD_RESOURCE_DATA_FAILURE, error })
+export const loadResourceDataStart = () => ({ type: types.LOAD_RESOURCE_DATA_START })
+export const loadResourceDataSuccess = (resource ) => ({ type: types.LOAD_RESOURCE_DATA_SUCCESS, resource })
+export const loadResourceDataFailure = (error) => ({ type: types.LOAD_RESOURCE_DATA_FAILURE, error })
 
 export function loadResources(){
     return function (dispatch) {
         dispatch(loadResourceDataStart());
-        console.log(api.getResourceData());
-        /*return api.getResourceData().then(data => {
-            loadResourceDataSuccess(data);
-        }).catch(error => loadResourceDataFailure(error));*/
+        return promise.then(value => {
+            dispatch(loadResourceDataSuccess(value));
+        }).catch(error => {
+            dispatch(loadResourceDataFailure(error));
+        });
     }
 }

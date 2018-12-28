@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-
+import {bindActionCreators} from 'redux';
 import Header from '../components/Header/Header';
 import ResultList from '../components/ResultList';
 import Map from '../components/Map/Map';
 import { callSheets } from '../data/sheetLoadingHelpers';
-import {} from '../api/googlesheetApi';
+import * as resourceAction from '../action/resourceDataAction';
 import styles from './App.module.css';
 import { Route } from 'react-router';
 import { SplitScreenSlidingPane, SplitScreenTogglePane } from '../components/SlidingPane/SplitScreenSlidingPane.js';
@@ -23,7 +23,9 @@ class Homepage extends Component {
       cardClickedIndex: null,
       isSavedResourcePaneOpen: false,
       savedResources: [],
+      resourceData: Object.assign({}, this.props.resourceData)
     }
+    this.props.actions.loadResources();
     this.callSheets = callSheets.bind(this);
     this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
     this.orderResources = this.orderResources.bind(this);
@@ -55,9 +57,8 @@ class Homepage extends Component {
   }
 
   componentDidMount() {
-    this.callSheets("");
     this.getLocation();
-    console.log("Resource data: ", this.state.resourceData);
+    console.log("Homepage data: ", this.props.resource);
   }
 
   cardClick = (index) => {
@@ -174,7 +175,13 @@ class Homepage extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    resourceData: state.resourceData
+    resource: state.resource
   }
 }
-export default connect(mapStateToProps)(Homepage)
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(resourceAction, dispatch)
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage)
