@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {bindActionCreators} from 'redux';
 import Header from '../components/Header/Header';
-import ResultList from '../components/ResultList';
+import CategoryList from '../components/CategoryList';
 import Map from '../components/Map/Map';
 import { callSheets } from '../data/sheetLoadingHelpers';
 import * as resourceAction from '../action/resourceDataAction';
@@ -25,7 +25,6 @@ class Homepage extends Component {
       savedResources: [],
       resourceData: Object.assign({}, this.props.resourceData)
     }
-    this.props.actions.loadResources();
     this.callSheets = callSheets.bind(this);
     this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
     this.orderResources = this.orderResources.bind(this);
@@ -54,11 +53,6 @@ class Homepage extends Component {
     } else {
       this.setState({ haveCoords: false })
     }
-  }
-
-  componentDidMount() {
-    this.getLocation();
-    console.log("Homepage data: ", this.props.resource);
   }
 
   cardClick = (index) => {
@@ -134,15 +128,7 @@ class Homepage extends Component {
         <div id={styles.container}>
           <SplitScreenSlidingPane>
             <Route path='/' render={props => (
-              <ResultList
-                routerLocation = {props.location}
-                haveCoords={this.state.haveCoords}
-                ref={instance => { this.resultListItem = instance }}
-                cardClick={this.cardClick}
-                data={this.state.orgs}
-                currentPos={this.state.position}
-                saveItem={this.saveResource}
-                fullWidth={true}
+              <CategoryList
               />
             )} />
           </SplitScreenSlidingPane>

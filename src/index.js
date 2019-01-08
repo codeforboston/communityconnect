@@ -10,11 +10,12 @@ import './index.css';
 
 import App from './App/App';
 import registerServiceWorker from './registerServiceWorker';
-import { loadResources } from './action/resourceDataAction';
+import { loadResources, loadCategories } from './action/resourceDataAction';
 
 const store = configureStore();
 // Dispatch actions to load initial state.
 store.dispatch(loadResources());
+store.dispatch(loadCategories());
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
