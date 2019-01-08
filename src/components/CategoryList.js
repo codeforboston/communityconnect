@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CustomInput, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 
 export class CategoryList extends Component {
@@ -18,16 +18,16 @@ export class CategoryList extends Component {
 
   categoryMenuItems() {
     return this.props.categories.map((cat, index) =>
-    <CustomInput type="checkbox" key={index} id={index} label={cat} />);
+      <FormGroup check>
+        <Label check>
+          <Input type="checkbox" />{cat}
+        </Label>
+      </FormGroup>);
   }
   render() {
     return (
       <Form>
-        <FormGroup check>
-          <div>
-            {this.categoryMenuItems()}
-          </div>
-        </FormGroup>
+        {this.categoryMenuItems()}
       </Form>
     )
   }
