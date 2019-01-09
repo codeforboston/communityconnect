@@ -2,7 +2,6 @@ import Tabletop from 'tabletop';
 import { find_in_object, update_criteria } from '../utils/FilterHelper.js';
 
 function normalizeHeaders(element) {
-  element["name"] = element["name"];
   element["tags"] = String(element["serviceprovided"]).split(", ");
   element["twitterUrl"] = element["twitterurl"];
   element["facebookUrl"] = element["facebookurl"];
@@ -42,7 +41,9 @@ export function callSheets(selected = "", filterType = "") {
       for (let project of data) {
         let category = project.categoryautosortscript.split(',');
         category.forEach(cat => categories[cat] = cat.trim());
-        for (let tag of project.tags) { tags[tag] = "" };
+        for (let tag of project.tags) {
+          tags[tag] = ""
+        }
       }
       const categoryList = [...(new Set(Object.values(categories)))];
 
@@ -79,7 +80,7 @@ export function callSheets(selected = "", filterType = "") {
       } else {
           locationAddressHashTable[createMarkerId(org.coordinates)] = {'orgs': [index] , isOpen: false }
       }
-      }})
+      }});
 
       this.setState({
         locationAddressHashTable : locationAddressHashTable,
