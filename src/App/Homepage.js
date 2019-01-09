@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 import Header from '../components/Header/Header';
 import CategoryList from '../components/CategoryList';
+import ResultList from '../components/ResultList';
+import CardGrid from '../components/CardGrid';
 import Map from '../components/Map/Map';
 import { callSheets } from '../data/sheetLoadingHelpers';
 import * as resourceAction from '../action/resourceDataAction';
@@ -9,7 +11,7 @@ import styles from './App.module.css';
 import { Route } from 'react-router';
 import { SplitScreenSlidingPane, SplitScreenTogglePane } from '../components/SlidingPane/SplitScreenSlidingPane.js';
 import ShoppingCart from '../components/ShoppingCart';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 class Homepage extends Component {
   constructor(props) {
@@ -55,6 +57,11 @@ class Homepage extends Component {
     }
   }
 
+  componentDidMount() {
+    this.callSheets("");
+    this.getLocation();
+  }
+
   cardClick = (index) => {
     this.props.history.push({
       pathname: '/',
@@ -87,7 +94,7 @@ class Homepage extends Component {
 
   saveResource = (resource) => {
     let savedResources = null;
-    if(!this.state.savedResources.some(r => r.id === resource.id)) {
+    if (!this.state.savedResources.some(r => r.id === resource.id)) {
       savedResources = this.state.savedResources.slice();
       savedResources.push(resource);
       this.setState({
@@ -98,7 +105,7 @@ class Homepage extends Component {
 
   removeResource = (resource) => {
     let savedResources = null;
-    if(this.state.savedResources.some(r => r.id === resource.id)){
+    if (this.state.savedResources.some(r => r.id === resource.id)) {
       savedResources = this.state.savedResources.slice();
       savedResources.splice(savedResources.indexOf(resource), 1);
     }
@@ -113,7 +120,7 @@ class Homepage extends Component {
     })
   }
 
-  
+
   render() {
     return (
       <div className={styles.viewport}>
@@ -127,15 +134,34 @@ class Homepage extends Component {
         </div>
         <div id={styles.container}>
           <SplitScreenSlidingPane>
-            <Route path='/' render={props => (
-              <CategoryList
+            <Route exact path='/' component={CategoryList} />
+            <Route path='/map' render={props => (
+              <ResultList
+                routerLocation={props.location}
+                ref={instance => { this.resultListItem = instance }}
+                cardClick={this.cardClick}
+                data={this.state.orgs}
+                currentPos={this.state.position}
+                saveItem={this.saveResource}
+                fullWidth={true}
               />
             )} />
           </SplitScreenSlidingPane>
           <div className={styles.staticPane}>
-            <Route path='/' render={props => (
+            <Route exact path='/' render={props => (
+              <CardGrid
+                routerLocation={props.location}
+                ref={instance => { this.resultListItem = instance }}
+                cardClick={this.cardClick}
+                data={this.state.orgs}
+                currentPos={this.state.position}
+                saveItem={this.saveResource}
+                fullWidth={true}
+              />
+            )} />
+            <Route path='/map' render={props => (
               <Map
-                routerLocation = {props.location}
+                routerLocation={props.location}
                 center={this.state.position ? this.state.position.coordinates : null}
                 organizations={this.state.orgs}
                 scrollToElement={this.scrollToElement}
@@ -145,6 +171,7 @@ class Homepage extends Component {
             )} />
           </div>
           <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
+
             <ShoppingCart
               data={this.state.savedResources}
               reOrder={this.orderResources}

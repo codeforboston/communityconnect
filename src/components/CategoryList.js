@@ -19,22 +19,22 @@ export class CategoryList extends Component {
   categoryMenuItems() {
     return this.props.categories.map((cat, index) =>
       <FormGroup check>
-        <Label check>
           <Input type="checkbox" />{cat}
-        </Label>
+
       </FormGroup>);
   }
   render() {
     return (
       <Form>
+        <Label>Category</Label>
         {this.categoryMenuItems()}
+        <Button>Submit</Button>
       </Form>
     )
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  console.log("State categories: ", state.categories);
   return {
     categories: state.categories
   }
