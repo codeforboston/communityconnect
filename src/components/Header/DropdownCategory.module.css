@@ -1,41 +1,4 @@
-@media (max-height: 770px) {
-  .dropdownCategoryDiv {
-    overflow: auto;
-    height: 70vh;
-  }
-}
-
-@media (max-height: 650px) {
-  .dropdownCategoryDiv {
-    overflow: auto;
-    height: 65vh;
-  }
-}
-
-@media (max-height: 550px) {
-  .dropdownCategoryDiv {
-    overflow: auto;
-    height: 60vh;
-  }
-}
-
-@media (max-height: 475px) {
-  .dropdownCategoryDiv {
-    overflow: auto;
-    height: 55vh;
-  }
-}
-
-@media (max-height: 415px) {
-  .dropdownCategoryDiv {
-    overflow: auto;
-    height: 50vh;
-  }
-}
-
-@media (max-height: 375px) {
-  .dropdownCategoryDiv {
-    overflow: auto;
-    height: 45vh;
-  }
+.dropdownCategoryDiv {
+  overflow: auto;
+  height: 50vh;
 }
