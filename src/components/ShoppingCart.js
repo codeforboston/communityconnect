@@ -1,15 +1,28 @@
 import React from 'react';
+import { Link, Route } from "react-router-dom";
 import PropTypes from 'prop-types';
 import {
   Card, 
   CardBody, 
   CardHeader,
+  Button
 } from 'reactstrap';
 import { downloadObjectAsJson } from '../utils/DownloadHelper.js';
 import FileUpload from './FileUpload/FileUpload.js';
 import styles from './ShoppingCart.module.css';
 import SavedResources from './SavedResources/SavedResources';
 
+const ToHomeButton = () => {
+  return (
+      <Button tag={Link} to="/" type="Home">To Home</Button>
+  )
+}
+
+const ToMapButton = () => {
+  return (
+      <Button tag={Link} to="/map" type="Map">To Map</Button>
+  )
+}
 class ShoppingCart extends React.Component {
   constructor(props){
     super(props);
@@ -55,6 +68,8 @@ class ShoppingCart extends React.Component {
               addItem={this.props.addItem}
               removeItem={this.props.removeItem}
             />
+            <Route exact path='/' component={ToMapButton} />
+            <Route exact path='/Map' component={ToHomeButton} />
           </CardBody>
         </Card>
       </div>

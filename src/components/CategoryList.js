@@ -18,9 +18,8 @@ export class CategoryList extends Component {
 
   categoryMenuItems() {
     return this.props.categories.map((cat, index) =>
-      <FormGroup check>
-          <Input type="checkbox" />{cat}
-
+      <FormGroup key={cat} check>
+          <Input type="checkbox" key={cat}/>{cat}
       </FormGroup>);
   }
   render() {

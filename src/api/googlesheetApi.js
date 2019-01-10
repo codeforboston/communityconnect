@@ -26,7 +26,14 @@ export var getAllCategories = new Promise(function(resolve, reject){
         let category = project.categoryautosortscript.split(',');
         category.forEach(cat => categories[cat] = cat.trim());
       }
+      
       const categoryList = [...(new Set(Object.values(categories)))];
+      let index = categoryList.indexOf("");
+      if (index > -1) {
+        categoryList.splice(index, 1);
+     }
+      console.log("Category List: ", categoryList);
+      
       resolve(categoryList);
     }
   });
