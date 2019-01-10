@@ -51,9 +51,8 @@ export function callSheets(selected = "", filterType = "") {
       if (selected.length > 0 && filterType === "category") {
         filter_criteria_list = update_criteria(selected, filter_criteria_list);
       }
-
       filtered_json = filter_criteria_list.length <= 0 ? data : find_in_object(JSON.parse(my_json), { categoryautosortscript: filter_criteria_list });
-
+      
       if (selected.length > 0 && filterType === "name") {
         filtered_json = filtered_json.filter(function (i) {
           return i.name.toLowerCase().match(selected.toLowerCase());
@@ -61,7 +60,6 @@ export function callSheets(selected = "", filterType = "") {
       }
 
       filtered_json = filtered_json.filter(function (org) { return org.truefalsevetting === 'TRUE' });
-
       filtered_json.forEach(obj => { obj.isMarkerOpen = false; });
 
       //This creates a hash table based for the lat and long of each loction.
@@ -80,14 +78,14 @@ export function callSheets(selected = "", filterType = "") {
           locationAddressHashTable[createMarkerId(org.coordinates)] = {'orgs': [index] , isOpen: false }
       }
       }})
-
+      
       this.setState({
         locationAddressHashTable : locationAddressHashTable,
         orgs: filtered_json,
         categories: categoryList,
         tags: Object.keys(tags)
       });
-
+      
     }
   });
 }

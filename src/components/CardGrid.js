@@ -4,49 +4,28 @@ import { connect } from 'react-redux';
 import OrganizationCard from './OrganizationCard';
 import styles from './CardGrid.css';
 
-class CardGrid extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            resource: []
-        }
-    }
-    componentWillReceiveProps(nextProps) {
-        this.setState({ resource: Object.assign({}, nextProps.resource) });
-    }
 
-    cardClick = (id) => {
-        var index = this.props.resource.findIndex( data => {
-          return data.id === id;
-        })
-        this.props.cardClick(index)
-    
-      }
+const CardGrid = ({ routerLocation, saveItem, resource }) => {
 
-    render() {
-        const { resource } = this.props;
-        return (
-            <Container className={styles.grid}>
-                <Row>
-                    {
-                        resource.map((data, index) => (
-                        <Col key={index} className="spacing" lg="4" sm="6" xs="12">
+    return (
+        <Container className={styles.grid}>
+            <Row>
+                {
+                    resource.map((resource, index) => (
+                        <Col key={resource.id} className="spacing" lg="4" sm="6" xs="12">
                             <OrganizationCard
-                                key={data.id}
-                                ref={data.id}
-                                index={data.id}
-                                cardClick={this.cardClick}
-                                organization={data}
-                                saveItem={() => this.props.saveItem(resource)}
+                                key={resource.id}
+                                index={resource.id}
+                                organization={resource}
+                                saveItem={() => saveItem(resource)}
                             />
                         </Col>
-                        ))
-                    }
-                </Row>
-            </Container>
-        );
-    }
-}
+                    ))
+                }
+            </Row>
+        </Container>
+    );
+};
 
 function mapStateToProps(state, ownProps) {
     return {

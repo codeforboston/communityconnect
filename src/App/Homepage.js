@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import Header from '../components/Header/Header';
 import CategoryList from '../components/CategoryList';
 import ResultList from '../components/ResultList';
 import CardGrid from '../components/CardGrid';
 import Map from '../components/Map/Map';
 import { callSheets } from '../data/sheetLoadingHelpers';
-import * as resourceAction from '../action/resourceDataAction';
 import styles from './App.module.css';
 import { Route } from 'react-router';
 import { SplitScreenSlidingPane, SplitScreenTogglePane } from '../components/SlidingPane/SplitScreenSlidingPane.js';
@@ -25,7 +23,6 @@ class Homepage extends Component {
       cardClickedIndex: null,
       isSavedResourcePaneOpen: false,
       savedResources: [],
-      resourceData: Object.assign({}, this.props.resourceData)
     }
     this.callSheets = callSheets.bind(this);
     this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
@@ -62,13 +59,14 @@ class Homepage extends Component {
     this.getLocation();
   }
 
-  cardClick = (index) => {
+  //Remove deep linking until more details are made
+ /* cardClick = (index) => {
     this.props.history.push({
       pathname: '/',
       search: '?id=' + index
     });
     this.mapItem.setOpenMarker(index);
-  }
+  }*/
 
   scrollToElement = index => {
     this.resultListItem.scrollToElement(index);
@@ -126,9 +124,6 @@ class Homepage extends Component {
       <div className={styles.viewport}>
         <div className={styles.header}>
           <Header
-            categories={this.state.categories}
-            handleEvent={this.callSheets}
-            handleFilter={this.callSheets}
             toggleSavedResourcesPane={this.toggleSavedResourcesPane}
           />
         </div>
@@ -151,12 +146,8 @@ class Homepage extends Component {
             <Route exact path='/' render={props => (
               <CardGrid
                 routerLocation={props.location}
-                ref={instance => { this.resultListItem = instance }}
-                cardClick={this.cardClick}
-                data={this.state.orgs}
                 currentPos={this.state.position}
                 saveItem={this.saveResource}
-                fullWidth={true}
               />
             )} />
             <Route path='/map' render={props => (
@@ -192,9 +183,4 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(resourceAction, dispatch)
-  };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage)
+export default connect(mapStateToProps)(Homepage)

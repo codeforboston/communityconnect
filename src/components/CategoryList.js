@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 export class CategoryList extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       categories: []
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import OrganizationCard from './OrganizationCard';
+import { connect } from 'react-redux';
 
+import OrganizationCard from './OrganizationCard';
 import styles from './ResultList.module.css';
 import SortBar from './SortBar.js';
 import { getDistance } from '../utils/distance.js';
@@ -13,12 +14,17 @@ export class ResultList extends Component {
     this.state = {
       dataSort: this.sortByAlphabet,
     }
-
+    
     this.sortByAlphabet = this.sortByAlphabet.bind(this);
     this.sortByDistance = this.sortByDistance.bind(this);
     this.getCloserName = this.getCloserName.bind(this);
     this.getCloserResource = this.getCloserResource.bind(this);
     this.listRef = React.createRef()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.resource);
+    this.setState({ resource: Object.assign({}, nextProps.resource) });
   }
 
   scrollToElement = (index) => {
@@ -40,12 +46,13 @@ export class ResultList extends Component {
     else return 0
   }
 
+
   sortByAlphabet = () => {
-    return this.props.data.slice().sort(this.getCloserName);
+    return this.props.resource.slice().sort(this.getCloserName);
   }
 
   sortByDistance = () => {
-    return this.props.data.slice().sort(this.getCloserResource);
+    return this.props.resource.slice().sort(this.getCloserResource);
   }
 
   handleSortChange = (newSort) => {
@@ -57,15 +64,13 @@ export class ResultList extends Component {
   }
 
   cardClick = (id) => {
-    var index = this.props.data.findIndex( org => {
-      return org.id === id;
+    this.props.resource.findIndex( resource => {
+      return resource.id === id;
     })
-    this.props.cardClick(index)
 
   }
 
   render() {
-
     const sortOptions = [
       {key: 'Alphabetically', sort: this.sortByAlphabet, disabled: false}
       ,{key: 'Distance', sort: this.sortByDistance, disabled: !this.props.currentPos}
@@ -76,6 +81,7 @@ export class ResultList extends Component {
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
     const sortedData = this.state.dataSort();
+    console.log("Result List: ", sortedData);
     return(
       <div >
         <div
@@ -87,16 +93,16 @@ export class ResultList extends Component {
           sortOptions={sortOptions}
         />
         {
-          sortedData.map((org, index) =>
+          sortedData.map((resource, index) =>
 
           <OrganizationCard
-            key={org.id}
-            ref={org.id}
-            index={org.id}
+            key={resource.id}
+            ref={resource.id}
+            index={resource.id}
             cardClick={this.cardClick}
-            organization={org}
+            organization={resource}
             currentPos={this.props.currentPos}
-            saveItem={() => this.props.saveItem(org)}
+            saveItem={() => this.props.saveItem(resource)}
           />
         )}
         </div>
@@ -106,4 +112,11 @@ export class ResultList extends Component {
   }
 }
 
-export default ResultList;
+function mapStateToProps(state, ownProps) {
+  return {
+    resource: state.resource
+  }
+}
+
+
+export default connect(mapStateToProps)(ResultList);

@@ -1,28 +1,30 @@
 import Tabletop from 'tabletop';
 
-var revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
+const revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
 
-export var getAllResources = new Promise(function(resolve, reject){
+export let getAllResources = new Promise(function(resolve, reject){
   Tabletop.init({
     key: revere_key,
     simpleSheet: false,
     prettyColumnNames: false,
     callback: (data, tabletop) =>{
-      resolve(tabletop.sheets("Data").elements);
+      let resource = tabletop.sheets("Data").elements;
+      let filteredResource = resource.filter(function (resource) { return resource.truefalsevetting === 'TRUE' });
+      resolve(filteredResource);
     }
   });
 })
 
-export var getAllCategories = new Promise(function(resolve, reject){
+export let getAllCategories = new Promise(function(resolve, reject){
   Tabletop.init({
     key: revere_key,
     simpleSheet: false,
     prettyColumnNames: false,
     callback: (data, tabletop) =>{
-      var data = tabletop.sheets("Data").elements;
+      let resource = tabletop.sheets("Data").elements;
       const categories = {};
 
-      for (let project of data) {
+      for (let project of resource) {
         let category = project.categoryautosortscript.split(',');
         category.forEach(cat => categories[cat] = cat.trim());
       }
@@ -32,7 +34,6 @@ export var getAllCategories = new Promise(function(resolve, reject){
       if (index > -1) {
         categoryList.splice(index, 1);
      }
-      console.log("Category List: ", categoryList);
       
       resolve(categoryList);
     }

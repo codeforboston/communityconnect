@@ -8,10 +8,8 @@ import {
   NavItem,
   Button} from 'reactstrap';
 
-import DropdownCategory from '../Header/DropdownCategory.js';
 import SearchBar from '../Header/SearchBar.js';
 import CClargelogo from '../Header/Images/CClargelogo.png';
-import { Route } from 'react-router';
 
 class Header extends Component {
   constructor(props) {
@@ -41,11 +39,6 @@ class Header extends Component {
             <Nav className="ml-auto" navbar>
               <NavItem>
               <SearchBar type="text" handleFilter={this.props.handleFilter} />
-              </NavItem>
-              <NavItem>
-              <Route path='/map' render={props => (
-              <DropdownCategory category={this.props.categories} handleEvent={this.props.handleEvent}/>
-            )} />
               </NavItem>
               <NavItem>
               <Button
