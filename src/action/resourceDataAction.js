@@ -1,13 +1,14 @@
 import * as types from './actionType';
-import {getAllResources, getAllCategories} from '../api/googlesheetApi';
+import {getAllResources} from '../api/googlesheetApi';
 
-export const loadResourceDataStart = () => ({ type: types.LOAD_RESOURCE_DATA_START })
-export const loadResourceDataSuccess = (resource ) => ({ type: types.LOAD_RESOURCE_DATA_SUCCESS, resource })
-export const loadResourceDataFailure = (error) => ({ type: types.LOAD_RESOURCE_DATA_FAILURE, error })
+const loadResourceDataStart = () => ({ type: types.LOAD_RESOURCE_DATA_START })
+const loadResourceDataSuccess = (resource ) => ({ type: types.LOAD_RESOURCE_DATA_SUCCESS, resource })
+const loadResourceDataFailure = (error) => ({ type: types.LOAD_RESOURCE_DATA_FAILURE, error })
 
-export const loadCategoriesStart = () => ({ type: types.LOAD_CATEGORIES_START })
-export const loadCategoriesSuccess = (categories) => ({ type: types.LOAD_CATEGORIES_SUCCESS, categories })
-export const loadCategoriesFailure = (error) => ({ type: types.LOAD_CATEGORIES_FAILURE, error })
+export function loadCategories(){
+    return { type: types.LOAD_CATEGORIES }
+}
+
 
 export function loadResources(){
     return function (dispatch) {
@@ -20,13 +21,14 @@ export function loadResources(){
     }
 }
 
-export function loadCategories(){
-    return function (dispatch) {
-        dispatch(loadCategoriesStart());
-        return getAllCategories.then(categories => {
-            dispatch(loadCategoriesSuccess(categories));
-        }).catch(error => {
-            dispatch(loadCategoriesFailure(error));
-        });
-    }
+export function filterByCategories(filteredResource){
+    return { type: types.FILTER_RESOURCE_BY_CATEGORIES, filteredResource }
 }
+
+export function addSavedResource(savedResource){
+    return { type: types.ADD_SAVED_RESOURCE, savedResource }
+  }
+
+export function removeSavedResource(savedResourceIndex){
+    return { type: types.REMOVE_SAVED_RESOURCE, savedResourceIndex }
+  }

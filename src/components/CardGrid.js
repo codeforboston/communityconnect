@@ -29,7 +29,7 @@ const CardGrid = ({ routerLocation, saveItem, resource }) => {
 
 function mapStateToProps(state, ownProps) {
     return {
-        resource: state.resource
+        resource: state.filteredResource
     }
 }
 

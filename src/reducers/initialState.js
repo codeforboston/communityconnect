@@ -1,4 +1,6 @@
 export default {
-    resource: [],
-    categories: []
-  };
+      resource: [],
+      filteredResource: [],
+      savedResource: [],
+      categories: []
+};

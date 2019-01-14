@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as resourceAction from '../action/resourceDataAction';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+
 
 export class CategoryList extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      categories: []
+      selectedCategory: []
     }
+    this.handleChange = this.handleChange.bind(this);
   }
 
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({ categories: Object.assign({}, nextProps.categories) });
+  handleChange(selected) {
+    let { selectedCategory } = this.state;
+    let index = selectedCategory.indexOf(selected);
+    index !== -1 ? selectedCategory.splice(index, 1) : selectedCategory.push(selected);
+    let filteredResource = this.props.resource.filter(resource => {
+      return this.state.selectedCategory.indexOf(resource.categoryautosortscript) > -1;
+    });
+    this.props.actions.filterByCategories(selectedCategory.length > 0 ? filteredResource : this.props.resource);
   }
 
   categoryMenuItems() {
-    return this.props.categories.map((cat, index) =>
+    return this.props.categories.map((cat) =>
       <FormGroup key={cat} check>
-          <Input type="checkbox" key={cat}/>{cat}
+        <Input type="checkbox" key={cat} onChange={() => this.handleChange(cat)} />{cat}
       </FormGroup>);
   }
   render() {
@@ -27,7 +37,6 @@ export class CategoryList extends Component {
       <Form>
         <Label>Category</Label>
         {this.categoryMenuItems()}
-        <Button>Submit</Button>
       </Form>
     )
   }
@@ -35,9 +44,14 @@ export class CategoryList extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    categories: state.categories
+    categories: state.categories,
+    resource: state.resource
   }
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(resourceAction, dispatch)
+  };
+}
 
-
-export default connect(mapStateToProps)(CategoryList);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryList);

@@ -27,8 +27,6 @@ class Homepage extends Component {
     this.callSheets = callSheets.bind(this);
     this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
     this.orderResources = this.orderResources.bind(this);
-    this.saveResource = this.saveResource.bind(this);
-    this.removeResource = this.removeResource.bind(this);
     this.uploadResources = this.uploadResources.bind(this);
   }
 
@@ -90,28 +88,6 @@ class Homepage extends Component {
     })
   }
 
-  saveResource = (resource) => {
-    let savedResources = null;
-    if (!this.state.savedResources.some(r => r.id === resource.id)) {
-      savedResources = this.state.savedResources.slice();
-      savedResources.push(resource);
-      this.setState({
-        savedResources: savedResources,
-      })
-    }
-  }
-
-  removeResource = (resource) => {
-    let savedResources = null;
-    if (this.state.savedResources.some(r => r.id === resource.id)) {
-      savedResources = this.state.savedResources.slice();
-      savedResources.splice(savedResources.indexOf(resource), 1);
-    }
-    this.setState({
-      savedResources: savedResources,
-    })
-  }
-
   uploadResources = (resources) => {
     this.setState({
       savedResources: resources.slice(),
@@ -137,7 +113,6 @@ class Homepage extends Component {
                 cardClick={this.cardClick}
                 data={this.state.orgs}
                 currentPos={this.state.position}
-                saveItem={this.saveResource}
                 fullWidth={true}
               />
             )} />
@@ -147,7 +122,6 @@ class Homepage extends Component {
               <CardGrid
                 routerLocation={props.location}
                 currentPos={this.state.position}
-                saveItem={this.saveResource}
               />
             )} />
             <Route path='/map' render={props => (
@@ -162,9 +136,7 @@ class Homepage extends Component {
             )} />
           </div>
           <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
-
             <ShoppingCart
-              data={this.state.savedResources}
               reOrder={this.orderResources}
               addItem={this.saveResource}
               removeItem={this.removeResource}

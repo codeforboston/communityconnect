@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import resource from './resourceReducer';
-import categories from './categoryReducer';
+import * as resources from './resourceReducer';
 
-const rootReducer = combineReducers({
-    resource,
-    categories
-});
+const rootReducer = combineReducers(
+    resources
+);
 
 export default rootReducer;

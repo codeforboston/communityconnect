@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import OrganizationMarker from './../OrganizationMarker';
@@ -7,7 +8,6 @@ const googleMapKey = 'AIzaSyAwKdrqS2GfCt9b2K1wAopDc9Ga0N1BVUM';
 const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${googleMapKey}&v=3.exp&libraries=geometry,drawing,places`;
 
 const Map = withScriptjs(withGoogleMap(props => (
-
   <GoogleMap
     {...props}
     ref={props.mapRef}
@@ -55,7 +55,7 @@ class OrganizationMap extends Component {
 
   constructor(props) {
     super(props);
-
+    console.log("OrganizationMap: ", this.props.organizations);
     this.state = {
       center: this.props.center ? this.props.center : defaultCenter,
       zoom: defaultZoom,
@@ -141,5 +141,11 @@ class OrganizationMap extends Component {
     );
   }
 }
+
+/*function mapStateToProps(state, ownProps) {
+  return {
+    organizations: state.savedResource.length > 0 ? state.savedResource : state.resource
+  }
+}*/
 
 export default OrganizationMap;

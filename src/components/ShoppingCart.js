@@ -10,7 +10,7 @@ import {
 import { downloadObjectAsJson } from '../utils/DownloadHelper.js';
 import FileUpload from './FileUpload/FileUpload.js';
 import styles from './ShoppingCart.module.css';
-import SavedResources from './SavedResources/SavedResources';
+import SavedResources from './SavedResources/SavedResourcesContainer';
 
 const ToHomeButton = () => {
   return (
@@ -65,8 +65,6 @@ class ShoppingCart extends React.Component {
               fullWidth={true} 
               data={this.props.data}
               reOrder={this.props.reOrder}
-              addItem={this.props.addItem}
-              removeItem={this.props.removeItem}
             />
             <Route exact path='/' component={ToMapButton} />
             <Route exact path='/Map' component={ToHomeButton} />
@@ -80,8 +78,6 @@ class ShoppingCart extends React.Component {
 ShoppingCart.propTypes = {
   data: PropTypes.array.isRequired,
   reOrder: PropTypes.func.isRequired,
-  addItem: PropTypes.func.isRequired,
-  removeItem: PropTypes.func.isRequired,
   uploadItems: PropTypes.func.isRequired,
 }
 

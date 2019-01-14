@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import OrganizationCard from './OrganizationCard';
 import styles from './ResultList.module.css';
 import SortBar from './SortBar.js';
 import { getDistance } from '../utils/distance.js';
+import * as resourceAction from '../action/resourceDataAction';
 
 export class ResultList extends Component {
 
@@ -20,11 +22,6 @@ export class ResultList extends Component {
     this.getCloserName = this.getCloserName.bind(this);
     this.getCloserResource = this.getCloserResource.bind(this);
     this.listRef = React.createRef()
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps.resource);
-    this.setState({ resource: Object.assign({}, nextProps.resource) });
   }
 
   scrollToElement = (index) => {
@@ -48,11 +45,11 @@ export class ResultList extends Component {
 
 
   sortByAlphabet = () => {
-    return this.props.resource.slice().sort(this.getCloserName);
+    return this.props.savedResource.slice().sort(this.getCloserName);
   }
 
   sortByDistance = () => {
-    return this.props.resource.slice().sort(this.getCloserResource);
+    return this.props.savedResource.slice().sort(this.getCloserResource);
   }
 
   handleSortChange = (newSort) => {
@@ -64,12 +61,16 @@ export class ResultList extends Component {
   }
 
   cardClick = (id) => {
-    this.props.resource.findIndex( resource => {
+    this.props.savedResource.findIndex( resource => {
       return resource.id === id;
     })
 
   }
-
+  saveResource = (resource) => {
+    if (!this.props.savedResource.some(r => r.id === resource.id)) {
+      this.props.actions.addSavedResource(this.props.savedResource.slice())
+    }
+  }
   render() {
     const sortOptions = [
       {key: 'Alphabetically', sort: this.sortByAlphabet, disabled: false}
@@ -81,7 +82,6 @@ export class ResultList extends Component {
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
     const sortedData = this.state.dataSort();
-    console.log("Result List: ", sortedData);
     return(
       <div >
         <div
@@ -114,9 +114,14 @@ export class ResultList extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    resource: state.resource
+    savedResource: state.savedResource.length > 0 ? state.savedResource : state.resource
   }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(resourceAction, dispatch)
+  };
 }
 
 
-export default connect(mapStateToProps)(ResultList);
+export default connect(mapStateToProps, mapDispatchToProps)(ResultList);

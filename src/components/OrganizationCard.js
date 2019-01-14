@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardSubtitle } from 'reactstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import styles from './OrganizationCard.module.css'
 import { getDistance } from '../utils/distance.js';
+import { Card, CardBody, CardSubtitle } from 'reactstrap';
+import * as resourceAction from '../action/resourceDataAction';
 
 class OrganizationCard extends Component {
 
@@ -22,12 +26,15 @@ class OrganizationCard extends Component {
   }
 
   cardClick= (e) => {
+    if(this.props.cardClick){
     this.props.cardClick(e.currentTarget.id);
+    }
   }
 
   saveItem = () => {
-    this.props.saveItem();
-
+    if (!this.props.savedResource.some(r => r.id === this.props.organization.id)) {
+      this.props.actions.addSavedResource(this.props.organization);
+    }
     let classes = [
                     styles['cbutton--effect-radomir__after'],
                     styles['cbutton--effect-radomir__cbutton--click__after'],
@@ -107,4 +114,16 @@ class OrganizationCard extends Component {
   }
 }
 
-export default OrganizationCard;
+function mapStateToProps(state, ownProps) {
+  return {
+    savedResource: state.savedResource
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(resourceAction, dispatch)
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrganizationCard);

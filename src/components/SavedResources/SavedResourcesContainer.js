@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import styles from './SavedResources.module.css';
-import SavedResource from '../SavedResource/SavedResource';
+import SavedResource from './SavedResource';
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
@@ -23,10 +25,9 @@ const getListStyle = isDraggingOver => ({
   // width: 250,
 });
 
-class SavedResources extends Component {
+class SavedResourcesContainer extends Component {
   constructor(props) {
     super(props);
-
     this.onDragEnd = this.onDragEnd.bind(this);
   }
 
@@ -62,8 +63,7 @@ class SavedResources extends Component {
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
 
-    const orderedItems = this.props.data;
-
+    const {data} = this.props;
     return(
       <div>
         <div
@@ -79,7 +79,7 @@ class SavedResources extends Component {
                 ref={provided.innerRef}
                 style={getListStyle(snapshot.isDraggingOver)}
               >
-                {orderedItems.map((item, index) => (
+                {data.map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id} index={index}>
                     {(provided, snapshot) => (
                       <div
@@ -114,12 +114,16 @@ class SavedResources extends Component {
   }
 }
 
-SavedResources.propTypes = {
+SavedResourcesContainer.propTypes = {
   fullWidth: PropTypes.bool,
   data: PropTypes.array.isRequired,
   reOrder: PropTypes.func.isRequired,
-  addItem: PropTypes.func.isRequired,
-  removeItem: PropTypes.func.isRequired,
 }
 
-export default SavedResources;
+function mapStateToProps(state, ownProps) {
+  return {
+      data: state.savedResource
+  }
+}
+
+export default connect(mapStateToProps)(SavedResourcesContainer);
