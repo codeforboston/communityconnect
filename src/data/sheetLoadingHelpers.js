@@ -78,7 +78,7 @@ export function callSheets(selected = "", filterType = "") {
           locationAddressHashTable[createMarkerId(org.coordinates)] = {'orgs': [index] , isOpen: false }
       }
       }})
-      
+      console.log("Orgs: ",  filtered_json);
       this.setState({
         locationAddressHashTable : locationAddressHashTable,
         orgs: filtered_json,

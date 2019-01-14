@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Route } from 'react-router';
+
 import Header from '../components/Header/Header';
 import CategoryList from '../components/CategoryList';
 import ResultList from '../components/ResultList';
@@ -6,10 +9,9 @@ import CardGrid from '../components/CardGrid';
 import Map from '../components/Map/Map';
 import { callSheets } from '../data/sheetLoadingHelpers';
 import styles from './App.module.css';
-import { Route } from 'react-router';
 import { SplitScreenSlidingPane, SplitScreenTogglePane } from '../components/SlidingPane/SplitScreenSlidingPane.js';
 import ShoppingCart from '../components/ShoppingCart';
-import { connect } from 'react-redux';
+
 
 class Homepage extends Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class Homepage extends Component {
       locationAddressHashTable: [],
       cardClickedIndex: null,
       isSavedResourcePaneOpen: false,
-      savedResources: [],
+      data: []
     }
     this.callSheets = callSheets.bind(this);
     this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
@@ -51,7 +53,17 @@ class Homepage extends Component {
       this.setState({ haveCoords: false })
     }
   }
-
+componentDidUpdate(nextProps){
+  let {resource} = this.props;
+  console.log("Nextprops coordinates: ", nextProps.resource[0]);
+  resource.forEach(function(element) { 
+    element.coordinates = {
+      lat: parseFloat(nextProps.resource.latitude),
+      lng: parseFloat(nextProps.resource.latitude)
+    }; 
+  });
+  console.log("Updated resource:, ", resource);
+}
   componentDidMount() {
     this.callSheets("");
     this.getLocation();

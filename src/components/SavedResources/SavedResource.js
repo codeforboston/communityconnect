@@ -78,7 +78,7 @@ class SavedResource extends Component {
           <CardBody>
             {website &&
             <span>
-              <a href={website}>&#128279;</a>
+              <a href={website}><span  role="img" aria-label="Link">&#128279;</span></a>
             </span>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
             <span title='Remove item from Saved Resources' aria-label='Remove item from Saved Resources'
@@ -98,7 +98,7 @@ class SavedResource extends Component {
             {overview &&
               <p>{overview}</p>}
             {phone &&
-              <p> &#128222; {phone}</p>}
+              <p><span role="img" aria-label="Phone"> &#128222;</span> {phone}</p>}
             {(facebookUrl || instagramUrl || twitterUrl) &&
             <ul className="list-inline">
               {facebookUrl &&

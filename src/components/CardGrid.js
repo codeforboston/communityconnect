@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Container } from 'reactstrap';
 import { connect } from 'react-redux';
-import OrganizationCard from './OrganizationCard';
+import OrganizationCard from './Common/OrganizationCard';
 import styles from './CardGrid.css';
 
 
@@ -18,6 +18,7 @@ const CardGrid = ({ routerLocation, saveItem, resource }) => {
                                 index={resource.id}
                                 organization={resource}
                                 saveItem={() => saveItem(resource)}
+                                saveable={true}
                             />
                         </Col>
                     ))

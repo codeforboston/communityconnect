@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import OrganizationCard from './OrganizationCard';
+import OrganizationCard from './Common/OrganizationCard';
 import styles from './ResultList.module.css';
-import SortBar from './SortBar.js';
+import SortBar from './Common/SortBar.js';
 import { getDistance } from '../utils/distance.js';
 import * as resourceAction from '../action/resourceDataAction';
 
