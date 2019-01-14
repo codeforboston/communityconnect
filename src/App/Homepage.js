@@ -53,17 +53,6 @@ class Homepage extends Component {
       this.setState({ haveCoords: false })
     }
   }
-componentDidUpdate(nextProps){
-  let {resource} = this.props;
-  console.log("Nextprops coordinates: ", nextProps.resource[0]);
-  resource.forEach(function(element) { 
-    element.coordinates = {
-      lat: parseFloat(nextProps.resource.latitude),
-      lng: parseFloat(nextProps.resource.latitude)
-    }; 
-  });
-  console.log("Updated resource:, ", resource);
-}
   componentDidMount() {
     this.callSheets("");
     this.getLocation();
@@ -140,7 +129,7 @@ componentDidUpdate(nextProps){
               <Map
                 routerLocation={props.location}
                 center={this.state.position ? this.state.position.coordinates : null}
-                organizations={this.state.orgs}
+                organizations={this.props.resource}
                 scrollToElement={this.scrollToElement}
                 ref={instance => { this.mapItem = instance }}
                 locationAddressHashTable={this.state.locationAddressHashTable}
@@ -163,7 +152,7 @@ componentDidUpdate(nextProps){
 
 function mapStateToProps(state, ownProps) {
   return {
-    resource: state.resource
+    resource: state.savedResource.length > 0 ? state.savedResource : state.resource
   }
 }
 
