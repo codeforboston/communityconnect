@@ -29,13 +29,13 @@ class ShoppingCart extends React.Component {
 
     this.state = {
       showUpload: false,
-    }
+    };
 
     this.toggleUpload = this.toggleUpload.bind(this);
   }
   toggleUpload = () => {
-    this.setState({ showUpload: !this.state.showUpload });
-  }
+    this.setState({showUpload: !this.state.showUpload});
+  };
 
   render() {
     return (
@@ -77,6 +77,6 @@ class ShoppingCart extends React.Component {
 ShoppingCart.propTypes = {
   reOrder: PropTypes.func.isRequired,
   uploadItems: PropTypes.func.isRequired,
-}
+};
 
 export default ShoppingCart;

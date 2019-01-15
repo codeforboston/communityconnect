@@ -11,8 +11,7 @@ import SaveButton from './SaveButton';
 class OrganizationCard extends Component {
 
   constructor (props) {
-    super(props)
-
+    super(props);
     this.cardRef = React.createRef();
   }
 
@@ -20,7 +19,7 @@ class OrganizationCard extends Component {
     this.refs.cardRef.parentNode.scrollTop = this.refs.cardRef.offsetTop - ((1.5) * this.refs.cardRef.offsetHeight);
     // Using scrollIntoView shifted the page, hiding the header bar in mobile view
     // this.refs.cardRef.scrollIntoView({block: "end", inline: "center"})
-  }
+  };
 
   cardClick= (e) => {
     if(this.props.cardClick){
@@ -42,8 +41,8 @@ class OrganizationCard extends Component {
     const { name, categoryautosortscript, overview, location, website, facebookUrl,
       instagramUrl, twitterUrl, phone } = this.props.organization;
     let distance, distanceElement;
-    if(this.props.haveCoords) {
-      distance = getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos )
+    if(this.props.currentPos) {
+      distance = getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos );
       if(distance){
         distanceElement = <p>Distance from your Location: {distance} miles</p>
       }

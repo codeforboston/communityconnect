@@ -3,11 +3,6 @@ import {ButtonGroup} from 'reactstrap';
 import styles from './SortBar.module.css';
 
 class SortBar extends React.Component {
-
-  // constructor(props) {
-  //   super(props);
-  // }
-
   handleClick = (e) => {
     // Get new sort based on index of sortOption array
     let newSort = this.props.sortOptions[e.target.value].sort;
