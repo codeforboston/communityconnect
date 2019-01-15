@@ -55,7 +55,6 @@ class OrganizationMap extends Component {
 
   constructor(props) {
     super(props);
-    console.log("OrganizationMap: ", this.props.organizations);
     this.state = {
       center: this.props.center ? this.props.center : defaultCenter,
       zoom: defaultZoom,

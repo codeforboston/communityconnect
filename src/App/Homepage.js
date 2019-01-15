@@ -112,7 +112,6 @@ class Homepage extends Component {
                 routerLocation={props.location}
                 ref={instance => { this.resultListItem = instance }}
                 cardClick={this.cardClick}
-                data={this.state.orgs}
                 currentPos={this.state.position}
                 fullWidth={true}
               />
@@ -129,7 +128,7 @@ class Homepage extends Component {
               <Map
                 routerLocation={props.location}
                 center={this.state.position ? this.state.position.coordinates : null}
-                organizations={this.props.resource}
+                organizations={this.state.orgs}
                 scrollToElement={this.scrollToElement}
                 ref={instance => { this.mapItem = instance }}
                 locationAddressHashTable={this.state.locationAddressHashTable}
