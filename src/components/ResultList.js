@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import OrganizationCard from './OrganizationCard';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import OrganizationCard from './Common/OrganizationCard';
 import styles from './ResultList.module.css';
-import SortBar from './SortBar.js';
+import SortBar from './Common/SortBar.js';
 import { getDistance } from '../utils/distance.js';
+import * as resourceAction from '../action/resourceDataAction';
 
 export class ResultList extends Component {
 
@@ -13,7 +16,7 @@ export class ResultList extends Component {
     this.state = {
       dataSort: this.sortByAlphabet,
     }
-
+    
     this.sortByAlphabet = this.sortByAlphabet.bind(this);
     this.sortByDistance = this.sortByDistance.bind(this);
     this.getCloserName = this.getCloserName.bind(this);
@@ -40,12 +43,13 @@ export class ResultList extends Component {
     else return 0
   }
 
+
   sortByAlphabet = () => {
-    return this.props.data.slice().sort(this.getCloserName);
+    return this.props.savedResource.slice().sort(this.getCloserName);
   }
 
   sortByDistance = () => {
-    return this.props.data.slice().sort(this.getCloserResource);
+    return this.props.savedResource.slice().sort(this.getCloserResource);
   }
 
   handleSortChange = (newSort) => {
@@ -57,15 +61,17 @@ export class ResultList extends Component {
   }
 
   cardClick = (id) => {
-    var index = this.props.data.findIndex( org => {
-      return org.id === id;
+    this.props.savedResource.findIndex( resource => {
+      return resource.id === id;
     })
-    this.props.cardClick(index)
 
   }
-
+  saveResource = (resource) => {
+    if (!this.props.savedResource.some(r => r.id === resource.id)) {
+      this.props.actions.addSavedResource(this.props.savedResource.slice())
+    }
+  }
   render() {
-
     const sortOptions = [
       {key: 'Alphabetically', sort: this.sortByAlphabet, disabled: false}
       ,{key: 'Distance', sort: this.sortByDistance, disabled: !this.props.currentPos}
@@ -87,16 +93,16 @@ export class ResultList extends Component {
           sortOptions={sortOptions}
         />
         {
-          sortedData.map((org, index) =>
+          sortedData.map((resource, index) =>
 
           <OrganizationCard
-            key={org.id}
-            ref={org.id}
-            index={org.id}
+            key={resource.id}
+            ref={resource.id}
+            index={resource.id}
             cardClick={this.cardClick}
-            organization={org}
+            organization={resource}
             currentPos={this.props.currentPos}
-            saveItem={() => this.props.saveItem(org)}
+            saveItem={() => this.props.saveItem(resource)}
           />
         )}
         </div>
@@ -106,4 +112,16 @@ export class ResultList extends Component {
   }
 }
 
-export default ResultList;
+function mapStateToProps(state, ownProps) {
+  return {
+    savedResource: state.savedResource.length > 0 ? state.savedResource : state.resource
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(resourceAction, dispatch)
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultList);

@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Route } from 'react-router';
 
 import Header from '../components/Header/Header';
+import CategoryList from '../components/CategoryList';
 import ResultList from '../components/ResultList';
+import CardGrid from '../components/CardGrid';
 import Map from '../components/Map/Map';
 import { callSheets } from '../data/sheetLoadingHelpers';
 import styles from './App.module.css';
-import { Route } from 'react-router';
 import { SplitScreenSlidingPane, SplitScreenTogglePane } from '../components/SlidingPane/SplitScreenSlidingPane.js';
 import ShoppingCart from '../components/ShoppingCart';
+
 
 class Homepage extends Component {
   constructor(props) {
@@ -19,15 +23,11 @@ class Homepage extends Component {
       locationAddressHashTable: [],
       cardClickedIndex: null,
       isSavedResourcePaneOpen: false,
-      savedResources: [],
+      data: []
     }
-
     this.callSheets = callSheets.bind(this);
-
     this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
     this.orderResources = this.orderResources.bind(this);
-    this.saveResource = this.saveResource.bind(this);
-    this.removeResource = this.removeResource.bind(this);
     this.uploadResources = this.uploadResources.bind(this);
   }
 
@@ -49,19 +49,19 @@ class Homepage extends Component {
     } else {
     }
   }
-
   componentDidMount() {
     this.callSheets("");
     this.getLocation();
   }
 
-  cardClick = (index) => {
+  //Remove deep linking until more details are made
+ /* cardClick = (index) => {
     this.props.history.push({
       pathname: '/',
       search: '?id=' + index
     });
     this.mapItem.setOpenMarker(index);
-  }
+  }*/
 
   scrollToElement = index => {
     this.resultListItem.scrollToElement(index);
@@ -85,63 +85,44 @@ class Homepage extends Component {
     })
   }
 
-  saveResource = (resource) => {
-    let savedResources = null;
-    if(!this.state.savedResources.some(r => r.id === resource.id)) {
-      savedResources = this.state.savedResources.slice();
-      savedResources.push(resource);
-      this.setState({
-        savedResources: savedResources,
-      })
-    }
-  }
-
-  removeResource = (resource) => {
-    let savedResources = null;
-    if(this.state.savedResources.some(r => r.id === resource.id)){
-      savedResources = this.state.savedResources.slice();
-      savedResources.splice(savedResources.indexOf(resource), 1);
-    }
-    this.setState({
-      savedResources: savedResources,
-    })
-  }
-
   uploadResources = (resources) => {
     this.setState({
       savedResources: resources.slice(),
     })
   }
 
+
   render() {
     return (
       <div className={styles.viewport}>
         <div className={styles.header}>
           <Header
-            categories={this.state.categories}
-            handleEvent={this.callSheets}
-            handleFilter={this.callSheets}
             toggleSavedResourcesPane={this.toggleSavedResourcesPane}
           />
         </div>
         <div id={styles.container}>
           <SplitScreenSlidingPane>
-            <Route path='/' render={props => (
+            <Route exact path='/' component={CategoryList} />
+            <Route path='/map' render={props => (
               <ResultList
-                routerLocation = {props.location}
+                routerLocation={props.location}
                 ref={instance => { this.resultListItem = instance }}
                 cardClick={this.cardClick}
-                data={this.state.orgs}
                 currentPos={this.state.position}
-                saveItem={this.saveResource}
                 fullWidth={true}
               />
             )} />
           </SplitScreenSlidingPane>
           <div className={styles.staticPane}>
-            <Route path='/' render={props => (
+            <Route exact path='/' render={props => (
+              <CardGrid
+                routerLocation={props.location}
+                currentPos={this.state.position}
+              />
+            )} />
+            <Route path='/map' render={props => (
               <Map
-                routerLocation = {props.location}
+                routerLocation={props.location}
                 center={this.state.position ? this.state.position.coordinates : null}
                 organizations={this.state.orgs}
                 scrollToElement={this.scrollToElement}
@@ -152,7 +133,6 @@ class Homepage extends Component {
           </div>
           <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
             <ShoppingCart
-              data={this.state.savedResources}
               reOrder={this.orderResources}
               addItem={this.saveResource}
               removeItem={this.removeResource}
@@ -165,4 +145,10 @@ class Homepage extends Component {
   }
 }
 
-export default Homepage;
+function mapStateToProps(state, ownProps) {
+  return {
+    resource: state.savedResource.length > 0 ? state.savedResource : state.resource
+  }
+}
+
+export default connect(mapStateToProps)(Homepage)

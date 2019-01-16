@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import {
   Card,
   CardBody,
@@ -11,6 +14,7 @@ import {
 } from 'reactstrap';
 import styles from './SavedResource.module.css';
 import { getDistance } from '../../utils/distance.js';
+import * as resourceAction from '../../action/resourceDataAction';
 
 class SavedResource extends Component {
 
@@ -37,7 +41,9 @@ class SavedResource extends Component {
   };
 
   removalConfirmed = () => {
-    this.props.removeItem();
+    if (this.props.savedResource.some(resource => resource.id === this.props.organization.id)) {
+      this.props.actions.removeSavedResource(this.props.organization.id);
+    }
     this.confirmationModalToggle();
   };
 
@@ -128,4 +134,17 @@ class SavedResource extends Component {
   }
 }
 
-export default SavedResource;
+function mapStateToProps(state, ownProps) {
+  return {
+    savedResource: state.savedResource
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(resourceAction, dispatch)
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SavedResource);
