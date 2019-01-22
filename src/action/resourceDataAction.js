@@ -25,6 +25,10 @@ export function filterByCategories(filteredResource){
     return { type: types.FILTER_RESOURCE_BY_CATEGORIES, filteredResource }
 }
 
+export function filterBySearch(searchedResource){
+    return { type: types.FILTER_RESOURCE_BY_SEARCH, searchedResource }
+}
+
 export function addSavedResource(savedResource){
     return { type: types.ADD_SAVED_RESOURCE, savedResource }
   }
