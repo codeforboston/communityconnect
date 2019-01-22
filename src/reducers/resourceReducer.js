@@ -54,3 +54,16 @@ export function savedResource(state = initialState.savedResource, action) {
             return state;
     }
 }
+
+export function mapResource(state = initialState.mapResource, action) {
+    switch (action.type) {
+        case types.GROUP_RESOURCE_BY_COORDINATES_SUCCESS:
+        var locationArray = [];
+        action.resources.forEach(function (resource) {
+          locationArray[resource.hashCoordinates] = locationArray[resource.hashCoordinates] || [];
+          locationArray[resource.hashCoordinates].push(resource);
+        });
+            return Object.assign([], state, locationArray);
+        default: return state;
+    }
+}

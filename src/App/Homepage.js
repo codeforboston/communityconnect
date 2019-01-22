@@ -55,13 +55,14 @@ class Homepage extends Component {
   }
 
   //Remove deep linking until more details are made
- /* cardClick = (index) => {
-    this.props.history.push({
-      pathname: '/',
-      search: '?id=' + index
-    });
-    this.mapItem.setOpenMarker(index);
-  }*/
+  /* cardClick = (index) => {
+     this.props.history.push({
+       pathname: '/',
+       search: '?id=' + index
+     });
+     this.mapItem.setOpenMarker(index);
+   }*/
+
 
   scrollToElement = index => {
     this.resultListItem.scrollToElement(index);
@@ -146,6 +147,7 @@ class Homepage extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
+  console.log("State: ", state);
   return {
     resource: state.savedResource.length > 0 ? state.savedResource : state.resource
   }

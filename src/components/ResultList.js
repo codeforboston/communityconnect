@@ -7,6 +7,7 @@ import styles from './ResultList.module.css';
 import SortBar from './Common/SortBar.js';
 import { getDistance } from '../utils/distance.js';
 import * as resourceAction from '../action/resourceDataAction';
+import * as mapResourceAction from '../action/mapDataAction';
 
 export class ResultList extends Component {
 
@@ -71,6 +72,18 @@ export class ResultList extends Component {
       this.props.actions.addSavedResource(this.props.savedResource.slice())
     }
   }
+
+  componentDidUpdate(prevProps, nextProps) {
+    if(this.props.savedResource.length){
+    this.props.mapActions.groupResourcesByCoordinates(this.props.savedResource);
+    }
+    /*var locationArray = [];
+    this.props.resource.forEach(function (resource) {
+      locationArray[resource.hashCoordinates] = locationArray[resource.hashCoordinates] || [];
+      locationArray[resource.hashCoordinates].push(resource);
+    });*/
+  }
+
   render() {
     const sortOptions = [
       {key: 'Alphabetically', sort: this.sortByAlphabet, disabled: false}
@@ -119,7 +132,8 @@ function mapStateToProps(state, ownProps) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(resourceAction, dispatch)
+    actions: bindActionCreators(resourceAction, dispatch),
+    mapActions: bindActionCreators(mapResourceAction, dispatch)
   };
 }
 
