@@ -9,7 +9,6 @@ export class OrganizationMarker extends Component {
   constructor(props) {
     super(props);
     this.state.open = props.open;
-    this.orgsArray = []
 
   }
 
@@ -21,10 +20,11 @@ export class OrganizationMarker extends Component {
   }
 
   scrollToElement = (e) => {
-    this.props.setOpenMarker(this.props.orgIndexes[0])
+    /*this.props.setOpenMarker(this.props.orgIndexes[0])
     if(this.props.orgIndexes.length === 1){
       this.props.scrollToElement(this.props.orgIndexes[0])
-    }
+    }*/
+    this.setState({ open: true });
   }
 
   handleClickOfInfoWindow = (e) => {
@@ -36,26 +36,27 @@ export class OrganizationMarker extends Component {
   }
 
   render() {
-    if(this.orgsArray.length === 0){
+    /*if(this.orgsArray.length === 0){
       for(var orgIndex of this.props.orgIndexes){
         this.orgsArray.push([this.props.organizations[orgIndex], orgIndex])
       }
-    }
+    }*/
+    let {resource} = this.props;
     return (
       <Marker
         optimize={false}
-        position={this.orgsArray[0][0].coordinates}
+        position={resource.coordinates}
         onClick={this.scrollToElement}
       >
 
       {this.state.open &&
           <InfoWindow onCloseClick={this.handleClose}>
               <div>
-                {this.orgsArray.map(([organization, orgIndex])  =>
-                  <div key={organization.id} id={orgIndex} onClick={this.handleClickOfInfoWindow}>
-                    <h3>{organization.name}</h3>
-                    <div>{organization.location}</div>
-                    <div><a href={`tel:${organization.phone}`}>{organization.phone}</a></div>
+              {resource.groupedResource.map( resource  =>
+                  <div key={resource.id} id={resource.id} onClick={this.handleClickOfInfoWindow}>
+                    <h3>{resource.name}</h3>
+                    <div>{resource.combinedaddress}</div>
+                    <div><a href={`tel:${resource.phone}`}>{resource.phone}</a></div>
                  </div>)}
             </div>
           </InfoWindow> }

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Route } from 'react-router';
 
 import Header from '../components/Header/Header';
 import CategoryList from '../components/CategoryList';
 import ResultList from '../components/ResultList';
 import CardGrid from '../components/CardGrid';
-import Map from '../components/Map/Map';
-import { callSheets } from '../data/sheetLoadingHelpers';
+import OrganizationMap from '../components/Map/OrganizationMap';
 import styles from './App.module.css';
 import { SplitScreenSlidingPane, SplitScreenTogglePane } from '../components/SlidingPane/SplitScreenSlidingPane.js';
 import ShoppingCart from '../components/ShoppingCart';
@@ -17,15 +15,10 @@ class Homepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      orgs: [],
-      categories: [],
-      tags: [],
-      locationAddressHashTable: [],
       cardClickedIndex: null,
       isSavedResourcePaneOpen: false,
       data: []
     }
-    this.callSheets = callSheets.bind(this);
     this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
     this.orderResources = this.orderResources.bind(this);
     this.uploadResources = this.uploadResources.bind(this);
@@ -50,7 +43,6 @@ class Homepage extends Component {
     }
   }
   componentDidMount() {
-    this.callSheets("");
     this.getLocation();
   }
 
@@ -122,13 +114,11 @@ class Homepage extends Component {
               />
             )} />
             <Route path='/map' render={props => (
-              <Map
+              <OrganizationMap
                 routerLocation={props.location}
                 center={this.state.position ? this.state.position.coordinates : null}
-                organizations={this.state.orgs}
                 scrollToElement={this.scrollToElement}
                 ref={instance => { this.mapItem = instance }}
-                locationAddressHashTable={this.state.locationAddressHashTable}
               />
             )} />
           </div>
@@ -146,11 +136,4 @@ class Homepage extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  console.log("State: ", state);
-  return {
-    resource: state.savedResource.length > 0 ? state.savedResource : state.resource
-  }
-}
-
-export default connect(mapStateToProps)(Homepage)
+export default Homepage;
