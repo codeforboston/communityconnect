@@ -146,6 +146,7 @@ class Homepage extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
+  
   return {
     resource: state.savedResource.length > 0 ? state.savedResource : state.resource
   }
