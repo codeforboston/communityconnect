@@ -95,7 +95,7 @@ class OrganizationMap extends Component {
           orgRef.isOpen = false;
         }
 
-        if(Number(i) === index) {
+        if(Number(i) === Number(index)) {
           orgRef.isOpen = true
           this.setState({
             center: this.props.organizations[orgRef.orgs[0]].coordinates,
