@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
+import { withRouter } from 'react-router';
+import qs from 'qs-lite';
 
-import styles from './OrganizationCard.module.css'
 import { getDistance } from '../../utils/distance.js';
 import { Card, CardBody, CardSubtitle } from 'reactstrap';
 import * as resourceAction from '../../action/resourceDataAction';
 import SaveButton from './SaveButton';
+
+import styles from './OrganizationCard.module.css'
+
 
 class OrganizationCard extends Component {
 
@@ -28,8 +32,31 @@ class OrganizationCard extends Component {
   }
   saveItem = () => {
     if (!this.props.savedResource.some(r => r.id === this.props.organization.id)) {
-        this.props.actions.addSavedResource(this.props.organization);
+      this.props.actions.addSavedResource(this.props.organization);
     }
+
+    // Following the comment from @galiat
+    // at https://github.com/codeforboston/communityconnect/issues/155#issuecomment-456634900
+    // these should no longer live in redux, instead the URL params should hold the store
+		const query = qs.parse(window.location.search.replace('?', ''));
+    let resources = [];
+
+    if (query.resources) {
+      resources = query.resources.split(',');
+    }
+
+    const indexOfResource = resources.indexOf(this.props.organization.id);
+    if (indexOfResource >= 0) {
+      resources.splice(indexOfResource, 1);
+    } else {
+      resources.push(this.props.organization.id);
+    }
+
+		this.props.history.push({
+			pathname: window.location.pathname,
+			search: `?resources=${resources.join(',')}`,
+		});
+
   }
   saveButton(){
     if(this.props.saveable){
@@ -85,4 +112,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrganizationCard);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
+)(OrganizationCard);

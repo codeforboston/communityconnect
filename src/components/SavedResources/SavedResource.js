@@ -30,6 +30,10 @@ class SavedResource extends Component {
     this.removalConfirmed = this.removalConfirmed.bind(this);
   }
 
+  componentDidMount() {
+    // Initialize data
+  }
+
   confirmationModalToggle = () => {
     this.setState({
       modal: !this.state.modal,
