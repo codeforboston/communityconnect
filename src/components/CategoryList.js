@@ -21,7 +21,7 @@ export class CategoryList extends Component {
     let index = selectedCategory.indexOf(selected);
     index !== -1 ? selectedCategory.splice(index, 1) : selectedCategory.push(selected);
     let filteredResource = this.props.resource.filter(resource => {
-      return this.state.selectedCategory.some(searchCategory => resource.categoryautosortscript.split(',').includes(searchCategory));
+      return this.state.selectedCategory.some(searchCategory => resource.categoryautosortscript.split(',').map(item => item.trim()).includes(searchCategory));
     });
     this.props.actions.filterByCategories(selectedCategory.length > 0 ? filteredResource : this.props.resource);
   }
