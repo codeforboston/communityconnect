@@ -41,16 +41,3 @@ const Map = withScriptjs(withGoogleMap( props => (
     )));
 
 export default Map;
-
-/*() => {
-    Object.entries(props.locationAddressHashTable).forEach(([hashIndex, orgRefs]) => {
-
-        this.orgMarkers.push(<OrganizationMarker
-            scrollToElement={props.scrollToElement}
-            setOpenMarker={props.setOpenMarker}
-            key={hashIndex}
-            open={orgRefs.isOpen}
-            organizations={props.organizations}
-            orgIndexes={orgRefs.orgs}
-        />)
-    })}*/

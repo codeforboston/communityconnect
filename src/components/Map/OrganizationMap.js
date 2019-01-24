@@ -14,7 +14,7 @@ class OrganizationMap extends Component {
     super(props);
     this.state = {
       center: this.props.center ? this.props.center : defaultCenter,
-      zoom: defaultZoom,
+      zoom: defaultZoom
     }
   }
 
@@ -45,14 +45,14 @@ class OrganizationMap extends Component {
 
   setOpenMarker = index => {
 
-    Object.entries(this.props.locationAddressHashTable).forEach(([index2, orgRef])  => {
+    Object.entries(this.props.locationAddressHashTable).forEach(([index2, orgRef]) => {
 
-      for(var i of orgRef.orgs) {
-        if(Number(i) !== index && orgRef.isOpen) {
+      for (var i of orgRef.orgs) {
+        if (Number(i) !== index && orgRef.isOpen) {
           orgRef.isOpen = false;
         }
 
-        if(Number(i) === index) {
+        if (Number(i) === index) {
           orgRef.isOpen = true
           this.setState({
             center: this.props.organizations[orgRef.orgs[0]].coordinates,
@@ -79,7 +79,6 @@ class OrganizationMap extends Component {
   }
 
   render() {
-    console.log("Org map: ", this.props.mapResource)
     return (
       <Map
         mapRef={this.mapRef}
@@ -99,10 +98,21 @@ class OrganizationMap extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  let resource = Object.values(state.mapResource);
+  let currentResource = state.savedResource.length > 0 ? state.savedResource : state.resource;
+  var locationArray = [];
+  currentResource.forEach(function (resource) {
+    if (!locationArray[resource.hashCoordinates]) {
+      locationArray[resource.hashCoordinates] = {
+        coordinates: resource.coordinates,
+        groupedResource: [],
+        showInfo: false
+      }
+    }
+    locationArray[resource.hashCoordinates].groupedResource.push(resource);
+  });
+  let resource = Object.values(locationArray);
   return {
     mapResource: resource
   }
 }
-
 export default connect(mapStateToProps)(OrganizationMap)

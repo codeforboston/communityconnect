@@ -36,12 +36,8 @@ export class OrganizationMarker extends Component {
   }
 
   render() {
-    /*if(this.orgsArray.length === 0){
-      for(var orgIndex of this.props.orgIndexes){
-        this.orgsArray.push([this.props.organizations[orgIndex], orgIndex])
-      }
-    }*/
     let {resource} = this.props;
+    console.log(this.props);
     return (
       <Marker
         optimize={false}
