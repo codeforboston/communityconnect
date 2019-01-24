@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-class SearchBar extends Component {
+import * as resourceAction from '../../action/resourceDataAction';
+
+export class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.handleFilter = this.handleFilter.bind(this);
@@ -9,14 +13,12 @@ class SearchBar extends Component {
     };
   }
 
-
-  handleSubmit(txt){
-    this.props.handleFilter(txt, "name");
-  }
-
   handleFilter (e) {
     this.setState({searchString : e.target.value});
-    this.handleSubmit(e.target.value);
+    let searchedResource = this.props.resource.filter(function (i) {
+      return i.name.toLowerCase().match(e.target.value.toLowerCase());
+    });
+    this.props.actions.filterBySearch(e.target.value.length > 0 ? searchedResource : this.props.resource);
   }
 
 
@@ -27,4 +29,15 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar;
+function mapStateToProps(state, ownProps) {
+  return {
+    resource: state.filteredResource.length > 0 ? state.filteredResource : state.resource
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(resourceAction, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router';
+
 import {
   Collapse,
   Navbar,
@@ -38,7 +40,12 @@ class Header extends Component {
         <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-              <SearchBar type="text" handleFilter={this.props.handleFilter} />
+              <Route exact path='/' render={props => (
+                <SearchBar
+                  routerLocation={props.location} 
+                  type="text" 
+                  handleFilter={this.props.handleFilter} />
+              )} />              
               </NavItem>
               <NavItem>
               <Button
