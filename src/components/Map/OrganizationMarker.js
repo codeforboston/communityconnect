@@ -37,7 +37,6 @@ export class OrganizationMarker extends Component {
 
   render() {
     let {resource} = this.props;
-    console.log(this.props);
     return (
       <Marker
         optimize={false}
