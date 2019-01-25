@@ -2,34 +2,33 @@ import React, { Component } from 'react';
 import { Marker, InfoWindow } from 'react-google-maps';
 
 export class OrganizationMarker extends Component {
-  state = {
-    open: false,
-  }
-
   constructor(props) {
     super(props);
-    this.state.open = props.open;
+    this.state = {
+      open: this.props.open
+    }
 
   }
-
 
   componentDidUpdate(prevProps){
     if(prevProps.open !== this.props.open){
       this.setState({open: this.props.open})
     }
   }
-
+//scrollToElement  and handleClickOfInfoWindow is currently non-functional
+/*
   scrollToElement = (e) => {
-    /*this.props.setOpenMarker(this.props.orgIndexes[0])
+    this.props.setOpenMarker(this.props.orgIndexes[0])
     if(this.props.orgIndexes.length === 1){
       this.props.scrollToElement(this.props.orgIndexes[0])
-    }*/
+    }
     this.setState({ open: true });
   }
 
   handleClickOfInfoWindow = (e) => {
     this.props.scrollToElement(e.currentTarget.id)
   }
+*/
 
   handleClose = () => {
     this.setState({ open: false });

@@ -17,7 +17,6 @@ class Homepage extends Component {
     this.state = {
       cardClickedIndex: null,
       isSavedResourcePaneOpen: false,
-      data: []
     }
     this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
     this.orderResources = this.orderResources.bind(this);

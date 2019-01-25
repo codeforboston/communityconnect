@@ -42,7 +42,7 @@ class OrganizationMap extends Component {
       zoom: [organizationZoom]
     });
   }
-
+/*
   setOpenMarker = index => {
 
     Object.entries(this.props.locationAddressHashTable).forEach(([index2, orgRef]) => {
@@ -65,7 +65,7 @@ class OrganizationMap extends Component {
     });
     this.forceUpdate();
   }
-
+*/
   onZoomChanged = ref => {
 
     this.setState({
