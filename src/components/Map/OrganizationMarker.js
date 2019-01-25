@@ -16,19 +16,18 @@ export class OrganizationMarker extends Component {
     }
   }
 //scrollToElement  and handleClickOfInfoWindow is currently non-functional
-/*
+
   scrollToElement = (e) => {
-    this.props.setOpenMarker(this.props.orgIndexes[0])
+    /*this.props.setOpenMarker(this.props.orgIndexes[0])
     if(this.props.orgIndexes.length === 1){
       this.props.scrollToElement(this.props.orgIndexes[0])
-    }
+    }*/
     this.setState({ open: true });
   }
 
   handleClickOfInfoWindow = (e) => {
     this.props.scrollToElement(e.currentTarget.id)
   }
-*/
 
   handleClose = () => {
     this.setState({ open: false });
