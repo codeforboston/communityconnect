@@ -71,6 +71,7 @@ export class ResultList extends Component {
       this.props.actions.addSavedResource(this.props.savedResource.slice())
     }
   }
+
   render() {
     const sortOptions = [
       {key: 'Alphabetically', sort: this.sortByAlphabet, disabled: false}
@@ -119,7 +120,7 @@ function mapStateToProps(state, ownProps) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(resourceAction, dispatch)
+    actions: bindActionCreators(resourceAction, dispatch),
   };
 }
 

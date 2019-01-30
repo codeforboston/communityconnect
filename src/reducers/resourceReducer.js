@@ -44,6 +44,17 @@ export function filteredResource(state = initialState.filteredResource, action) 
     }
 }
 
+export function searchedResource(state = initialState.searchedResource, action) {
+    switch (action.type) {
+        case types.LOAD_RESOURCE_DATA_SUCCESS:
+            return Object.assign([], state, action.resource);
+        case types.FILTER_RESOURCE_BY_SEARCH:
+            return action.searchedResource;
+        default:
+            return state;
+    }
+}
+
 export function savedResource(state = initialState.savedResource, action) {
     switch (action.type) {
         case types.LOAD_RESOURCE_DATA_SUCCESS:
@@ -74,3 +85,4 @@ export function savedResource(state = initialState.savedResource, action) {
             return state;
     }
 }
+

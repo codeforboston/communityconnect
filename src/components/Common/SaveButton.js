@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styles from './OrganizationCard.module.css'
 
 class SaveButton extends Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -37,7 +36,7 @@ class SaveButton extends Component {
 
     render() {
         return (
-            <span onClick={(e) => e.stopPropagation()}>
+            <span onClick={this.handleClick}>
                 <button
                     className={[
                         styles['cbutton--effect-radomir'],
@@ -50,8 +49,7 @@ class SaveButton extends Component {
                         className={[
                             this.state.animateButtonInside,
                             styles['save-item'],
-                        ].join(' ')}
-                        onClick={this.handleClick}>
+                        ].join(' ')}>
                         +
                   </span>
                     <span
@@ -65,4 +63,3 @@ class SaveButton extends Component {
 }
 
 export default SaveButton;
-

@@ -29,8 +29,18 @@ const CardGrid = ({ routerLocation, saveItem, resource }) => {
 };
 
 function mapStateToProps(state, ownProps) {
+    let res = [];
+    //Not the most efficient logic, but it works. Will have to optimize this later 
+    for (var i = 0, len1 = state.searchedResource.length; i < len1; i++) {
+        for (var j = 0, len2 = state.filteredResource.length; j < len2; j++) {
+            if (state.searchedResource[i].id === state.filteredResource[j].id) {
+                res.push(state.searchedResource[i])
+            }
+        }
+    }
+
     return {
-        resource: state.filteredResource
+        resource: res
     }
 }
 
