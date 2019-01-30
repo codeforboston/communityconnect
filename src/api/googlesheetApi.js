@@ -8,6 +8,7 @@ function normalizeHeaders(element) {
   element["twitterUrl"] = element["twitterurl"];
   element["facebookUrl"] = element["facebookurl"];
   element["instagramUrl"] = element["instagramurl"];
+  element["hashCoordinates"] = element["latitude"] + element["longitude"];
   if (element["latitude"] && element["longitude"]) {
     element["coordinates"] = { lat: parseFloat(element["latitude"]), lng: parseFloat(element["longitude"]) }
   }

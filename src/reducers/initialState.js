@@ -3,5 +3,6 @@ export default {
       searchedResource: [],
       filteredResource: [],
       savedResource: [],
-      categories: []
+      categories: [],
+      mapResource: []
 };

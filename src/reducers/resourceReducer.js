@@ -65,3 +65,4 @@ export function savedResource(state = initialState.savedResource, action) {
             return state;
     }
 }
+
