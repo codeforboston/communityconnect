@@ -1,10 +1,13 @@
+import qs from 'qs-lite';
+
 import * as types from '../action/actionType';
 import initialState from './initialState';
+
 
 export function resource(state = initialState.resource, action) {
     switch (action.type) {
         case types.LOAD_RESOURCE_DATA_SUCCESS:
-            return Object.assign([], state, action.resource);
+          return Object.assign([], state, action.resource);
         default: return state;
     }
 }
@@ -54,6 +57,23 @@ export function searchedResource(state = initialState.searchedResource, action) 
 
 export function savedResource(state = initialState.savedResource, action) {
     switch (action.type) {
+        case types.LOAD_RESOURCE_DATA_SUCCESS:
+          const query = qs.parse(window.location.search.replace('?', ''));
+          let selectedResourceIds = [];
+          if (query.resources) {
+            selectedResourceIds = query.resources.split(',');
+          }
+
+          const selectedResources = [];
+          selectedResourceIds.forEach(selectedResourceId => {
+            action.resource.forEach(resource => {
+              if (resource.id === selectedResourceId) {
+                selectedResources.push(resource);
+              }
+            });
+          })
+
+          return Object.assign([], state, selectedResources);
         case types.ADD_SAVED_RESOURCE:
             return [
                 ...state,

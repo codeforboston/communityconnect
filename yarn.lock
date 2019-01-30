@@ -8128,6 +8128,11 @@ qrcode-terminal@^0.12.0:
   resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.12.0.tgz#bb5b699ef7f9f0505092a3748be4464fe71b5819"
   integrity sha512-EXtzRZmC+YGmGlDFbXKxQiMZNwCLEO6BANKXG4iCtSIM0yqc/pappSx3RIKr4r0uh5JsBckOXeKrB3Iz7mdQpQ==
 
+qs-lite@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/qs-lite/-/qs-lite-0.0.1.tgz#9f43971bf8f979fe662d2650b82d139ddd7f61ea"
+  integrity sha1-n0OXG/j5ef5mLSZQuC0Tnd1/Yeo=
+
 qs@6.5.1, qs@~6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
