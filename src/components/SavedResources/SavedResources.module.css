@@ -6,7 +6,7 @@
   top: 0;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
-  height:calc(100vh - 300px);
+  height:calc(100vh - 172px);
 }
 
 .saved-resources-full-width {
