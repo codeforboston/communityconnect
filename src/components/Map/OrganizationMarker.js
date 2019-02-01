@@ -26,7 +26,8 @@ export class OrganizationMarker extends Component {
   }
 
   handleClickOfInfoWindow = (e) => {
-    this.props.scrollToElement(e.currentTarget.id)
+    var element = document.getElementById(e.currentTarget.id);
+    element.scrollIntoView();
   }
 
   handleClose = () => {
