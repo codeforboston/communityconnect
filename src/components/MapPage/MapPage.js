@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
 
-import Header from '../components/Header/Header';
-import CategoryList from '../components/CategoryList';
-import ResultList from '../components/ResultList';
-import CardGrid from '../components/CardGrid';
-import OrganizationMap from '../components/Map/OrganizationMap';
-import styles from './App.module.css';
-import { SplitScreenSlidingPane, SplitScreenTogglePane } from '../components/SlidingPane/SplitScreenSlidingPane.js';
-import ShoppingCart from '../components/ShoppingCart';
+import ResultList from './Map/ResultList';
+import OrganizationMap from './Map/OrganizationMap';
+import styles from './MapPage.module.css';
+import { SplitScreenSlidingPane } from '../SlidingPane/SplitScreenSlidingPane';
 
 
 class Homepage extends Component {
@@ -86,51 +81,25 @@ class Homepage extends Component {
 
   render() {
     return (
-      <div className={styles.viewport}>
-        <div className={styles.header}>
-          <Header
-            toggleSavedResourcesPane={this.toggleSavedResourcesPane}
-          />
-        </div>
         <div id={styles.container}>
           <SplitScreenSlidingPane>
-            <Route exact path='/' component={CategoryList} />
-            <Route path='/map' render={props => (
               <ResultList
-                routerLocation={props.location}
+                routerLocation={this.props.location}
                 ref={instance => { this.resultListItem = instance }}
                 cardClick={this.cardClick}
                 currentPos={this.state.position}
                 fullWidth={true}
               />
-            )} />
           </SplitScreenSlidingPane>
           <div className={styles.staticPane}>
-            <Route exact path='/' render={props => (
-              <CardGrid
-                routerLocation={props.location}
-                currentPos={this.state.position}
-              />
-            )} />
-            <Route path='/map' render={props => (
               <OrganizationMap
-                routerLocation={props.location}
+                routerLocation={this.props.location}
                 center={this.state.position ? this.state.position.coordinates : null}
                 scrollToElement={this.scrollToElement}
                 ref={instance => { this.mapItem = instance }}
               />
-            )} />
           </div>
-          <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
-            <ShoppingCart
-              reOrder={this.orderResources}
-              addItem={this.saveResource}
-              removeItem={this.removeResource}
-              uploadItems={this.uploadResources}>
-            </ShoppingCart>
-          </SplitScreenTogglePane>
         </div>
-      </div>
     );
   }
 }

@@ -8,9 +8,9 @@ import {
   Button
 } from 'reactstrap';
 //import { downloadObjectAsJson } from '../utils/DownloadHelper.js';
-import FileUpload from './FileUpload/FileUpload.js';
+import FileUpload from '../FileUpload/FileUpload.js';
 import styles from './ShoppingCart.module.css';
-import SavedResources from './SavedResources/SavedResourcesContainer';
+import SavedResources from './SavedResourcesContainer';
 
 const ToHomeButton = () => {
   return (
