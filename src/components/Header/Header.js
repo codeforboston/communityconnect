@@ -11,7 +11,6 @@ import {
   Button} from 'reactstrap';
 
 import SearchBar from '../Header/SearchBar.js';
-import CClargelogo from '../Header/Images/CClargelogo.png';
 
 class Header extends Component {
   constructor(props) {
@@ -33,8 +32,8 @@ class Header extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-        <NavbarBrand className="Logo-icon" href="/">
-          <img src={CClargelogo} alt="Community Connect logo"/>
+        <NavbarBrand className="Logo" href="/">
+          <h>Community Connect</h>
         </NavbarBrand>
         <NavbarToggler onClick={this.toggleNavbar}  />
         <Collapse isOpen={!this.state.collapsed} navbar>
@@ -42,10 +41,10 @@ class Header extends Component {
               <NavItem>
               <Route exact path='/' render={props => (
                 <SearchBar
-                  routerLocation={props.location} 
-                  type="text" 
+                  routerLocation={props.location}
+                  type="text"
                   handleFilter={this.props.handleFilter} />
-              )} />              
+              )} />
               </NavItem>
               <NavItem>
               <Button
