@@ -3,6 +3,7 @@ import { Row, Col, Container } from 'reactstrap';
 import { connect } from 'react-redux';
 import OrganizationCard from './Common/OrganizationCard';
 import SortBar from './Common/SortBar.js';
+import SearchBar from './Header/SearchBar';
 import { getDistance } from '../utils/distance.js';
 import styles from './CardGrid.css';
 
@@ -61,10 +62,16 @@ export class CardGrid extends Component {
 
     return (
       <Container className={styles.grid}>
-        <SortBar
+      <Row>
+        <Col>
+        <SearchBar
+          type="text"
+          handleFilter={this.props.handleFilter} /></Col>
+        <Col><SortBar
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
-        />
+        /></Col>
+      </Row>              
           <Row>
             {
               sortedData.map((resource, index) => (
