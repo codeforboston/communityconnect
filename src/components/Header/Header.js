@@ -30,7 +30,7 @@ class Header extends Component {
       <div>
         <Navbar color="light" light expand="md">
         <NavbarBrand className="Logo" href="/">
-          <h2>Community Connect</h2>
+          <h3>Community Connect</h3>
         </NavbarBrand>
         <NavbarToggler onClick={this.toggleNavbar}  />
         <Collapse isOpen={!this.state.collapsed} navbar>
