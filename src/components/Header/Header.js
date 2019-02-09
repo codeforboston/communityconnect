@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
 
 import {
   Collapse,
@@ -9,8 +8,6 @@ import {
   Nav,
   NavItem,
   Button} from 'reactstrap';
-
-import SearchBar from '../Header/SearchBar.js';
 
 class Header extends Component {
   constructor(props) {
@@ -33,19 +30,11 @@ class Header extends Component {
       <div>
         <Navbar color="light" light expand="md">
         <NavbarBrand className="Logo" href="/">
-          <h>Community Connect</h>
+          <h3>Community Connect</h3>
         </NavbarBrand>
         <NavbarToggler onClick={this.toggleNavbar}  />
         <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-              <Route exact path='/' render={props => (
-                <SearchBar
-                  routerLocation={props.location}
-                  type="text"
-                  handleFilter={this.props.handleFilter} />
-              )} />
-              </NavItem>
               <NavItem>
               <Button
                 color="secondary"
