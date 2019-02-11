@@ -12,66 +12,6 @@
     height:auto;
     padding: 1px;
   }
-  #container {
-    position: absolute;
-    width: 100%;
-    /* 55px is the height of the header*/
-    height:calc(100% - 55px); 
-    z-index: 0;
+  .togglePane{
+    top:50px;
   }
-
-  .slidingPane {
-      position: absolute;
-      top: 0;
-      right: 70%;
-      bottom: 0;
-      left: 0;
-      padding: 10px;
-      transition: bottom 0.3s ease-in-out;
-    }
-
-    .slidingPaneToggle {
-      display: none;
-      position: absolute;
-      height: 40px;
-      width: 100px;
-      border: 0;
-      top: -40px;
-      left: 50%;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 4px 4px 0 0;
-      margin-left: -50px;
-      font-size: 1.4rem;
-    }
-
-    .staticPane {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 30%;
-      overflow: auto;
-    }
-
-    @media (max-width: 768px) {
-      .staticPane {
-        left: 0;
-        z-index: 5;
-      }
-      .slidingPane {
-        background-color: rgba(255, 255, 255, 0.9);
-        bottom: -59%;
-        right: 0;
-        top: auto;
-        height: 70%;
-        z-index: 10;
-      }
-      .slidingPane.open {
-        bottom: 0;
-        z-index: 10;
-      }
-      .slidingPaneToggle {
-        display: block;
-        text-align: center;
-      }
-    }

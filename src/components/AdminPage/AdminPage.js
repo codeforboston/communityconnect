@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 import CategoryList from './CategoryList';
 import CardGrid from './CardGrid';
-import styles from './Homepage.module.css';
+import styles from './AdminPage.module.css';
 
 
-class Homepage extends Component {
+class AdminPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -70,15 +70,19 @@ class Homepage extends Component {
 
     render() {
         return (
-            <div className={styles.viewport}>
+            <div className={styles.wrapper}>
+                <div>
                 <CategoryList />
+                </div>
+                <div>
                 <CardGrid
                     routerLocation={this.props.location}
                     currentPos={this.state.position}
                 />
+                </div>
             </div>
         );
     }
 }
 
-export default Homepage;
+export default AdminPage;

@@ -6,16 +6,12 @@ import styles from './MapPage.module.css';
 import { SplitScreenSlidingPane } from '../SlidingPane/SplitScreenSlidingPane';
 
 
-class Homepage extends Component {
+class AdminPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardClickedIndex: null,
-      isSavedResourcePaneOpen: false,
+      positions: {}
     }
-    this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
-    this.orderResources = this.orderResources.bind(this);
-    this.uploadResources = this.uploadResources.bind(this);
   }
 
   getLocation = () => {
@@ -39,46 +35,6 @@ class Homepage extends Component {
   componentDidMount() {
     this.getLocation();
   }
-
-  //Remove deep linking until more details are made
-  /* cardClick = (index) => {
-     this.props.history.push({
-       pathname: '/',
-       search: '?id=' + index
-     });
-     this.mapItem.setOpenMarker(index);
-   }*/
-
-
-  scrollToElement = index => {
-    this.resultListItem.scrollToElement(index);
-  }
-
-  toggleSavedResourcesPane = () => {
-    this.setState({
-      isSavedResourcePaneOpen: !this.state.isSavedResourcePaneOpen
-    });
-  }
-
-  orderResources = (sourceIndex, destinationIndex) => {
-    let savedResources = this.state.savedResources.slice();
-
-    let movedResource = savedResources[sourceIndex];
-    savedResources.splice(sourceIndex, 1);
-    savedResources.splice(destinationIndex, 0, movedResource);
-
-    this.setState({
-      savedResources: savedResources,
-    })
-  }
-
-  uploadResources = (resources) => {
-    this.setState({
-      savedResources: resources.slice(),
-    })
-  }
-
-
   render() {
     return (
         <div id={styles.container}>
@@ -104,4 +60,4 @@ class Homepage extends Component {
   }
 }
 
-export default Homepage;
+export default AdminPage;

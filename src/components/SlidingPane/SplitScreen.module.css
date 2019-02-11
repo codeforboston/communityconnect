@@ -33,6 +33,8 @@
     z-index: 10;
   }
   .slidingPane.open {
+    height: calc(70% - 40px);
+    top:60px;
     bottom: 0;
     z-index: 10;
   }

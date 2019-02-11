@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Row, Col, Container } from 'reactstrap';
 import { connect } from 'react-redux';
-import OrganizationCard from './Common/OrganizationCard';
-import SortBar from './Common/SortBar.js';
-import SearchBar from './Header/SearchBar';
-import { getDistance } from '../utils/distance.js';
+import OrganizationCard from '../Common/OrganizationCard';
+import SortBar from '../Common/SortBar.js';
+import SearchBar from '../Header/SearchBar';
+import { getDistance } from '../../utils/distance.js';
 import styles from './CardGrid.css';
 
 export class CardGrid extends Component {

@@ -12,15 +12,15 @@ import FileUpload from '../FileUpload/FileUpload.js';
 import styles from './ShoppingCart.module.css';
 import SavedResources from './SavedResourcesContainer';
 
-const ToHomeButton = () => {
+/*const ToHomeButton = () => {
   return (
-    <Button tag={Link} to="/" type="Home">To Home</Button>
+    <Button tag={Link} to="/" type="Map">To Home</Button>
   )
-}
+}*/
 
 const ToMapButton = () => {
   return (
-    <Button tag={Link} to="/map" type="Map">To Map</Button>
+    <Button tag={Link} to="/" type="Admin">To Map</Button>
   )
 }
 class ShoppingCart extends React.Component {
@@ -65,8 +65,7 @@ class ShoppingCart extends React.Component {
               fullWidth={true}
               reOrder={this.props.reOrder}
             />
-            <Route exact path='/' component={ToMapButton} />
-            <Route exact path='/Map' component={ToHomeButton} />
+            <Route exact path='/admin' component={ToMapButton} />
           </CardBody>
         </Card>
       </div>
