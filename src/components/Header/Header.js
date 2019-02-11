@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as resourceAction from '../../action/resourceDataAction';
 
 import {
   Collapse,
@@ -22,8 +19,8 @@ class Header extends Component {
     super(props);
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
+    this.modalOpen = this.modalOpen.bind(this);
     this.modalToggle = this.modalToggle.bind(this);
-    this.removeModal = this.removeModal.bind(this);
     this.confirmationModalToggle = this.confirmationModalToggle.bind(this);
     this.state = {
       collapsed: true,
@@ -37,34 +34,29 @@ class Header extends Component {
     });
   }
 
-  modalToggle() {    
-    if(this.props.savedResource.length > 0){
-      this.setState({
-        modal: true
-      });
-    }
+  modalOpen() {    
+    if(this.props.savedResource.length > 0)
+      this.modalToggle();
     else
       window.location.reload();    
   }
 
-  removeModal() {
+  modalToggle(){
     this.setState({
-      modal: false
+      modal: !this.state.modal
     });
   }
 
   confirmationModalToggle = () => {
     window.location.href = "/";
-    this.setState({
-      modal: false
-    });
+    this.modalToggle();
   };
 
   render() {
     return (
       <div>
         <Navbar color="light" light expand="md">
-        <NavbarBrand className="Logo" onClick={this.modalToggle}>
+        <NavbarBrand className="Logo" onClick={this.modalOpen}>
           <h3>Community Connect</h3>
         </NavbarBrand>
         <NavbarToggler onClick={this.toggleNavbar}  />
@@ -80,11 +72,11 @@ class Header extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-        <Modal isOpen={this.state.modal} toggle={this.confirmationModalToggle} onClosed={this.toggle}>
+        <Modal isOpen={this.state.modal} toggle={this.modalToggle} onClosed={this.toggle}>
           <ModalHeader>Alert</ModalHeader>
           <ModalBody>This action will clear all your saved resources. Do you want to proceed?</ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.removeModal}>Cancel</Button>{' '}
+            <Button color="primary" onClick={this.modalToggle}>Cancel</Button>{' '}
             <Button color="secondary" onClick={this.confirmationModalToggle}>Continue</Button>
           </ModalFooter>
         </Modal>
@@ -99,10 +91,4 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(resourceAction, dispatch)
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);
