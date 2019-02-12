@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router';
 
 import {
   Collapse,
@@ -12,7 +13,8 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter} from 'reactstrap';
+  ModalFooter
+} from 'reactstrap';
 
 class Header extends Component {
   constructor(props) {
@@ -34,14 +36,14 @@ class Header extends Component {
     });
   }
 
-  modalOpen() {    
-    if(this.props.savedResource.length > 0)
+  modalOpen() {
+    if (this.props.savedResource.length > 0)
       this.modalToggle();
     else
-      window.location.reload();    
+      window.location.reload();
   }
 
-  modalToggle(){
+  modalToggle() {
     this.setState({
       modal: !this.state.modal
     });
@@ -56,18 +58,19 @@ class Header extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-        <NavbarBrand className="Logo" onClick={this.modalOpen}>
-          <h3>Community Connect</h3>
-        </NavbarBrand>
-        <NavbarToggler onClick={this.toggleNavbar}  />
-        <Collapse isOpen={!this.state.collapsed} navbar>
+          <NavbarBrand className="Logo" onClick={this.modalOpen}>
+            <h3>Community Connect</h3>
+          </NavbarBrand>
+          <NavbarToggler onClick={this.toggleNavbar} />
+          <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-              <Button
-                color="secondary"
-                onClick={() => this.props.toggleSavedResourcesPane()}>
-                Saved Resources
-              </Button>
+                <Route path='/admin' render={props =>
+                  <Button
+                    color="secondary"
+                    onClick={() => this.props.toggleSavedResourcesPane()}>
+                    Saved Resources
+            </Button>} />
               </NavItem>
             </Nav>
           </Collapse>

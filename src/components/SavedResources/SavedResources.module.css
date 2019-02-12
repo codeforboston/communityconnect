@@ -3,7 +3,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  top: 40px;
+  top: 0;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   height:calc(100vh - 172px);

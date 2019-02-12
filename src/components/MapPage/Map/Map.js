@@ -18,8 +18,6 @@ const Map = withScriptjs(withGoogleMap(props => (
             {
                 props.resource.filter(resource => resource.coordinates).map((resource, index) =>
                     <OrganizationMarker
-                        //scrollToElement={props.scrollToElement}
-                        //setOpenMarker={props.setOpenMarker}
                         key={index}
                         open={resource.showInfo}
                         resource={resource}

@@ -13,7 +13,7 @@ class AppContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        isSavedResourcePaneOpen: false,
+        position:{}
     }
     this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
 }
@@ -53,9 +53,9 @@ class AppContainer extends Component {
             toggleSavedResourcesPane={this.toggleSavedResourcesPane}
           />
         </div>
-            <Route exact path='/admin' component={AdminPage} />
-            <Route exact path='/' component={MapPage} />
-            <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen} className={styles.togglePane}>
+            <Route exact path='/admin' render={(props) => <AdminPage currentPosition={this.state.position} />} />
+            <Route exact path='/' render={(props) => <MapPage currentPosition={this.state.position} />} />
+            <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
             <ShoppingCart
               reOrder={this.orderResources}
               addItem={this.saveResource}
