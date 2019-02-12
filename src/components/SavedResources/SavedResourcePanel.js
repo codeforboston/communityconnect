@@ -1,15 +1,12 @@
 import React from 'react';
 import { Link, Route } from "react-router-dom";
-import PropTypes from 'prop-types';
 import {
   Card,
   CardBody,
   CardHeader,
   Button
 } from 'reactstrap';
-//import { downloadObjectAsJson } from '../utils/DownloadHelper.js';
-import FileUpload from '../FileUpload/FileUpload.js';
-import styles from './ShoppingCart.module.css';
+import styles from './SavedResourcePanel.module.css';
 import SavedResources from './SavedResourcesContainer';
 
 /*const ToHomeButton = () => {
@@ -23,21 +20,8 @@ const ToMapButton = () => {
     <Button tag={Link} to="/" type="Admin">To Map</Button>
   )
 }
-class ShoppingCart extends React.Component {
-  constructor(props) {
-    super(props);
+const SavedResourcePanel = () => {
 
-    this.state = {
-      showUpload: false,
-    };
-
-    this.toggleUpload = this.toggleUpload.bind(this);
-  }
-  toggleUpload = () => {
-    this.setState({showUpload: !this.state.showUpload});
-  };
-
-  render() {
     return (
       <div>
         <Card>
@@ -60,22 +44,12 @@ class ShoppingCart extends React.Component {
             </span>
           </CardHeader>
           <CardBody className={styles['shopping-cart-card']}>
-            {this.state.showUpload ? <FileUpload handleData={this.props.uploadItems} toggleUpload={this.toggleUpload} /> : null}
-            <SavedResources
-              fullWidth={true}
-              reOrder={this.props.reOrder}
-            />
+            <SavedResources />
             <Route exact path='/admin' component={ToMapButton} />
           </CardBody>
         </Card>
       </div>
     )
-  }
 }
 
-ShoppingCart.propTypes = {
-  reOrder: PropTypes.func.isRequired,
-  uploadItems: PropTypes.func.isRequired,
-};
-
-export default ShoppingCart;
+export default SavedResourcePanel;

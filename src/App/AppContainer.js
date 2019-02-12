@@ -5,7 +5,7 @@ import Header from '../components/Header/Header';
 import MapPage from '../components/MapPage/MapPage';
 import AdminPage from '../components/AdminPage/AdminPage';
 import {SplitScreenTogglePane} from '../components/SlidingPane/SplitScreenSlidingPane';
-import ShoppingCart from '../components/SavedResources/ShoppingCart';
+import SavedResourcePanel from '../components/SavedResources/SavedResourcePanel';
 import styles from './App.module.css';
 
 
@@ -56,12 +56,7 @@ class AppContainer extends Component {
             <Route exact path='/admin' render={(props) => <AdminPage currentPosition={this.state.position} />} />
             <Route exact path='/' render={(props) => <MapPage currentPosition={this.state.position} />} />
             <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
-            <ShoppingCart
-              reOrder={this.orderResources}
-              addItem={this.saveResource}
-              removeItem={this.removeResource}
-              uploadItems={this.uploadResources}>
-            </ShoppingCart>
+            <SavedResourcePanel />
           </SplitScreenTogglePane>
       </div>
     );

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import styles from './SavedResources.module.css';
+import styles from './SavedResourcesContainer.module.css';
 import SavedResource from './SavedResource';
 
 const getItemStyle = (isDragging, draggableStyle) => ({
@@ -28,6 +28,9 @@ const getListStyle = isDraggingOver => ({
 class SavedResourcesContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      data: this.props.data
+    }
     this.onDragEnd = this.onDragEnd.bind(this);
   }
 
@@ -37,19 +40,31 @@ class SavedResourcesContainer extends Component {
       return;
     }
 
-    this.props.reOrder(
+    this.orderResources(
       result.source.index,
       result.destination.index
     );
   }
 
+  orderResources = (sourceIndex, destinationIndex) => {
+    let newSavedResources = this.props.data.slice();
+
+    let movedResource = newSavedResources[sourceIndex];
+    newSavedResources.splice(sourceIndex, 1);
+    newSavedResources.splice(destinationIndex, 0, movedResource);
+
+    this.setState({
+      data: newSavedResources,
+    })
+  }
   render() {
     // Render will be called every time this.props.data is updated, and every time handleSortChange
     // updates the this.state.dataSort variable.
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
 
-    const {data} = this.props;
+    const {data} = this.state;
+    console.log("Data: ", this.state.data);
     return(
       <div>
         <div
@@ -101,9 +116,7 @@ class SavedResourcesContainer extends Component {
 }
 
 SavedResourcesContainer.propTypes = {
-  fullWidth: PropTypes.bool,
-  data: PropTypes.array.isRequired,
-  reOrder: PropTypes.func.isRequired,
+  data: PropTypes.array.isRequired
 }
 
 function mapStateToProps(state, ownProps) {
