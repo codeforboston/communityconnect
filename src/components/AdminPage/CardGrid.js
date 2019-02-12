@@ -80,6 +80,7 @@ export class CardGrid extends Component {
                       key={resource.id}
                       index={resource.id}
                       organization={resource}
+                      currentPos={this.props.currentPos}
                       saveItem={() => this.props.saveItem(resource)}
                       saveable={true}
                   />
