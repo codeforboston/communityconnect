@@ -6,6 +6,7 @@ function normalizeHeaders(element) {
   element["name"] = element["name"];
   element["tags"] = String(element["serviceprovided"]).split(", ");
   element["twitterUrl"] = element["twitterurl"];
+  element["tags"] = String(element["serviceprovided"]);
   element["facebookUrl"] = element["facebookurl"];
   element["instagramUrl"] = element["instagramurl"];
   element["hashCoordinates"] = element["latitude"] + element["longitude"];
