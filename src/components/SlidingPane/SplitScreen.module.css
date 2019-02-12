@@ -29,11 +29,11 @@
     bottom: -64%;
     right: 0;
     top: auto;
-    height: calc(70% - 40px);
+    height: calc(70%);
     z-index: 10;
   }
   .slidingPane.open {
-    height: calc(70% - 40px);
+    height: calc(100% - 40px);
     top:60px;
     bottom: 0;
     z-index: 10;
