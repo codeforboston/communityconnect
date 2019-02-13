@@ -5,7 +5,6 @@ import OrganizationCard from '../Common/OrganizationCard';
 import SortBar from '../Common/SortBar.js';
 import SearchBar from '../Header/SearchBar';
 import { getDistance } from '../../utils/distance.js';
-import styles from './CardGrid.css';
 
 export class CardGrid extends Component {
   constructor(props){
@@ -61,7 +60,7 @@ export class CardGrid extends Component {
     const sortedData = this.state.dataSort();
 
     return (
-      <Container className={styles.grid}>
+      <Container>
       <Row>
         <Col>
         <SearchBar
@@ -75,7 +74,7 @@ export class CardGrid extends Component {
           <Row>
             {
               sortedData.map((resource, index) => (
-                <Col key={resource.id} className="spacing" lg="4" sm="6" xs="12">
+                <Col key={resource.id} lg="4" sm="6" xs="12">
                   <OrganizationCard
                       key={resource.id}
                       index={resource.id}

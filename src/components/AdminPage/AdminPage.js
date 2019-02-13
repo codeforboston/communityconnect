@@ -12,11 +12,9 @@ const AdminPage = ({currentPosition}) => {
                 <div>
                 <CategoryList />
                 </div>
-                <div>
                 <CardGrid
                     currentPos={currentPosition}
                 />
-                </div>
             </div>
         );
 }
