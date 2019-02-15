@@ -50,7 +50,7 @@ class Header extends Component {
   }
 
   confirmationModalToggle = () => {
-    window.location.href = "/";
+    window.location.href = "/admin";
     this.modalToggle();
   };
 

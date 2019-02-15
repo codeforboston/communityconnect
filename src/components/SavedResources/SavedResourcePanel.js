@@ -1,4 +1,5 @@
 import React from 'react';
+import qs from 'qs-lite';
 import { Link, Route } from "react-router-dom";
 import {
   Card,
@@ -7,17 +8,46 @@ import {
   Button
 } from 'reactstrap';
 import styles from './SavedResourcePanel.module.css';
+import shareIcon from '../../share-symbol.svg';
 import SavedResources from './SavedResourcesContainer';
 
-/*const ToHomeButton = () => {
+/*
+const ToHomeButton = () => {
   return (
     <Button tag={Link} to="/" type="Map">To Home</Button>
   )
 }*/
 
+let buttonStyle = {
+  float: 'right',
+  backgroundColor: 'rgba(0,0,0,.001)',
+  border: 'none',
+  padding: '0'
+};
+
+//Commenting this part for now
+//Duplicate functionality || Gives the same result as toShareButton function
+/*
 const ToMapButton = () => {
   return (
-    <Button tag={Link} to="/" type="Admin">To Map</Button>
+    <Button tag={Link} to="/" type="Map">To Map</Button>
+  )
+}*/
+
+const ToShareButton = () => {
+  const query = qs.parse(window.location.search.replace('?', ''));
+  let resources = [];
+  let tempUrl = "";
+  if (query.resources) {
+    resources = query.resources.split(',');
+    tempUrl = `/?resources=${resources.join(',')}`
+  }
+
+  return (
+    <Button
+      style={buttonStyle} tag={Link} type="Map" to={tempUrl} target="_blank">
+        <img className={styles['share-button']} src={shareIcon} alt=""/>           
+    </Button>    
   )
 }
 const SavedResourcePanel = () => {
@@ -26,26 +56,12 @@ const SavedResourcePanel = () => {
       <div>
         <Card>
           <CardHeader>Saved Resources
-            <span>
-              <button
-                title='Upload Resources'
-                className={styles['upload-download-buttons']}
-                //onClick={() => this.toggleUpload()}
-              >
-                <span role="img" aria-label="upload"> ⬆️ </span>
-              </button>
-              <button
-                title='Download Resources'
-                className={styles['upload-download-buttons']}
-                //onClick={() => { downloadObjectAsJson(this.props.data, 'YourFile'); }}
-              >
-                <span role="img" aria-label="download">⬇️ </span>
-              </button>
-            </span>
+          <span> 
+            <Route exact path='/admin' component={ToShareButton} />  
+          </span>
           </CardHeader>
           <CardBody className={styles['shopping-cart-card']}>
             <SavedResources />
-            <Route exact path='/admin' component={ToMapButton} />
           </CardBody>
         </Card>
       </div>
