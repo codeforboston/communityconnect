@@ -6,7 +6,7 @@ import styles from './MapPage.module.css';
 import { SplitScreenSlidingPane } from '../SlidingPane/SplitScreenSlidingPane';
 
 
-const AdminPage = ({currentPosition}) => {
+const MapPage = ({currentPosition}) => {
 
     return (
         <div id={styles.container}>
@@ -29,4 +29,4 @@ const AdminPage = ({currentPosition}) => {
     );
 }
 
-export default AdminPage;
+export default MapPage;
