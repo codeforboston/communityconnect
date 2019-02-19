@@ -21,8 +21,6 @@ const MapPage = ({currentPosition}) => {
           <div className={styles.staticPane}>
               <OrganizationMap
                 center={currentPosition ? currentPosition.coordinates : null}
-                scrollToElement={this.scrollToElement}
-                ref={instance => { this.mapItem = instance }}
               />
           </div>
         </div>
