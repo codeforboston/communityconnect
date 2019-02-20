@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
+import {withRouter} from 'react-router';
 
 import {
   Card,
@@ -13,12 +14,13 @@ import {
   ModalFooter
 } from 'reactstrap';
 import styles from './SavedResource.module.css';
+import qs from 'qs-lite';
 import { getDistance } from '../../utils/distance.js';
 import * as resourceAction from '../../action/resourceDataAction';
 
 class SavedResource extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -28,10 +30,6 @@ class SavedResource extends Component {
     this.confirmationModalToggle = this.confirmationModalToggle.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.removalConfirmed = this.removalConfirmed.bind(this);
-  }
-
-  componentDidMount() {
-    // Initialize data
   }
 
   confirmationModalToggle = () => {
@@ -45,32 +43,45 @@ class SavedResource extends Component {
   };
 
   removalConfirmed = () => {
+    const query = qs.parse(window.location.search.replace('?', ''));
+    let resources = [];
+    if (query.resources) {
+      resources = query.resources.split(',');
+    }
+    const indexOfResource = resources.indexOf(this.props.organization.id);
+
+
     if (this.props.savedResource.some(resource => resource.id === this.props.organization.id)) {
       this.props.actions.removeSavedResource(this.props.organization.id);
+      resources.splice(indexOfResource, 1);
     }
+    this.props.history.push({
+      pathname: window.location.pathname,
+      search: `?resources=${resources.join(',')}`,
+    });
     this.confirmationModalToggle();
   };
 
   render() {
     const {
-        id,
-        name,
-        categoryautosortscript,
-        overview,
-        location,
-        website,
-        facebookUrl,
-        instagramUrl,
-        twitterUrl,
-        phone
-      } = this.props.organization;
+      id,
+      name,
+      categoryautosortscript,
+      overview,
+      location,
+      website,
+      facebookUrl,
+      instagramUrl,
+      twitterUrl,
+      phone
+    } = this.props.organization;
 
     let distance, distanceElement;
-    if(this.props.currentPos && this.props.currentPos.coordinates){
+    if (this.props.currentPos && this.props.currentPos.coordinates) {
       distance = getDistance(
-        {coordinates: this.props.organization.coordinates},
-        this.props.currentPos );
-      if(distance){
+        { coordinates: this.props.organization.coordinates },
+        this.props.currentPos);
+      if (distance) {
         distanceElement = <p>Distance from your Location: {distance.toPrecision(4)} miles</p>
       }
     }
@@ -80,12 +91,12 @@ class SavedResource extends Component {
         <Card className={styles.Card} id={id}>
           <CardBody>
             {website &&
-            <span>
-              <a href={website}><span role={'img'} aria-label={'Link to website'}>&#128279;</span></a>
-            </span>}
+              <span>
+                <a href={website}><span role={'img'} aria-label={'Link to website'}>&#128279;</span></a>
+              </span>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
             <span title='Remove item from Saved Resources' aria-label='Remove item from Saved Resources'
-                  className={styles['remove-item']} onClick={this.removeItem}>
+              className={styles['remove-item']} onClick={this.removeItem}>
               -
             </span>
             <CardSubtitle className={styles.CardBody_CardSubtitle}>
@@ -101,28 +112,28 @@ class SavedResource extends Component {
             {overview &&
               <p>{overview}</p>}
             {phone &&
-            <p> <span role={'img'} aria-label={'Phone number'}> &#128222;</span> {phone}</p>}
+              <p> <span role={'img'} aria-label={'Phone number'}> &#128222;</span> {phone}</p>}
             {(facebookUrl || instagramUrl || twitterUrl) &&
-            <ul className="list-inline">
-              {facebookUrl &&
-                <li>
-                  <a href={facebookUrl} data-type="social">
-                    <i className="fa fa-2x fa-facebook-square">{facebookUrl}</i>
-                  </a>
-                </li>}
-              {instagramUrl &&
-                <li>
-                  <a href={instagramUrl} data-type="social">
-                    <i className="fa fa-2x fa-facebook-square">{instagramUrl}</i>
-                  </a>
-                </li>}
-              {twitterUrl &&
-                <li>
-                  <a href={twitterUrl} data-type="social">
-                    <i className="fa fa-2x fa-facebook-square">{twitterUrl}</i>
-                  </a>
-                </li>}
-            </ul>}
+              <ul className="list-inline">
+                {facebookUrl &&
+                  <li>
+                    <a href={facebookUrl} data-type="social">
+                      <i className="fa fa-2x fa-facebook-square">{facebookUrl}</i>
+                    </a>
+                  </li>}
+                {instagramUrl &&
+                  <li>
+                    <a href={instagramUrl} data-type="social">
+                      <i className="fa fa-2x fa-facebook-square">{instagramUrl}</i>
+                    </a>
+                  </li>}
+                {twitterUrl &&
+                  <li>
+                    <a href={twitterUrl} data-type="social">
+                      <i className="fa fa-2x fa-facebook-square">{twitterUrl}</i>
+                    </a>
+                  </li>}
+              </ul>}
           </CardBody>
         </Card>
         <Modal isOpen={this.state.modal} toggle={this.confirmationModalToggle} onClosed={this.toggle}>
@@ -151,4 +162,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SavedResource);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter)(SavedResource);
