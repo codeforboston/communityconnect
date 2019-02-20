@@ -61,19 +61,22 @@ class Header extends Component {
           <NavbarBrand className="Logo" onClick={this.modalOpen}>
             <h3>Community Connect</h3>
           </NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} />
-          <Collapse isOpen={!this.state.collapsed} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Route path='/admin' render={props =>
-                  <Button
-                    color="secondary"
-                    onClick={() => this.props.toggleSavedResourcesPane()}>
-                    Saved Resources
-            </Button>} />
-              </NavItem>
-            </Nav>
-          </Collapse>
+          <Route path='/admin' render={props =>
+            <div id="navbar">
+              <NavbarToggler onClick={this.toggleNavbar} />
+              <Collapse isOpen={!this.state.collapsed} navbar>
+                <Nav className="ml-auto" navbar>
+                  <NavItem>
+                    <Button
+                      color="secondary"
+                      onClick={() => this.props.toggleSavedResourcesPane()}>
+                      Saved Resources
+                    </Button>
+                  </NavItem>
+                </Nav>
+              </Collapse>
+            </div>
+          } />
         </Navbar>
         <Modal isOpen={this.state.modal} toggle={this.modalToggle} onClosed={this.toggle}>
           <ModalHeader>Alert</ModalHeader>
