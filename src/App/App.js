@@ -1,11 +1,16 @@
 import React from 'react';
-import {Route} from 'react-router';
+import {Route, Switch} from 'react-router';
 
-import AppContainer from './AppContainer'
+import AppContainer from './AppContainer';
+import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
 
 const App = () => (
   <div>
-    <Route path = '/' component={AppContainer} />
+    <Switch>
+      <Route path = '/' exact component={AppContainer} />
+      <Route path = '/admin' exact component={AppContainer} />
+      <Route component={NotFoundPage} />
+    </Switch>
   </div>
 )
 
