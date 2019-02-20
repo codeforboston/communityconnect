@@ -60,7 +60,7 @@ https://docs.google.com/spreadsheets/d/1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXr
 
 Replace the "revere_key" value with "1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M"
 
-Start your server using `npm start`
+Start your server using `yarn start`
 
 ### Why would I want my own spreadsheet?
 
