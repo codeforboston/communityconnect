@@ -39,7 +39,7 @@ class SaveButton extends Component {
 
     buttonSign() {
       if (this.state.buttonToggle)
-        return '-'
+        return String.fromCharCode(0x2713)
       else
         return '+'
     }
