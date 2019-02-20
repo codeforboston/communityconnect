@@ -57,7 +57,7 @@ class Header extends Component {
   };
 
   btnColor = () => {
-    if (this.props.savedResource.length > 1) {
+    if (this.props.savedResource.length >= 1) {
       return styles["header__saved-resources--blue"];
     }
   }
