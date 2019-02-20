@@ -34,10 +34,6 @@ class OrganizationCard extends Component {
         if (!this.props.savedResource.some(r => r.id === this.props.organization.id)) {
             this.props.actions.addSavedResource(this.props.organization);
         }
-
-        // Following the comment from @galiat
-        // at https://github.com/codeforboston/communityconnect/issues/155#issuecomment-456634900
-        // these should no longer live in redux, instead the URL params should hold the store
         const query = qs.parse(window.location.search.replace('?', ''));
         let resources = [];
 
