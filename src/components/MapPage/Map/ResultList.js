@@ -10,13 +10,13 @@ import * as resourceAction from '../../../action/resourceDataAction';
 
 export class ResultList extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
 
     this.state = {
       dataSort: this.sortByAlphabet,
     }
-    
+
     this.sortByAlphabet = this.sortByAlphabet.bind(this);
     this.sortByDistance = this.sortByDistance.bind(this);
     this.getCloserName = this.getCloserName.bind(this);
@@ -28,9 +28,9 @@ export class ResultList extends Component {
     this.refs[parseInt(index) + 1].getRef()
   }
 
-  getCloserResource = (a , b) => {
-    if(getDistance(a,this.props.currentPos)
-    > getDistance(b,this.props.currentPos)){
+  getCloserResource = (a, b) => {
+    if (getDistance(a, this.props.currentPos)
+      > getDistance(b, this.props.currentPos)) {
       return 1;
     }
 
@@ -38,8 +38,8 @@ export class ResultList extends Component {
   }
 
   getCloserName = (a, b) => {
-    if(a.name > b.name) return 1
-    else if(a.name < b.name ) return -1
+    if (a.name > b.name) return 1
+    else if (a.name < b.name) return -1
     else return 0
   }
 
@@ -53,7 +53,7 @@ export class ResultList extends Component {
   }
 
   handleSortChange = (newSort) => {
-    if(this.state.dataSort !== newSort)
+    if (this.state.dataSort !== newSort)
       this.setState({
         // Set the dataSort variable to whichever sort function is chosen
         dataSort: newSort,
@@ -61,7 +61,7 @@ export class ResultList extends Component {
   }
 
   cardClick = (id) => {
-    this.props.savedResource.findIndex( resource => {
+    this.props.savedResource.findIndex(resource => {
       return resource.id === id;
     })
 
@@ -74,8 +74,8 @@ export class ResultList extends Component {
 
   render() {
     const sortOptions = [
-      {key: 'Alphabetically', sort: this.sortByAlphabet, disabled: false}
-      ,{key: 'Distance', sort: this.sortByDistance, disabled: !this.props.currentPos}
+      { key: 'Alphabetically', sort: this.sortByAlphabet, disabled: false }
+      , { key: 'Distance', sort: this.sortByDistance, disabled: !this.props.currentPos }
     ];
 
     // Render will be called every time this.props.data is updated, and every time handleSortChange
@@ -83,29 +83,29 @@ export class ResultList extends Component {
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
     const sortedData = this.state.dataSort();
-    return(
-      <div >
-        <div
-          className={[
-            styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}
-          ref={this.listRef}>
+    return (
+      <div>
         <SortBar
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
         />
-        {
-          sortedData.map((resource, index) =>
+        <div
+          className={[
+            styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}
+          ref={this.listRef}>
+          {
+            sortedData.map((resource, index) =>
 
-          <OrganizationCard
-            key={resource.id}
-            ref={resource.id}
-            index={resource.id}
-            cardClick={this.cardClick}
-            organization={resource}
-            currentPos={this.props.currentPos}
-            saveItem={() => this.props.saveItem(resource)}
-          />
-        )}
+              <OrganizationCard
+                key={resource.id}
+                ref={resource.id}
+                index={resource.id}
+                cardClick={this.cardClick}
+                organization={resource}
+                currentPos={this.props.currentPos}
+                saveItem={() => this.props.saveItem(resource)}
+              />
+            )}
         </div>
       </div>
     );

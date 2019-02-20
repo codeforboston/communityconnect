@@ -6,7 +6,7 @@ import styles from './MapPage.module.css';
 import { SplitScreenSlidingPane } from '../SlidingPane/SplitScreenSlidingPane';
 
 
-const AdminPage = ({currentPosition}) => {
+const MapPage = ({currentPosition}) => {
 
     return (
         <div id={styles.container}>
@@ -21,12 +21,10 @@ const AdminPage = ({currentPosition}) => {
           <div className={styles.staticPane}>
               <OrganizationMap
                 center={currentPosition ? currentPosition.coordinates : null}
-                scrollToElement={this.scrollToElement}
-                ref={instance => { this.mapItem = instance }}
               />
           </div>
         </div>
     );
 }
 
-export default AdminPage;
+export default MapPage;
