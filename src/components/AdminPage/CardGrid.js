@@ -70,11 +70,11 @@ export class CardGrid extends Component {
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
         /></Col>
-      </Row>              
+      </Row>
           <Row>
             {
               sortedData.map((resource, index) => (
-                <Col key={resource.id} lg="4" sm="6" xs="12">
+                <Col key={resource.id} lg="4" sm="12" xs="12">
                   <OrganizationCard
                       key={resource.id}
                       index={resource.id}
