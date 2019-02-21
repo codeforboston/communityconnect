@@ -17,3 +17,13 @@
     background-color: #007192;
     border-color: #007192;
 }
+
+.header__saved-resources--count {
+    width: 15%;
+    margin-left: 2%;
+    border: 1px solid white;
+
+    font-weight: 100;
+
+    background-color: #007ea3;
+}

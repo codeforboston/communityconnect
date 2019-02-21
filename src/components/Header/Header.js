@@ -15,7 +15,8 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
+  Badge
 } from 'reactstrap';
 
 class Header extends Component {
@@ -62,6 +63,14 @@ class Header extends Component {
     }
   }
 
+  btnBadge = () => {
+    const savedResources = this.props.savedResource;
+    if(savedResources.length >= 1) {
+      return (
+        <Badge variant="primary" className={styles["header__saved-resources--count"]}>{savedResources.length}</Badge>
+      );
+    }
+  }
 
 
   render() {
@@ -81,6 +90,7 @@ class Header extends Component {
                       className={this.btnColor()}
                       onClick={() => this.props.toggleSavedResourcesPane()}>
                       Saved Resources
+                      {this.btnBadge()}
                     </Button>
                   </NavItem>
                 </Nav>
