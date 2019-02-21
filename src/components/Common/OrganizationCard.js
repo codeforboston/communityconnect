@@ -84,15 +84,16 @@ class OrganizationCard extends Component {
             name, categoryautosortscript, overview, location, website, facebookUrl,
             instagramUrl, twitterUrl, phone
         } = this.props.organization;
-        let distance, distanceElement;
+        let distance, distanceElement, distanceURL;
         let url = this.validatedUrl(website);
-        if (this.props.currentPos) {
+        if (this.props.currentPos && this.props.organization.coordinates) {
             distance = getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos);
             if (distance) {
                 distanceElement = <p>Distance from your Location: {distance} miles</p>
             }
-        }
-
+            distanceURL = "https://www.google.com/maps?saddr=My+Location&daddr="+
+                this.props.organization.coordinates.lat+","+this.props.organization.coordinates.lng;            
+        }        
 
         return (
             <div ref="cardRef">
@@ -105,6 +106,7 @@ class OrganizationCard extends Component {
                         <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
                         {distance && <div>{distanceElement}</div>}
                         {location && <p><span className="fa fa-map-o"></span> {location}</p>}
+                        {distanceURL && <a href={distanceURL} target="_blank"><span>Get Directions</span></a>}
                         {overview && <p>{overview}</p>}
                         {phone && <p><span role="img" aria-label="Phone number">&#128222;</span> {phone}</p>}
                         {(facebookUrl || instagramUrl || twitterUrl) && <ul className="list-inline">
