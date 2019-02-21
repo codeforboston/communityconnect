@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
 
+import styles from './Header.module.css';
+
 import {
   Collapse,
   Navbar,
@@ -54,6 +56,14 @@ class Header extends Component {
     this.modalToggle();
   };
 
+  btnColor = () => {
+    if (this.props.savedResource.length >= 1) {
+      return styles["header__saved-resources--blue"];
+    }
+  }
+
+
+
   render() {
     return (
       <div>
@@ -68,7 +78,7 @@ class Header extends Component {
                 <Nav className="ml-auto" navbar>
                   <NavItem>
                     <Button
-                      color="secondary"
+                      className={this.btnColor()}
                       onClick={() => this.props.toggleSavedResourcesPane()}>
                       Saved Resources
                     </Button>

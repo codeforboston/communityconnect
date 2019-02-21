@@ -1,0 +1,19 @@
+.header__saved-resources--blue {
+    background-color: #007ea3;
+    border-color: #007ea3;
+}
+
+.header__saved-resources--blue:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 126, 163, 0.5);
+    border-color: #007ea3;
+}
+
+.header__saved-resources--blue:active {
+    background-color: #007192;
+    border-color: #007ea3;
+}
+
+.header__saved-resources--blue:hover {
+    background-color: #007192;
+    border-color: #007192;
+}
