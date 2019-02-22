@@ -35,7 +35,7 @@ export class CategoryList extends Component {
   render() {
     return (
       <Form className={styles.Form}>
-        <Label>Category</Label>
+        <Label>Filter by Category</Label>
         {this.categoryMenuItems()}
       </Form>
     )
