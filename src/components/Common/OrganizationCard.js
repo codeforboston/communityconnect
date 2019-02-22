@@ -84,15 +84,17 @@ class OrganizationCard extends Component {
             name, categoryautosortscript, overview, location, website, facebookUrl,
             instagramUrl, twitterUrl, phone, latitude, longitude
         } = this.props.organization;
-        let distance, distanceElement, distanceURL;
+        let distance, distanceElement, distanceURL, encodedCoordinates;
         let url = this.validatedUrl(website);
         if (this.props.currentPos && this.props.organization.coordinates) {
             distance = getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos);
             if (distance) {
                 distanceElement = <p>Distance from your Location: {distance} miles</p>
             }
+            encodedCoordinates = encodeURIComponent(latitude+","+longitude);   
             distanceURL = "https://www.google.com/maps?saddr=My+Location&daddr="+
-                latitude+","+longitude;            
+                encodedCoordinates;
+                     
         }        
 
         return (
