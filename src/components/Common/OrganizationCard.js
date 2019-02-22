@@ -82,7 +82,7 @@ class OrganizationCard extends Component {
     render() {
         const {
             name, categoryautosortscript, overview, location, website, facebookUrl,
-            instagramUrl, twitterUrl, phone
+            instagramUrl, twitterUrl, phone, latitude, longitude
         } = this.props.organization;
         let distance, distanceElement, distanceURL;
         let url = this.validatedUrl(website);
@@ -92,7 +92,7 @@ class OrganizationCard extends Component {
                 distanceElement = <p>Distance from your Location: {distance} miles</p>
             }
             distanceURL = "https://www.google.com/maps?saddr=My+Location&daddr="+
-                this.props.organization.coordinates.lat+","+this.props.organization.coordinates.lng;            
+                latitude+","+longitude;            
         }        
 
         return (
