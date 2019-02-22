@@ -84,7 +84,7 @@ class OrganizationCard extends Component {
             name, categoryautosortscript, overview, location, website, facebookUrl,
             instagramUrl, twitterUrl, phone, latitude, longitude
         } = this.props.organization;
-        let distance, distanceElement, distanceURL, encodedCoordinates;
+        let distance, distanceElement, directionUrl, encodedCoordinates;
         let url = this.validatedUrl(website);
         if (this.props.currentPos && this.props.organization.coordinates) {
             distance = getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos);
@@ -92,7 +92,7 @@ class OrganizationCard extends Component {
                 distanceElement = <p>Distance from your Location: {distance} miles</p>
             }
             encodedCoordinates = encodeURIComponent(latitude+","+longitude);   
-            distanceURL = "https://www.google.com/maps?saddr=My+Location&daddr="+
+            directionUrl = "https://www.google.com/maps?saddr=My+Location&daddr="+
                 encodedCoordinates;
                      
         }        
@@ -108,7 +108,7 @@ class OrganizationCard extends Component {
                         <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
                         {distance && <div>{distanceElement}</div>}
                         {location && <p><span className="fa fa-map-o"></span> {location}</p>}
-                        {distanceURL && <a href={distanceURL} target="_blank"><span>Get Directions</span></a>}
+                        {directionUrl && <a href={directionUrl} target="_blank"><span>Get Directions</span></a>}
                         {overview && <p>{overview}</p>}
                         {phone && <p><span role="img" aria-label="Phone number">&#128222;</span> {phone}</p>}
                         {(facebookUrl || instagramUrl || twitterUrl) && <ul className="list-inline">
