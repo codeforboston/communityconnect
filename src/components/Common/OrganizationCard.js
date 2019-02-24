@@ -143,7 +143,7 @@ class OrganizationCard extends Component {
                             }}>
                                 <FontAwesomeIcon icon={['fab', 'facebook-square']} className="text-black-50"/>
                             </a>}
-                            {facebookUrl &&
+                            {instagramUrl &&
                             <a className="list-group-item border-0 m-0 p-1 bg-light" href={instagramUrl}
                                data-type="social" ref={node => {
                                 socialIg = node
@@ -154,7 +154,7 @@ class OrganizationCard extends Component {
                             }}>
                                 <FontAwesomeIcon icon={['fab', 'instagram']} className="text-black-50"/>
                             </a>}
-                            {facebookUrl &&
+                            {twitterUrl &&
                             <a className="list-group-item border-0 m-0 p-1 bg-light" href={twitterUrl}
                                data-type="social" ref={node => {
                                 socialTw = node
