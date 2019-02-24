@@ -63,7 +63,7 @@ class OrganizationCard extends Component {
     }
     // Takes a ref to the links that change color when hovered over.
     changeColor(link) {
-        let svg = link.childNodes[0].classList.toggle('text-black-50');
+        return link.childNodes[0].classList.toggle('text-black-50');
     }
 
     validatedUrl(website) {
