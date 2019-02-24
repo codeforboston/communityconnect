@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators, compose} from 'redux';
 import {withRouter} from 'react-router';
 import qs from 'qs-lite';
-
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {getDistance} from '../../utils/distance.js';
-import {Card, CardBody, CardSubtitle} from 'reactstrap';
+import {Card, CardBody, CardSubtitle, CardFooter, CardHeader} from 'reactstrap';
 import * as resourceAction from '../../action/resourceDataAction';
 import SaveButton from './SaveButton';
 
@@ -61,6 +61,10 @@ class OrganizationCard extends Component {
         }
         return;
     }
+    // Takes a ref to the links that change color when hovered over.
+    changeColor(link) {
+        let svg = link.childNodes[0].classList.toggle('text-black-50');
+    }
 
     validatedUrl(website) {
         if (website === "")
@@ -92,30 +96,77 @@ class OrganizationCard extends Component {
                 distanceElement = <p>Distance from your Location: {distance} miles</p>
             }
         }
-
+        // vars to hold refs to social icons and external link to the website
+        let socialFb, socialIg, socialTw, link;
 
         return (
             <div ref="cardRef">
                 <Card className={styles.Card} id={this.props.index} onClick={this.cardClick}>
+                    <CardHeader>
+                        <div className="row">
+                            {website && <div className="col-sm-1 m-auto">
+                                {this.saveButton()}
+                                <a href={url} target="_blank" ref={node => {
+                                    link = node
+                                }} onMouseEnter={() => {
+                                    this.changeColor(link)
+                                }} onMouseLeave={() => {
+                                    this.changeColor(link)
+                                }}>
+                                    <FontAwesomeIcon icon="external-link-square-alt" className="text-black-50 mr-2"
+                                                     size='2x'/></a>
+                            </div>}
+                            <div className="col-sm m-auto text-center">
+                                <h3 className={styles.CardBody_headline}>{name}</h3>
+                            </div>
+                        </div>
+                    </CardHeader>
                     <CardBody>
-                        {this.saveButton()}
-                        {website && <a href={url} target="_blank"><span role="img"
-                                                                        aria-label="Link to website">&#128279;</span></a>}
-                        <h3 className={styles.CardBody_headline}>{name}</h3>
                         <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
                         {distance && <div>{distanceElement}</div>}
                         {location && <p><span className="fa fa-map-o"></span> {location}</p>}
                         {overview && <p>{overview}</p>}
                         {phone && <p><span role="img" aria-label="Phone number">&#128222;</span> {phone}</p>}
-                        {(facebookUrl || instagramUrl || twitterUrl) && <ul className="list-inline">
-                            {facebookUrl && <li><a href={facebookUrl} data-type="social"><i
-                                className="fa fa-2x fa-facebook-square">{facebookUrl}</i></a></li>}
-                            {instagramUrl && <li><a href={instagramUrl} data-type="social"><i
-                                className="fa fa-2x fa-facebook-square">{instagramUrl}</i></a></li>}
-                            {twitterUrl && <li><a href={twitterUrl} data-type="social"><i
-                                className="fa fa-2x fa-facebook-square">{twitterUrl}</i></a></li>}
-                        </ul>}
                     </CardBody>
+                    {(facebookUrl || instagramUrl || twitterUrl) &&
+                    <CardFooter>
+
+                        <div className="list-group list-group-horizontal-sm">
+                            {facebookUrl &&
+                            <a className="list-group-item border-0 m-0 p-1 bg-light" href={facebookUrl}
+                               data-type="social" ref={node => {
+                                socialFb = node
+                            }} onMouseEnter={() => {
+                                this.changeColor(socialFb)
+                            }} onMouseLeave={() => {
+                                this.changeColor(socialFb)
+                            }}>
+                                <FontAwesomeIcon icon={['fab', 'facebook-square']} className="text-black-50"/>
+                            </a>}
+                            {facebookUrl &&
+                            <a className="list-group-item border-0 m-0 p-1 bg-light" href={instagramUrl}
+                               data-type="social" ref={node => {
+                                socialIg = node
+                            }} onMouseEnter={() => {
+                                this.changeColor(socialIg)
+                            }} onMouseLeave={() => {
+                                this.changeColor(socialIg)
+                            }}>
+                                <FontAwesomeIcon icon={['fab', 'instagram']} className="text-black-50"/>
+                            </a>}
+                            {facebookUrl &&
+                            <a className="list-group-item border-0 m-0 p-1 bg-light" href={twitterUrl}
+                               data-type="social" ref={node => {
+                                socialTw = node
+                            }} onMouseEnter={() => {
+                                this.changeColor(socialTw)
+                            }} onMouseLeave={() => {
+                                this.changeColor(socialTw)
+                            }}>
+                                <FontAwesomeIcon icon={['fab', 'twitter']} className="text-black-50"/>
+                            </a>}
+                        </div>
+                    </CardFooter>}
                 </Card>
             </div>
         );
