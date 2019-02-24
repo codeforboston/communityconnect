@@ -61,6 +61,7 @@ class OrganizationCard extends Component {
         }
         return;
     }
+
     // Takes a ref to the links that change color when hovered over.
     changeColor(link) {
         return link.childNodes[0].classList.toggle('text-black-50');
@@ -103,21 +104,23 @@ class OrganizationCard extends Component {
             <div ref="cardRef">
                 <Card className={styles.Card} id={this.props.index} onClick={this.cardClick}>
                     <CardHeader>
-                        <div className="row">
-                            {website && <div className="col-sm-1 m-auto">
-                                {this.saveButton()}
-                                <a href={url} target="_blank" ref={node => {
-                                    link = node
-                                }} onMouseEnter={() => {
-                                    this.changeColor(link)
-                                }} onMouseLeave={() => {
-                                    this.changeColor(link)
-                                }}>
-                                    <FontAwesomeIcon icon="external-link-square-alt" className="text-black-50 mr-2"
-                                                     size='2x'/></a>
-                            </div>}
-                            <div className="col-sm m-auto text-center">
-                                <h3 className={styles.CardBody_headline}>{name}</h3>
+                        <div className="container">
+                            <div className="row text-center">
+                                {website && <div className="col-sm-1 m-auto p-0">
+                                    {this.saveButton()}
+                                    <a href={url} target="_blank" ref={node => {
+                                        link = node
+                                    }} onMouseEnter={() => {
+                                        this.changeColor(link)
+                                    }} onMouseLeave={() => {
+                                        this.changeColor(link)
+                                    }}>
+                                        <FontAwesomeIcon icon="external-link-square-alt" className="text-black-50"
+                                                         size='2x'/></a>
+                                </div>}
+                                <div className="col-sm m-auto p-0">
+                                    <h3 className={styles.CardBody_headline}>{name}</h3>
+                                </div>
                             </div>
                         </div>
                     </CardHeader>
