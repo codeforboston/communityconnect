@@ -5,4 +5,5 @@
 .Form {
  position: sticky;
  top: 0px;
+ overflow: scroll;
 }
