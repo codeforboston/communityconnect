@@ -1,3 +1,9 @@
+.header__saved-resources {
+    position: absolute;
+    right: 11px;
+    top: 11px;
+}
+
 .header__saved-resources--blue {
     background-color: #007ea3;
     border-color: #007ea3;

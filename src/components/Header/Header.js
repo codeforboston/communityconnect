@@ -72,7 +72,6 @@ class Header extends Component {
     }
   }
 
-
   render() {
     return (
       <div>
@@ -85,7 +84,7 @@ class Header extends Component {
               <NavbarToggler onClick={this.toggleNavbar} />
               <Collapse isOpen={!this.state.collapsed} navbar>
                 <Nav className="ml-auto" navbar>
-                  <NavItem>
+                  <NavItem className={styles["header__saved-resources"]}>
                     <Button
                       className={this.btnColor()}
                       onClick={() => this.props.toggleSavedResourcesPane()}>
