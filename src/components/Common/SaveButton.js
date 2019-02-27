@@ -7,7 +7,9 @@ class SaveButton extends Component {
         this.state = {
             animateButtonInside: '',
             animateButtonOutside: [''],
-        }
+            buttonToggle: false
+        };
+        this.buttonSign = this.buttonSign.bind(this);
 
         this.cardRef = React.createRef();
     }
@@ -23,6 +25,7 @@ class SaveButton extends Component {
         this.setState({
             animateButtonInside: styles['animate-button-click'],
             animateButtonOutside: classes,
+            buttonToggle: !this.state.buttonToggle
         });
         setTimeout(() => {
             this.setState({
@@ -32,6 +35,13 @@ class SaveButton extends Component {
         },
             500
         );
+    }
+
+    buttonSign() {
+      if (this.state.buttonToggle)
+        return String.fromCharCode(0x2713)
+      else
+        return '+'
     }
 
     render() {
@@ -50,7 +60,7 @@ class SaveButton extends Component {
                             this.state.animateButtonInside,
                             styles['save-item'],
                         ].join(' ')}>
-                        +
+                        { this.buttonSign() }
                   </span>
                     <span
                         className={this.state.animateButtonOutside.join(' ')}

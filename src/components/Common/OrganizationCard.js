@@ -88,18 +88,22 @@ class OrganizationCard extends Component {
     render() {
         const {
             name, categoryautosortscript, overview, location, website, facebookUrl,
-            instagramUrl, twitterUrl, phone
+            instagramUrl, twitterUrl, phone, latitude, longitude
         } = this.props.organization;
-        let distance, distanceElement;
+        let distance, distanceElement, directionUrl, encodedCoordinates;
         let url = this.validatedUrl(website);
-        if (this.props.currentPos) {
+        if (this.props.currentPos && this.props.organization.coordinates) {
             distance = getDistance({coordinates: this.props.organization.coordinates}, this.props.currentPos);
             if (distance) {
                 distanceElement = <p>Distance from your Location: {distance} miles</p>
             }
         }
         // vars to hold refs to social icons and external link to the website
-        let socialFb, socialIg, socialTw, link;
+        let socialFb, socialIg, socialTw, link, mapUrl;
+
+        encodedCoordinates = encodeURIComponent(latitude + "," + longitude);
+        directionUrl = "https://www.google.com/maps?saddr=My+Location&daddr=" +
+            encodedCoordinates;
 
         return (
             <div ref="cardRef">
@@ -118,9 +122,24 @@ class OrganizationCard extends Component {
                         <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
                         {distance && <div>{distanceElement}</div>}
                         {location &&
-                        <p><span><FontAwesomeIcon icon='map-marker-alt' className='text-danger'/></span> {location}</p>}
-                        {overview && <p>{overview}</p>}
-                        {website && <p><span>
+                        <p><span><FontAwesomeIcon icon='map-marker-alt'
+                                                  className='text-danger'/></span> {location}</p>}
+                        <div className='row'>
+                            {directionUrl &&
+                            <div className='col-sm-6'><p><span><a href={directionUrl}
+                                                                  target="_blank" ref={node => {
+                                mapUrl = node
+                            }} onMouseEnter={() => {
+                                this.changeColor(mapUrl)
+                            }} onMouseLeave={() => {
+                                this.changeColor(mapUrl)
+                            }}>
+                                <FontAwesomeIcon icon="map-marked-alt" className="text-black-50 mr-1"/>
+                                Get Directions</a></span></p>
+                            </div>}
+                            {overview && <p>{overview}</p>}
+
+                            {website && <div className='col-sm-6'><p><span>
                                         <a href={url} target="_blank" ref={node => {
                                             link = node
                                         }} onMouseEnter={() => {
@@ -129,7 +148,8 @@ class OrganizationCard extends Component {
                                             this.changeColor(link)
                                         }}>
                                         <FontAwesomeIcon icon="external-link-alt" className="text-black-50 mr-1"/>Go to website</a>
-                                    </span></p>}
+                                    </span></p></div>}
+                        </div>
                         {phone && <p><span><FontAwesomeIcon icon='phone' size='1x'/></span> {phone}</p>}
                     </CardBody>
                     {(facebookUrl || instagramUrl || twitterUrl) &&

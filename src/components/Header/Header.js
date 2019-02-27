@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
 
+import styles from './Header.module.css';
+
 import {
   Collapse,
   Navbar,
@@ -13,7 +15,8 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
+  Badge
 } from 'reactstrap';
 
 class Header extends Component {
@@ -54,6 +57,22 @@ class Header extends Component {
     this.modalToggle();
   };
 
+  btnColor = () => {
+    if (this.props.savedResource.length >= 1) {
+      return styles["header__saved-resources--blue"];
+    }
+  }
+
+  btnBadge = () => {
+    const savedResources = this.props.savedResource;
+    if(savedResources.length >= 1) {
+      return (
+        <Badge variant="primary" className={styles["header__saved-resources--count"]}>{savedResources.length}</Badge>
+      );
+    }
+  }
+
+
   render() {
     return (
       <div>
@@ -61,19 +80,23 @@ class Header extends Component {
           <NavbarBrand className="Logo" onClick={this.modalOpen}>
             <h3>Community Connect</h3>
           </NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} />
-          <Collapse isOpen={!this.state.collapsed} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Route path='/admin' render={props =>
-                  <Button
-                    color="secondary"
-                    onClick={() => this.props.toggleSavedResourcesPane()}>
-                    Saved Resources
-            </Button>} />
-              </NavItem>
-            </Nav>
-          </Collapse>
+          <Route path='/admin' render={props =>
+            <div id="navbar">
+              <NavbarToggler onClick={this.toggleNavbar} />
+              <Collapse isOpen={!this.state.collapsed} navbar>
+                <Nav className="ml-auto" navbar>
+                  <NavItem>
+                    <Button
+                      className={this.btnColor()}
+                      onClick={() => this.props.toggleSavedResourcesPane()}>
+                      Saved Resources
+                      {this.btnBadge()}
+                    </Button>
+                  </NavItem>
+                </Nav>
+              </Collapse>
+            </div>
+          } />
         </Navbar>
         <Modal isOpen={this.state.modal} toggle={this.modalToggle} onClosed={this.toggle}>
           <ModalHeader>Alert</ModalHeader>
