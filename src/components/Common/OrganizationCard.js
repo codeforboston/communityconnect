@@ -64,6 +64,7 @@ class OrganizationCard extends Component {
 
     // Takes a ref to the links that change color when hovered over.
     changeColor(link) {
+        console.log(link);
         return link.childNodes[0].classList.toggle('text-black-50');
     }
 
@@ -104,21 +105,10 @@ class OrganizationCard extends Component {
             <div ref="cardRef">
                 <Card className={styles.Card} id={this.props.index} onClick={this.cardClick}>
                     <CardHeader>
+                        {this.saveButton()}
                         <div className="container">
-                            <div className="row text-center">
-                                {website && <div className="col-sm-1 m-auto p-0">
-                                    {this.saveButton()}
-                                    <a href={url} target="_blank" ref={node => {
-                                        link = node
-                                    }} onMouseEnter={() => {
-                                        this.changeColor(link)
-                                    }} onMouseLeave={() => {
-                                        this.changeColor(link)
-                                    }}>
-                                        <FontAwesomeIcon icon="external-link-square-alt" className="text-black-50"
-                                                         size='2x'/></a>
-                                </div>}
-                                <div className="col-sm m-auto p-0">
+                            <div className="row">
+                                <div className="col-sm m-auto px-2">
                                     <h3 className={styles.CardBody_headline}>{name}</h3>
                                 </div>
                             </div>
@@ -127,14 +117,25 @@ class OrganizationCard extends Component {
                     <CardBody>
                         <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
                         {distance && <div>{distanceElement}</div>}
-                        {location && <p><span className="fa fa-map-o"></span> {location}</p>}
+                        {location &&
+                        <p><span><FontAwesomeIcon icon='map-marker-alt' className='text-danger'/></span> {location}</p>}
                         {overview && <p>{overview}</p>}
-                        {phone && <p><span role="img" aria-label="Phone number">&#128222;</span> {phone}</p>}
+                        {website && <p><span>
+                                        <a href={url} target="_blank" ref={node => {
+                                            link = node
+                                        }} onMouseEnter={() => {
+                                            this.changeColor(link)
+                                        }} onMouseLeave={() => {
+                                            this.changeColor(link)
+                                        }}>
+                                        <FontAwesomeIcon icon="external-link-alt" className="text-black-50 mr-1"/>Go to website</a>
+                                    </span></p>}
+                        {phone && <p><span><FontAwesomeIcon icon='phone' size='1x'/></span> {phone}</p>}
                     </CardBody>
                     {(facebookUrl || instagramUrl || twitterUrl) &&
                     <CardFooter>
 
-                        <div className="list-group list-group-horizontal-sm">
+                        <div className="list-group list-group-horizontal">
                             {facebookUrl &&
                             <a className="list-group-item border-0 m-0 p-1 bg-light" href={facebookUrl}
                                data-type="social" ref={node => {
@@ -143,8 +144,9 @@ class OrganizationCard extends Component {
                                 this.changeColor(socialFb)
                             }} onMouseLeave={() => {
                                 this.changeColor(socialFb)
-                            }}>
-                                <FontAwesomeIcon icon={['fab', 'facebook-square']} className="text-black-50"/>
+                            }} alt="Facebook Page">
+                                <FontAwesomeIcon icon={['fab', 'facebook-square']}
+                                                 className="text-black-50 mr-1" size='2x' title="Facebook Page"/>
                             </a>}
                             {instagramUrl &&
                             <a className="list-group-item border-0 m-0 p-1 bg-light" href={instagramUrl}
@@ -155,7 +157,8 @@ class OrganizationCard extends Component {
                             }} onMouseLeave={() => {
                                 this.changeColor(socialIg)
                             }}>
-                                <FontAwesomeIcon icon={['fab', 'instagram']} className="text-black-50"/>
+                                <FontAwesomeIcon icon={['fab', 'instagram']} className="text-black-50 mr-1" size='2x'
+                                                 title="Instagram Page"/>
                             </a>}
                             {twitterUrl &&
                             <a className="list-group-item border-0 m-0 p-1 bg-light" href={twitterUrl}
@@ -165,8 +168,9 @@ class OrganizationCard extends Component {
                                 this.changeColor(socialTw)
                             }} onMouseLeave={() => {
                                 this.changeColor(socialTw)
-                            }}>
-                                <FontAwesomeIcon icon={['fab', 'twitter']} className="text-black-50"/>
+                            }} aria-label="Twitter Page">
+                                <FontAwesomeIcon icon={['fab', 'twitter']} className="text-black-50 mr-1" size='2x'
+                                                 title="Twitter Page"/>
                             </a>}
                         </div>
                     </CardFooter>}
