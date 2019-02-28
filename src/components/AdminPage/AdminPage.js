@@ -9,7 +9,7 @@ const AdminPage = ({currentPosition}) => {
 
         return (
             <div className={styles.wrapper}>
-                <div>
+                <div style={{overflowY: "scroll"}}>
                 <CategoryList />
                 </div>
                 <CardGrid

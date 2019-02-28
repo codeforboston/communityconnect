@@ -60,7 +60,7 @@ export class CardGrid extends Component {
     const sortedData = this.state.dataSort();
 
     return (
-      <Container>
+      <Container style={{overflowY: "scroll"}}>
       <Row>
         <Col>
         <SearchBar
