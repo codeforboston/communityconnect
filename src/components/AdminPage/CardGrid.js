@@ -74,7 +74,7 @@ export class CardGrid extends Component {
           <Row>
             {
               sortedData.map((resource, index) => (
-                <Col key={resource.id} lg="6" xs="12">
+                <Col key={resource.id} xs="12" lg="6" className="d-flex my-2 align-content-stretch justify-content-stretch">
                   <OrganizationCard
                       key={resource.id}
                       index={resource.id}

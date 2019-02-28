@@ -106,7 +106,7 @@ class OrganizationCard extends Component {
             encodedCoordinates;
 
         return (
-            <div ref="cardRef">
+            <React.Fragment ref="cardRef">
                 <Card className={styles.Card} id={this.props.index} onClick={this.cardClick}>
                     <CardHeader>
                         {this.saveButton()}
@@ -195,7 +195,7 @@ class OrganizationCard extends Component {
                         </div>
                     </CardFooter>}
                 </Card>
-            </div>
+            </React.Fragment>
         );
     }
 }
