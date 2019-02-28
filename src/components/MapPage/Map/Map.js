@@ -1,6 +1,6 @@
 import React from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
-import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
+import {withScriptjs, withGoogleMap, GoogleMap} from 'react-google-maps';
+import {MarkerClusterer} from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import OrganizationMarker from './OrganizationMarker';
 
 const Map = withScriptjs(withGoogleMap(props => (
@@ -24,10 +24,7 @@ const Map = withScriptjs(withGoogleMap(props => (
                     />
                 )
             }
-            }
-          )
-        }
-      </MarkerClusterer>
+        </MarkerClusterer>
     </GoogleMap>
 )));
 
