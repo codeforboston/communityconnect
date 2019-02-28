@@ -2,11 +2,13 @@
     position: absolute;
     right: 11px;
     top: 11px;
+    width: 200px;
 }
 
 .header__saved-resources--blue {
     background-color: #007ea3;
     border-color: #007ea3;
+    width: 100%;
 }
 
 .header__saved-resources--blue:focus {
@@ -25,11 +27,9 @@
 }
 
 .header__saved-resources--count {
-    width: 15%;
     margin-left: 2%;
     border: 1px solid white;
-
     font-weight: 100;
-
     background-color: #007ea3;
+    display: inline;
 }

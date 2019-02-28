@@ -88,8 +88,7 @@ class Header extends Component {
                     <Button
                       className={this.btnColor()}
                       onClick={() => this.props.toggleSavedResourcesPane()}>
-                      Saved Resources
-                      {this.btnBadge()}
+                      Saved Resources {this.btnBadge()}
                     </Button>
                   </NavItem>
                 </Nav>
