@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators, compose} from 'redux';
 import {withRouter} from 'react-router';
 import qs from 'qs-lite';
-
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {getDistance} from '../../utils/distance.js';
-import {Card, CardBody, CardSubtitle} from 'reactstrap';
+import {Card, CardBody, CardSubtitle, CardFooter, CardHeader} from 'reactstrap';
 import * as resourceAction from '../../action/resourceDataAction';
 import SaveButton from './SaveButton';
 
@@ -62,6 +62,12 @@ class OrganizationCard extends Component {
         return;
     }
 
+    // Takes a ref to the links that change color when hovered over.
+    changeColor(link) {
+        console.log(link);
+        return link.childNodes[0].classList.toggle('text-black-50');
+    }
+
     validatedUrl(website) {
         if (website === "")
             return website;
@@ -91,35 +97,103 @@ class OrganizationCard extends Component {
             if (distance) {
                 distanceElement = <p>Distance from your Location: {distance} miles</p>
             }
-            encodedCoordinates = encodeURIComponent(latitude+","+longitude);   
-            directionUrl = "https://www.google.com/maps?saddr=My+Location&daddr="+
-                encodedCoordinates;
-                     
-        }        
+        }
+        // vars to hold refs to social icons and external link to the website
+        let socialFb, socialIg, socialTw, link, mapUrl;
+
+        encodedCoordinates = encodeURIComponent(latitude + "," + longitude);
+        directionUrl = "https://www.google.com/maps?saddr=My+Location&daddr=" +
+            encodedCoordinates;
 
         return (
             <div ref="cardRef">
                 <Card className={styles.Card} id={this.props.index} onClick={this.cardClick}>
-                    <CardBody>
+                    <CardHeader>
                         {this.saveButton()}
-                        {website && <a href={url} target="_blank"><span role="img"
-                                                                        aria-label="Link to website">&#128279;</span></a>}
-                        <h3 className={styles.CardBody_headline}>{name}</h3>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-sm m-auto px-2">
+                                    <h3 className={styles.CardBody_headline}>{name}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </CardHeader>
+                    <CardBody>
                         <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
                         {distance && <div>{distanceElement}</div>}
-                        {location && <p><span className="fa fa-map-o"></span> {location}</p>}
-                        {directionUrl && <a href={directionUrl} target="_blank"><span>Get Directions</span></a>}
-                        {overview && <p>{overview}</p>}
-                        {phone && <p><span role="img" aria-label="Phone number">&#128222;</span> {phone}</p>}
-                        {(facebookUrl || instagramUrl || twitterUrl) && <ul className="list-inline">
-                            {facebookUrl && <li><a href={facebookUrl} data-type="social"><i
-                                className="fa fa-2x fa-facebook-square">{facebookUrl}</i></a></li>}
-                            {instagramUrl && <li><a href={instagramUrl} data-type="social"><i
-                                className="fa fa-2x fa-facebook-square">{instagramUrl}</i></a></li>}
-                            {twitterUrl && <li><a href={twitterUrl} data-type="social"><i
-                                className="fa fa-2x fa-facebook-square">{twitterUrl}</i></a></li>}
-                        </ul>}
+                        {location &&
+                        <p><span><FontAwesomeIcon icon='map-marker-alt'
+                                                  className='text-danger'/></span> {location}</p>}
+                        <div className='row'>
+                            {directionUrl &&
+                            <div className='col-sm-6'><p><span><a href={directionUrl}
+                                                                  target="_blank" ref={node => {
+                                mapUrl = node
+                            }} onMouseEnter={() => {
+                                this.changeColor(mapUrl)
+                            }} onMouseLeave={() => {
+                                this.changeColor(mapUrl)
+                            }}>
+                                <FontAwesomeIcon icon="map-marked-alt" className="text-black-50 mr-1"/>
+                                Get Directions</a></span></p>
+                            </div>}
+                            {overview && <p>{overview}</p>}
+
+                            {website && <div className='col-sm-6'><p><span>
+                                        <a href={url} target="_blank" ref={node => {
+                                            link = node
+                                        }} onMouseEnter={() => {
+                                            this.changeColor(link)
+                                        }} onMouseLeave={() => {
+                                            this.changeColor(link)
+                                        }}>
+                                        <FontAwesomeIcon icon="external-link-alt" className="text-black-50 mr-1"/>Go to website</a>
+                                    </span></p></div>}
+                        </div>
+                        {phone && <p><span><FontAwesomeIcon icon='phone' size='1x'/></span> {phone}</p>}
                     </CardBody>
+                    {(facebookUrl || instagramUrl || twitterUrl) &&
+                    <CardFooter>
+
+                        <div className="list-group list-group-horizontal">
+                            {facebookUrl &&
+                            <a className="list-group-item border-0 m-0 p-1 bg-light" href={facebookUrl}
+                               data-type="social" ref={node => {
+                                socialFb = node
+                            }} onMouseEnter={() => {
+                                this.changeColor(socialFb)
+                            }} onMouseLeave={() => {
+                                this.changeColor(socialFb)
+                            }} alt="Facebook Page">
+                                <FontAwesomeIcon icon={['fab', 'facebook-square']}
+                                                 className="text-black-50 mr-1" size='2x' title="Facebook Page"/>
+                            </a>}
+                            {instagramUrl &&
+                            <a className="list-group-item border-0 m-0 p-1 bg-light" href={instagramUrl}
+                               data-type="social" ref={node => {
+                                socialIg = node
+                            }} onMouseEnter={() => {
+                                this.changeColor(socialIg)
+                            }} onMouseLeave={() => {
+                                this.changeColor(socialIg)
+                            }}>
+                                <FontAwesomeIcon icon={['fab', 'instagram']} className="text-black-50 mr-1" size='2x'
+                                                 title="Instagram Page"/>
+                            </a>}
+                            {twitterUrl &&
+                            <a className="list-group-item border-0 m-0 p-1 bg-light" href={twitterUrl}
+                               data-type="social" ref={node => {
+                                socialTw = node
+                            }} onMouseEnter={() => {
+                                this.changeColor(socialTw)
+                            }} onMouseLeave={() => {
+                                this.changeColor(socialTw)
+                            }} aria-label="Twitter Page">
+                                <FontAwesomeIcon icon={['fab', 'twitter']} className="text-black-50 mr-1" size='2x'
+                                                 title="Twitter Page"/>
+                            </a>}
+                        </div>
+                    </CardFooter>}
                 </Card>
             </div>
         );
