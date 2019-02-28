@@ -78,6 +78,7 @@ export class CardGrid extends Component {
         <Row>
           {
             sortedData.map((resource, index) => (
+              // classes are bootstrap helper classes, see: https://getbootstrap.com/docs/4.0/utilities/flex/
               <Col key={resource.id} xs="12" lg="6" className="d-flex my-2 align-content-stretch justify-content-stretch">
                 <OrganizationCard
                   key={resource.id}
