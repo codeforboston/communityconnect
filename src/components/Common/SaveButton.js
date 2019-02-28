@@ -7,7 +7,6 @@ class SaveButton extends Component {
         this.state = {
             animateButtonInside: '',
             animateButtonOutside: [''],
-            buttonToggle: false
         };
         this.buttonSign = this.buttonSign.bind(this);
 
@@ -25,7 +24,6 @@ class SaveButton extends Component {
         this.setState({
             animateButtonInside: styles['animate-button-click'],
             animateButtonOutside: classes,
-            buttonToggle: !this.state.buttonToggle
         });
         setTimeout(() => {
             this.setState({
@@ -38,7 +36,7 @@ class SaveButton extends Component {
     }
 
     buttonSign() {
-      if (this.state.buttonToggle)
+      if (this.props.saveExist)
         return String.fromCharCode(0x2713)
       else
         return '+'

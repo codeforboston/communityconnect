@@ -16,22 +16,26 @@ class OrganizationCard extends Component {
 
     constructor(props) {
         super(props);
-        this.cardRef = React.createRef();
+        this.state = {
+            saveExist: false
+        }
+        console.log(this.state.saveExist)
     }
-
-    getRef = () => {
-        this.refs.cardRef.parentNode.scrollTop = this.refs.cardRef.offsetTop - ((1.5) * this.refs.cardRef.offsetHeight);
-        // Using scrollIntoView shifted the page, hiding the header bar in mobile view
-        // this.refs.cardRef.scrollIntoView({block: "end", inline: "center"})
-    };
-
+    static getDerivedStateFromProps(props){
+        if(!props.savedResource.some(r => r.id === props.organization.id)){
+            return{saveExist:false}
+        }
+        else{
+            return{saveExist:true}
+        }
+    }
     cardClick = (e) => {
         if (this.props.cardClick) {
             this.props.cardClick(e.currentTarget.id);
         }
     }
     saveItem = () => {
-        if (!this.props.savedResource.some(r => r.id === this.props.organization.id)) {
+        if (!this.state.saveExist) {
             this.props.actions.addSavedResource(this.props.organization);
         }
         const query = qs.parse(window.location.search.replace('?', ''));
@@ -43,7 +47,7 @@ class OrganizationCard extends Component {
 
         const indexOfResource = resources.indexOf(this.props.organization.id);
         if (indexOfResource >= 0) {
-            resources.splice(indexOfResource, 1);
+            //resources.splice(indexOfResource, 1);
         } else {
             resources.push(this.props.organization.id);
         }
@@ -57,7 +61,7 @@ class OrganizationCard extends Component {
 
     saveButton() {
         if (this.props.saveable) {
-            return <SaveButton saveItem={this.saveItem}/>;
+            return <SaveButton saveItem={this.saveItem} saveExist={this.state.saveExist}/>;
         }
         return;
     }
