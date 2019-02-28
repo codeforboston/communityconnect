@@ -123,11 +123,11 @@ class OrganizationCard extends Component {
                         {distance && <div>{distanceElement}</div>}
                         {location &&
                         <p><span><FontAwesomeIcon icon='map-marker-alt'
-                                                  className='text-danger'/></span> {location}</p>}
+                                                className='text-danger'/></span> {location}</p>}
                         <div className='row'>
                             {directionUrl &&
                             <div className='col-sm-6'><p><span><a href={directionUrl}
-                                                                  target="_blank" ref={node => {
+                                                                target="_blank" ref={node => {
                                 mapUrl = node
                             }} onMouseEnter={() => {
                                 this.changeColor(mapUrl)
@@ -158,7 +158,7 @@ class OrganizationCard extends Component {
                         <div className="list-group list-group-horizontal">
                             {facebookUrl &&
                             <a className="list-group-item border-0 m-0 p-1 bg-light" href={facebookUrl}
-                               data-type="social" ref={node => {
+                                data-type="social" ref={node => {
                                 socialFb = node
                             }} onMouseEnter={() => {
                                 this.changeColor(socialFb)
@@ -166,11 +166,11 @@ class OrganizationCard extends Component {
                                 this.changeColor(socialFb)
                             }} alt="Facebook Page">
                                 <FontAwesomeIcon icon={['fab', 'facebook-square']}
-                                                 className="text-black-50 mr-1" size='2x' title="Facebook Page"/>
+                                                className="text-black-50 mr-1" size='2x' title="Facebook Page"/>
                             </a>}
                             {instagramUrl &&
                             <a className="list-group-item border-0 m-0 p-1 bg-light" href={instagramUrl}
-                               data-type="social" ref={node => {
+                                data-type="social" ref={node => {
                                 socialIg = node
                             }} onMouseEnter={() => {
                                 this.changeColor(socialIg)
@@ -178,11 +178,11 @@ class OrganizationCard extends Component {
                                 this.changeColor(socialIg)
                             }}>
                                 <FontAwesomeIcon icon={['fab', 'instagram']} className="text-black-50 mr-1" size='2x'
-                                                 title="Instagram Page"/>
+                                                title="Instagram Page"/>
                             </a>}
                             {twitterUrl &&
                             <a className="list-group-item border-0 m-0 p-1 bg-light" href={twitterUrl}
-                               data-type="social" ref={node => {
+                                data-type="social" ref={node => {
                                 socialTw = node
                             }} onMouseEnter={() => {
                                 this.changeColor(socialTw)
@@ -190,7 +190,7 @@ class OrganizationCard extends Component {
                                 this.changeColor(socialTw)
                             }} aria-label="Twitter Page">
                                 <FontAwesomeIcon icon={['fab', 'twitter']} className="text-black-50 mr-1" size='2x'
-                                                 title="Twitter Page"/>
+                                                title="Twitter Page"/>
                             </a>}
                         </div>
                     </CardFooter>}

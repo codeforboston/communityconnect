@@ -61,32 +61,36 @@ export class CardGrid extends Component {
 
     return (
       <Container>
-      <Row>
-        <Col>
-        <SearchBar
-          type="text"
-          handleFilter={this.props.handleFilter} /></Col>
-        <Col><SortBar
-          onSortChange={this.handleSortChange}
-          sortOptions={sortOptions}
-        /></Col>
-      </Row>
-          <Row>
-            {
-              sortedData.map((resource, index) => (
-                <Col key={resource.id} xs="12" lg="6" className="d-flex my-2 align-content-stretch justify-content-stretch">
-                  <OrganizationCard
-                      key={resource.id}
-                      index={resource.id}
-                      organization={resource}
-                      currentPos={this.props.currentPos}
-                      saveItem={() => this.props.saveItem(resource)}
-                      saveable={true}
-                  />
-                </Col>
-              ))
-            }
-          </Row>
+        <Row>
+          <Col>
+            <SearchBar
+              type="text"
+              handleFilter={this.props.handleFilter}
+            />
+          </Col>
+          <Col>
+            <SortBar
+              onSortChange={this.handleSortChange}
+              sortOptions={sortOptions}
+            />
+          </Col>
+        </Row>
+        <Row>
+          {
+            sortedData.map((resource, index) => (
+              <Col key={resource.id} xs="12" lg="6" className="d-flex my-2 align-content-stretch justify-content-stretch">
+                <OrganizationCard
+                  key={resource.id}
+                  index={resource.id}
+                  organization={resource}
+                  currentPos={this.props.currentPos}
+                  saveItem={() => this.props.saveItem(resource)}
+                  saveable={true}
+                />
+              </Col>
+            ))
+          }
+        </Row>
       </Container>
     );
   }
@@ -95,8 +99,8 @@ export class CardGrid extends Component {
 function mapStateToProps(state, ownProps) {
     let res = [];
     //Not the most efficient logic, but it works. Will have to optimize this later
-    for (var i = 0, len1 = state.searchedResource.length; i < len1; i++) {
-        for (var j = 0, len2 = state.filteredResource.length; j < len2; j++) {
+    for (let i = 0, len1 = state.searchedResource.length; i < len1; i++) {
+        for (let j = 0, len2 = state.filteredResource.length; j < len2; j++) {
             if (state.searchedResource[i].id === state.filteredResource[j].id) {
                 res.push(state.searchedResource[i])
             }
