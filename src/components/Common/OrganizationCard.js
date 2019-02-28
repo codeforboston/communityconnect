@@ -110,96 +110,94 @@ class OrganizationCard extends Component {
             encodedCoordinates;
 
         return (
-            <div ref="cardRef">
-                <Card className={styles.Card} id={this.props.index} onClick={this.cardClick}>
-                    <CardHeader>
-                        {this.saveButton()}
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-sm m-auto px-2">
-                                    <h3 className={styles.CardBody_headline}>{name}</h3>
-                                </div>
+            <Card ref="cardRef" className={styles.Card} id={this.props.index} onClick={this.cardClick}>
+                <CardHeader>
+                    {this.saveButton()}
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-sm m-auto px-2">
+                                <h3 className={styles.CardBody_headline}>{name}</h3>
                             </div>
                         </div>
-                    </CardHeader>
-                    <CardBody>
-                        <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
-                        {distance && <div>{distanceElement}</div>}
-                        {location &&
-                        <p><span><FontAwesomeIcon icon='map-marker-alt'
-                                                  className='text-danger'/></span> {location}</p>}
-                        <div className='row'>
-                            {directionUrl &&
-                            <div className='col-sm-6'><p><span><a href={directionUrl}
-                                                                  target="_blank" ref={node => {
-                                mapUrl = node
-                            }} onMouseEnter={() => {
-                                this.changeColor(mapUrl)
-                            }} onMouseLeave={() => {
-                                this.changeColor(mapUrl)
-                            }}>
-                                <FontAwesomeIcon icon="map-marked-alt" className="text-black-50 mr-1"/>
-                                Get Directions</a></span></p>
-                            </div>}
-                            {overview && <p>{overview}</p>}
+                    </div>
+                </CardHeader>
+                <CardBody>
+                    <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
+                    {distance && <div>{distanceElement}</div>}
+                    {location &&
+                    <p><span><FontAwesomeIcon icon='map-marker-alt'
+                                            className='text-danger'/></span> {location}</p>}
+                    <div className='row'>
+                        {directionUrl &&
+                        <div className='col-sm-6'><p><span><a href={directionUrl}
+                                                            target="_blank" ref={node => {
+                            mapUrl = node
+                        }} onMouseEnter={() => {
+                            this.changeColor(mapUrl)
+                        }} onMouseLeave={() => {
+                            this.changeColor(mapUrl)
+                        }}>
+                            <FontAwesomeIcon icon="map-marked-alt" className="text-black-50 mr-1"/>
+                            Get Directions</a></span></p>
+                        </div>}
+                        {overview && <p>{overview}</p>}
 
-                            {website && <div className='col-sm-6'><p><span>
-                                        <a href={url} target="_blank" ref={node => {
-                                            link = node
-                                        }} onMouseEnter={() => {
-                                            this.changeColor(link)
-                                        }} onMouseLeave={() => {
-                                            this.changeColor(link)
-                                        }}>
-                                        <FontAwesomeIcon icon="external-link-alt" className="text-black-50 mr-1"/>Go to website</a>
-                                    </span></p></div>}
-                        </div>
-                        {phone && <p><span><FontAwesomeIcon icon='phone' size='1x'/></span> {phone}</p>}
-                    </CardBody>
-                    {(facebookUrl || instagramUrl || twitterUrl) &&
-                    <CardFooter>
+                        {website && <div className='col-sm-6'><p><span>
+                                    <a href={url} target="_blank" ref={node => {
+                                        link = node
+                                    }} onMouseEnter={() => {
+                                        this.changeColor(link)
+                                    }} onMouseLeave={() => {
+                                        this.changeColor(link)
+                                    }}>
+                                    <FontAwesomeIcon icon="external-link-alt" className="text-black-50 mr-1"/>Go to website</a>
+                                </span></p></div>}
+                    </div>
+                    {phone && <p><span><FontAwesomeIcon icon='phone' size='1x'/></span> {phone}</p>}
+                </CardBody>
+                {(facebookUrl || instagramUrl || twitterUrl) &&
+                <CardFooter>
 
-                        <div className="list-group list-group-horizontal">
-                            {facebookUrl &&
-                            <a className="list-group-item border-0 m-0 p-1 bg-light" href={facebookUrl}
-                               data-type="social" ref={node => {
-                                socialFb = node
-                            }} onMouseEnter={() => {
-                                this.changeColor(socialFb)
-                            }} onMouseLeave={() => {
-                                this.changeColor(socialFb)
-                            }} alt="Facebook Page">
-                                <FontAwesomeIcon icon={['fab', 'facebook-square']}
-                                                 className="text-black-50 mr-1" size='2x' title="Facebook Page"/>
-                            </a>}
-                            {instagramUrl &&
-                            <a className="list-group-item border-0 m-0 p-1 bg-light" href={instagramUrl}
-                               data-type="social" ref={node => {
-                                socialIg = node
-                            }} onMouseEnter={() => {
-                                this.changeColor(socialIg)
-                            }} onMouseLeave={() => {
-                                this.changeColor(socialIg)
-                            }}>
-                                <FontAwesomeIcon icon={['fab', 'instagram']} className="text-black-50 mr-1" size='2x'
-                                                 title="Instagram Page"/>
-                            </a>}
-                            {twitterUrl &&
-                            <a className="list-group-item border-0 m-0 p-1 bg-light" href={twitterUrl}
-                               data-type="social" ref={node => {
-                                socialTw = node
-                            }} onMouseEnter={() => {
-                                this.changeColor(socialTw)
-                            }} onMouseLeave={() => {
-                                this.changeColor(socialTw)
-                            }} aria-label="Twitter Page">
-                                <FontAwesomeIcon icon={['fab', 'twitter']} className="text-black-50 mr-1" size='2x'
-                                                 title="Twitter Page"/>
-                            </a>}
-                        </div>
-                    </CardFooter>}
-                </Card>
-            </div>
+                    <div className="list-group list-group-horizontal">
+                        {facebookUrl &&
+                        <a className="list-group-item border-0 m-0 p-1 bg-light" href={facebookUrl}
+                            data-type="social" ref={node => {
+                            socialFb = node
+                        }} onMouseEnter={() => {
+                            this.changeColor(socialFb)
+                        }} onMouseLeave={() => {
+                            this.changeColor(socialFb)
+                        }} alt="Facebook Page">
+                            <FontAwesomeIcon icon={['fab', 'facebook-square']}
+                                            className="text-black-50 mr-1" size='2x' title="Facebook Page"/>
+                        </a>}
+                        {instagramUrl &&
+                        <a className="list-group-item border-0 m-0 p-1 bg-light" href={instagramUrl}
+                            data-type="social" ref={node => {
+                            socialIg = node
+                        }} onMouseEnter={() => {
+                            this.changeColor(socialIg)
+                        }} onMouseLeave={() => {
+                            this.changeColor(socialIg)
+                        }}>
+                            <FontAwesomeIcon icon={['fab', 'instagram']} className="text-black-50 mr-1" size='2x'
+                                            title="Instagram Page"/>
+                        </a>}
+                        {twitterUrl &&
+                        <a className="list-group-item border-0 m-0 p-1 bg-light" href={twitterUrl}
+                            data-type="social" ref={node => {
+                            socialTw = node
+                        }} onMouseEnter={() => {
+                            this.changeColor(socialTw)
+                        }} onMouseLeave={() => {
+                            this.changeColor(socialTw)
+                        }} aria-label="Twitter Page">
+                            <FontAwesomeIcon icon={['fab', 'twitter']} className="text-black-50 mr-1" size='2x'
+                                            title="Twitter Page"/>
+                        </a>}
+                    </div>
+                </CardFooter>}
+            </Card>
         );
     }
 }
