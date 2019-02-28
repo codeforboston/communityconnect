@@ -2,21 +2,23 @@ import React from 'react';
 
 import CategoryList from './CategoryList';
 import CardGrid from './CardGrid';
-import styles from './AdminPage.module.css';
-
 
 const AdminPage = ({currentPosition}) => {
 
-        return (
-            <div className={styles.wrapper}>
-                <div>
-                <CategoryList />
+    return (
+        <div className="container-fluid pb-sm-5">
+            <div className="row">
+                <div className="col-sm-4">
+                    <CategoryList/>
                 </div>
-                <CardGrid
-                    currentPos={currentPosition}
-                />
+                <div className="col-sm-8">
+                    <CardGrid
+                        currentPos={currentPosition}
+                    />
+                </div>
             </div>
-        );
+        </div>
+    );
 }
 
 export default AdminPage;
