@@ -11,3 +11,9 @@
     height:auto;
     padding: 1px;
   }
+
+  .spinner{
+    margin: auto;
+     width: 100px;
+     height: 100px; 
+  }

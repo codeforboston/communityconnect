@@ -1,4 +1,5 @@
 export default {
+      isFetchingResource: true,
       resource: [],
       searchedResource: [],
       filteredResource: [],

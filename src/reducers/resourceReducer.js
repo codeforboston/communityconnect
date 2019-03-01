@@ -12,6 +12,16 @@ export function resource(state = initialState.resource, action) {
     }
 }
 
+export function isFetchingResource(state = initialState.isFetchingResource, action) {
+    switch (action.type) {
+        case types.LOAD_RESOURCE_DATA_START:
+          return true;
+        case types.LOAD_RESOURCE_DATA_SUCCESS:
+          return false;
+        default: return state;
+    }
+}
+
 export function categories(state = initialState.categories, action) {
     switch (action.type) {
         case types.LOAD_RESOURCE_DATA_SUCCESS:
