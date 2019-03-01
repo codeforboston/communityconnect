@@ -1,8 +1,8 @@
 import * as types from './actionType';
 import {getAllResources} from '../api/googlesheetApi';
 
-const loadResourceDataStart = () => ({ type: types.LOAD_RESOURCE_DATA_START })
-const loadResourceDataSuccess = (resource ) => ({ type: types.LOAD_RESOURCE_DATA_SUCCESS, resource })
+const loadResourceDataStart = () => ({ type: types.LOAD_RESOURCE_DATA_START, isFetchingResource: true })
+const loadResourceDataSuccess = (resource ) => ({ type: types.LOAD_RESOURCE_DATA_SUCCESS, resource, isFetchingResource: false })
 const loadResourceDataFailure = (error) => ({ type: types.LOAD_RESOURCE_DATA_FAILURE, error })
 
 export function loadCategories(){

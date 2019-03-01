@@ -1,12 +1,14 @@
-import React, {Component} from 'react';
-import {Route} from 'react-router';
+import React, { Component } from 'react';
+import { Route } from 'react-router';
+import { connect } from 'react-redux';
 
 import Header from '../components/Header/Header';
 import MapPage from '../components/MapPage/MapPage';
 import AdminPage from '../components/AdminPage/AdminPage';
-import {SplitScreenTogglePane} from '../components/SlidingPane/SplitScreenSlidingPane';
+import { SplitScreenTogglePane } from '../components/SlidingPane/SplitScreenSlidingPane';
 import SavedResourcePanel from '../components/SavedResources/SavedResourcePanel';
 import styles from './App.module.css';
+import Loader from 'react-loader-spinner'
 
 
 class AppContainer extends Component {
@@ -48,6 +50,7 @@ class AppContainer extends Component {
     }
 
     render() {
+        let { isFetchingResource } = this.props;
         return (
             <div className="container-fluid">
                 <div className={styles.viewport}>
@@ -56,15 +59,30 @@ class AppContainer extends Component {
                             toggleSavedResourcesPane={this.toggleSavedResourcesPane}
                         />
                     </div>
-                    <Route exact path='/admin' render={(props) => <AdminPage currentPosition={this.state.position}/>}/>
-                    <Route exact path='/' render={(props) => <MapPage currentPosition={this.state.position}/>}/>
-                    <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
-                        <SavedResourcePanel/>
-                    </SplitScreenTogglePane>
+                    {isFetchingResource && <div className={styles.spinner}><Loader
+                        type="TailSpin"
+                        color="#00BFFF"
+                        height="50"
+                        width="50"
+                    />  </div>}
+                    {!isFetchingResource &&
+                        <div>
+                            <Route exact path='/admin' render={(props) => <AdminPage currentPosition={this.state.position} />} />
+                            <Route exact path='/' render={(props) => <MapPage currentPosition={this.state.position} />} />
+                            <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
+                                <SavedResourcePanel />
+                            </SplitScreenTogglePane>
+                        </div>
+                    }
                 </div>
             </div>
         );
     }
 }
-
-export default AppContainer;
+function mapStateToProps(state, ownProps) {
+    let { isFetchingResource } = state;
+    return {
+        isFetchingResource: isFetchingResource
+    }
+}
+export default connect(mapStateToProps)(AppContainer);
