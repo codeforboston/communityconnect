@@ -5,8 +5,8 @@ To suggest businesses and/or organizations in the area that are not presently li
 https://goo.gl/forms/X2Nou8ZLtrmz0JGe2
 
   1. Stage 1 - Simple Name Search, Category Filter, Semi-clickable List, Map with Pins.
-  2. Stage 2 - Fuzzy search, Mobile Compatibility, organized card with all relevant information about selected resource on Map, overlaying public transportation and other information to increase accessibility, import and maintain up-to-date information about resources.
-  3. Stage 3 - Login form for Social Workers including "To-Do List" Feature, Expand Resources to Chelsea, Charlestown, and Boston.
+  2. Stage 2 - Fuzzy search, Mobile Compatibility, organized card with all relevant information about selected resource on Map, import and maintain up-to-date information about resources.
+  3. Stage 3 - Make improvements based on feedback from Social Workers at the Revere HealthCare Center, make the codebase more transferrable for other projects that use a spreadsheet and website that reflects that data.
 
 ## How this works
 Resources are stored in a google spreadsheet (New). https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit?usp=sharing
