@@ -4,15 +4,16 @@ import { breakPoints, spacing } from "../../@community-connect-ui/constants";
 export const AdminPageWrapper = styled('div')`
     display: grid;
     grid-template-columns: auto;
-    padding: 30px;
-    @media screen and (min-width: ${breakPoints[0]}) {
+    padding: ${spacing[2]};
+    gap: ${spacing[2]};
+    @media screen and (min-width: ${breakPoints[1]}) {
         grid-template-columns: 200px auto;
     }
 `;
 
 export const CardGridWrapper = styled("div")`
     display: grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: ${spacing[2]} auto;
 `;
 
 export const SearchAndSortWrapper = styled("div")`
@@ -25,7 +26,11 @@ export const CardListWrapper = styled("div")`
     display: grid;
     grid-template-columns: auto;
     gap: ${spacing[2]};
+    padding: ${spacing[2]} 0;
     @media screen and (min-width: ${breakPoints[2]}) {
         grid-template-columns: auto auto; 
+    }
+    @media screen and (min-width: ${breakPoints[4]}) {
+        grid-template-columns: auto auto auto; 
     }
 `;
