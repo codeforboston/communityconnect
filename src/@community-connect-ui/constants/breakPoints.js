@@ -1,1 +1,1 @@
-export const breakPoints = [576, 768, 992, 1200]
+export const breakPoints = ["576px", "768px", "992px", "1200px"]

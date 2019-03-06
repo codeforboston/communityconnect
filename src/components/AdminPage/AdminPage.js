@@ -1,16 +1,19 @@
 import React from 'react';
 
-import AdminPageLayout from './AdminPageLayout';
+import { AdminPageWrapper } from './AdminPageLayout';
 import CategoryList from './CategoryList';
 import CardGrid from './CardGrid';
 
+/**
+ * @param {*} {currentPosition}
+ */
 const AdminPage = ({currentPosition}) => (
-    <AdminPageLayout>
+    <AdminPageWrapper>
         <CategoryList/>
         <CardGrid
             currentPos={currentPosition}
         />
-    </AdminPageLayout>
+    </AdminPageWrapper>
 )
 
 export default AdminPage;
