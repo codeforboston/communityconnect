@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * @param sortOption
+ * @param sortOptions
  */
 class SortBar extends React.Component {
     handleClick = (e) => {
