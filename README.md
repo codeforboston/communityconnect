@@ -5,7 +5,7 @@ To suggest businesses and/or organizations in the area that are not presently li
 https://goo.gl/forms/X2Nou8ZLtrmz0JGe2
 
   1. Stage 1 - Simple Name Search, Category Filter, Semi-clickable List, Map with Pins.
-  2. Stage 2 - Fuzzy search, Mobile Compatibility, organized card with all relevant information about selected resource on Map, import and maintain up-to-date information about resources.
+  2. Stage 2 - Fuzzy search, Mobile Compatibility, organized card with all relevant information about selected resource on Map, import and maintain up-to-date information about resources, unique URL created for specified Org Cards.
   3. Stage 3 - Make improvements based on feedback from Social Workers at the Revere HealthCare Center, make the codebase more transferrable for other projects that use a spreadsheet and website that reflects that data.
 
 ## How this works
