@@ -35,12 +35,11 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
+    "lint": "eslint src"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
-    "eslint": "^5.15.1",
+    "babel-eslint": "^10.0.1",
     "eslint-config-google": "^0.12.0",
     "eslint-plugin-react": "^7.12.4",
     "react-scripts": "2.0.0-next.66cc7a90",
