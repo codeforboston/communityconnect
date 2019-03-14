@@ -14,6 +14,7 @@ module.exports = {
   },
   "plugins": [
     "react",
+    "babel",
   ],
   "settings": {
     "react": {
@@ -22,5 +23,28 @@ module.exports = {
   },
   "env": {
     "browser": true,
+    "es6": true,
   },
+  "rules": {
+    "indent": [
+      "error",
+      2,
+      {
+        "CallExpression": {
+          "arguments": 1,
+        },
+      },
+    ],
+    "no-invalid-this": "off",
+    "babel/no-invalid-this": ["error"],
+    "require-jsdoc": "warn",
+  },
+  "overrides": [
+    {
+      "files": "**/*.test.js",
+      "env": {
+        "jest": true,
+      },
+    },
+  ],
 };

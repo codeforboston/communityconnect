@@ -1,3 +1,5 @@
+/* global process */
+
 // In production, we register a service worker to serve assets from local cache.
 
 // This lets the app load faster on subsequent visits in production, and gives
@@ -18,6 +20,9 @@ const isLocalhost = Boolean(
     )
 );
 
+/**
+ * Register the service worker.
+ */
 export default function register() {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
@@ -33,12 +38,14 @@ export default function register() {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
       if (isLocalhost) {
-        // This is running on localhost. Lets check if a service worker still exists or not.
+        // This is running on localhost. Lets check if a service worker
+        // still exists or not.
         checkValidServiceWorker(swUrl);
 
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
         navigator.serviceWorker.ready.then(() => {
+          // eslint-disable-next-line no-console
           console.log(
             'This web app is being served cache-first by a service ' +
               'worker. To learn more, visit https://goo.gl/SC7cgQ'
@@ -52,10 +59,15 @@ export default function register() {
   }
 }
 
+/**
+ * Registers a valid service worker.
+ *
+ * @param {string} swUrl the URL of the service worker
+ */
 function registerValidSW(swUrl) {
   navigator.serviceWorker
     .register(swUrl)
-    .then(registration => {
+    .then((registration) => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         installingWorker.onstatechange = () => {
@@ -65,33 +77,43 @@ function registerValidSW(swUrl) {
               // the fresh content will have been added to the cache.
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
+              // eslint-disable-next-line no-console
               console.log('New content is available; please refresh.');
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
+              // eslint-disable-next-line no-console
               console.log('Content is cached for offline use.');
             }
           }
         };
       };
     })
-    .catch(error => {
+    .catch((error) => {
+      // eslint-disable-next-line no-console
       console.error('Error during service worker registration:', error);
     });
 }
 
+/**
+ * Checks whether the URL refers to a valid service worker.
+ *
+ * Registers the service worker if it is valid.
+ *
+ * @param {string} swUrl the service worker URL
+ */
 function checkValidServiceWorker(swUrl) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl)
-    .then(response => {
+    .then((response) => {
       // Ensure service worker exists, and that we really are getting a JS file.
       if (
         response.status === 404 ||
-        response.headers.get('content-type').indexOf('javascript') === -1
+          response.headers.get('content-type').indexOf('javascript') === -1
       ) {
         // No service worker found. Probably a different app. Reload the page.
-        navigator.serviceWorker.ready.then(registration => {
+        navigator.serviceWorker.ready.then((registration) => {
           registration.unregister().then(() => {
             window.location.reload();
           });
@@ -102,15 +124,19 @@ function checkValidServiceWorker(swUrl) {
       }
     })
     .catch(() => {
+      // eslint-disable-next-line no-console
       console.log(
         'No internet connection found. App is running in offline mode.'
       );
     });
 }
 
+/**
+ * Unregisters the service worker.
+ */
 export function unregister() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then(registration => {
+    navigator.serviceWorker.ready.then((registration) => {
       registration.unregister();
     });
   }

@@ -1,41 +1,46 @@
-import React, { Component } from 'react';
-import { Marker, InfoWindow } from 'react-google-maps';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {Marker, InfoWindow} from 'react-google-maps';
 
 export class OrganizationMarker extends Component {
+  static propTypes = {
+    open: PropTypes.bool,
+    resource: PropTypes.object.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
-      open: this.props.open
-    }
-
+      open: this.props.open,
+    };
   }
 
-  componentDidUpdate(prevProps){
-    if(prevProps.open !== this.props.open){
-      this.setState({open: this.props.open})
+  componentDidUpdate(prevProps) {
+    if (prevProps.open !== this.props.open) {
+      this.setState({open: this.props.open});
     }
   }
-//scrollToElement  and handleClickOfInfoWindow is currently non-functional
+  // scrollToElement  and handleClickOfInfoWindow is currently non-functional
 
   scrollToElement = (e) => {
-    /*this.props.setOpenMarker(this.props.orgIndexes[0])
+    /* this.props.setOpenMarker(this.props.orgIndexes[0])
     if(this.props.orgIndexes.length === 1){
       this.props.scrollToElement(this.props.orgIndexes[0])
     }*/
-    this.setState({ open: true });
+    this.setState({open: true});
   }
 
   handleClickOfInfoWindow = (e) => {
-    var element = document.getElementById(e.currentTarget.id);
+    const element = document.getElementById(e.currentTarget.id);
     element.scrollIntoView();
   }
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({open: false});
   }
 
   render() {
-    let {resource} = this.props;
+    const {resource} = this.props;
     return (
       <Marker
         optimize={false}
@@ -43,16 +48,22 @@ export class OrganizationMarker extends Component {
         onClick={this.scrollToElement}
       >
 
-      {this.state.open &&
+        {this.state.open &&
           <InfoWindow onCloseClick={this.handleClose}>
-              <div>
-              {resource.groupedResource.map( resource  =>
-                  <div key={resource.id} id={resource.id} onClick={this.handleClickOfInfoWindow}>
-                    <h3>{resource.name}</h3>
-                    <div>{resource.combinedaddress}</div>
-                    <div>{resource.tags}</div>
-                    <div><a href={`tel:${resource.phone}`}>{resource.phone}</a></div>
-                 </div>)}
+            <div>
+              {resource.groupedResource.map( (resource) =>
+                <div
+                  key={resource.id}
+                  id={resource.id}
+                  onClick={this.handleClickOfInfoWindow}
+                >
+                  <h3>{resource.name}</h3>
+                  <div>{resource.combinedaddress}</div>
+                  <div>{resource.tags}</div>
+                  <div>
+                    <a href={`tel:${resource.phone}`}>{resource.phone}</a>
+                  </div>
+                </div>)}
             </div>
           </InfoWindow> }
 
