@@ -18,9 +18,9 @@ Note that this project was bootstrapped with [Create React App](https://github.c
 
 ## New Developer Setup Instructions
 1) clone the repo
-1) install yarn (it may be installed already)
-1) install dependencies `yarn install`
-1) start server `yarn start`
+1) install npm (it may be installed already)
+1) install dependencies `npm install`
+1) start server `npm run start`
 
 ## Where to start
 Our open issues are listed on the project's [Issues](https://github.com/codeforboston/communityconnect/issues) tab. The best places to start are unassigned issues with the label "[good first issue](https://github.com/codeforboston/communityconnect/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22+no%3Aassignee)".
@@ -60,7 +60,7 @@ https://docs.google.com/spreadsheets/d/1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXr
 
 Replace the "revere_key" value with "1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M"
 
-Start your server using `yarn start`
+Start your server using `npm run start`
 
 ### Why would I want my own spreadsheet?
 
