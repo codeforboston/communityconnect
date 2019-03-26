@@ -28,12 +28,12 @@ export const CardListWrapper = styled("div")`
     gap: ${spacing[2]};
     padding: ${spacing[2]} 0;
     @media screen and (min-width: ${breakPoints[2]}) {
-        grid-template-columns: repeat(2, auto); 
+        grid-template-columns: repeat(2, 1fr); 
     }
     @media screen and (min-width: ${breakPoints[3]}) {
-        grid-template-columns: repeat(3, auto); 
+        grid-template-columns: repeat(3, 1fr); 
     }
     @media screen and (min-width: ${breakPoints[4]}) {
-        grid-template-columns: repeat(4, auto); 
+        grid-template-columns: repeat(4, 1fr); 
     }
 `;
