@@ -1,33 +1,3 @@
-.Card {
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  width: 100%;
-}
-
-.Card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-.CardBody_headline {
-  font-size: 22px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-.CardBody_CardSubtitle {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  line-height: 24px;
-  text-transform: uppercase;
-  color: #2e3d49;
-}
-
-h3{
-  display: inline;
-}
-
 a.CardBody_icon {
   color: purple;
   text-decoration: none;
@@ -58,7 +28,6 @@ a.CardBody_icon {
   25% { background-color: rgba(16,106,217, .2); }
   50% { background-color: rgba(16,106,217, .1); }
   75% { background-color: rgba(16,106,217, .05); }
-  /*100% { background-color: rgba(16,106,217, 0); }*/
 }
 
 
@@ -90,13 +59,7 @@ a.CardBody_icon {
     opacity: 0;
     pointer-events: none;
 }
-/*
-.cbutton__text{
-  position: absolute;
-  opacity: 1;
-  pointer-events: none;
-}
-*/
+
 /* Radomir */
 .cbutton--effect-radomir__after {
   box-shadow: inset 0 0 0 35px rgba(16,106,217,0);

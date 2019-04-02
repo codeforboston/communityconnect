@@ -4,8 +4,8 @@ export const colors = {
     danger: "red",
     black: "#000",
     white: "#fff",
-    gray: "#212529",    
-    lightgray: "#00000080",
+    gray: "#e6e6e6",    
+    lightgray: "#f7f7f7",
     turquoise: "##007ea3",
     transparentWhite: "rgba(255, 255, 255, 0.9)",
 };
