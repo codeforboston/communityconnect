@@ -27,6 +27,7 @@ export const SavedResourcesButton = styled("button")`
     border-radius: ${radii[0]};
     border: none;
     padding: ${spacing[0]} ${spacing[1]};
+    margin-right: ${spacing[1]};
     width: 200px;
 `;
 
