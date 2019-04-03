@@ -3,8 +3,9 @@ import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
-import styles from './DropdownCategory.module.css';
+  DropdownItem 
+} from 'reactstrap';
+import { DropdownCategory } from "./HeaderLayout";
 
 
 class DropdownCategory extends Component {
@@ -51,9 +52,9 @@ class DropdownCategory extends Component {
           <DropdownMenu right>
             <DropdownItem onClick = {() => this.handleClick("Clear", -1)} key={"Clear"}>Clear</DropdownItem>
             <DropdownItem divider/>
-            <div className={styles.dropdownCategoryDiv}>
+            <DropdownCategory>
               { this.categoryMenuItems() }
-            </div>
+            </DropdownCategory>
           </DropdownMenu>
         </Dropdown>
       </div>
