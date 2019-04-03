@@ -5,11 +5,10 @@ import {withRouter} from 'react-router';
 import qs from 'qs-lite';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {getDistance} from '../../utils/distance.js';
-import {Card, CardBody, CardSubtitle, CardFooter, CardHeader} from 'reactstrap';
 import * as resourceAction from '../../action/resourceDataAction';
 import SaveButton from './SaveButton';
 
-import styles from './OrganizationCard.module.css'
+import { Card, CardBody, CardHeader, CardHeaderText, CardSubtitle } from "./OrganizationCardLayout";
 
 
 class OrganizationCard extends Component {
@@ -110,19 +109,13 @@ class OrganizationCard extends Component {
             encodedCoordinates;
 
         return (
-            <Card ref="cardRef" className={styles.Card} id={this.props.index} onClick={this.cardClick}>
+            <Card ref="cardRef" id={this.props.index} onClick={this.cardClick}>
                 <CardHeader>
                     {this.saveButton()}
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-sm m-auto px-2">
-                                <h3 className={styles.CardBody_headline}>{name}</h3>
-                            </div>
-                        </div>
-                    </div>
+                    <CardHeaderText>{name}</CardHeaderText>
                 </CardHeader>
                 <CardBody>
-                    <CardSubtitle className={styles.CardBody_CardSubtitle}>{categoryautosortscript}</CardSubtitle>
+                    <CardSubtitle>{categoryautosortscript}</CardSubtitle>
                     {distance && <div>{distanceElement}</div>}
                     {location &&
                     <p><span><FontAwesomeIcon icon='map-marker-alt'
@@ -156,7 +149,7 @@ class OrganizationCard extends Component {
                     {phone && <p><span><FontAwesomeIcon icon='phone' size='1x'/></span> {phone}</p>}
                 </CardBody>
                 {(facebookUrl || instagramUrl || twitterUrl) &&
-                <CardFooter>
+                <div>
 
                     <div className="list-group list-group-horizontal">
                         {facebookUrl &&
@@ -196,7 +189,7 @@ class OrganizationCard extends Component {
                                             title="Twitter Page"/>
                         </a>}
                     </div>
-                </CardFooter>}
+                </div>}
             </Card>
         );
     }

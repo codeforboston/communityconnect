@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 
 import * as resourceAction from '../../action/resourceDataAction';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-import styles from './CategoryList.module.css';
 
 export class CategoryList extends Component {
 
@@ -28,13 +27,13 @@ export class CategoryList extends Component {
 
   categoryMenuItems() {
     return this.props.categories.map((cat) =>
-      <FormGroup className={styles.FormGroup} key={cat} check>
+      <FormGroup key={cat} check>
         <Input type="checkbox" key={cat} onChange={() => this.handleChange(cat)} />{cat}
       </FormGroup>);
   }
   render() {
     return (
-      <Form className={styles.Form}>
+      <Form>
         <Label>Filter by Category</Label>
         {this.categoryMenuItems()}
       </Form>
