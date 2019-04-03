@@ -3,15 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/core": "^10.0.7",
-    "@emotion/styled": "^10.0.7",
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-brands-svg-icons": "^5.7.2",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
-    "mapbox-gl": "^0.53.1",
+    "mapbox-gl": "^0.45.0-beta.1",
     "npm": "^6.4.1",
     "popper.js": "^1.14.7",
     "qs-lite": "^0.0.1",
@@ -40,7 +38,7 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
-    "react-scripts": "^2.1.8",
+    "react-scripts": "2.0.0-next.66cc7a90",
     "redux-immutable-state-invariant": "^2.1.0"
   },
   "browserslist": {
@@ -57,3 +55,4 @@
     ]
   }
 }
+
