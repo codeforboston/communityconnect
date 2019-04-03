@@ -8,7 +8,6 @@ import {getDistance} from '../../utils/distance.js';
 import * as resourceAction from '../../action/resourceDataAction';
 import SaveButton from './SaveButton';
 
-import styles from './OrganizationCard.module.css'
 import { Card, CardBody, CardHeader, CardHeaderText, CardSubtitle } from "./OrganizationCardLayout";
 
 

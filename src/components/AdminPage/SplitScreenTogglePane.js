@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const TogglePane = styled("div")`
-    display: ${props => props.isOpen? "block" : "none"};
+    display: ${props => props.isOpen ? "block" : "none"};
     position: absolute;
     height: 100%;
     width: 33%;
@@ -18,12 +18,8 @@ const TogglePane = styled("div")`
     }
 `;
 
-export class SplitScreenTogglePane extends React.Component {
-    render() {
-        return (
-            <TogglePane isOpen={this.props.isOpen}>
-                { this.props.children }
-            </TogglePane>
-        );
-    }
-}
+export const SplitScreenTogglePane = ({ isOpen, children }) => (
+    <TogglePane isOpen={isOpen}>
+        { children }
+    </TogglePane>
+);

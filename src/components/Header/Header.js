@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router';
 
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
-  Nav,
   Button,
   Modal,
   ModalHeader,
