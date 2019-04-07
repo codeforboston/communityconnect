@@ -26,7 +26,16 @@ export const OrganizationCardHeaderText = styled("h3")`
 `;
 
 export const OrganizationCardBodyWrapper = styled("div")`
+    display: flex;
+    flex-direction: column;
     padding: ${spacing[1]};
+    line-height: 1.5;
+    a {
+        color: ${colors.lightBlack};
+        :hover {
+            color: ${colors.blue};
+        }
+    }
 `;
 
 export const OrganizationCardSubtitle = styled("div")`
@@ -39,7 +48,7 @@ export const OrganizationCardSubtitle = styled("div")`
 `;
 
 // TODO this doesn't seem to be doing anything
-export const OrganizationCardLink = styled("a")`
+export const OrganizationSocialMediaLinkWrapper = styled("a")`
     margin: ${spacing[1]};
     color: ${colors.gray} !important; 
     &:hover {

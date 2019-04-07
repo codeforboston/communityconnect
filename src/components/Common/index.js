@@ -4,7 +4,7 @@ import {
     OrganizationCardHeaderText,
     OrganizationCardBodyWrapper,
     OrganizationCardSubtitle,
-    OrganizationCardLink
+    OrganizationSocialMediaLinkWrapper
 } from "./OrganizationCardLayout"
 import { OrganizationCardSaveButton } from "./OrganizationCardSaveButton";
 import { SortBar } from "./SortBar";
@@ -15,7 +15,7 @@ export {
     OrganizationCardHeaderText,
     OrganizationCardBodyWrapper,
     OrganizationCardSubtitle,
-    OrganizationCardLink,
+    OrganizationSocialMediaLinkWrapper,
     OrganizationCardSaveButton,
     SortBar
 };

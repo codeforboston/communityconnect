@@ -13,7 +13,7 @@ import {
     OrganizationCardBodyWrapper,
     OrganizationCardHeader,
     OrganizationCardHeaderText,
-    OrganizationCardLink,
+    OrganizationSocialMediaLinkWrapper,
     OrganizationCardSubtitle,
     OrganizationCardSaveButton
 } from "../Common";
@@ -24,7 +24,6 @@ class OrganizationCard extends Component {
         this.state = {
             saveExist: false
         }
-        console.log(this.state.saveExist)
     }
 
     static getDerivedStateFromProps(props) {
@@ -33,12 +32,6 @@ class OrganizationCard extends Component {
         }
         else {
             return { saveExist: true }
-        }
-    }
-
-    cardClick = (e) => {
-        if (this.props.cardClick) {
-            this.props.cardClick(e.currentTarget.id);
         }
     }
 
@@ -54,9 +47,7 @@ class OrganizationCard extends Component {
         }
 
         const indexOfResource = resources.indexOf(this.props.organization.id);
-        if (indexOfResource >= 0) {
-            //resources.splice(indexOfResource, 1);
-        } else {
+        if (indexOfResource < 0) {
             resources.push(this.props.organization.id);
         }
 
@@ -64,13 +55,6 @@ class OrganizationCard extends Component {
             pathname: window.location.pathname,
             search: `?resources=${resources.join(',')}`,
         });
-    }
-
-    saveButton() {
-        if (this.props.saveable) {
-            return <OrganizationCardSaveButton saveItem={this.saveItem} saveExist={this.state.saveExist} />;
-        }
-        return;
     }
 
     render() {
@@ -87,8 +71,8 @@ class OrganizationCard extends Component {
             latitude,
             longitude
         } = this.props.organization;
-        let distance, directionUrl, encodedCoordinates;
         const url = isUrl(website) ? website : "";
+        let distance, directionUrl, encodedCoordinates;
         if (this.props.currentPos && this.props.organization.coordinates) {
             distance = getDistance({ coordinates: this.props.organization.coordinates }, this.props.currentPos);
         }
@@ -96,9 +80,14 @@ class OrganizationCard extends Component {
         directionUrl = "https://www.google.com/maps?saddr=My+Location&daddr=" + encodedCoordinates;
 
         return (
-            <OrganizationCardWrapper ref="cardRef" id={this.props.index} onClick={this.cardClick}>
+            <OrganizationCardWrapper id={this.props.index}>
                 <OrganizationCardHeader>
-                    {this.saveButton()}
+                    {
+
+                        this.props.saveable
+                            ? <OrganizationCardSaveButton saveItem={this.saveItem} saveExist={this.state.saveExist} />
+                            : null
+                    }
                     <OrganizationCardHeaderText>{name}</OrganizationCardHeaderText>
                 </OrganizationCardHeader>
                 <OrganizationCardBody
@@ -133,7 +122,7 @@ class OrganizationCard extends Component {
 const OrganizationCardSocialMediaLink = ({ url, icon, title }) => (
     url
         ? (
-            <OrganizationCardLink
+            <OrganizationSocialMediaLinkWrapper
                 href={url}
                 data-type="social" >
                 <FontAwesomeIcon
@@ -141,7 +130,7 @@ const OrganizationCardSocialMediaLink = ({ url, icon, title }) => (
                     size='2x'
                     title={title}
                 />
-            </OrganizationCardLink>
+            </OrganizationSocialMediaLinkWrapper>
         )
         : null
 );
@@ -164,25 +153,29 @@ const OrganizationCardBody = ({
         {
             location &&
             <p>
-                <FontAwesomeIcon icon='map-marker-alt' className='text-danger' />
-                {location}
+                <FontAwesomeIcon icon='map-marker-alt' className='text-danger' /> {location}
             </p>
         }
-        {directionUrl &&
+        {
+            directionUrl &&
             <a href={directionUrl}
                 target="_blank" >
                 <FontAwesomeIcon icon="map-marked-alt" /> Get Directions
             </a>
         }
-        {overview && <p>{overview}</p>}
-        {url &&
+        {
+            overview && <p>{overview}</p>
+        }
+        {
+            url &&
             <a href={url} target="_blank" >
                 <FontAwesomeIcon icon="external-link-alt" /> Go to website
             </a>
         }
-
-        {phone && <p><span><FontAwesomeIcon icon='phone' size='1x' /></span> {phone}</p>}
-
+        {
+            phone &&
+            <a href="tel"><FontAwesomeIcon icon='phone' size='1x' /> {phone}</a>
+        }
     </OrganizationCardBodyWrapper>
 );
 

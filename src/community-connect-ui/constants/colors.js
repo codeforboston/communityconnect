@@ -3,6 +3,7 @@ export const colors = {
     success: "green",
     danger: "red",
     black: "#000",
+    lightBlack: "rgb(33, 37, 41)",
     blue: "#0056b3",
     white: "#fff",
     gray: "gray",    
