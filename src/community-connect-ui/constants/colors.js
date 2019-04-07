@@ -3,9 +3,10 @@ export const colors = {
     success: "green",
     danger: "red",
     black: "#000",
+    blue: "#0056b3",
     white: "#fff",
-    gray: "#e6e6e6",    
-    lightgray: "#f7f7f7",
+    gray: "gray",    
+    lightgray: "#e6e6e6",
     turquoise: "##007ea3",
     transparentWhite: "rgba(255, 255, 255, 0.9)",
 };

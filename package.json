@@ -1,5 +1,5 @@
 {
-  "name": "makao-react",
+  "name": "community-connect",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +10,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "bootstrap": "^4.1.1",
+    "is-url": "^1.2.4",
     "jquery": "^3.3.1",
     "mapbox-gl": "^0.45.0-beta.1",
     "npm": "^6.4.1",

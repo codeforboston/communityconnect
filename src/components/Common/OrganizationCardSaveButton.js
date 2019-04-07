@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './OrganizationCard.module.css'
 
-class SaveButton extends Component {
+export class OrganizationCardSaveButton extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -36,10 +36,10 @@ class SaveButton extends Component {
     }
 
     buttonSign() {
-      if (this.props.saveExist)
-        return String.fromCharCode(0x2713)
-      else
-        return '+'
+        if (this.props.saveExist)
+            return String.fromCharCode(0x2713)
+        else
+            return '+'
     }
 
     render() {
@@ -59,7 +59,7 @@ class SaveButton extends Component {
                             styles['save-item'],
                         ].join(' ')}>
                         { this.buttonSign() }
-                  </span>
+                    </span>
                     <span
                         className={this.state.animateButtonOutside.join(' ')}
                     >
@@ -69,5 +69,3 @@ class SaveButton extends Component {
         );
     }
 }
-
-export default SaveButton;

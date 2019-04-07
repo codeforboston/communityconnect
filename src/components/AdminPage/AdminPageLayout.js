@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { breakPoints, spacing } from "../../community-connect-ui/constants";
+import { breakPoints, spacing } from "../../community-connect-ui/Constants";
 
 export const AdminPageWrapper = styled('div')`
     display: grid;

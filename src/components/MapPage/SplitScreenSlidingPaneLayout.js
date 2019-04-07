@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { colors, radii } from "../../community-connect-ui/constants";
+import { colors, radii } from "../../community-connect-ui/Constants";
 
 export const SlidingPaneToggle = styled("button")`
     display: none;
