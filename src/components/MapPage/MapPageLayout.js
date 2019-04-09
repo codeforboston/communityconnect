@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { breakPoints } from "../../community-connect-ui/constants";
+import { breakPoints } from "../../community-connect-ui/Constants";
 
 export const Results = styled("div")`
     position: absolute;

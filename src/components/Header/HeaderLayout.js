@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { colors, radii, spacing, fontSizes } from "../../community-connect-ui/constants";
+import { colors, radii, spacing, fontSizes } from "../../community-connect-ui/Constants";
 
 export const Input = styled("input")`
     border-radius: ${radii[0]};
