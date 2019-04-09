@@ -30,9 +30,7 @@ class OrganizationCard extends Component {
         if (!props.savedResource.some(r => r.id === props.organization.id)) {
             return { saveExist: false }
         }
-        else {
-            return { saveExist: true }
-        }
+        return { saveExist: true }
     }
 
     saveItem = () => {
@@ -71,7 +69,7 @@ class OrganizationCard extends Component {
             latitude,
             longitude
         } = this.props.organization;
-        const url = isUrl(website) ? website : "";
+        const websiteUrl = isUrl(website) ? website : "";
         let distance, directionUrl, encodedCoordinates;
         if (this.props.currentPos && this.props.organization.coordinates) {
             distance = getDistance({ coordinates: this.props.organization.coordinates }, this.props.currentPos);
@@ -97,7 +95,7 @@ class OrganizationCard extends Component {
                     directionUrl={directionUrl}
                     overview={overview}
                     phone={phone}
-                    url={url}
+                    url={websiteUrl}
                 />
                 <OrganizationCardSocialMediaLink
                     url={facebookUrl}
@@ -148,7 +146,7 @@ const OrganizationCardBody = ({
     <OrganizationCardBodyWrapper>
         <OrganizationCardSubtitle>{categoryautosortscript}</OrganizationCardSubtitle>
         {
-            distance && <p>Distance from your Location: {distance} miles</p>
+            distance && <p>Distance from your location: {distance} miles</p>
         }
         {
             location &&
@@ -160,7 +158,7 @@ const OrganizationCardBody = ({
             directionUrl &&
             <a href={directionUrl}
                 target="_blank" >
-                <FontAwesomeIcon icon="map-marked-alt" /> Get Directions
+                <FontAwesomeIcon icon="map-marked-alt" /> Get directions
             </a>
         }
         {

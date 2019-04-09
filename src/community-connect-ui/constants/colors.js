@@ -4,6 +4,7 @@ export const colors = {
     danger: "red",
     black: "#000",
     lightBlack: "rgb(33, 37, 41)",
+    shadowBlack: "rgba(0, 0, 0, 0.2)",
     blue: "#0056b3",
     white: "#fff",
     gray: "gray",    

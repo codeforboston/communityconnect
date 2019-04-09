@@ -3,11 +3,11 @@ import { colors, fontSizes, fontWeights, radii, spacing } from "../../community-
 
 export const OrganizationCardWrapper = styled("div")`
     border-radius: ${radii[0]};
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 ${colors.shadowBlack};
     transition: 0.3s;
     width: 100%;
     &:hover {
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 16px 0 ${colors.shadowBlack};
     }
 `;
 
@@ -47,11 +47,10 @@ export const OrganizationCardSubtitle = styled("div")`
     color: ${colors.black};
 `;
 
-// TODO this doesn't seem to be doing anything
 export const OrganizationSocialMediaLinkWrapper = styled("a")`
     margin: ${spacing[1]};
-    color: ${colors.gray} !important; 
+    color: ${colors.gray}; 
     &:hover {
-        color: ${colors.blue} !important;
+        color: ${colors.blue};
     }
 `;
