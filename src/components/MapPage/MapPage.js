@@ -1,9 +1,9 @@
 import React from 'react';
 
-import ResultList from './Map/ResultList';
-import OrganizationMap from './Map/OrganizationMap';
+import ResultList from './ResultList';
+import OrganizationMap from './OrganizationMap';
 import styles from './MapPage.module.css';
-import { SplitScreenSlidingPane } from '../SlidingPane/SplitScreenSlidingPane';
+import { SplitScreenSlidingPane } from './SplitScreenSlidingPane';
 
 
 const MapPage = ({currentPosition}) => {

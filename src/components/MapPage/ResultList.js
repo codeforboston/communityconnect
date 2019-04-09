@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import OrganizationCard from '../../Common/OrganizationCard';
-import styles from './ResultList.module.css';
-import SortBar from '../../Common/SortBar.js';
-import { getDistance } from '../../../utils/distance.js';
-import * as resourceAction from '../../../action/resourceDataAction';
+import OrganizationCard from '../Common/OrganizationCard';
+import SortBar from '../Common/SortBar.js';
+import { getDistance } from '../../utils/distance.js';
+import * as resourceAction from '../../action/resourceDataAction';
+import { Results } from "./MapPageLayout";
 
 export class ResultList extends Component {
 
@@ -84,14 +84,14 @@ export class ResultList extends Component {
     // source of data
     const sortedData = this.state.dataSort();
     return (
-      <div>
+      <>
         <SortBar
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
         />
-        <div
-          className={[
-            styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}
+        <Results
+          // className={[
+          //   styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}
           ref={this.listRef}>
           {
             sortedData.map((resource, index) =>
@@ -106,8 +106,8 @@ export class ResultList extends Component {
                 saveItem={() => this.props.saveItem(resource)}
               />
             )}
-        </div>
-      </div>
+        </Results>
+      </>
     );
 
   }

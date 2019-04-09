@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Row, Col, Container } from 'reactstrap';
 import { connect } from 'react-redux';
 import OrganizationCard from '../Common/OrganizationCard';
 import SortBar from '../Common/SortBar.js';
 import SearchBar from '../Header/SearchBar';
+import { CardGridWrapper, SearchAndSortWrapper, CardListWrapper } from "./AdminPageLayout";
 import { getDistance } from '../../utils/distance.js';
 
 export class CardGrid extends Component {
@@ -60,26 +60,20 @@ export class CardGrid extends Component {
     const sortedData = this.state.dataSort();
 
     return (
-      <Container>
-        <Row>
-          <Col>
-            <SearchBar
-              type="text"
-              handleFilter={this.props.handleFilter}
-            />
-          </Col>
-          <Col>
-            <SortBar
-              onSortChange={this.handleSortChange}
-              sortOptions={sortOptions}
-            />
-          </Col>
-        </Row>
-        <Row>
+      <CardGridWrapper>
+        <SearchAndSortWrapper>
+          <SearchBar
+            type="text"
+            handleFilter={this.props.handleFilter}
+          />
+          <SortBar
+            onSortChange={this.handleSortChange}
+            sortOptions={sortOptions}
+          />
+        </SearchAndSortWrapper>
+        <CardListWrapper>
           {
             sortedData.map((resource, index) => (
-              // classes are bootstrap helper classes, see: https://getbootstrap.com/docs/4.0/utilities/flex/
-              <Col key={resource.id} xs="12" lg="6" className="d-flex my-2 align-content-stretch justify-content-stretch">
                 <OrganizationCard
                   key={resource.id}
                   index={resource.id}
@@ -88,11 +82,10 @@ export class CardGrid extends Component {
                   saveItem={() => this.props.saveItem(resource)}
                   saveable={true}
                 />
-              </Col>
             ))
           }
-        </Row>
-      </Container>
+        </CardListWrapper>
+      </CardGridWrapper>
     );
   }
 };
