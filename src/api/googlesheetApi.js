@@ -1,6 +1,6 @@
 import Tabletop from 'tabletop';
 
-const revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
+const revere_key = process.env.REACT_APP_GOOGLE_SHEETS_ID || '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
 
 function normalizeHeaders(element) {
   element["name"] = element["name"];
