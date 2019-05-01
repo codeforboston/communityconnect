@@ -21,7 +21,6 @@ export const NavItem = styled("div")`
 `;
 
 export const SavedResourcesButton = styled("button")`
-    background-color: ${this.props && this.props.hasItems ? "#007ea3" : "#6c757d"};
     color: ${colors.white};
     font-size: ${fontSizes[1]};
     border-radius: ${radii[0]};
