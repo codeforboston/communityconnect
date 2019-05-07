@@ -42,47 +42,11 @@ class OrganizationMap extends Component {
       zoom: [organizationZoom]
     });
   }
-/*
-  setOpenMarker = index => {
-
-    Object.entries(this.props.locationAddressHashTable).forEach(([index2, orgRef]) => {
-
-      for (var i of orgRef.orgs) {
-        if (Number(i) !== index && orgRef.isOpen) {
-          orgRef.isOpen = false;
-        }
-
-        if (Number(i) === index) {
-          orgRef.isOpen = true
-          this.setState({
-            center: this.props.organizations[orgRef.orgs[0]].coordinates,
-            zoom: 17,
-          });
-          break;
-        }
-      }
-
-    });
-    this.forceUpdate();
-  }
-*/
-  onZoomChanged = ref => {
-
-    this.setState({
-      zoom: this.mapReference.getZoom()
-    })
-
-  }
-
-  mapRef = ref => {
-    this.mapReference = ref
-  }
-
   render() {
+    console.log("Resource: ", this.props.mapResource);
     return (
       <Map
         mapRef={this.mapRef}
-        onZoomChanged={this.onZoomChanged}
         scrollToElement={this.props.scrollToElement}
         setOpenMarker={this.setOpenMarker}
         googleMapURL={googleMapURL}

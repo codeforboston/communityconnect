@@ -1,13 +1,30 @@
 import React from 'react';
-import {withScriptjs, withGoogleMap, GoogleMap} from 'react-google-maps';
-import {MarkerClusterer} from 'react-google-maps/lib/components/addons/MarkerClusterer';
+import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
+import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import OrganizationMarker from './OrganizationMarker';
+import { compose, lifecycle } from "recompose";
 
-const Map = withScriptjs(withGoogleMap(props => (
-    <GoogleMap
-        {...props}
-        ref={props.mapRef}
-    >
+const Map = compose(
+    lifecycle({
+        componentWillMount() {
+
+            this.setState({
+
+                zoomToMarkers: map => {
+                    console.log("Map: ", map);
+                    const bounds = new window.google.maps.LatLngBounds();
+                    map.props.children.props.children.forEach((child) => {
+                            bounds.extend(new window.google.maps.LatLng(child.props.resource.coordinates.lat, child.props.resource.coordinates.lng));
+                    })
+                    map.fitBounds(bounds);
+                }
+            })
+        },
+    }),
+    withScriptjs,
+    withGoogleMap
+)(props =>
+    <GoogleMap {...props} ref={props.zoomToMarkers} defaultZoom={5} defaultCenter={{ lat: 25.0391667, lng: 121.525 }}>
         <MarkerClusterer
             averageCenter={true}
             enableRetinaIcons={true}
@@ -26,6 +43,5 @@ const Map = withScriptjs(withGoogleMap(props => (
             }
         </MarkerClusterer>
     </GoogleMap>
-)));
-
+);
 export default Map;
