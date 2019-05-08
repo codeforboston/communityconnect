@@ -1,6 +1,7 @@
 import Tabletop from 'tabletop';
 import {getAllSites} from '../api/directoryGoogleSheets';
 
+
 const revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
 const resourcePath = 'revere'; // TODO: extract this from the URL
 

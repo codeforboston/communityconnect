@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { colors, radii, spacing, fontSizes } from "../../community-connect-ui/Constants";
+import React from 'react';
 
 export const Input = styled("input")`
     border-radius: ${radii[0]};
@@ -21,15 +22,15 @@ export const NavItem = styled("div")`
 `;
 
 export const SavedResourcesButton = styled("button")`
-    background-color: ${this.props && this.props.hasItems ? "#007ea3" : "#6c757d"};
-    color: ${colors.white};
-    font-size: ${fontSizes[1]};
-    border-radius: ${radii[0]};
-    border: none;
-    padding: ${spacing[0]} ${spacing[1]};
-    margin-right: ${spacing[1]};
-    width: 200px;
-`;
+            background-color: ${ this && this.props && this.props.hasItems ? "#007ea3" : "#6c757d"};
+            color: ${colors.white};
+            font-size: ${fontSizes[1]};
+            border-radius: ${radii[0]};
+            border: none;
+            padding: ${spacing[0]} ${spacing[1]};
+            margin-right: ${spacing[1]};
+            width: 200px;
+        `;
 
 export const Badge = styled("span")`
     margin-left: 2%;
