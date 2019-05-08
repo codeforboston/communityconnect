@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import {withRouter} from 'react-router';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 import {
   Card,
@@ -118,19 +119,22 @@ class SavedResource extends Component {
                 {facebookUrl &&
                   <li>
                     <a href={facebookUrl} data-type="social">
-                      <i className="fa fa-2x fa-facebook-square">{facebookUrl}</i>
+                      <FontAwesomeIcon icon={['fab', 'facebook-square']}
+                                      className="text-black-50 mr-1" size='2x' title="Facebook Page"/>
                     </a>
                   </li>}
                 {instagramUrl &&
                   <li>
                     <a href={instagramUrl} data-type="social">
-                      <i className="fa fa-2x fa-facebook-square">{instagramUrl}</i>
+                      <FontAwesomeIcon icon={['fab', 'instagram']} className="text-black-50 mr-1" size='2x'
+                                      title="Instagram Page"/>
                     </a>
                   </li>}
                 {twitterUrl &&
                   <li>
                     <a href={twitterUrl} data-type="social">
-                      <i className="fa fa-2x fa-facebook-square">{twitterUrl}</i>
+                      <FontAwesomeIcon icon={['fab', 'twitter']} className="text-black-50 mr-1" size='2x'
+                                      title="Twitter Page"/>
                     </a>
                   </li>}
               </ul>}
