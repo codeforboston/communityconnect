@@ -7,11 +7,8 @@ import { compose, lifecycle } from "recompose";
 const Map = compose(
     lifecycle({
         componentWillMount() {
-
             this.setState({
-
                 zoomToMarkers: map => {
-                    console.log("Map: ", map);
                     const bounds = new window.google.maps.LatLngBounds();
                     map.props.children.props.children.forEach((child) => {
                             bounds.extend(new window.google.maps.LatLng(child.props.resource.coordinates.lat, child.props.resource.coordinates.lng));
@@ -24,7 +21,7 @@ const Map = compose(
     withScriptjs,
     withGoogleMap
 )(props =>
-    <GoogleMap {...props} ref={props.zoomToMarkers} defaultZoom={5} defaultCenter={{ lat: 25.0391667, lng: 121.525 }}>
+    <GoogleMap {...props} ref={props.zoomToMarkers} defaultZoom={5} >
         <MarkerClusterer
             averageCenter={true}
             enableRetinaIcons={true}

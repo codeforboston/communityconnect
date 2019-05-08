@@ -19,9 +19,7 @@ const MapPage = ({currentPosition}) => {
               />
           </SplitScreenSlidingPane>
           <div className={styles.staticPane}>
-              <OrganizationMap
-                center={currentPosition ? currentPosition.coordinates : null}
-              />
+              <OrganizationMap/>
           </div>
         </div>
     );

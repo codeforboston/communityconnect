@@ -5,19 +5,7 @@ import Map from './Map';
 const googleMapKey = 'AIzaSyAwKdrqS2GfCt9b2K1wAopDc9Ga0N1BVUM';
 const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${googleMapKey}&v=3.exp&libraries=geometry,drawing,places`;
 
-const defaultZoom = 12;
-const defaultCenter = { lat: 42.3731, lng: -71.0162 };
-
 class OrganizationMap extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      center: this.props.center ? this.props.center : defaultCenter,
-      zoom: defaultZoom
-    }
-  }
-
 
   markerHover = (key, event) => {
     event.map.getCanvas().style.cursor = 'pointer';
@@ -33,6 +21,7 @@ class OrganizationMap extends Component {
     });
   }
 
+  //This unused function used to be for connecting with the result list
   onOrganizationClick = (key, event) => {
     const organizationZoom = 11;
     const org = this.props.organizations.find(o => o.id === key);
@@ -43,25 +32,19 @@ class OrganizationMap extends Component {
     });
   }
   render() {
-    console.log("Resource: ", this.props.mapResource);
     return (
       <Map
-        mapRef={this.mapRef}
-        scrollToElement={this.props.scrollToElement}
-        setOpenMarker={this.setOpenMarker}
         googleMapURL={googleMapURL}
         containerElement={<div style={{ height: '100%' }} />}
         mapElement={<div style={{ height: '100%' }} />}
         loadingElement={<div style={{ height: `100%` }} />}
-        zoom={this.state.zoom}
-        center={this.state.center}
         resource={this.props.mapResource}
       />
     );
   }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   let currentResource = state.savedResource.length > 0 ? state.savedResource : state.resource;
   var locationArray = [];
   currentResource.forEach(function (resource) {
