@@ -17,10 +17,10 @@ resources &  mark them as vetted. The app will only display vetted resources.
 Note that this project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).  Create React App gives us lots of functionality not documented in this readme.
 
 ## New Developer Setup Instructions
-1) clone the repo
-1) install npm (it may be installed already)
-1) install dependencies `npm install`
-1) start server `npm run start`
+1) Clone the repo
+1) Install yarn (it may be installed already)
+1) Install dependencies by running `yarn`
+1) Start the development server buy running `yarn start`
 
 ## Where to start
 Our open issues are listed on the project's [Issues](https://github.com/codeforboston/communityconnect/issues) tab. The best places to start are unassigned issues with the label "[good first issue](https://github.com/codeforboston/communityconnect/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22+no%3Aassignee)".
