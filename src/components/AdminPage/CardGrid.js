@@ -8,7 +8,7 @@ import { getDistance } from '../../utils/distance.js';
 
 export class CardGrid extends Component {
   constructor(props){
-    super(props)
+    super(props);
 
     this.state = {
       dataSort: this.sortByAlphabet,
@@ -22,22 +22,22 @@ export class CardGrid extends Component {
     }
 
     return -1;
-  }
+  };
 
   getCloserName = (a, b) => {
     if(a.name > b.name) return 1
     else if(a.name < b.name ) return -1
     else return 0
-  }
+  };
 
 
   sortByAlphabet = () => {
     return this.props.resource.slice().sort(this.getCloserName);
-  }
+  };
 
   sortByDistance = () => {
     return this.props.resource.slice().sort(this.getCloserResource);
-  }
+  };
 
   handleSortChange = (newSort) => {
     if(this.state.dataSort !== newSort)
@@ -45,7 +45,7 @@ export class CardGrid extends Component {
         // Set the dataSort variable to whichever sort function is chosen
         dataSort: newSort,
       })
-  }
+  };
 
   render() {
     const sortOptions = [

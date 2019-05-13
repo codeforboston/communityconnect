@@ -1,14 +1,9 @@
 import React from 'react';
 import App from './App';
-import {render, fireEvent, cleanup, waitForElement} from 'react-testing-library'
 import { Provider } from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
 import { createStore } from 'redux';
 import { MemoryRouter } from 'react-router';
-import Enzyme, { mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-Enzyme.configure({ adapter: new Adapter() });
+import { mount } from 'enzyme';
 
 const store = createStore(() => (
     { isFetchingResource : false,
