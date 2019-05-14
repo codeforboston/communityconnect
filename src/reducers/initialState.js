@@ -5,5 +5,6 @@ export default {
       filteredResource: [],
       savedResource: [],
       categories: [],
+      categoryGroups: [],
       mapResource: []
 };

@@ -22,6 +22,27 @@ export function isFetchingResource(state = initialState.isFetchingResource, acti
     }
 }
 
+export function categoryGroups(state = initialState.categoryGroups, action) {
+  switch (action.type) {
+    case types.LOAD_RESOURCE_DATA_SUCCESS:
+      const categoryGroups = {};
+      for (let data of action.resource) {
+        let categoryGroup = data.testingcategorygroups.split(',');
+        categoryGroup.forEach(group => categoryGroups[group] = group.trim());
+      }
+      const groupList = [...(new Set(Object.values(categories)))];
+      let index = groupList.indexOf("");
+      if (index > -1) {
+        groupList.splice(index, 1);
+      }
+
+      return Object.assign([], state, groupList);
+
+    default:
+      return state;
+  }
+}
+
 export function categories(state = initialState.categories, action) {
     switch (action.type) {
         case types.LOAD_RESOURCE_DATA_SUCCESS:
@@ -95,4 +116,3 @@ export function savedResource(state = initialState.savedResource, action) {
             return state;
     }
 }
-
