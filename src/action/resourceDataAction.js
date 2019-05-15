@@ -10,10 +10,10 @@ export function loadCategories(){
 }
 
 
-export function loadResources(){
+export function loadResources(resourcePath){
     return function (dispatch) {
         dispatch(loadResourceDataStart());
-        return getAllResources.then(resources => {
+        return getAllResources(resourcePath).then(resources => { //update with call using specific 
             dispatch(loadResourceDataSuccess(resources));
         }).catch(error => {
             dispatch(loadResourceDataFailure(error));
