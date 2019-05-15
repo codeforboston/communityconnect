@@ -6,8 +6,10 @@ import MapPage from '../components/MapPage/MapPage';
 import AdminPage from '../components/AdminPage/AdminPage';
 import { SplitScreenTogglePane } from '../components/AdminPage/SplitScreenTogglePane';
 import SavedResourcePanel from '../components/SavedResources/SavedResourcePanel';
+import { loadResources } from '../action/resourceDataAction';
 import styles from './App.module.css';
 import Loader from 'react-loader-spinner'
+import PropTypes from 'prop-types'
 
 
 class AppContainer extends Component {
@@ -17,6 +19,10 @@ class AppContainer extends Component {
             position: {}
         }
         this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
+    }
+
+    static propTypes = {
+        dispatch: PropTypes.func,
     }
 
     getLocation = () => {
@@ -39,6 +45,7 @@ class AppContainer extends Component {
     }
 
     componentDidMount() {
+        this.props.dispatch(loadResources(this.props.match.params.resource));
         this.getLocation();
     }
 
@@ -66,10 +73,10 @@ class AppContainer extends Component {
                     />  </div>}
                     {!isFetchingResource &&
                         <div>
-                            <Route exact path='/admin' render={(props) => <AdminPage currentPosition={this.state.position} />} />
-                            <Route exact path='/' render={(props) => <MapPage currentPosition={this.state.position} />} />
+                            <Route exact path='/:resource/admin' render={(props) => <AdminPage currentPosition={this.state.position} />} />
+                            <Route exact path='/:resource/' render={(props) => <MapPage currentPosition={this.state.position} />} />
                             <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
-                                <SavedResourcePanel />
+                                <SavedResourcePanel resourcePath={this.props.match.params.resource} />
                             </SplitScreenTogglePane>
                         </div>
                     }
