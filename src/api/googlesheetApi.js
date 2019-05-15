@@ -3,7 +3,6 @@ import {getAllSites} from '../api/directoryGoogleSheets';
 
 const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID
 const revereSheetId = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
-const resourcePath = 'revere'; // TODO: extract this from the URL
 
 function normalizeHeaders(element) {
   element["name"] = element["name"];
@@ -26,24 +25,22 @@ function normalizeHeaders(element) {
 
 }
 
-function sheetIdFromPath(directory, path) {
-  if(!!path || path === ""){
-    return;
+function sheetIdFromPath(directory, path){
+  for (var i=0; i < directory.length; i++) {
+      if (directory[i].path === path) {
+          return directory[i].sheetId;
+      }
   }
-
-  const requestedSite = directory.find(function(site) {
-    return site["path"] === path;
-  });
-
-  if(!!requestedSite){
-    return;
-  }
-  return requestedSite["sheetId"];
 }
 
-export let getAllResources = new Promise(function(resolve, reject){
+export let getAllResources = (resourcePath) => new Promise(function(resolve, reject){
   getAllSites.then(sites => {
-    const resourceSheetId = envSheetId || sheetIdFromPath(sites, resourcePath) || revereSheetId
+    const resourceSheetId = sheetIdFromPath(sites, resourcePath) || envSheetId ||  revereSheetId;
+    alert(resourceSheetId);
+    if(resourceSheetId == null){
+      alert("Error: Unable to find resource '" + resourcePath + "'");
+    }
+
     Tabletop.init({
       key: resourceSheetId,
       simpleSheet: false,
@@ -57,4 +54,3 @@ export let getAllResources = new Promise(function(resolve, reject){
     });
   });
 })
-
