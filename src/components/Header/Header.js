@@ -70,7 +70,7 @@ class Header extends Component {
           <NavbarBrand className="Logo" onClick={this.modalOpen}>
             <h3>Community Connect</h3>
           </NavbarBrand>
-          <Route path='/admin' render={props =>
+          <Route path='/:resource/admin' render={props =>
             <SavedResourcesButton
               hasItems={this.hasItems()}
               onClick={() => this.props.toggleSavedResourcesPane()}>
