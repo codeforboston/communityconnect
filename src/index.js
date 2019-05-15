@@ -21,7 +21,6 @@ export const getRoutes = (store) => {
     return (
         <div>
             <Switch>
-                <Route path = '/' exact component={AppContainer} /> 
                 <Route path = '/admin' exact component={AppContainer} />
                 <Route 
                     path = '/:resource/' 
