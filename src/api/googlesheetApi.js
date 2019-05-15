@@ -35,8 +35,7 @@ function sheetIdFromPath(directory, path){
 
 export let getAllResources = (resourcePath) => new Promise(function(resolve, reject){
   getAllSites.then(sites => {
-    const resourceSheetId = sheetIdFromPath(sites, resourcePath) || envSheetId ||  revereSheetId;
-    alert(resourceSheetId);
+    const resourceSheetId = sheetIdFromPath(sites, resourcePath) || envSheetId || revereSheetId;
     if(resourceSheetId == null){
       alert("Error: Unable to find resource '" + resourcePath + "'");
     }
