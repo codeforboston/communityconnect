@@ -11,8 +11,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "bootstrap": "^4.1.1",
     "is-url": "^1.2.4",
-    "jquery": "^3.3.1",
-    "mapbox-gl": "^0.45.0-beta.1",
+    "jquery": "^3.4.0",
     "npm": "^6.4.1",
     "popper.js": "^1.14.7",
     "qs-lite": "^0.0.1",
@@ -27,6 +26,7 @@
     "react-redux": "^5.0.7",
     "react-router": "latest",
     "react-router-dom": "^4.3.1",
+    "react-testing-library": "^6.1.2",
     "reactstrap": "^5.0.0",
     "redux-thunk": "^2.3.0",
     "tabletop": "^1.5.2"
@@ -46,6 +46,9 @@
     "babel-eslint": "^10.0.1",
     "eslint-config-google": "^0.13.0",
     "eslint-plugin-react": "^7.12.4",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "jest-emotion": "^10.0.10",
     "react-scripts": "2.0.0-next.66cc7a90",
     "redux-immutable-state-invariant": "^2.1.0"
   },
