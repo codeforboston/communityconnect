@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
+import {Route, Redirect} from 'react-router';
 import { connect } from 'react-redux';
 import Header from '../components/Header/Header';
 import MapPage from '../components/MapPage/MapPage';
@@ -7,10 +7,21 @@ import AdminPage from '../components/AdminPage/AdminPage';
 import { SplitScreenTogglePane } from '../components/AdminPage/SplitScreenTogglePane';
 import SavedResourcePanel from '../components/SavedResources/SavedResourcePanel';
 import { loadResources } from '../action/resourceDataAction';
+import {getAllSites} from '../api/directoryGoogleSheets';
 import styles from './App.module.css';
 import Loader from 'react-loader-spinner'
 import PropTypes from 'prop-types'
 
+const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID
+const revereSheetId = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
+
+function sheetIdFromPath(directory, path){
+    for (var i=0; i < directory.length; i++) {
+        if (directory[i].path === path) {
+            return directory[i].sheetId;
+        }
+    }
+  }
 
 class AppContainer extends Component {
     constructor(props) {
@@ -45,7 +56,20 @@ class AppContainer extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(loadResources(this.props.match.params.resource));
+        var resourcePath = this.props.match.params.resource;
+        var resourceSheetId = null;
+
+        getAllSites.then(sites => {
+            resourceSheetId = sheetIdFromPath(sites, resourcePath) || envSheetId;
+        
+            if(resourceSheetId == null){
+                alert("Error: Unable to find resource '" + resourcePath + "'");
+            }else{
+                var resourcesFromSheet = loadResources(resourceSheetId);
+                this.props.dispatch(resourcesFromSheet);
+            }
+        });
+        
         this.getLocation();
     }
 
@@ -71,7 +95,7 @@ class AppContainer extends Component {
                         height="50"
                         width="50"
                     />  </div>}
-                    {!isFetchingResource &&
+                    {(!isFetchingResource) &&
                         <div>
                             <Route exact path='/:resource/admin' render={(props) => <AdminPage currentPosition={this.state.position} />} />
                             <Route exact path='/:resource/' render={(props) => <MapPage currentPosition={this.state.position} />} />

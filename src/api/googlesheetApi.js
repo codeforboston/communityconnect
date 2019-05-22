@@ -1,8 +1,4 @@
 import Tabletop from 'tabletop';
-import {getAllSites} from '../api/directoryGoogleSheets';
-
-const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID
-const revereSheetId = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
 
 function normalizeHeaders(element) {
   element["name"] = element["name"];
@@ -25,31 +21,18 @@ function normalizeHeaders(element) {
 
 }
 
-function sheetIdFromPath(directory, path){
-  for (var i=0; i < directory.length; i++) {
-      if (directory[i].path === path) {
-          return directory[i].sheetId;
-      }
-  }
-}
-
-export let getAllResources = (resourcePath) => new Promise(function(resolve, reject){
-  getAllSites.then(sites => {
-    const resourceSheetId = sheetIdFromPath(sites, resourcePath) || envSheetId || revereSheetId;
-    if(resourceSheetId == null){
-      alert("Error: Unable to find resource '" + resourcePath + "'");
+export let getAllResources = (resourceSheetId) => new Promise(function(resolve, reject){
+  Tabletop.init({
+    key: resourceSheetId,
+    simpleSheet: false,
+    prettyColumnNames: false,
+    postProcess: normalizeHeaders,
+    callback: (data, tabletop) => {
+      let resource = tabletop.sheets("Data").elements;
+      let filteredResource = resource.filter(function (resource) {
+        return resource.truefalsevetting === 'TRUE'
+      });
+      resolve(filteredResource);
     }
-
-    Tabletop.init({
-      key: resourceSheetId,
-      simpleSheet: false,
-      prettyColumnNames: false,
-      postProcess: normalizeHeaders,
-      callback: (data, tabletop) =>{
-        let resource = tabletop.sheets("Data").elements;
-        let filteredResource = resource.filter(function (resource) { return resource.truefalsevetting === 'TRUE' });
-        resolve(filteredResource);
-        }
-    });
   });
 })
