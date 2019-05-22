@@ -84,7 +84,7 @@ export class ResultList extends Component {
     // source of data
     const sortedData = this.state.dataSort();
     return (
-      <>
+      <div>
         <SortBar
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
@@ -107,7 +107,7 @@ export class ResultList extends Component {
               />
             )}
         </Results>
-      </>
+      </div>
     );
 
   }

@@ -65,7 +65,7 @@ class Header extends Component {
 
   render() {
     return (
-      <>
+      <div>
         <Navbar color="light" light expand="md" style={{justifyContent: "space-between"}}>
           <NavbarBrand className="Logo" onClick={this.modalOpen}>
             <h3>Community Connect</h3>
@@ -86,7 +86,7 @@ class Header extends Component {
             <Button color="secondary" onClick={this.confirmationModalToggle}>Continue</Button>
           </ModalFooter>
         </Modal>
-      </>
+      </div>
     );
   }
 }

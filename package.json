@@ -33,14 +33,17 @@
     "tabletop": "^1.5.2"
   },
   "scripts": {
-    "start": "react-scripts start --parallel test:watch open:src lint:watch",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
     "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
+    "open:src": "babel-node tools/srcServer.js",
+    "lint:watch": "npm run lint -- --watch",
+    "lint:fix": "eslint src --fix",
+    "test:watch": "npm run test -- --watch"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
