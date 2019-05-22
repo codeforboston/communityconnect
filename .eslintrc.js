@@ -3,6 +3,8 @@ module.exports = {
     "eslint:recommended",
     "plugin:react/recommended",
     "google",
+    "plugin:import/errors",
+    "plugin:import/warnings"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
