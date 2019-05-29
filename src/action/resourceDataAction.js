@@ -9,6 +9,10 @@ export function loadCategories(){
     return { type: types.LOAD_CATEGORIES }
 }
 
+export function loadCategoryGroups(){
+    return { type: types.LOAD_CATEGORY_GROUPS }
+}
+
 
 export function loadResources(){
     return function (dispatch) {
@@ -23,6 +27,10 @@ export function loadResources(){
 
 export function filterByCategories(filteredResource){
     return { type: types.FILTER_RESOURCE_BY_CATEGORIES, filteredResource }
+}
+
+export function filterCategoriesByGroup(filterGroup){
+    return { type: types.FILTER_CATEGORIES_BY_GROUP, filterGroup }
 }
 
 export function filterBySearch(searchedResource){
