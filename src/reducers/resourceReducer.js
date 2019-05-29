@@ -22,21 +22,21 @@ export function isFetchingResource(state = initialState.isFetchingResource, acti
     }
 }
 
-export function categoryGroups(state = initialState.categoryGroups, action) {
+export function headCategories(state = initialState.headCategories, action) {
   switch (action.type) {
     case types.LOAD_RESOURCE_DATA_SUCCESS:
-      const categoryGroups = {};
+      const headCategories = {};
       for (let data of action.resource) {
-        let categoryGroup = data.testingcategorygroups.split(',');
-        categoryGroup.forEach(group => categoryGroups[group] = group.trim());
+        let headCat = data.headcategories.split(',');
+        headCat.forEach(group => headCategories[group] = group.trim());
       }
-      const groupList = [...(new Set(Object.values(categories)))];
-      let index = groupList.indexOf("");
+      const headList = [...(new Set(Object.values(categories)))];
+      let index = headList.indexOf("");
       if (index > -1) {
-        groupList.splice(index, 1);
+        headList.splice(index, 1);
       }
 
-      return Object.assign([], state, groupList);
+      return Object.assign([], state, headList);
 
     default:
       return state;
