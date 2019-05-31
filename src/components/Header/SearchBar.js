@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as resourceAction from '../../action/resourceDataAction';
+import { Input } from "./HeaderLayout";
 
 export class SearchBar extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ export class SearchBar extends Component {
 
   render() {
     return (
-      <input type="text" value={this.state.searchString} onChange={this.handleFilter} placeholder="Search Resources"/>
+      <Input type="text" value={this.state.searchString} onChange={this.handleFilter} placeholder="Search Resources"/>
     );
   }
 }

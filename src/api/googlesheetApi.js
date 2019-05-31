@@ -1,7 +1,5 @@
 import Tabletop from 'tabletop';
 
-const revere_key = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
-
 function normalizeHeaders(element) {
   element["name"] = element["name"];
   element["tags"] = String(element["serviceprovided"]).split(", ");
@@ -23,17 +21,18 @@ function normalizeHeaders(element) {
 
 }
 
-export let getAllResources = new Promise(function(resolve, reject){
+export let getAllResources = (resourceSheetId) => new Promise(function(resolve, reject){
   Tabletop.init({
-    key: revere_key,
+    key: resourceSheetId,
     simpleSheet: false,
     prettyColumnNames: false,
     postProcess: normalizeHeaders,
-    callback: (data, tabletop) =>{
+    callback: (data, tabletop) => {
       let resource = tabletop.sheets("Data").elements;
-      let filteredResource = resource.filter(function (resource) { return resource.truefalsevetting === 'TRUE' });
+      let filteredResource = resource.filter(function (resource) {
+        return resource.truefalsevetting === 'TRUE'
+      });
       resolve(filteredResource);
     }
   });
 })
-

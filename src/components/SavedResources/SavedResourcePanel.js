@@ -34,13 +34,13 @@ const ToMapButton = () => {
   )
 }*/
 
-const ToShareButton = () => {
+const ToShareButton = (props) => {
   const query = qs.parse(window.location.search.replace('?', ''));
   let resources = [];
   let tempUrl = "";
   if (query.resources) {
     resources = query.resources.split(',');
-    tempUrl = `/?resources=${resources.join(',')}`
+    tempUrl = `/` + props.resourcePath + `/?resources=${resources.join(',')}`
   }
 
   return (
@@ -51,13 +51,19 @@ const ToShareButton = () => {
   )
 }
 const SavedResourcePanel = () => {
-
     return (
       <div>
         <Card>
           <CardHeader>Saved Resources
           <span>
-            <Route exact path='/admin' component={ToShareButton} />
+            <Route exact 
+              path="/:resource/admin" 
+              render={(props)=> 
+                <ToShareButton 
+                  resourcePath={props.match.params.resource}
+                  />
+              } 
+            />
           </span>
           </CardHeader>
           <CardBody className={styles['shopping-cart-card']}>
