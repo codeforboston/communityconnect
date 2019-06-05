@@ -96,7 +96,7 @@ function mapStateToProps(state, ownProps) {
     for (let i = 0, len1 = state.searchedResource.length; i < len1; i++) {
         for (let j = 0, len2 = state.filteredResource.length; j < len2; j++) {
             if (state.searchedResource[i].id === state.filteredResource[j].id) {
-                res.push(state.searchedResource[i])
+                //res.push(state.searchedResource[i])
             }
         }
     }
