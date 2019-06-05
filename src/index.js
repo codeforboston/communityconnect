@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom'
 import configureStore from './store/configureStore';
 import { Provider } from 'react-redux';
-import {Route, Switch} from 'react-router';
+import {Route, Switch, Redirect} from 'react-router';
 import AppContainer from './App/AppContainer';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import registerServiceWorker from './registerServiceWorker';
@@ -21,13 +21,14 @@ export const getRoutes = (store) => {
     return (
         <div>
             <Switch>
-                <Route path = '/' exact component={AppContainer} /> 
                 <Route path = '/admin' exact component={AppContainer} />
                 <Route 
                     path = '/:resource/' 
                     component={AppContainer} 
                     dispatch={store.dispatch}
                 /> 
+                <Redirect from="/" to="/revere"/>
+
                 <Route component={NotFoundPage} />
             </Switch>
         </div>

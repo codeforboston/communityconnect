@@ -52,7 +52,8 @@ Join our [Code for Boston](https://www.codeforboston.org/) slack channel: [#comm
 1) Click done
 1) Click File and select "Publish to the web"
 1) Click Publish
-1) Set the build-time environment variable REACT_APP_GOOGLE_SHEETS_ID to have the unique sheet identifier as its value.
+1) Open "src/googlesheetApi.js" in the codebase
+1) Replace "revere_key" with a portion of the URL in your clipboard
 
 For Example, if the URL of your Google Spreadsheet is
 https://docs.google.com/spreadsheets/d/1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M/edit?usp=sharing

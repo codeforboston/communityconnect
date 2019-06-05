@@ -19,9 +19,7 @@ class MapPage extends Component {
               />
           </SplitScreenSlidingPane>
           <div className={styles.staticPane}>
-              <OrganizationMap
-                center={this.props.currentPosition ? this.props.currentPosition.coordinates : null}
-              />
+              <OrganizationMap/>
           </div>
         </div>
     );
