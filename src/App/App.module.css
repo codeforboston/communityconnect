@@ -1,19 +1,36 @@
 .viewport {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-  }
-  .header {
-    top: 0;
-    width:100%;
-    height:auto;
-    padding: 1px;
-  }
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
 
-  .spinner{
-    margin: auto;
-     width: 100px;
-     height: 100px; 
-  }
+.header {
+  top: 0;
+  width: 100%;
+  height: auto;
+  padding: 1px;
+}
+
+.spinner {
+  margin: auto;
+  width: 100px;
+  height: 100px;
+}
+
+.feedbackContainer {
+  z-index: 999;
+  color: #000;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  text-align: center;
+  width: 100%;
+  padding: 10px 30px 10px 10px;
+  background-color: #e6e6e6;
+}
+
+.badge {
+  margin: 0px 5px 0px 5px;
+}

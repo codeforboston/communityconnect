@@ -8,6 +8,7 @@ import { SplitScreenTogglePane } from '../components/AdminPage/SplitScreenToggle
 import SavedResourcePanel from '../components/SavedResources/SavedResourcePanel';
 import { loadResources } from '../action/resourceDataAction';
 import {getAllSites} from '../api/directoryGoogleSheets';
+import { Badge } from 'reactstrap';
 import styles from './App.module.css';
 import Loader from 'react-loader-spinner'
 import PropTypes from 'prop-types'
@@ -27,9 +28,17 @@ class AppContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            position: {}
+            position: {},
+            displayFeedbackLink: true
         }
         this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
+    }
+
+
+    hideFeedbackLink(){
+        this.setState({
+            displayFeedbackLink: false
+        })
     }
 
     static propTypes = {
@@ -83,6 +92,16 @@ class AppContainer extends Component {
         let { isFetchingResource } = this.props;
         return (
             <div className="container-fluid">
+                { this.state.displayFeedbackLink &&
+                    <div className={styles.feedbackContainer}>
+                        Want to improve Community Connect? 
+                        <br/>
+                        <Badge className={styles.badge} href="https://forms.gle/bA33aBUnEUB7R9wC9" target="_new" color="primary">Submit feedback</Badge>
+                        <Badge className={styles.badge} onClick={this.hideFeedbackLink.bind(this)} color="light">Do it later</Badge>
+
+
+                    </div>
+                }
                 <div className={styles.viewport}>
                     <div className={styles.header}>
                         <Header
@@ -109,6 +128,7 @@ class AppContainer extends Component {
         );
     }
 }
+
 function mapStateToProps(state, ownProps) {
     let { isFetchingResource } = state;
     return {
