@@ -93,12 +93,12 @@ export class CardGrid extends Component {
 function mapStateToProps(state, ownProps) {
     let res = [];
     //Not the most efficient logic, but it works. Will have to optimize this later
-    for (let i = 0, len1 = state.searchedResource.length; i < len1; i++) {
-        for (let j = 0, len2 = state.filteredResource.length; j < len2; j++) {
-            if (state.searchedResource[i].id === state.filteredResource[j].id) {
-                //res.push(state.searchedResource[i])
-            }
-        }
+    for (let i = 0; i < state.searchedResource.length; i++) {
+        //for (let j = 0; j < state.filteredResource.length; j++) {
+            //if (state.searchedResource[i].id === state.filteredResource[j].id) {
+                 res.push(state.searchedResource[i])
+            //}
+        //}
     }
 
     return {
