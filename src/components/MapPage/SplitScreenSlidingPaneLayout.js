@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import { colors, radii } from "../../community-connect-ui/Constants";
+import styled from '@emotion/styled';
+import {colors, radii} from '../../community-connect-ui/Constants';
 
-export const SlidingPaneToggle = styled("button")`
+export const SlidingPaneToggle = styled('button')`
     display: none;
     position: absolute;
     height: 40px;
@@ -19,7 +19,7 @@ export const SlidingPaneToggle = styled("button")`
     }
 `;
 
-export const SlidingPaneWrapper = styled("div")`
+export const SlidingPaneWrapper = styled('div')`
     position: absolute;
     top: 0;
     right: 70%;
@@ -32,8 +32,8 @@ export const SlidingPaneWrapper = styled("div")`
         bottom: -64%;
         right: 0;
         z-index: 10;
-        height: ${props => props.open ? "calc(100% - 40px)" : "calc(70%)"};
-        top: ${props => props.open ? "60px" : "auto"};
-        bottom: ${props => props.open ? "0" : "-64%"};
+        height: ${(props) => props.open ? 'calc(100% - 40px)' : 'calc(70%)'};
+        top: ${(props) => props.open ? '60px' : 'auto'};
+        bottom: ${(props) => props.open ? '0' : '-64%'};
     }
 `;

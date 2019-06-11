@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
-const TogglePane = styled("div")`
-    display: ${props => props.isOpen ? "block" : "none"};
+const TogglePane = styled('div')`
+    display: ${(props) => props.isOpen ? 'block' : 'none'};
     position: absolute;
     height: 100%;
     width: 33%;
@@ -18,8 +18,8 @@ const TogglePane = styled("div")`
     }
 `;
 
-export const SplitScreenTogglePane = ({ isOpen, children }) => (
-    <TogglePane isOpen={isOpen}>
-        { children }
-    </TogglePane>
+export const SplitScreenTogglePane = ({isOpen, children}) => (
+  <TogglePane isOpen={isOpen}>
+    { children }
+  </TogglePane>
 );

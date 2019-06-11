@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import { colors, fontSizes, fontWeights, radii, spacing } from "../../community-connect-ui/Constants";
+import styled from '@emotion/styled';
+import {colors, fontSizes, fontWeights, radii, spacing} from '../../community-connect-ui/Constants';
 
-export const OrganizationCardWrapper = styled("div")`
+export const OrganizationCardWrapper = styled('div')`
     border-radius: ${radii[0]};
     box-shadow: 0 4px 8px 0 ${colors.shadowBlack};
     transition: 0.3s;
@@ -11,7 +11,7 @@ export const OrganizationCardWrapper = styled("div")`
     }
 `;
 
-export const OrganizationCardHeader = styled("div")`
+export const OrganizationCardHeader = styled('div')`
     padding: 15px;
     background-color: ${colors.lightgray};
     text-align: center;
@@ -19,13 +19,13 @@ export const OrganizationCardHeader = styled("div")`
     border-radius: ${radii[0]} ${radii[0]} 0 0;
 `;
 
-export const OrganizationCardHeaderText = styled("h3")`
+export const OrganizationCardHeaderText = styled('h3')`
     font-size: ${fontSizes[2]};
     font-weight: ${fontWeights.bold};
     letter-spacing: 2px;
 `;
 
-export const OrganizationCardBodyWrapper = styled("div")`
+export const OrganizationCardBodyWrapper = styled('div')`
     display: flex;
     flex-direction: column;
     padding: ${spacing[1]};
@@ -38,7 +38,7 @@ export const OrganizationCardBodyWrapper = styled("div")`
     }
 `;
 
-export const OrganizationCardSubtitle = styled("div")`
+export const OrganizationCardSubtitle = styled('div')`
     font-size: ${fontSizes[1]};
     font-weight: ${fontWeights.bold};
     letter-spacing: 1.5px;
@@ -47,7 +47,7 @@ export const OrganizationCardSubtitle = styled("div")`
     color: ${colors.black};
 `;
 
-export const OrganizationSocialMediaLinkWrapper = styled("a")`
+export const OrganizationSocialMediaLinkWrapper = styled('a')`
     margin: ${spacing[1]};
     color: ${colors.gray}; 
     &:hover {

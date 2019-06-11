@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import * as resourceAction from '../../action/resourceDataAction';
-import { Input } from "./HeaderLayout";
+import {Input} from './HeaderLayout';
 
 export class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.handleFilter = this.handleFilter.bind(this);
     this.state = {
-      searchString: ''
+      searchString: '',
     };
   }
 
-  handleFilter (e) {
-    this.setState({searchString : e.target.value});
-    let searchedResource = this.props.resource.filter(function (i) {
+  handleFilter(e) {
+    this.setState({searchString: e.target.value});
+    const searchedResource = this.props.resource.filter(function(i) {
       return i.name.toLowerCase().match(e.target.value.toLowerCase());
     });
     this.props.actions.filterBySearch(e.target.value.length > 0 ? searchedResource : this.props.resource);
@@ -32,12 +32,12 @@ export class SearchBar extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    resource: state.filteredResource.length > 0 ? state.filteredResource : state.resource
-  }
+    resource: state.filteredResource.length > 0 ? state.filteredResource : state.resource,
+  };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(resourceAction, dispatch)
+    actions: bindActionCreators(resourceAction, dispatch),
   };
 }
 

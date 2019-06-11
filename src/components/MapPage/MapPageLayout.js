@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Results = styled("div")`
+export const Results = styled('div')`
     position: absolute;
     left: 0;
     right: 0;

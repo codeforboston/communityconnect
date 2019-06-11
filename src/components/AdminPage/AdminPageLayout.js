@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { breakPoints, spacing } from "../../community-connect-ui/Constants";
+import {breakPoints, spacing} from '../../community-connect-ui/Constants';
 
 export const AdminPageWrapper = styled('div')`
     display: grid;
@@ -11,18 +11,18 @@ export const AdminPageWrapper = styled('div')`
     }
 `;
 
-export const CardGridWrapper = styled("div")`
+export const CardGridWrapper = styled('div')`
     display: grid;
     grid-template-rows: ${spacing[2]} auto;
 `;
 
-export const SearchAndSortWrapper = styled("div")`
+export const SearchAndSortWrapper = styled('div')`
     display: grid;
     grid-template-columns: auto auto;
     justify-content: space-between;
 `;
 
-export const CardListWrapper = styled("div")`
+export const CardListWrapper = styled('div')`
     display: grid;
     grid-template-columns: auto;
     gap: ${spacing[2]};

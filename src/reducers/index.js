@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 import * as resources from './resourceReducer';
 
 const rootReducer = combineReducers(

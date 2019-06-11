@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-export const NotFoundPageLayout = styled("div")`
+export const NotFoundPageLayout = styled('div')`
     max-width: 500px;
     padding: 20% 20px 0px 20px;
     text-align: center;
