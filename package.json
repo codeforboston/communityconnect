@@ -44,7 +44,6 @@
     "@fortawesome/fontawesome-free": "^5.7.2",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
-    "eslint": "^5.16.0",
     "eslint-config-google": "^0.13.0",
     "eslint-plugin-flowtype": "^3.10.1",
     "eslint-plugin-import": "^2.17.3",
