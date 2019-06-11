@@ -24,6 +24,7 @@
     "react-google-maps": "^9.4.5",
     "react-loader-spinner": "^2.3.0",
     "react-mapbox-gl": "^3.8.0",
+    "react-read-more-less": "^0.1.6",
     "react-redux": "^5.0.7",
     "react-router": "latest",
     "react-router-dom": "^4.3.1",
