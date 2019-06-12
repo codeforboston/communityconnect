@@ -11,28 +11,12 @@ import styles from './SavedResourcePanel.module.css';
 import shareIcon from '../../share-symbol.svg';
 import SavedResources from './SavedResourcesContainer';
 
-/*
-const ToHomeButton = () => {
-  return (
-    <Button tag={Link} to="/" type="Map">To Home</Button>
-  )
-}*/
-
 let buttonStyle = {
   float: 'right',
   backgroundColor: 'rgba(0,0,0,.001)',
   border: 'none',
   padding: '0'
 };
-
-//Commenting this part for now
-//Duplicate functionality || Gives the same result as toShareButton function
-/*
-const ToMapButton = () => {
-  return (
-    <Button tag={Link} to="/" type="Map">To Map</Button>
-  )
-}*/
 
 const ToShareButton = (props) => {
   const query = qs.parse(window.location.search.replace('?', ''));
@@ -50,6 +34,7 @@ const ToShareButton = (props) => {
     </Button>
   )
 }
+
 const SavedResourcePanel = () => {
     return (
       <div>
