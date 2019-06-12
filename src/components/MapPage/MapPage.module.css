@@ -2,8 +2,8 @@
   #container {
     position: absolute;
     width: 100%;
-    /* 55px is the height of the header*/
-    height:calc(100% - 55px); 
+    /* 63px is the height of the header*/
+    height:calc(100% - 63px); 
     z-index: 0;
   }
     .staticPane {
