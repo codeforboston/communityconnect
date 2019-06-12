@@ -1,5 +1,5 @@
 # Community Connect
-"Community Connect" is a health resource web application that aims to consolidate information about businesses and organization available in communities that promote healthy lifestyle choices. A health resource is defined as services or materials that improve the quality of life of others, ranging from affordable child care, substance abuse counseling, domestic violence support, and more. We are working in conjunction with Massachusetts General Hospital's [Center for Community Health Improvement](https://www.massgeneral.org/cchi/), MGH Revere HealthCare Center, and Revere CARES Coalition to create an extensive database in our pilot region of Revere, Chelsea, Charlestown, and eventually the Greater Boston Area.
+"Community Connect" is a health resource web application that aims to consolidate information about businesses and organization available in communities that promote healthy lifestyle choices. A health resource is defined as services or materials that improve the quality of life of others, ranging from affordable child care, substance abuse counseling, domestic violence support, and more. We are working to make this tool more accessible to health clinics and service centers that have databases of information that they would like to easily share with their patient population.
 
 To suggest businesses and/or organizations in the area that are not presently listed, please visit:
 https://goo.gl/forms/X2Nou8ZLtrmz0JGe2
@@ -9,7 +9,7 @@ https://goo.gl/forms/X2Nou8ZLtrmz0JGe2
   3. Stage 3 - Make improvements based on feedback from Social Workers at the Revere HealthCare Center, make the codebase more transferrable for other projects that use a spreadsheet and website that reflects that data.
 
 ## How this works
-Resources are stored in a google spreadsheet (New). https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit?usp=sharing
+Resources are stored in a google spreadsheet. https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit?usp=sharing
 
 The spreadsheet automatically publishes its contents to a json endpoint that this app consumes. Members of the community can add unvetted resources to the spreadsheet via a google form. Trusted members with access to the spreadsheet will vet submitted
 resources &  mark them as vetted. The app will only display vetted resources.
