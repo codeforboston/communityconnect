@@ -3,6 +3,8 @@ a.CardBody_icon {
   text-decoration: none;
 }
 
+#more {display: none;}
+
 .save-item{
   cursor: pointer;
   float: right;
