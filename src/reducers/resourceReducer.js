@@ -27,7 +27,7 @@ export function categories(state = initialState.categories, action) {
         case types.LOAD_RESOURCE_DATA_SUCCESS:
             const categories = {};
             for (let data of action.resource) {
-                let category = data.categoryautosortscript.split(',');
+                let category = data.category.split(',');
                 category.forEach(cat => categories[cat] = cat.trim());
             }
             const categoryList = [...(new Set(Object.values(categories)))];

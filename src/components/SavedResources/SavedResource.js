@@ -67,7 +67,7 @@ class SavedResource extends Component {
     const {
       id,
       name,
-      categoryautosortscript,
+      category,
       overview,
       location,
       website,
@@ -101,7 +101,7 @@ class SavedResource extends Component {
               -
             </span>
             <CardSubtitle className={styles.CardBody_CardSubtitle}>
-              {categoryautosortscript}
+              {category}
             </CardSubtitle>
             {distance &&
               <div>{distanceElement}</div>}
