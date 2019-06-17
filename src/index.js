@@ -28,6 +28,12 @@ export const getRoutes = (store) => {
                     component={AppContainer} 
                     dispatch={store.dispatch}
                 /> 
+								<Route 
+										exact
+                    path = '/:resource/admin' 
+                    component={AppContainer} 
+                    dispatch={store.dispatch}
+                /> 
                 <Redirect exact from="/" to="/revere"/>
 
                 <Route component={NotFoundPage} />
