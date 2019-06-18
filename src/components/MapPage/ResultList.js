@@ -74,7 +74,7 @@ export class ResultList extends Component {
 
   render() {
     const sortOptions = [
-      { key: 'Alphabetically', sort: this.sortByAlphabet, disabled: false }
+      { key: 'A-Z', sort: this.sortByAlphabet, disabled: false }
       , { key: 'Distance', sort: this.sortByDistance, disabled: !this.props.currentPos }
     ];
 
