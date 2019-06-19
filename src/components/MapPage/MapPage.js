@@ -12,13 +12,14 @@ class MapPage extends Component {
         <div id={styles.container}>
           <SplitScreenSlidingPane>
               <ResultList
+                className="print"
                 ref={instance => { this.resultListItem = instance }}
                 cardClick={this.cardClick}
                 currentPos={this.props.currentPosition}
                 fullWidth={true}
               />
           </SplitScreenSlidingPane>
-          <div className={styles.staticPane}>
+          <div id="map" className={styles.staticPane}>
               <OrganizationMap/>
           </div>
         </div>

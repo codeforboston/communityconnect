@@ -78,7 +78,7 @@ class OrganizationCard extends Component {
         directionUrl = "https://www.google.com/maps?saddr=My+Location&daddr=" + encodedCoordinates;
 
         return (
-            <OrganizationCardWrapper id={this.props.index}>
+            <OrganizationCardWrapper className="print" id={this.props.index}>
                 <OrganizationCardHeader>
                     {
 

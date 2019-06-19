@@ -32,6 +32,16 @@ export const SavedResourcesButton = styled("button")`
             width: 200px;
         `;
 
+export const PrintButton = styled("button")`
+    background-color: #6c757d;
+    color: ${colors.white};
+    font-size: ${fontSizes[1]};
+    border-radius: ${radii[0]};
+    border: none;
+    padding: ${spacing[0]} ${spacing[1]};
+    margin-right: ${spacing[1]};
+`;
+
 export const Badge = styled("span")`
     margin-left: 2%;
     border: 1px solid white;

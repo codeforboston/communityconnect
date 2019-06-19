@@ -88,10 +88,14 @@ export class ResultList extends Component {
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
         />
-        <Results ref={this.listRef}>
+        <Results className="print"
+
+          // className={[
+          //   styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}
+          ref={this.listRef}>
           {
             sortedData.map((resource, index) =>
-
+              
               <OrganizationCard
                 key={resource.id}
                 ref={resource.id}

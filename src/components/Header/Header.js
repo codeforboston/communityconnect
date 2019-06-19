@@ -12,7 +12,8 @@ import {
   ModalFooter,
 } from 'reactstrap';
 
-import { Badge, SavedResourcesButton } from './HeaderLayout';
+import { Badge, SavedResourcesButton, PrintButton } from './HeaderLayout';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 class Header extends Component {
   constructor(props) {
@@ -70,6 +71,12 @@ class Header extends Component {
           <NavbarBrand className="Logo" onClick={this.modalOpen}>
             <h3>Community Connect</h3>
           </NavbarBrand>
+          <Route path='/:resource/' exact render={props =>
+            <PrintButton
+              onClick={() => window.print()}>
+              <FontAwesomeIcon icon="print" className="text-white" size='lg' title="Print"/>
+            </PrintButton>
+          } />
           <Route path='/:resource/admin' render={props =>
             <SavedResourcesButton
               hasItems={this.hasItems()}

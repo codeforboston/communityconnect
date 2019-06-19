@@ -1,0 +1,11 @@
+@media print {
+    .print {
+        display: block !important;
+        width: 992px !important;
+        text-align: left !important;
+    }
+
+    #map, select {
+        display: none;
+    }
+}

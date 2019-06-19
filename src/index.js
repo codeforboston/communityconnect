@@ -14,6 +14,8 @@ import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './index.css';
+import './print.css';
+
 
 library.add(fab, fas);
 
