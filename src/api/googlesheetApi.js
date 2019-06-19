@@ -11,7 +11,7 @@ function normalizeHeaders(element) {
   if (element["latitude"] && element["longitude"]) {
     element["coordinates"] = { lat: parseFloat(element["latitude"]), lng: parseFloat(element["longitude"]) }
   }
-  element["category"] = element["category"] || element["categoryautosortscript"];
+  element["categories"] = element["categories"] || element["categoryautosortscript"];
 
   if (element.city || element.address || element.state || element.zipcode) {
     element.location = element["combinedaddress"];
