@@ -74,10 +74,15 @@ class AppContainer extends Component {
             resourceSheetId = sheetIdFromPath(sites, resourcePath) || envSheetId;
         
             if(resourceSheetId == null){
-								this.setState({isValidPage: false})
+								this.setState({isValidPage: false});
+                                console.log('invalid sheet');
             }else{
                 var resourcesFromSheet = loadResources(resourceSheetId);
+                if (resourcesFromSheet){
+                    console.log('loaded!');
+                }
                 this.props.dispatch(resourcesFromSheet);
+                console.log('dispatched!');
             }
         });
         
