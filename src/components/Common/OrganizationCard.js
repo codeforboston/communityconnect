@@ -58,7 +58,7 @@ class OrganizationCard extends Component {
     render() {
         const {
             name,
-            category,
+            categories,
             overview,
             location,
             website,
@@ -89,7 +89,7 @@ class OrganizationCard extends Component {
                     <OrganizationCardHeaderText>{name}</OrganizationCardHeaderText>
                 </OrganizationCardHeader>
                 <OrganizationCardBody
-                    category={category}
+                    categories={categories}
                     distance={distance}
                     location={location}
                     directionUrl={directionUrl}
@@ -134,7 +134,7 @@ const OrganizationCardSocialMediaLink = ({ url, icon, title }) => (
 );
 
 const OrganizationCardBody = ({
-    category,
+    categories,
     distance,
     location,
     directionUrl,
@@ -144,7 +144,7 @@ const OrganizationCardBody = ({
     children
 }) => (
     <OrganizationCardBodyWrapper>
-        <OrganizationCardSubtitle>{category}</OrganizationCardSubtitle>
+        <OrganizationCardSubtitle>{categories}</OrganizationCardSubtitle>
         {
             distance && <p>Distance from your location: {distance} miles</p>
         }
