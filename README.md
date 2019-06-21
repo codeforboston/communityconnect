@@ -8,6 +8,24 @@ https://goo.gl/forms/X2Nou8ZLtrmz0JGe2
   2. Stage 2 - Fuzzy search, Mobile Compatibility, organized card with all relevant information about selected resource on Map, import and maintain up-to-date information about resources, unique URL created for specified Org Cards.
   3. Stage 3 - Make improvements based on feedback from Social Workers at the Revere HealthCare Center, make the codebase more transferrable for other projects that use a spreadsheet and website that reflects that data.
 
+## Explanation of Client Views
+
+This app supports two views: the client view and the social worker view. The client view currently just allows people to view the resources provided in the associated Google Sheets spreadsheet, and their associated locations on a map. To access the client view, go to /:resource/ . Currently, we have a few spreadsheets available for use:
+
+* Revere Cares (/revere) - The original database which inspired the project. Displays relevant resources available in the Boston Area. See: https://communityconnect.netlify.com/revere
+
+* Migrant Service Maps (/msm) - An initiative based out of Code for Boston looking to support and strengthen migrant service provisions in the greater Boston area. They allowed us to use their data for testign purposes. For more information about them, click [here] (https://github.com/codeforboston/migrant_service_map).
+
+* Badtown (/badtown) - Testing for error handling regarding loading bad spreadsheets.
+
+* Badtown Path (/dontdothat) - Testing for error handling regarding loading an invalid path.
+
+* Other layout/testing spreadsheets (/hodor, /lucasland, /timtown_1): Other spreadsheets mainly for layout testing. 
+
+## Explanation of Admin Views
+
+The Admin view (the relevant view for the social worker) is tied to each spreadsheet. The admin view allows for resource searching, filtering, and saving a collection of resources to you "saved resources" cart. From there, you can generate a unique URL of your saved resources, and either print it out or share the link with the client. To access the view, navigate to (/:resource/admin). See: https://communityconnect.netlify.com/revere/admin
+
 ## How this works
 Resources are stored in a google spreadsheet. https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit?usp=sharing
 
