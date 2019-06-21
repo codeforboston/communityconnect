@@ -2,20 +2,22 @@ import Tabletop from 'tabletop';
 
 function normalizeHeaders(element) {
   element["name"] = element["name"];
-  element["tags"] = String(element["serviceprovided"]).split(", ");
+  if (typeof element["serviceprovided"] !== "undefined") {
+    element["tags"] = String(element["serviceprovided"]).split(", ");
+  }
+
   element["twitterUrl"] = element["twitterurl"];
-  element["tags"] = String(element["serviceprovided"]);
   element["facebookUrl"] = element["facebookurl"];
   element["instagramUrl"] = element["instagramurl"];
   element["hashCoordinates"] = element["latitude"] + element["longitude"];
   if (element["latitude"] && element["longitude"]) {
     element["coordinates"] = { lat: parseFloat(element["latitude"]), lng: parseFloat(element["longitude"]) }
   }
-  if (element["categoryautosortscript"]){
+  if (typeof element["categoryautosortscript"] !== "undefined"){
     element["categories"] = element["categoryautosortscript"];
   }
   else {
-    element["categories"] = (element["categories"]);
+    element["categories"] = element["categories"];
   }
 
   if (element.city || element.address || element.state || element.zipcode) {
