@@ -36,9 +36,9 @@ Note that this project was bootstrapped with [Create React App](https://github.c
 
 ## New Developer Setup Instructions
 1) Clone the repo
-2) Install yarn (it may be installed already)
-3) Install dependencies by running `yarn`
-4) Start the development server buy running `yarn start`
+1) Install yarn (it may be installed already)
+1) Install dependencies by running `yarn`
+1) Start the development server buy running `yarn start`
 
 ## Where to start
 Our open issues are listed on the project's [Issues](https://github.com/codeforboston/communityconnect/issues) tab. The best places to start are unassigned issues with the label "[good first issue](https://github.com/codeforboston/communityconnect/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22+no%3Aassignee)".
