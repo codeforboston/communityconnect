@@ -1,0 +1,39 @@
+@page {
+	margin: 1in;
+}
+
+@media print {
+
+		nav {
+			display: none;
+		}
+
+		#map {
+			display: none;
+		}
+
+    .print {
+				margin: 0;
+        /* display: block !important; */
+        text-align: left !important;
+    }
+
+    #map, select {
+        display: none;
+		}
+		
+		.results-list {
+			margin: 0 50px;
+		}
+
+		.results-list div:nth-child(n+6) {
+			display: none !important;
+		}
+}
+
+
+
+
+.result-header {
+	background-color: #DDD;
+}

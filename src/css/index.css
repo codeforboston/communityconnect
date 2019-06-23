@@ -1,0 +1,39 @@
+@import 'print.css';
+
+body {
+  margin: 0;
+  padding: 0;
+	font-family: sans-serif;
+}
+
+.map {
+  height: 100%;
+}
+
+a{
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .mobile {
+    display: initial;
+  }
+  .nonMobile {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile {
+    display: none;
+  }
+  .nonMobile {
+    display: initial;
+  }
+}
+
+.Logo-icon {
+  margin-top: -30px;
+  height: 20px;
+  width: 80px;
+}
