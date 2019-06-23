@@ -16,7 +16,10 @@ export const SlidingPaneToggle = styled("button")`
     @media (max-width: 768px) {
         display: block;
         text-align: center;
-    }
+		}
+		@media print {
+			display: none;
+		}
 `;
 
 export const SlidingPaneWrapper = styled("div")`
@@ -35,5 +38,9 @@ export const SlidingPaneWrapper = styled("div")`
         height: ${props => props.open ? "calc(100% - 40px)" : "calc(70%)"};
         top: ${props => props.open ? "60px" : "auto"};
         bottom: ${props => props.open ? "0" : "-64%"};
-    }
+		}
+		
+		@media print {
+			width: 100vw;
+		}
 `;

@@ -88,7 +88,7 @@ export class ResultList extends Component {
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
         />
-        <Results className="print"
+        <Results className="print results-list"
 
           // className={[
           //   styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}

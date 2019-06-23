@@ -8,12 +8,12 @@ export const OrganizationCardWrapper = styled("div")`
     width: 100%;
     &:hover {
         box-shadow: 0 8px 16px 0 ${colors.shadowBlack};
-    }
+		}
+		
 `;
 
 export const OrganizationCardHeader = styled("div")`
     padding: 15px;
-    background-color: ${colors.lightgray};
     text-align: center;
     overflow: hidden;
     border-radius: ${radii[0]} ${radii[0]} 0 0;

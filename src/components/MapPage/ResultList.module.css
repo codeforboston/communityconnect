@@ -5,8 +5,9 @@
   bottom: 0;
   top: 50px;
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
+	-webkit-overflow-scrolling: touch;
 }
+
 
 .resultsPartialWidth {
   width: 60%;
@@ -20,3 +21,5 @@
     width: 100%;
   }
 }
+
+

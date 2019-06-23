@@ -8,6 +8,12 @@ export const Results = styled("div")`
     top: 50px;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
-    width: 100%;
+		width: auto;
+		
+		@media print {
+			&:nth-child(n + 3) {
+				display: none;
+			}
+		}
 `;
 

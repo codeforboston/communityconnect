@@ -15,7 +15,7 @@ const TogglePane = styled("div")`
     font-size: 1.4rem;
     @media (max-width: 768px) {
         width: 50%;
-    }
+		}
 `;
 
 export const SplitScreenTogglePane = ({ isOpen, children }) => (

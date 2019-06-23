@@ -75,18 +75,20 @@ class OrganizationCard extends Component {
             distance = getDistance({ coordinates: this.props.organization.coordinates }, this.props.currentPos);
         }
         encodedCoordinates = encodeURIComponent(latitude + "," + longitude);
-        directionUrl = "https://www.google.com/maps?saddr=My+Location&daddr=" + encodedCoordinates;
+				directionUrl = "https://www.google.com/maps?saddr=My+Location&daddr=" + encodedCoordinates;
+				
+				console.log(this.props.saveable)
 
         return (
-            <OrganizationCardWrapper className="print" id={this.props.index}>
-                <OrganizationCardHeader>
+            <OrganizationCardWrapper className="print result" id={this.props.index}>
+                <OrganizationCardHeader className="result-header">
                     {
 
                         this.props.saveable
                             ? <OrganizationCardSaveButton saveItem={this.saveItem} saveExist={this.state.saveExist} />
                             : null
                     }
-                    <OrganizationCardHeaderText>{name}</OrganizationCardHeaderText>
+                    <OrganizationCardHeaderText >{name}</OrganizationCardHeaderText>
                 </OrganizationCardHeader>
                 <OrganizationCardBody
                     categoryautosortscript={categoryautosortscript}

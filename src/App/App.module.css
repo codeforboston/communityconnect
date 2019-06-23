@@ -28,7 +28,21 @@
   text-align: center;
   width: 100%;
   padding: 10px 30px 10px 10px;
-  background-color: #e6e6e6;
+	background-color: #e6e6e6;
+	
+
+}
+
+
+@media print {
+
+	.feedbackContainer {
+		display: none;
+	}
+
+	.header {
+		display: none;
+	}
 }
 
 .badge {
