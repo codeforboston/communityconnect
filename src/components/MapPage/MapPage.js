@@ -9,7 +9,7 @@ import { SplitScreenSlidingPane } from './SplitScreenSlidingPane';
 class MapPage extends Component {
  render() {
     return (
-        <div id={styles.container}>
+        <div id={this.props.displayFeedbackLink ? styles.containerfooter : styles.container}>
           <SplitScreenSlidingPane>
               <ResultList
                 ref={instance => { this.resultListItem = instance }}
