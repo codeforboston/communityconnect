@@ -32,7 +32,6 @@ class AppContainer extends Component {
             displayFeedbackLink: true
         }
         this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
-        this.feedbackHeight = 0;
     }
 
 
@@ -91,12 +90,11 @@ class AppContainer extends Component {
 
     render() {
         let { isFetchingResource } = this.props;
-
-        if(!this.state.displayFeedbackLink) this.feedbackHeight = 0;
+        
         return (
             <div className="container-fluid">
                 { this.state.displayFeedbackLink &&
-                    <div className={styles.feedbackContainer} ref={(input) => { if(input) this.feedbackHeight = input.clientHeight }}>
+                    <div className={styles.feedbackContainer}>
                         Want to improve Community Connect? 
                         <br/>
                         <Badge className={styles.badge} href="https://forms.gle/bA33aBUnEUB7R9wC9" target="_new" color="primary">Submit feedback</Badge>
@@ -119,8 +117,8 @@ class AppContainer extends Component {
                     />  </div>}
                     {(!isFetchingResource) &&
                         <div>
-                            <Route exact path='/:resource/admin' render={(props) => <AdminPage currentPosition={this.state.position} bottomMargin={this.feedbackHeight} />} />
-                            <Route exact path='/:resource/' render={(props) => <MapPage currentPosition={this.state.position} bottomMargin={this.feedbackHeight} displayFeedbackLink={this.state.displayFeedbackLink} />} />
+                            <Route exact path='/:resource/admin' render={(props) => <AdminPage currentPosition={this.state.position} />} />
+                            <Route exact path='/:resource/' render={(props) => <MapPage currentPosition={this.state.position} displayFeedbackLink={this.state.displayFeedbackLink} />} />
                             <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
                                 <SavedResourcePanel resourcePath={this.props.match.params.resource} />
                             </SplitScreenTogglePane>
