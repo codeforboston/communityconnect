@@ -12,6 +12,7 @@ import { Badge } from 'reactstrap';
 import styles from './App.module.css';
 import Loader from 'react-loader-spinner'
 import PropTypes from 'prop-types'
+import NotFoundPage from '../components/NotFoundPage/NotFoundPage'
 
 const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID
 const revereSheetId = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
@@ -29,7 +30,8 @@ class AppContainer extends Component {
         super(props);
         this.state = {
             position: {},
-            displayFeedbackLink: true
+						displayFeedbackLink: true,
+						isValidPage: true
         }
         this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
     }
@@ -72,10 +74,15 @@ class AppContainer extends Component {
             resourceSheetId = sheetIdFromPath(sites, resourcePath) || envSheetId;
         
             if(resourceSheetId == null){
-                alert("Error: Unable to find resource '" + resourcePath + "'");
+								this.setState({isValidPage: false});
+                                console.log('invalid sheet');
             }else{
                 var resourcesFromSheet = loadResources(resourceSheetId);
+                if (resourcesFromSheet){
+                    console.log('loaded!');
+                }
                 this.props.dispatch(resourcesFromSheet);
+                console.log('dispatched!');
             }
         });
         
@@ -89,8 +96,11 @@ class AppContainer extends Component {
     }
 
     render() {
-        let { isFetchingResource } = this.props;
-        
+				let { isFetchingResource } = this.props;
+				
+
+				if (!this.state.isValidPage) return <NotFoundPage />
+
         return (
             <div className="container-fluid">
                 { this.state.displayFeedbackLink &&

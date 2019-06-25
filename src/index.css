@@ -8,6 +8,10 @@ body {
   height: 100%;
 }
 
+a{
+  cursor: pointer;
+}
+
 @media (max-width: 767px) {
   .mobile {
     display: initial;
