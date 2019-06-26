@@ -14,14 +14,15 @@ class SortBar extends React.Component {
 
     render() {
         return (
-            <select name="cardSort" onChange={this.handleClick}>
-                <option value="">Select a sort</option>
-                {this.props.sortOptions.map((sortOption, i) =>
-                    <option key={sortOption.key} value={i} disabled={sortOption.disabled}>
-                        {sortOption.key}
-                    </option>
-                )}
-            </select>
+            <span><b>Sort by: </b>
+                <select name="cardSort" onChange={this.handleClick}>
+                    {this.props.sortOptions.map((sortOption, i) =>
+                        <option key={sortOption.key} value={i} disabled={sortOption.disabled}>
+                            {sortOption.key}
+                        </option>
+                    )}
+                </select>
+            </span>
         );
     }
 }
