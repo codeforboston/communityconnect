@@ -22,12 +22,19 @@ export const getRoutes = (store) => {
         <div>
             <Switch>
                 <Route path = '/admin' exact component={AppContainer} />
-                <Route 
+								<Route 
+										exact
                     path = '/:resource/' 
                     component={AppContainer} 
                     dispatch={store.dispatch}
                 /> 
-                <Redirect from="/" to="/revere"/>
+								<Route 
+										exact
+                    path = '/:resource/admin' 
+                    component={AppContainer} 
+                    dispatch={store.dispatch}
+                /> 
+                <Redirect exact from="/" to="/revere"/>
 
                 <Route component={NotFoundPage} />
             </Switch>

@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import {withRouter} from 'react-router';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-
+import styles from './SavedResource.module.css';
+import qs from 'qs-lite';
+import { getDistance } from '../../utils/distance.js';
+import * as resourceAction from '../../action/resourceDataAction';
 import {
   Card,
   CardBody,
@@ -14,16 +17,11 @@ import {
   ModalBody,
   ModalFooter
 } from 'reactstrap';
-import styles from './SavedResource.module.css';
-import qs from 'qs-lite';
-import { getDistance } from '../../utils/distance.js';
-import * as resourceAction from '../../action/resourceDataAction';
 
 class SavedResource extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       modal: false
     };
@@ -67,7 +65,7 @@ class SavedResource extends Component {
     const {
       id,
       name,
-      categoryautosortscript,
+      categories,
       overview,
       location,
       website,
@@ -101,7 +99,7 @@ class SavedResource extends Component {
               -
             </span>
             <CardSubtitle className={styles.CardBody_CardSubtitle}>
-              {categoryautosortscript}
+              {categories}
             </CardSubtitle>
             {distance &&
               <div>{distanceElement}</div>}
@@ -164,7 +162,6 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(resourceAction, dispatch)
   };
 }
-
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),

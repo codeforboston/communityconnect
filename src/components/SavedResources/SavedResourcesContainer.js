@@ -9,20 +9,11 @@ import SavedResource from './SavedResource';
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
-  // padding: grid * 2,
-  // margin: `0 0 ${grid}px 0`,
 
   // change background colour if dragging
-  // background: isDragging ? 'lightgrey' : 'white',
 
   // styles we need to apply on draggables
   ...draggableStyle,
-});
-
-const getListStyle = isDraggingOver => ({
-  // background: isDraggingOver ? 'lightblue' : 'white',
-  // padding: grid,
-  // width: 250,
 });
 
 class SavedResourcesContainer extends Component {
@@ -79,10 +70,7 @@ class SavedResourcesContainer extends Component {
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
-              <div
-                ref={provided.innerRef}
-                style={getListStyle(snapshot.isDraggingOver)}
-              >
+              <div ref={provided.innerRef}>
                 {data.map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id} index={index}>
                     {(provided, snapshot) => (
@@ -98,7 +86,6 @@ class SavedResourcesContainer extends Component {
                         <SavedResource
                           key={item.id}
                           ref={item.id}
-                          // cardClick={this.props.cardClick}
                           organization={item}
                           currentPos={this.props.currentPos}
                           removeItem={() => this.props.removeItem(item)}

@@ -28,7 +28,7 @@ class DropdownCategory extends Component {
   }
 
   handleClick(cat, index) {
-    this.props.handleEvent(cat, "category");
+    this.props.handleEvent(cat, "categories");
     if(index === -1) this.setState({
       activeItem:[]
     });
@@ -39,7 +39,7 @@ class DropdownCategory extends Component {
   }
 
   categoryMenuItems() {
-    return this.props.category.map((cat, index) =>
+    return this.props.categories.map((cat, index) =>
     <DropdownItem toggle={false} onClick = {() => this.handleClick(cat, index)} key={cat}>
     {this.state.activeItem.includes(index) ? <span>&#10004; {cat}</span>: cat}</DropdownItem>);
   }
