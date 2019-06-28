@@ -128,7 +128,7 @@ class AppContainer extends Component {
                     {(!isFetchingResource) &&
                         <div>
                             <Route exact path='/:resource/admin' render={(props) => <AdminPage currentPosition={this.state.position} />} />
-                            <Route exact path='/:resource/' render={(props) => <MapPage currentPosition={this.state.position} />} />
+                            <Route exact path='/:resource/' render={(props) => <MapPage currentPosition={this.state.position} displayFeedbackLink={this.state.displayFeedbackLink} />} />
                             <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
                                 <SavedResourcePanel resourcePath={this.props.match.params.resource} />
                             </SplitScreenTogglePane>
