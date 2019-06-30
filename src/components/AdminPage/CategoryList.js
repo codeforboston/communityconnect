@@ -4,6 +4,9 @@ import { bindActionCreators } from 'redux';
 
 import * as resourceAction from '../../action/resourceDataAction';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
+import Collapsible from 'react-collapsible';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 export class CategoryList extends Component {
 
@@ -34,8 +37,9 @@ export class CategoryList extends Component {
   render() {
     return (
       <Form>
-        <Label>Filter by Category</Label>
-        {this.categoryMenuItems()}
+        <Collapsible triggerTagName="label" trigger="Filter by Category" open={true} transitionTime={100}>
+            {this.categoryMenuItems()}
+        </Collapsible>
       </Form>
     )
   }
