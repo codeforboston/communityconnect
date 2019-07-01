@@ -13,6 +13,7 @@
     /* 63px is the height of the header, 67px is the height of the footer*/
     height:calc(100% - 63px - 67px); 
     margin-bottom: 67px;
+
     z-index: 0;
   }
     .staticPane {

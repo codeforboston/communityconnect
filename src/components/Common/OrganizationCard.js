@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getDistance } from '../../utils/distance.js';
 import * as resourceAction from '../../action/resourceDataAction';
 import isUrl from "is-url";
+import ReadMoreAndLess from 'react-read-more-less';
 
 import {
     OrganizationCardWrapper,
@@ -97,6 +98,9 @@ class OrganizationCard extends Component {
                     phone={phone}
                     url={websiteUrl}
                 />
+                <OrganizationCardOverview
+                    overview={overview}
+                />
                 <OrganizationCardSocialMediaLink
                     url={facebookUrl}
                     icon="facebook-square"
@@ -133,12 +137,32 @@ const OrganizationCardSocialMediaLink = ({ url, icon, title }) => (
         : null
 );
 
+//part of OC that handles overview, current limit is 250 char for readme
+
+const OrganizationCardOverview = ({ overview }) => (
+    overview
+        ? (
+            <OrganizationCardBodyWrapper>
+                <ReadMoreAndLess
+                ref={this.ReadMore}
+                className="read-more-content"
+                charLimit={250}
+                readMoreText="Read more"
+                readLessText="Read less"
+                >
+                {overview}
+                </ReadMoreAndLess>
+            </OrganizationCardBodyWrapper>
+        )
+        : null
+);
+
+
 const OrganizationCardBody = ({
     categories,
     distance,
     location,
     directionUrl,
-    overview,
     phone,
     url,
     children
@@ -160,9 +184,6 @@ const OrganizationCardBody = ({
                 target="_blank" >
                 <FontAwesomeIcon icon="map-marked-alt" /> Get directions
             </a>
-        }
-        {
-            overview && <p>{overview}</p>
         }
         {
             url &&
