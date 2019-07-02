@@ -1,0 +1,44 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.container-fluid {
+    background-color: #4D8BA8;
+    padding: 4% 16% !important;
+}
+
+.col.main {
+    background-color: white;
+    box-shadow: 0 0 50px rgba(17,17,17,0.5);
+    border-radius: 2px;
+    padding: 2% 0;
+}
+
+.row.section {
+    padding: 2% 4%;
+}
+h1 {
+    padding: 0 2% 2%;
+}
+p {
+    padding: 1em;
+}
+
+form {
+    margin: auto;
+}
+
+.form-group label {
+    font-size: 1.2em;
+}
+
+.form-group {
+    padding-bottom: 0.2em;
+}
+.form-row {
+    padding-bottom: 0.2em;
+}
+.form-check {
+    padding-left: 3em;
+    padding-bottom: 0.3em;
+}

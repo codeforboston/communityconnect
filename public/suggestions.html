@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- Boilerplate HTML -->
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Bootstrap files -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+		<!-- Our page's title and custom styling file -->
+		<title>Suggesting Health Resources</title>
+		<link rel="stylesheet" href="suggestions.css" type="text/css">
+	</head>
+
+	<body>
+
+		<!-- Page content -->
+		<div class="container-fluid">
+
+			<div class="col main">
+
+                <!-- Title and description -->
+                <div class="section row">
+
+                    <h1>Suggesting Health Resources in Revere, Chelsea, Charlestown, and Boston</h1>
+                    <p>
+                        Hello! Community Connect is a web application that aims to consolidate information about 
+                        businesses and organization available in communities that promote healthy lifestyle choices. 
+                        With the support of Revere CARES Coalition and Massachusetts General Hospital, we are looking 
+                        to compile an extensive list of businesses and organizations in the Revere, Charlestown, and 
+                        Boston area that can help its citizens live a healthy and happy life. If you live in the area 
+                        or know of resources available in the area, feel free to suggest resources that are not 
+                        currently listed on the web application. 
+                    </p>
+                    <p>
+                        Please note: Suggested health resources may or may not be accepted by professionals from MGH and Revere CARES.
+                    </p>
+                    <p style="color: red;">
+                        * indicates a required field.
+                    </p>
+
+                </div>
+                
+				<!-- Questions -->
+                <div class="section row">
+
+                    <form>
+
+                        <div class="form-group">
+                            <label for="inputName">
+                                Please enter your name. *
+                            </label>
+                            <input type="text" class="form-control" id="inputName">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputOrgName">
+                                Name of suggested business and/or organization: *
+                            </label>
+                            <input type="text" class="form-control" id="inputOrgName">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputOrgType">
+                                Suggested category of the business and/or organization (select all that apply): *
+                            </label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="education">
+                                <label class="form-check-label" for="education">
+                                    Education
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="childCare">
+                                <label class="form-check-label" for="childCare">
+                                    Child Care
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="childhoodSupport">
+                                <label class="form-check-label" for="childhoodSupport">
+                                    Childhood Support
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="foodMarkets">
+                                <label class="form-check-label" for="foodMarkets">
+                                    Food (Community Markets)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="foodBusiness">
+                                <label class="form-check-label" for="foodBusiness">
+                                    Food (Small Business)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="healthWellbeing">
+                                <label class="form-check-label" for="healthWellbeing">
+                                    Health and Wellbeing
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="healthcare">
+                                <label class="form-check-label" for="healthcare">
+                                    Healthcare Centers and Clinics
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="youth">
+                                <label class="form-check-label" for="youth">
+                                    Youth and Adolescents
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="other">
+                                <label class="form-check-label" for="other">
+                                    Other
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputOther">
+                                If you chose "Other" please state the category 
+                                that best fits the business and/or organization:
+                            </label>
+                            <input type="text" class="form-control" id="inputOther" placeholder="E.g. peer support group">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputServiceType">
+                                Please state the types of services provided:
+                            </label>
+                            <input type="text" class="form-control" id="inputServiceType" placeholder="E.g. Daycare, adult education, mental health support, etc.">
+                        </div>
+
+                        <div class="form-group">
+                            
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">
+                                    Address of the business/organization: *
+                                </label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="E.g. 300 Ocean Avenue Apt. 6">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputCity">
+                                    City *
+                                </label>
+                                <input type="text" class="form-control" id="inputCity" placeholder="E.g. Revere">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputZip">
+                                    Zip Code *
+                                </label>
+                                <input type="text" class="form-control" id="inputZip" placeholder="E.g. 02151">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="inputTransit">
+                                Is this business/organization accessible via public transportation? *
+                            </label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="inputTransit1" value="Yes" checked>
+                                <label class="form-check-label" for="inputTransit1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="inputTransit2" value="No" checked>
+                                <label class="form-check-label" for="inputTransit2">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="inputPhone">
+                                Phone number of the business/organization:
+                            </label>
+                            <input type="tel" class="form-control" id="inputPhone" placeholder="E.g. 123-456-7849"
+                                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail">
+                                Email address of the business/organization:
+                            </label>
+                            <input type="email" class="form-control" id="inputEmail">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputWebsite">
+                                Website, Twitter, Facebook, or any other social media of your business and/or organization:
+                            </label>
+                            <input type="text" class="form-control" id="inputWebsite">
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-lg btn-block btn-info">Submit for Review</button>
+
+                    </form>
+
+                </div>
+
+			</div>
+			
+		</div>
+
+	</body>
+
+</html>
