@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { colors, fontSizes, fontWeights, radii, spacing } from "../../community-connect-ui/Constants";
 
+
 export const OrganizationCardWrapper = styled("div")`
     border-radius: ${radii[0]};
     box-shadow: 0 4px 8px 0 ${colors.shadowBlack};

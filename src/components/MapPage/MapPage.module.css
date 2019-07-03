@@ -1,9 +1,19 @@
-
   #container {
     position: absolute;
     width: 100%;
     /* 63px is the height of the header*/
     height:calc(100% - 63px); 
+    margin-bottom: 0px;
+    z-index: 0;
+  }
+  
+  #containerfooter {
+    position: absolute;
+    width: 100%;
+    /* 63px is the height of the header, 67px is the height of the footer*/
+    height:calc(100% - 63px - 67px); 
+    margin-bottom: 67px;
+
     z-index: 0;
   }
     .staticPane {
