@@ -1,0 +1,29 @@
+{
+  "extends": ["plugin:react/recommended", "standard"],
+  "root": true,
+  "parser": "babel-eslint",
+  "settings": {
+    "react": {
+      "version": "16.4.2"
+    }
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true
+  },
+  "rules": {
+    "prefer-const": "error",
+    "no-var": "error",
+    "semi": ["error", "always"],
+    "no-tabs": 0,
+    "quotes": ["error", "single"],
+    "indent": ["error", 2],
+    "react/prop-types": [0],
+    "comma-dangle": ["error", "always-multiline"],
+    "space-before-function-paren": ["error", "always"]
+  }
+}
