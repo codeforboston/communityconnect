@@ -7,14 +7,14 @@ import { loadResources } from '../action/resourceDataAction';
 import { getAllSites } from '../api/directoryGoogleSheets';
 
 // import components
+import { Badge } from 'reactstrap';
+import Loader from 'react-loader-spinner';
 import Header from '../components/Header/Header';
 import MapPage from '../components/MapPage/MapPage';
 import AdminPage from '../components/AdminPage/AdminPage';
 import { SplitScreenTogglePane } from '../components/AdminPage/SplitScreenTogglePane';
 import SavedResourcePanel from '../components/SavedResources/SavedResourcePanel';
 import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
-import { Badge } from 'reactstrap';
-import Loader from 'react-loader-spinner';
 
 const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 
@@ -148,14 +148,14 @@ class AppContainer extends Component {
                 target="_new"
                 color="primary"
               >
-                Submit feedback
+                <span>Submit feedback</span>
               </Badge>
               <Badge
                 className="badge"
                 onClick={this.hideFeedbackLink}
                 color="light"
               >
-                Do it later
+                <span>Do it later</span>
               </Badge>
             </div>
           </div>

@@ -16,6 +16,11 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
+  "settings": {
+    "react": {
+      "version": "16.3.2"
+    }
+  },
   "plugins": ["react"],
   "rules": {
     "prefer-const": "error",

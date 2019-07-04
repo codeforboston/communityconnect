@@ -1,5 +1,7 @@
 // import component styles
-@import '/component-styles/App';
+@import '/component-styles/AppContainer';
+@import '/component-styles/NotFoundPage';
+@import '/component-styles/SavedResource';
 
 // import shared element level styles
 @import 'main';
