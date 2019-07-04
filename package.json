@@ -31,7 +31,8 @@
     "react-testing-library": "^6.1.2",
     "reactstrap": "^5.0.0",
     "redux-thunk": "^2.3.0",
-    "tabletop": "^1.5.2"
+    "tabletop": "^1.5.2",
+    "snyk": "^1.189.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,7 +40,9 @@
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
@@ -61,5 +64,6 @@
       "Firefox ESR",
       "not ie < 11"
     ]
-  }
+  },
+  "snyk": true
 }
