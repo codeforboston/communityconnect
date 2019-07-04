@@ -1,20 +1,22 @@
 {
-  "extends": ["plugin:react/recommended", "standard"],
-  "root": true,
-  "parser": "babel-eslint",
-  "settings": {
-    "react": {
-      "version": "16.4.2"
-    }
+  "env": {
+    "browser": true,
+    "es6": true
   },
+  "extends": ["plugin:react/recommended"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "babel-eslint",
   "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "env": {
-    "node": true,
-    "es6": true,
-    "browser": true
-  },
+  "plugins": ["react"],
   "rules": {
     "prefer-const": "error",
     "no-var": "error",

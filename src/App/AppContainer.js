@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { loadResources } from '../action/resourceDataAction';
 import { getAllSites } from '../api/directoryGoogleSheets';
-// import styles from './App.module.css';
 
 // import components
 import Header from '../components/Header/Header';
@@ -22,8 +21,8 @@ const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 // unused code
 // const revereSheetId = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
 
-function sheetIdFromPath(directory, path) {
-  for (var i = 0; i < directory.length; i++) {
+function sheetIdFromPath (directory, path) {
+  for (let i = 0; i < directory.length; i++) {
     if (directory[i].path === path) {
       return directory[i].sheetId;
     }
@@ -31,7 +30,7 @@ function sheetIdFromPath(directory, path) {
 }
 
 class AppContainer extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       position: {},
@@ -44,9 +43,9 @@ class AppContainer extends Component {
     dispatch: PropTypes.func,
   };
 
-  componentDidMount() {
-    var resourcePath = this.props.match.params.resource;
-    var resourceSheetId = null;
+  componentDidMount () {
+    const resourcePath = this.props.match.params.resource;
+    let resourceSheetId = null;
 
     getAllSites.then(sites => {
       resourceSheetId = sheetIdFromPath(sites, resourcePath) || envSheetId;
@@ -54,7 +53,7 @@ class AppContainer extends Component {
       if (resourceSheetId == null) {
         this.setState({ isValidPage: false });
       } else {
-        var resourcesFromSheet = loadResources(resourceSheetId);
+        const resourcesFromSheet = loadResources(resourceSheetId);
 
         this.props.dispatch(resourcesFromSheet);
       }
@@ -93,8 +92,8 @@ class AppContainer extends Component {
     });
   };
 
-  render() {
-    let { isFetchingResource } = this.props;
+  render () {
+    const { isFetchingResource } = this.props;
 
     if (!this.state.isValidPage) return <NotFoundPage />;
 
@@ -114,14 +113,14 @@ class AppContainer extends Component {
               <Route
                 exact
                 path="/:resource/admin"
-                render={props => (
+                render={() => (
                   <AdminPage currentPosition={this.state.position} />
                 )}
               />
               <Route
                 exact
                 path="/:resource/"
-                render={props => (
+                render={() => (
                   <MapPage
                     currentPosition={this.state.position}
                     displayFeedbackLink={this.state.displayFeedbackLink}
@@ -166,8 +165,8 @@ class AppContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  let { isFetchingResource } = state;
+function mapStateToProps (state) {
+  const { isFetchingResource } = state;
   return { isFetchingResource };
 }
 export default connect(mapStateToProps)(AppContainer);

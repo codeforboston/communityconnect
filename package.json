@@ -9,6 +9,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.7.2",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "babel-eslint": "^10.0.2",
     "bootstrap": "^4.1.1",
     "is-url": "^1.2.4",
     "jquery": "^3.4.0",
@@ -47,6 +48,7 @@
     "@fortawesome/fontawesome-free": "^5.7.2",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
+    "eslint-plugin-react": "^7.14.2",
     "jest-emotion": "^10.0.10",
     "react-scripts": "2.0.0-next.66cc7a90",
     "redux-immutable-state-invariant": "^2.1.0"
