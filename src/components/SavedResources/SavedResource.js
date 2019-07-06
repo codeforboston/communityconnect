@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import styles from './SavedResource.module.css';
 import qs from 'qs-lite';
 import { getDistance } from '../../utils/distance.js';
 import * as resourceAction from '../../action/resourceDataAction';
@@ -19,7 +18,7 @@ import {
 } from 'reactstrap';
 
 class SavedResource extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       modal: false,
@@ -63,7 +62,7 @@ class SavedResource extends Component {
     this.confirmationModalToggle();
   };
 
-  render () {
+  render() {
     const {
       id,
       name,
@@ -200,11 +199,11 @@ class SavedResource extends Component {
   }
 }
 
-function mapStateToProps (state, ownProps) {
+function mapStateToProps(state, ownProps) {
   return { savedResource: state.savedResource };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(resourceAction, dispatch),
   };
