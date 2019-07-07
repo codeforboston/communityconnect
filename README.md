@@ -26,7 +26,6 @@
   - [Running Locally](#Running-Locally)
   - [Customizing Google Sheet](#Customizing-Google-Sheet)
 - [Contributing](#Contributing)
-- [FAQ](#FAQ)
 - [Support](#Support)
 - [License](#License)
 - [History](#History)
@@ -82,10 +81,6 @@ You can use a custom Google Sheet with your local installation of Community Conn
 ## Contributing
 Thank you for your willingness to help out! To get started on helping build Community Connect, take a look at [our contribution guide.](/docs/CONTRIBUTING.md)
    
----
-
-## FAQ
-
 ---
 
 ## Support
