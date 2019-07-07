@@ -3,21 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router';
 import qs from 'qs-lite';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getDistance } from '../../utils/distance.js';
 import * as resourceAction from '../../action/resourceDataAction';
 import isUrl from 'is-url';
-import ReadMoreAndLess from 'react-read-more-less';
 
 import {
-  OrganizationCardWrapper,
-  OrganizationCardBodyWrapper,
-  OrganizationCardHeader,
-  OrganizationCardHeaderText,
-  OrganizationSocialMediaLinkWrapper,
-  OrganizationCardSubtitle,
+  OrganizationCardBody,
+  OrganizationCardOverview,
+  OrganizationCardSocialMedia,
   OrganizationCardSaveButton,
-} from '../Common';
+} from './subcomponents';
 
 class OrganizationCard extends Component {
   constructor(props) {
@@ -70,30 +65,33 @@ class OrganizationCard extends Component {
       latitude,
       longitude,
     } = this.props.organization;
+
     const websiteUrl = isUrl(website) ? website : '';
     let distance, directionUrl, encodedCoordinates;
+
     if (this.props.currentPos && this.props.organization.coordinates) {
       distance = getDistance(
         { coordinates: this.props.organization.coordinates },
         this.props.currentPos,
       );
     }
+
     encodedCoordinates = encodeURIComponent(latitude + ',' + longitude);
     directionUrl =
       'https://www.google.com/maps?saddr=My+Location&daddr=' +
       encodedCoordinates;
 
     return (
-      <OrganizationCardWrapper id={this.props.index}>
-        <OrganizationCardHeader>
+      <div className="organization-card" id={this.props.index}>
+        <div className="organization-card-header">
+          <div className="organization-card-header-text">{name}</div>
           {this.props.saveable ? (
             <OrganizationCardSaveButton
               saveItem={this.saveItem}
               saveExist={this.state.saveExist}
             />
           ) : null}
-          <OrganizationCardHeaderText>{name}</OrganizationCardHeaderText>
-        </OrganizationCardHeader>
+        </div>
         <OrganizationCardBody
           categories={categories}
           distance={distance}
@@ -104,85 +102,25 @@ class OrganizationCard extends Component {
           url={websiteUrl}
         />
         <OrganizationCardOverview overview={overview} />
-        <OrganizationCardSocialMediaLink
+        <OrganizationCardSocialMedia
           url={facebookUrl}
           icon="facebook-square"
           title="Facebook Page"
         />
-        <OrganizationCardSocialMediaLink
+        <OrganizationCardSocialMedia
           url={instagramUrl}
           icon="instagram"
           title="Instagram Page"
         />
-        <OrganizationCardSocialMediaLink
+        <OrganizationCardSocialMedia
           url={twitterUrl}
           icon="twitter"
           title="Twitter Page"
         />
-      </OrganizationCardWrapper>
+      </div>
     );
   }
 }
-
-const OrganizationCardSocialMediaLink = ({ url, icon, title }) =>
-  url ? (
-    <OrganizationSocialMediaLinkWrapper href={url} data-type="social">
-      <FontAwesomeIcon icon={['fab', icon]} size="2x" title={title} />
-    </OrganizationSocialMediaLinkWrapper>
-  ) : null;
-
-//part of OC that handles overview, current limit is 250 char for readme
-
-const OrganizationCardOverview = ({ overview }) =>
-  overview ? (
-    <OrganizationCardBodyWrapper>
-      <ReadMoreAndLess
-        ref={this.ReadMore}
-        className="read-more-content"
-        charLimit={250}
-        readMoreText="Read more"
-        readLessText="Read less"
-      >
-        {overview}
-      </ReadMoreAndLess>
-    </OrganizationCardBodyWrapper>
-  ) : null;
-
-const OrganizationCardBody = ({
-  categories,
-  distance,
-  location,
-  directionUrl,
-  phone,
-  url,
-  children,
-}) => (
-  <OrganizationCardBodyWrapper>
-    <OrganizationCardSubtitle>{categories}</OrganizationCardSubtitle>
-    {distance && <p>Distance from your location: {distance} miles</p>}
-    {location && (
-      <p>
-        <FontAwesomeIcon icon="map-marker-alt" className="text-danger" />{' '}
-        {location}
-      </p>
-    )}
-    {directionUrl && (
-      <a href={directionUrl} target="_blank">
-        <FontAwesomeIcon icon="map-marked-alt" /> Get directions
-      </a>
-    )}
-    {url && (
-      <a href={url} target="_blank">
-        <FontAwesomeIcon icon="external-link-alt" /> Go to website
-      </a>
-    )}
-    {phone && (
-      <a href="tel">
-        <FontAwesomeIcon icon="phone" size="1x" /> {phone}
-      </a>
-    )}
-  </OrganizationCardBodyWrapper>
-);
 
 function mapStateToProps(state, ownProps) {
   return {

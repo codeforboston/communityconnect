@@ -3,7 +3,7 @@ import React from 'react';
 /**
  * @param sortOptions
  */
-class SortBar extends React.Component {
+export class SortBar extends React.Component {
   handleClick = e => {
     // Get new sort based on index of sortOption array
     if (this.props.sortOptions[e.target.value]) {
@@ -31,5 +31,3 @@ class SortBar extends React.Component {
     );
   }
 }
-
-export default SortBar;

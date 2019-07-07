@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router';
 import { connect } from 'react-redux';
 import cx from 'classnames';
 
@@ -11,8 +12,6 @@ import {
   ModalBody,
   ModalFooter,
 } from 'reactstrap';
-
-// import { Badge, SavedResourcesButton } from './HeaderLayout';
 
 class Header extends Component {
   constructor (props) {
@@ -64,14 +63,19 @@ class Header extends Component {
           style={{ justifyContent: 'space-between' }}
         >
           <NavbarBrand className="Logo" onClick={this.modalOpen}>
-            <h3>Community Connect</h3>
+            <span>Community Connect</span>
           </NavbarBrand>
-          <button
-            className={savedResourceButtonClassNames}
-            onClick={toggleSavedResourcesPane}
-          >
-            Saved Resources {savedResource.length}
-          </button>
+          <Route
+            path="/:resource/admin"
+            render={() => (
+              <button
+                className={savedResourceButtonClassNames}
+                onClick={toggleSavedResourcesPane}
+              >
+                Saved Resources {savedResource.length}
+              </button>
+            )}
+          />
         </Navbar>
         <Modal isOpen={this.state.modal} toggle={this.modalToggle}>
           <ModalHeader>Alert</ModalHeader>
