@@ -1,71 +1,65 @@
 import React, { Component } from 'react';
-import styles from './OrganizationCard.module.css'
+import styles from './OrganizationCard.module.css';
 
 export class OrganizationCardSaveButton extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            animateButtonInside: '',
-            animateButtonOutside: [''],
-        };
-        this.buttonSign = this.buttonSign.bind(this);
+  constructor (props) {
+    super(props);
+    this.state = {
+      animateButtonInside: '',
+      animateButtonOutside: [''],
+    };
+    this.buttonSign = this.buttonSign.bind(this);
 
-        this.cardRef = React.createRef();
-    }
+    this.cardRef = React.createRef();
+  }
 
-    handleClick = () => {
-        this.props.saveItem();
-        let classes = [
-            styles['cbutton--effect-radomir__after'],
-            styles['cbutton--effect-radomir__cbutton--click__after'],
-            styles['cbutton__after'],
-        ];
+  handleClick = () => {
+    this.props.saveItem();
+    const classes = [
+      styles['cbutton--effect-radomir__after'],
+      styles['cbutton--effect-radomir__cbutton--click__after'],
+      styles['cbutton__after'],
+    ];
 
-        this.setState({
-            animateButtonInside: styles['animate-button-click'],
-            animateButtonOutside: classes,
-        });
-        setTimeout(() => {
-            this.setState({
-                animateButtonInside: '',
-                animateButtonOutside: [''],
-            });
-        },
-            500
-        );
-    }
+    this.setState({
+      animateButtonInside: styles['animate-button-click'],
+      animateButtonOutside: classes,
+    });
+    setTimeout(() => {
+      this.setState({
+        animateButtonInside: '',
+        animateButtonOutside: [''],
+      });
+    }, 500);
+  };
 
-    buttonSign() {
-        if (this.props.saveExist)
-            return String.fromCharCode(0x2713)
-        else
-            return '+'
-    }
+  buttonSign () {
+    if (this.props.saveExist) return String.fromCharCode(0x2713);
+    else return '+';
+  }
 
-    render() {
-        return (
-            <span onClick={this.handleClick}>
-                <button
-                    className={[
-                        styles['cbutton--effect-radomir'],
-                        styles['cbutton'],
-                    ].join(' ')}
-                >
-                    <span
-                        title='Add item to Saved Resources'
-                        aria-label='Add item to Saved Resources'
-                        className={[
-                            this.state.animateButtonInside,
-                            styles['save-item'],
-                        ].join(' ')}>
-                        { this.buttonSign() }
-                    </span>
-                    <span
-                        className={this.state.animateButtonOutside.join(' ')}
-                    >
-                    </span>
-                </button>
-            </span>
-        );
-    }
+  render () {
+    return (
+      <span onClick={this.handleClick}>
+        <button
+          className={[
+            styles['cbutton--effect-radomir'],
+            styles['cbutton'],
+          ].join(' ')}
+        >
+          <span
+            title="Add item to Saved Resources"
+            aria-label="Add item to Saved Resources"
+            className={[
+              this.state.animateButtonInside,
+              styles['save-item'],
+            ].join(' ')}
+          >
+            {this.buttonSign()}
+          </span>
+          <span className={this.state.animateButtonOutside.join(' ')} />
+        </button>
+      </span>
+    );
+  }
 }

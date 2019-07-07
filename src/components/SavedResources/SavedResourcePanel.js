@@ -11,7 +11,7 @@ const ToShareButton = props => {
   let tempUrl = '';
   if (query.resources) {
     resources = query.resources.split(',');
-    tempUrl = `/` + props.resourcePath + `/?resources=${resources.join(',')}`;
+    tempUrl = `/${props.resourcePath}/?resources=${resources.join(',')}`;
   }
 
   return (

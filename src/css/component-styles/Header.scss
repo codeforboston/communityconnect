@@ -1,0 +1,25 @@
+.searchbar-input {
+  border: 1px solid $light-gray;
+  border-radius: $radius-sm;
+  padding-left: $spacing-sm;
+  font-size: $font-size-md;
+}
+
+.nav-item {
+  position: absolute;
+}
+
+.saved-resource-button {
+  background-color: $dark-gray;
+  color: $white;
+  font-size: $font-size-md;
+  border-radius: $radius-sm;
+  border: none;
+  padding: $spacing-sm $spacing-md;
+  margin-right: $spacing-md;
+  width: 200px;
+}
+
+.has-selections {
+  background-color: $turquoise;
+}

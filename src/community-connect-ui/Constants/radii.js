@@ -1,1 +1,3 @@
-export const radii = ["4px", "10px", "20px"];
+// DEAD CODE
+
+export const radii = ['4px', '10px', '20px'];
