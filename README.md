@@ -1,11 +1,13 @@
 <p align="center">
   <img src="https://github.com/codeforboston/communityconnect/blob/development/src/components/Header/Images/cc-mini-logo.png?raw=true" width="100px">
   <h2 align="center">Community Connect</h2>
+  <div align="center">
+    <a align="center" href="https://communityinviter.com/apps/cfb-public/code-for-boston-slack-invite">
+      <img src="https://img.shields.io/badge/slack-codeforboston%20%23communityconnect-lightgrey.svg?logo=slack">
+    </a>
+    <img src="https://img.shields.io/github/commit-activity/m/codeforboston/communityconnect.svg">
+  </div>
 
-  <a align="center" href="https://communityinviter.com/apps/cfb-public/code-for-boston-slack-invite">
-    <img src="https://img.shields.io/badge/slack-codeforboston%20%23communityconnect-lightgrey.svg?logo=slack">
-  </a>
-  <img src="https://img.shields.io/github/commit-activity/m/codeforboston/communityconnect.svg">
 </p>
 
 <h4 align="center">A tool for connecting those in need to services or materials that improve their quality of life.</h4>
@@ -18,7 +20,7 @@
 
 ---
 
-## Table of Contents 
+## Table of Contents
 - [Table of Contents](#Table-of-Contents)
 - [Features](#Features)
 - [Getting Started](#Getting-Started)
@@ -43,12 +45,12 @@
 Want to see what Community Connect is all about? Check out our live site for Revere at [ccfor.me/`revere`](http://ccfor.me/revere). To manage resources, enter the 'admin' view by adding `/admin` to the end of the URL, such as [ccfor.me/`revere/admin`](http://ccfor.me/revere/admin).
 
 ### Running Locally
-1) Clone the repository 
+1) Clone the repository
 2) Install yarn
 3) Install dependencies by running `yarn`
 4) Start the development server by running `yarn start`
 5) Visit `localhost:3000` in your browser to see it running! 🎉
-   
+
 ### Customizing Google Sheet
 You can use a custom Google Sheet with your local installation of Community Connect. You might want to do this for testing or development purposes.
 *Prefer to see a gif of this process instead of reading steps? Click [here](https://imgur.com/a/N6kdSjC)*
@@ -80,7 +82,7 @@ You can use a custom Google Sheet with your local installation of Community Conn
 
 ## Contributing
 Thank you for your willingness to help out! To get started on helping build Community Connect, take a look at [our contribution guide.](/docs/CONTRIBUTING.md)
-   
+
 ---
 
 ## Support
@@ -89,7 +91,7 @@ Join our [Code for Boston](https://www.codeforboston.org/) Slack channel: [#comm
 ---
 
 ## License
-[MIT License](/LICENSE) 
+[MIT License](/LICENSE)
 
 ---
 
