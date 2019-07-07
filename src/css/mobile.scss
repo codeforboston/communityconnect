@@ -1,0 +1,18 @@
+// media query format
+// @media (max-width: <screen size>) {
+// 	 css rules here
+// }
+
+@media (max-width: 1300px) {
+  // here
+  .card-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  // here
+  .card-list {
+    grid-template-columns: 1fr;
+  }
+}

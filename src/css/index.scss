@@ -2,15 +2,20 @@
 @import 'base-constants';
 
 // import component styles
+@import '/component-styles/Admin';
 @import '/component-styles/AppContainer';
 @import '/component-styles/DropdownCategory';
 @import '/component-styles/Header';
+@import '/component-styles/MapPage';
 @import '/component-styles/NotFoundPage';
 @import '/component-styles/OrganizationCard';
 @import '/component-styles/OrganizationCardSaveButton';
+@import '/component-styles/ResultList';
 @import '/component-styles/SavedResource';
 @import '/component-styles/SavedResourceContainer';
 @import '/component-styles/SavedResourcePanel';
+@import '/component-styles/SplitScreenSlidingPane';
+@import '/component-styles/SplitScreenTogglePane';
 
 // import shared element level styles
 @import 'main';

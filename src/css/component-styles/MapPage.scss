@@ -1,0 +1,26 @@
+.map-container {
+  position: absolute;
+  width: 100%;
+  /* 63px is the height of the header*/
+  height: calc(100% - 63px);
+  margin-bottom: 0px;
+  z-index: 0;
+}
+
+.map-container-footer {
+  position: absolute;
+  width: 100%;
+  /* 63px is the height of the header, 67px is the height of the footer*/
+  height: calc(100% - 63px - 67px);
+  margin-bottom: 67px;
+  z-index: 0;
+}
+
+.static-pane {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 30%;
+  overflow: auto;
+}

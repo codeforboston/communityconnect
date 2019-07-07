@@ -1,14 +1,12 @@
 import React from 'react';
-
-import { AdminPageWrapper } from './AdminPageLayout';
 import CategoryList from './CategoryList';
 import CardGrid from './CardGrid';
 
-const AdminPage = ({currentPosition}) => (
-    <AdminPageWrapper>
-        <CategoryList />
-        <CardGrid currentPos={currentPosition} />
-    </AdminPageWrapper>
-)
+const AdminPage = ({ currentPosition }) => (
+  <div className="admin-pane">
+    <CategoryList />
+    <CardGrid currentPos={currentPosition} />
+  </div>
+);
 
 export default AdminPage;

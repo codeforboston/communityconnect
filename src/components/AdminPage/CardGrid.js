@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import OrganizationCard from '../Common/OrganizationCard';
 import { SortBar } from '../Common/SortBar.js';
 import SearchBar from '../Header/SearchBar';
-import {
-  CardGridWrapper,
-  SearchAndSortWrapper,
-  CardListWrapper,
-} from './AdminPageLayout';
 import { getDistance } from '../../utils/distance.js';
 
 export class CardGrid extends Component {
@@ -69,15 +64,15 @@ export class CardGrid extends Component {
     const sortedData = this.state.dataSort();
 
     return (
-      <CardGridWrapper>
-        <SearchAndSortWrapper>
+      <div className="card-grid">
+        <div className="search-and-sort">
           <SearchBar type="text" handleFilter={this.props.handleFilter} />
           <SortBar
             onSortChange={this.handleSortChange}
             sortOptions={sortOptions}
           />
-        </SearchAndSortWrapper>
-        <CardListWrapper>
+        </div>
+        <div className="card-list">
           {sortedData.map((resource, index) => (
             <OrganizationCard
               key={resource.id}
@@ -88,26 +83,24 @@ export class CardGrid extends Component {
               saveable={true}
             />
           ))}
-        </CardListWrapper>
-      </CardGridWrapper>
+        </div>
+      </div>
     );
   }
 }
 
 function mapStateToProps (state, ownProps) {
-  const res = [];
+  const resource = [];
   //Not the most efficient logic, but it works. Will have to optimize this later
   for (let i = 0, len1 = state.searchedResource.length; i < len1; i++) {
     for (let j = 0, len2 = state.filteredResource.length; j < len2; j++) {
       if (state.searchedResource[i].id === state.filteredResource[j].id) {
-        res.push(state.searchedResource[i]);
+        resource.push(state.searchedResource[i]);
       }
     }
   }
 
-  return {
-    resource: res,
-  };
+  return { resource };
 }
 
 export default connect(mapStateToProps)(CardGrid);

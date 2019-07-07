@@ -5,7 +5,6 @@ import OrganizationCard from '../Common/OrganizationCard';
 import { SortBar } from '../Common/SortBar.js';
 import { getDistance } from '../../utils/distance.js';
 import * as resourceAction from '../../action/resourceDataAction';
-import { Results } from './MapPageLayout';
 
 export class ResultList extends Component {
   constructor (props) {
@@ -81,7 +80,7 @@ export class ResultList extends Component {
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
         />
-        <Results ref={this.listRef}>
+        <div className="results" ref={this.listRef}>
           {sortedData.map((resource, index) => (
             <OrganizationCard
               key={resource.id}
@@ -93,7 +92,7 @@ export class ResultList extends Component {
               saveItem={() => this.props.saveItem(resource)}
             />
           ))}
-        </Results>
+        </div>
       </div>
     );
   }
