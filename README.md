@@ -1,76 +1,98 @@
-# Community Connect
+<p align="center">
+  <img src="https://github.com/codeforboston/communityconnect/blob/development/src/components/Header/Images/cc-mini-logo.png?raw=true" width="100px">
+  <h2 align="center">Community Connect</h2>
+
+  <a align="center" href="https://communityinviter.com/apps/cfb-public/code-for-boston-slack-invite">
+    <img src="https://img.shields.io/badge/slack-codeforboston%20%23communityconnect-lightgrey.svg?logo=slack">
+  </a>
+  <img src="https://img.shields.io/github/commit-activity/m/codeforboston/communityconnect.svg">
+</p>
+
+<h4 align="center">A tool for connecting those in need to services or materials that improve their quality of life.</h4>
+<details align="center">
+  <summary>Click to read more</summary>
+<p align="left">
 "Community Connect" is a health resource web application that aims to consolidate information about businesses and organization available in communities that promote healthy lifestyle choices. A health resource is defined as services or materials that improve the quality of life of others, ranging from affordable child care, substance abuse counseling, domestic violence support, and more. We are working in conjunction with Massachusetts General Hospital's [Center for Community Health Improvement](https://www.massgeneral.org/cchi/), MGH Revere HealthCare Center, and Revere CARES Coalition to create an extensive database in our pilot region of Revere, Chelsea, Charlestown, and eventually the Greater Boston Area.
+</p>
+</details>
 
-To suggest businesses and/or organizations in the area that are not presently listed, please visit:
-https://goo.gl/forms/X2Nou8ZLtrmz0JGe2
+---
 
-  1. Stage 1 - Simple Name Search, Category Filter, Semi-clickable List, Map with Pins.
-  2. Stage 2 - Fuzzy search, Mobile Compatibility, organized card with all relevant information about selected resource on Map, import and maintain up-to-date information about resources, unique URL created for specified Org Cards.
-  3. Stage 3 - Make improvements based on feedback from Social Workers at the Revere HealthCare Center, make the codebase more transferrable for other projects that use a spreadsheet and website that reflects that data.
+## Table of Contents 
+- [Table of Contents](#Table-of-Contents)
+- [Features](#Features)
+- [Getting Started](#Getting-Started)
+  - [Live Demo](#Live-Demo)
+  - [Running Locally](#Running-Locally)
+  - [Customizing Google Sheet](#Customizing-Google-Sheet)
+- [Contributing](#Contributing)
+- [FAQ](#FAQ)
+- [Support](#Support)
+- [License](#License)
+- [History](#History)
 
-## How this works
-Resources are stored in a google spreadsheet (New). https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit?usp=sharing
+---
+## Features
+- Dynamically updated resources from any Google Sheet
+- Save resources for viewing later
+- Share a link with your saved resources
+- Filter resources by category or search term
 
-The spreadsheet automatically publishes its contents to a json endpoint that this app consumes. Members of the community can add unvetted resources to the spreadsheet via a google form. Trusted members with access to the spreadsheet will vet submitted
-resources &  mark them as vetted. The app will only display vetted resources.
+---
+## Getting Started
+### Live Demo
+Want to see what Community Connect is all about? Check out our live site for Revere at [ccfor.me/`revere`](http://ccfor.me/revere). To manage resources, enter the 'admin' view by adding `/admin` to the end of the URL, such as [ccfor.me/`revere/admin`](http://ccfor.me/revere/admin).
 
-Note that this project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).  Create React App gives us lots of functionality not documented in this readme.
-
-## New Developer Setup Instructions
-1) Clone the repo
-1) Install yarn (it may be installed already)
-1) Install dependencies by running `yarn`
-1) Start the development server buy running `yarn start`
-
-## Where to start
-Our open issues are listed on the project's [Issues](https://github.com/codeforboston/communityconnect/issues) tab. The best places to start are unassigned issues with the label "[good first issue](https://github.com/codeforboston/communityconnect/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22+no%3Aassignee)".
-Those with "bug" and "help wanted" are great too, but may require more experience. Avoid issues labeled "epic" until you're more familiar with the project.
-
-A great first issue to look into doing is the React warnings that can be found in the developer console. To solve a React warning there is no need to create a issue. Just make an announcement in Slack that you are going to work on which ever specific warnings. Then put together a pull request with the code changes.
-
-## Beginner resources
-http://freecodecamp.com/
-
-https://www.codecademy.com/
-
-https://github.com/firstcontributions/first-contributions
-
-## Connect with the team
-Join our [Code for Boston](https://www.codeforboston.org/) slack channel: [#community-connect](https://cfb-public.slack.com/messages/CC85SAJ0Z/) or look for us at the [CfB Tuesday meet-ups](https://meetup.com/Code-For-Boston).
-
-## Want your own spreadsheet?
-
-*Prefer to see a gif of this process instead of reading steps? Click [here](https://imgur.com/a/N6kdSjC)*
-
+### Running Locally
+1) Clone the repository 
+2) Install yarn
+3) Install dependencies by running `yarn`
+4) Start the development server by running `yarn start`
+5) Visit `localhost:3000` in your browser to see it running! 🎉
+   
+### Customizing Google Sheet
+You can use a custom Google Sheet with your local installation of Community Connect. You might want to do this for testing or development purposes.
+*Prefer to see a gif of this process instead of reading steps? Click [here](https://imgur.com/a/N6kdSjC*
+<details>
+  <summary>Click to see instructions for creating 
+</details>
 1) Visit the [current spreadsheet](https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit#gid=0)
-1) Click File and select Make a Copy
-1) Click OK
-1) When viewing your copy, click SHARE in the upper-right hand corner.
-1) Click "Get shareable link" in the upper-right hand corner of the modal.
-1) Ensure that "Anyone with the link can view" is selected.
-1) Copy link
-1) Click done
-1) Click File and select "Publish to the web"
-1) Click Publish
-1) Open "src/googlesheetApi.js" in the codebase
-1) Replace "revere_key" with a portion of the URL in your clipboard
+2) Click File and select Make a Copy
+3) Click OK
+4) When viewing your copy, click SHARE in the upper-right hand corner.
+5) Click "Get shareable link" in the upper-right hand corner of the modal.
+6) Ensure that "Anyone with the link can view" is selected.
+7) Copy link
+8) Click done
+9) Click File and select "Publish to the web"
+10) Click Publish
+11) Open "src/googlesheetApi.js" in the codebase
+12) Replace "revere_key" with a portion of the URL in your clipboard
 
 For Example, if the URL of your Google Spreadsheet is
 https://docs.google.com/spreadsheets/d/1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M/edit?usp=sharing
 
 Set the build-time environment variable REACT_APP_GOOGLE_SHEETS_ID to "1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M"
 
-Start your server using `npm run start`
+---
 
-### Why would I want my own spreadsheet?
+## Contributing
+Thank you for your willingness to help out! To get started on helping build Community Connect, take a look at [our contribution guide.](/docs/CONTRIBUTING.md)
+   
+---
 
-1) Some features may require you to modify the data to validate your code.
-1) The production spreadsheet should not be modified for testing purposes.
+## FAQ
 
-## Editor setup
-*Syntax highlighting* To configure the syntax highlighting in your favorite text editor, head to the [relevant Babel documentation page](https://babeljs.io/docs/editors) and follow the instructions. Some of the most popular editors are covered.
+---
 
-*Ignore generated files* Your editor will search all the files in the project - including large generated ones & dependencies unless you tell it not to. Look into how your editor can ignore `node_modules/*` and `build/*`
+## Support
+Join our [Code for Boston](https://www.codeforboston.org/) Slack channel: [#community-connect](https://communityinviter.com/apps/cfb-public/code-for-boston-slack-invite) or look for us at the [CfB Tuesday meet-ups](https://meetup.com/Code-For-Boston).
+
+---
+
+## License
+
+---
 
 ## History
 The original architectural design for this app was designed proven out by [Bob Breznak](https://github.com/bobbrez) for an organization assisting with the refugee crisis in Greece in 2016, [Prosper](http://prosper.community/). They needed help consolidating, vetting and displaying resources on the web. In May 2018 he re-wrote the frontend in react.js to create an app that assists homeless people [Seeking Shelter](https://makao2.brez.io/) and resources. In August 2018 Code for Boston’s Community Connect project had similar aims and the repo was moved into their org. The data used for this project was initially collected from [Nevil Desai](https://www.linkedin.com/in/nevildesai/) during his internship with Revere CARES, a coalition group under the umbrella of MGH Center for Community Health Improvement.
