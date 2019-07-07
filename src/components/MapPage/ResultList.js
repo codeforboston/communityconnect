@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import OrganizationCard from '../Common/OrganizationCard';
 import SortBar from '../Common/SortBar.js';
 import { getDistance } from '../../utils/distance.js';
@@ -74,7 +73,7 @@ export class ResultList extends Component {
 
   render() {
     const sortOptions = [
-      { key: 'Alphabetically', sort: this.sortByAlphabet, disabled: false }
+      { key: 'A-Z', sort: this.sortByAlphabet, disabled: false }
       , { key: 'Distance', sort: this.sortByDistance, disabled: !this.props.currentPos }
     ];
 
@@ -84,15 +83,12 @@ export class ResultList extends Component {
     // source of data
     const sortedData = this.state.dataSort();
     return (
-      <>
+      <p>
         <SortBar
           onSortChange={this.handleSortChange}
           sortOptions={sortOptions}
         />
-        <Results
-          // className={[
-          //   styles.results, (this.props.fullWidth ? styles.resultsFullWidth : styles.resultsPartialWidth)].join(' ')}
-          ref={this.listRef}>
+        <Results ref={this.listRef}>
           {
             sortedData.map((resource, index) =>
 
@@ -107,9 +103,8 @@ export class ResultList extends Component {
               />
             )}
         </Results>
-      </>
+      </p>
     );
-
   }
 }
 
@@ -118,11 +113,11 @@ function mapStateToProps(state, ownProps) {
     savedResource: state.savedResource.length > 0 ? state.savedResource : state.resource
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(resourceAction, dispatch),
   };
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultList);
