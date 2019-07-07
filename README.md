@@ -52,27 +52,30 @@ Want to see what Community Connect is all about? Check out our live site for Rev
    
 ### Customizing Google Sheet
 You can use a custom Google Sheet with your local installation of Community Connect. You might want to do this for testing or development purposes.
-*Prefer to see a gif of this process instead of reading steps? Click [here](https://imgur.com/a/N6kdSjC*
+*Prefer to see a gif of this process instead of reading steps? Click [here](https://imgur.com/a/N6kdSjC)*
 <details>
-  <summary>Click to see instructions for creating 
+  <summary>Click to see instructions for creating your own sheet</summary>
+  <ol>
+   <li> Visit the <a href="https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit#gid=0">current spreadsheet</a></li>
+   <li>Click File and select Make a Copy</li>
+   <li>Click OK</li>
+   <li>When viewing your copy, click SHARE in the upper-right hand corner.</li>
+   <li>Click "Get shareable link" in the upper-right hand corner of the modal.</li>
+   <li>Ensure that "Anyone with the link can view" is selected.</li>
+   <li>Copy link</li>
+   <li>Click done</li>
+   <li>Click File and select "Publish to the web"</li>
+   <li>Click Publish</li>
+   <li>Open "src/googlesheetApi.js" in the codebase</li>
+   <li>Replace "revere_key" with a portion of the URL in your clipboard</li>
+
+   For Example, if the URL of your Google Spreadsheet is
+   https://docs.google.com/spreadsheets/d/1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M/edit?usp=sharing
+
+   Set the build-time environment variable REACT_APP_GOOGLE_SHEETS_ID to "1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M"
+   </ol>
 </details>
-1) Visit the [current spreadsheet](https://docs.google.com/spreadsheets/d/1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA/edit#gid=0)
-2) Click File and select Make a Copy
-3) Click OK
-4) When viewing your copy, click SHARE in the upper-right hand corner.
-5) Click "Get shareable link" in the upper-right hand corner of the modal.
-6) Ensure that "Anyone with the link can view" is selected.
-7) Copy link
-8) Click done
-9) Click File and select "Publish to the web"
-10) Click Publish
-11) Open "src/googlesheetApi.js" in the codebase
-12) Replace "revere_key" with a portion of the URL in your clipboard
 
-For Example, if the URL of your Google Spreadsheet is
-https://docs.google.com/spreadsheets/d/1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M/edit?usp=sharing
-
-Set the build-time environment variable REACT_APP_GOOGLE_SHEETS_ID to "1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M"
 
 ---
 
@@ -86,11 +89,12 @@ Thank you for your willingness to help out! To get started on helping build Comm
 ---
 
 ## Support
-Join our [Code for Boston](https://www.codeforboston.org/) Slack channel: [#community-connect](https://communityinviter.com/apps/cfb-public/code-for-boston-slack-invite) or look for us at the [CfB Tuesday meet-ups](https://meetup.com/Code-For-Boston).
+Join our [Code for Boston](https://www.codeforboston.org/) Slack channel: [#community-connect](https://communityinviter.com/apps/cfb-public/code-for-boston-slack-invite) or look for us at the [Code for Boston Tuesday meet-ups](https://meetup.com/Code-For-Boston).
 
 ---
 
 ## License
+[MIT License](/LICENSE) 
 
 ---
 
