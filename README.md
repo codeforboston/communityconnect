@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="https://github.com/codeforboston/communityconnect/blob/development/src/components/Header/Images/cc-mini-logo.png?raw=true" width="100px">
+  <img
+    src="https://github.com/codeforboston/communityconnect/blob/development/src/components/Header/Images/cc-mini-logo.png?raw=true"
+    width="100px">
   <h2 align="center">Community Connect</h2>
   <div align="center">
     <a align="center" href="https://communityinviter.com/apps/cfb-public/code-for-boston-slack-invite">
@@ -13,9 +15,9 @@
 <h4 align="center">A tool for connecting those in need to services or materials that improve their quality of life.</h4>
 <details align="center">
   <summary>Click to read more</summary>
-<p align="left">
-"Community Connect" is a health resource web application that aims to consolidate information about businesses and organization available in communities that promote healthy lifestyle choices. A health resource is defined as services or materials that improve the quality of life of others, ranging from affordable child care, substance abuse counseling, domestic violence support, and more. We are working in conjunction with Massachusetts General Hospital's [Center for Community Health Improvement](https://www.massgeneral.org/cchi/), MGH Revere HealthCare Center, and Revere CARES Coalition to create an extensive database in our pilot region of Revere, Chelsea, Charlestown, and eventually the Greater Boston Area.
-</p>
+  <p align="left">
+    "Community Connect" is a health resource web application that aims to consolidate information about businesses and organization available in communities that promote healthy lifestyle choices. A health resource is defined as services or materials that improve the quality of life of others, ranging from affordable child care, substance abuse counseling, domestic violence support, and more. We are working in conjunction with Massachusetts General Hospital's <a href="https://www.massgeneral.org/cchi/">Center for Community Health Improvement</a>, MGH Revere HealthCare Center, and Revere CARES Coalition to create an extensive database in our pilot region of Revere, Chelsea, Charlestown, and eventually the Greater Boston Area.
+  </p>
 </details>
 
 ---
