@@ -1,4 +1,4 @@
-# How to Contribute to *Community Connect*
+# Contributing to *Community Connect*
 Thank you for taking the time to contribute! 👍 Please read the following sections to learn how to make the most of your time and energy when helping out with Community Connect. 
 
 > **⚠️ Note:** Community Connect is based out of Boston and is a team within [Code for Boston](https://www.codeforboston.org/), our local [Code for America](https://www.codeforamerica.org/) brigade. This project is maintained and developed through weekly in-person meetups as part of the organization.
@@ -48,7 +48,7 @@ Bugs are tracked as issues in our backlog. To report one, [create an issue](http
 # Suggest a Feature 🛠
 Community Connect is always growing based on user feedback and suggestions - thanks for sharing yours! Just like [reporting a bug](#Report-a-Bug-%F0%9F%90%9E), be sure to check existing issues for the feature you're requesting - you might not be the only one! 
 
-Feature suggestions (enhancements) are also tracked as issues in our backlog. To suggest a feature or enhnacement, create an issue](https://github.com/codeforboston/communityconnect/issues/new?labels=enhancement&title=New+feature) including:
+Feature suggestions (enhancements) are also tracked as issues in our backlog. To suggest a feature or enhnacement, [create an issue](https://github.com/codeforboston/communityconnect/issues/new?labels=enhancement&title=New+feature) including:
 - [ ] The `[enhancement]` label
 - [ ] A clear and descriptive title of the new behavior or functionality
 - [ ] A description of the feature
