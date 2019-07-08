@@ -49,7 +49,7 @@ export class CardGrid extends Component {
 
   render() {
     const sortOptions = [
-      {key: 'A-Z', sort: this.sortByAlphabet, disabled: false}
+      {key: 'Alphabetically', sort: this.sortByAlphabet, disabled: false}
       ,{key: 'Distance', sort: this.sortByDistance, disabled: !this.props.currentPos}
     ];
 

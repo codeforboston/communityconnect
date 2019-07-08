@@ -20,7 +20,6 @@ export const SearchAndSortWrapper = styled("div")`
     display: grid;
     grid-template-columns: auto auto;
     justify-content: space-between;
-    border: 3px solid #73AD21;
 `;
 
 export const CardListWrapper = styled("div")`
