@@ -36,11 +36,14 @@ export class CategoryList extends Component {
   }
   render() {
     return (
-      <Form>
-        <Collapsible triggerTagName="label" trigger="Filter by Category" open={true} transitionTime={100}>
-            {this.categoryMenuItems()}
-        </Collapsible>
-      </Form>
+      <Collapsible trigger={<label>Filter by Category <FontAwesomeIcon icon={'angle-down'}/></label>}
+                   triggerWhenOpen={<label>Filter by Category <FontAwesomeIcon icon={'angle-up'}/></label>}
+                   open={true}
+                   transitionTime={100}>
+        <Form>
+          {this.categoryMenuItems()}
+        </Form>
+      </Collapsible>
     )
   }
 }
