@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cx from 'classnames';
 
 export class SplitScreenSlidingPane extends Component {
   state = {
@@ -14,8 +15,11 @@ export class SplitScreenSlidingPane extends Component {
   };
 
   render () {
+    const slidingPaneClassNames = cx('sliding-pane', {
+      open: this.state.isOpen,
+    });
     return (
-      <div className="sliding-pane" open={this.state.isOpen}>
+      <div className={slidingPaneClassNames}>
         <div className="sliding-pane-toggle-button" onClick={this.toggle}>
           ☰
         </div>

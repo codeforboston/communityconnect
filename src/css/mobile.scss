@@ -3,16 +3,59 @@
 // 	 css rules here
 // }
 
-@media (max-width: 1300px) {
-  // here
+@media (max-width: $screen-size-xxlg) {
   .card-list {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (max-width: 900px) {
-  // here
+@media (max-width: $screen-size-xlg) {
   .card-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: $screen-size-lg) {
+  .card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: $screen-size-md) {
+  .admin-pane {
+    grid-template-columns: auto;
+  }
+
+  .card-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .results {
+    width: 100%;
+  }
+}
+
+@media (max-width: $screen-size-sm) {
+  .sliding-pane-toggle-button {
+    display: block;
+    text-align: center;
+  }
+
+  .static-pane {
+    left: 0;
+  }
+
+  .sliding-pane {
+    background-color: $transparent-white;
+    right: 0;
+    bottom: -64%;
+    z-index: 10;
+    height: calc(70%);
+    top: auto;
+
+    &.open {
+      height: calc(100% -40px);
+      bottom: 0;
+    }
   }
 }
