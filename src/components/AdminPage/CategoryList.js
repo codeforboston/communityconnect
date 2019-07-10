@@ -17,6 +17,7 @@ export class CategoryList extends Component {
 
   handleChange(selected) {
     let { selectedCategory } = this.state;
+    // console.log(selectedCategory)
     let index = selectedCategory.indexOf(selected);
     index !== -1 ? selectedCategory.splice(index, 1) : selectedCategory.push(selected);
     let filteredResource = this.props.resource.filter(resource => {
@@ -26,17 +27,28 @@ export class CategoryList extends Component {
   }
 
   categoryMenuItems() {
+    console.log(this.props.categories.map((cat) =>
+      <FormGroup key={cat} check>
+        <Input type="checkbox" key={cat} onChange={() => this.handleChange(cat)} />{cat}
+      </FormGroup>))
     return this.props.categories.map((cat) =>
       <FormGroup key={cat} check>
         <Input type="checkbox" key={cat} onChange={() => this.handleChange(cat)} />{cat}
       </FormGroup>);
   }
+
+  clearCategoryMenuItems() {
+
+  }
   render() {
     return (
-      <Form>
-        <Label>Filter by Category</Label>
-        {this.categoryMenuItems()}
-      </Form>
+      <div>
+        <Form>
+          <Label>Filter by Category</Label>
+          {this.categoryMenuItems()}
+        </Form>
+        <button>Clear Categories</button>
+      </div>
     )
   }
 }
