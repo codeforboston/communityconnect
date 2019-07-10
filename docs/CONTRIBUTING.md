@@ -10,7 +10,7 @@ Thank you for taking the time to contribute! 👍 Please read the following sect
 
 # Contribute *Writing* Code ⌨️
 If you want to write code for the project, start by looking at issues to tackle on our backlog. Can't find anything worth working on? Consider [reporting a bug](#Report-a-Bug-%F0%9F%90%9E) or [suggesting a feature.](#Suggest-a-Feature-%F0%9F%9B%A0)
-Our open issues are listed on the project's [Issues](https://github.com/codeforboston/communityconnect/issues) tab. The best places to start are unassigned issues with the label "[good first issue](https://github.com/codeforboston/communityconnect/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22+no%3Aassignee)".
+Our open issues are listed on the project's [Issues](https://github.com/codeforboston/communityconnect/issues) tab. The best places to start are unassigned issues with the label "[good first issue](https://github.com/codeforboston/communityconnect/issues?q=is%3Aopen+is%3Aissue+no%3Aassignee+label%3A%22CfB+-+good+first+issue%22)".
 
 To contribute your code to the project:
 1) Fork the project (https://github.com/codeforboston/communityconnect/fork)
