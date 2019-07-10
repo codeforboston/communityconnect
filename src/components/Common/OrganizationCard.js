@@ -35,8 +35,9 @@ class OrganizationCard extends Component {
     }
 
     saveItem = () => {
-        this.props.actions.addSavedResource(this.props.organization);
-        
+        if (!this.state.saveExist) {
+            this.props.actions.addSavedResource(this.props.organization);
+        }
         const query = qs.parse(window.location.search.replace('?', ''));
         let resources = [];
 
@@ -53,35 +54,6 @@ class OrganizationCard extends Component {
             pathname: window.location.pathname,
             search: `?resources=${resources.join(',')}`,
         });
-    }
-
-    removeItem = () => {
-        // code copied verbatim from SavedResource.removalConfirmed()
-        // should probably refactor for cleanliness
-        const query = qs.parse(window.location.search.replace('?', ''));
-        let resources = [];
-        if (query.resources) {
-            resources = query.resources.split(',');
-        }
-        const indexOfResource = resources.indexOf(this.props.organization.id);
-
-        if (this.props.savedResource.some(resource => resource.id === this.props.organization.id)) {
-            this.props.actions.removeSavedResource(this.props.organization.id);
-            resources.splice(indexOfResource, 1);
-        }
-        this.props.history.push({
-            pathname: window.location.pathname,
-            search: `?resources=${resources.join(',')}`,
-        });
-    }
-
-    toggleItem = () => {
-        // if saved, remove. otherwise, save
-        if (this.state.saveExist) {
-            this.removeItem();
-        } else {
-            this.saveItem();
-        }
     }
 
     render() {
@@ -112,7 +84,7 @@ class OrganizationCard extends Component {
                     {
 
                         this.props.saveable
-                            ? <OrganizationCardSaveButton saveItem={this.toggleItem} saveExist={this.state.saveExist} />
+                            ? <OrganizationCardSaveButton saveItem={this.saveItem} saveExist={this.state.saveExist} />
                             : null
                     }
                     <OrganizationCardHeaderText>{name}</OrganizationCardHeaderText>
