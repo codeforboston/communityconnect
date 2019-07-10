@@ -12,6 +12,13 @@ function normalizeHeaders(element) {
     element["coordinates"] = { lat: parseFloat(element["latitude"]), lng: parseFloat(element["longitude"]) }
   }
 
+  if (element["categoryautosortscript"]){
+    element["categories"] = element["categoryautosortscript"];
+  }
+  else {
+    element["categories"] = (element["categories"]);
+  }
+  
   if (element.city || element.address || element.state || element.zipcode) {
     element.location = element["combinedaddress"];
   } else {
