@@ -9,8 +9,9 @@ export class CategoryList extends Component {
 
   constructor(props) {
     super(props);
+    this.myFormRef = 0
     this.state = {
-      selectedCategory: []
+      selectedCategory: [],
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -28,11 +29,6 @@ export class CategoryList extends Component {
   }
 
   categoryMenuItems() {
-    console.log(this.props.categories.map((cat) =>
-      <FormGroup key={cat} check>
-        <Input type="checkbox" key={cat} onChange={() => this.handleChange(cat)} />{cat}
-      </FormGroup>))
-      console.log(this.state)
     return this.props.categories.map((cat) =>
       <FormGroup key={cat} check>
         <Input type="checkbox" key={cat} onChange={() => this.handleChange(cat)} />{cat}
@@ -40,16 +36,11 @@ export class CategoryList extends Component {
   }
 
   handleClick() {
-    this.setState({ selectedCategory: [] })
+    window.location.href = "/revere/admin";
+    this.setState({
+      selectedCategory: [],
+    });
   }
-
-  // conponentDidUpdate() {
-  //   if (this.state.formClear === true) {
-  //     this.setState(() => {
-  //       return { selectedCategory: [], formClear: false }
-  //     }
-  //   }
-  // }
 
   render() {
     return (
