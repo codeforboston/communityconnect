@@ -12,9 +12,9 @@ export class CategoryList extends Component {
     this.myFormRef = 0
     this.state = {
       selectedCategory: [],
+      refresh: false
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(selected) {
@@ -28,6 +28,10 @@ export class CategoryList extends Component {
     this.props.actions.filterByCategories(selectedCategory.length > 0 ? filteredResource : this.props.resource);
   }
 
+  clearCategoryMenuItems() {
+    // this.categoryMenuItems().map
+  }
+
   categoryMenuItems() {
     return this.props.categories.map((cat) =>
       <FormGroup key={cat} check>
@@ -35,22 +39,30 @@ export class CategoryList extends Component {
       </FormGroup>);
   }
 
-  handleClick() {
-    window.location.href = "/revere/admin";
-    this.setState({
-      selectedCategory: [],
+  handleClick = (event) => {
+    event.preventDefault();
+    console.log('hi');
+    // window.location.href = "/revere/admin";
+    this.setState(prevState => {
+      return {
+        selectedCategory: [],
+        refresh: !prevState.refresh
+      }
     });
+    console.log('refresh', this.state.refresh)
+    console.log('selected categories', this.state.selectedCategory)
   }
 
   render() {
     return (
-      <div>
+      <>
         <Form>
           <Label>Filter by Category</Label>
-          {this.categoryMenuItems()}
+          {this.state.refresh ? this.categoryMenuItems() : this.categoryMenuItems()}
+          <button onClick={this.handleClick}>Clear Categories</button>
         </Form>
-        <button onClick={this.handleClick}>Clear Categories</button>
-      </div>
+
+      </>
     )
   }
 }
