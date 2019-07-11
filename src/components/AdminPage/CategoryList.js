@@ -13,6 +13,7 @@ export class CategoryList extends Component {
       selectedCategory: []
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(selected) {
@@ -31,15 +32,25 @@ export class CategoryList extends Component {
       <FormGroup key={cat} check>
         <Input type="checkbox" key={cat} onChange={() => this.handleChange(cat)} />{cat}
       </FormGroup>))
+      console.log(this.state)
     return this.props.categories.map((cat) =>
       <FormGroup key={cat} check>
         <Input type="checkbox" key={cat} onChange={() => this.handleChange(cat)} />{cat}
       </FormGroup>);
   }
 
-  clearCategoryMenuItems() {
-
+  handleClick() {
+    this.setState({ selectedCategory: [] })
   }
+
+  // conponentDidUpdate() {
+  //   if (this.state.formClear === true) {
+  //     this.setState(() => {
+  //       return { selectedCategory: [], formClear: false }
+  //     }
+  //   }
+  // }
+
   render() {
     return (
       <div>
@@ -47,7 +58,7 @@ export class CategoryList extends Component {
           <Label>Filter by Category</Label>
           {this.categoryMenuItems()}
         </Form>
-        <button>Clear Categories</button>
+        <button onClick={this.handleClick}>Clear Categories</button>
       </div>
     )
   }
