@@ -11,15 +11,16 @@ export class CategoryList extends Component {
     super(props);
     this.myFormRef = 0
     this.state = {
-      selectedCategory: [],
-      refresh: false
+      selectedCategory: []
     }
     this.handleChange = this.handleChange.bind(this);
+    this.formRef = React.createRef();
+    this.formReset = this.formReset.bind(this)
+
   }
 
   handleChange(selected) {
     let { selectedCategory } = this.state;
-    // console.log(selectedCategory)
     let index = selectedCategory.indexOf(selected);
     index !== -1 ? selectedCategory.splice(index, 1) : selectedCategory.push(selected);
     let filteredResource = this.props.resource.filter(resource => {
@@ -28,8 +29,9 @@ export class CategoryList extends Component {
     this.props.actions.filterByCategories(selectedCategory.length > 0 ? filteredResource : this.props.resource);
   }
 
-  clearCategoryMenuItems() {
-    // this.categoryMenuItems().map
+  formReset = (event) => {
+    event.preventDefault();
+    this.formRef.current.reset();
   }
 
   categoryMenuItems() {
@@ -39,29 +41,14 @@ export class CategoryList extends Component {
       </FormGroup>);
   }
 
-  handleClick = (event) => {
-    event.preventDefault();
-    console.log('hi');
-    // window.location.href = "/revere/admin";
-    this.setState(prevState => {
-      return {
-        selectedCategory: [],
-        refresh: !prevState.refresh
-      }
-    });
-    console.log('refresh', this.state.refresh)
-    console.log('selected categories', this.state.selectedCategory)
-  }
-
   render() {
     return (
       <>
-        <Form>
+        <Form innerRef={this.formRef}>
           <Label>Filter by Category</Label>
-          {this.state.refresh ? this.categoryMenuItems() : this.categoryMenuItems()}
-          <button onClick={this.handleClick}>Clear Categories</button>
+          {this.categoryMenuItems()}
+          <button onClick={this.formReset}>Clear Categories</button>
         </Form>
-
       </>
     )
   }
