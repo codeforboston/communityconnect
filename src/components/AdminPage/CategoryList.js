@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import SortBar from '../Common/SortBar.js';
 
 import * as resourceAction from '../../action/resourceDataAction';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-import { CardGrid } from './CardGrid.js';
 
 export class CategoryList extends Component {
 
@@ -33,19 +31,9 @@ export class CategoryList extends Component {
         <Input type="checkbox" key={cat} onChange={() => this.handleChange(cat)} />{cat}
       </FormGroup>);
   }
-
   render() {
-    const sortOptions = [
-      { key: 'A-Z', sort: CardGrid.sortByAlphabet, disabled: false }
-      , { key: 'Distance', sort: CardGrid.sortByDistance, disabled: !this.props.currentPos }
-    ];
-
     return (
       <Form>
-        <SortBar
-          onSortChange={CardGrid.handleSortChange}
-          sortOptions={sortOptions}
-        />
         <Label>Filter by Category</Label>
         {this.categoryMenuItems()}
       </Form>

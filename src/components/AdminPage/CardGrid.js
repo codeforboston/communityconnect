@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import OrganizationCard from '../Common/OrganizationCard';
+import SortBar from '../Common/SortBar.js';
 import SearchBar from '../Header/SearchBar';
 import { CardGridWrapper, SearchAndSortWrapper, CardListWrapper } from "./AdminPageLayout";
 import { getDistance } from '../../utils/distance.js';
@@ -64,6 +65,10 @@ export class CardGrid extends Component {
           <SearchBar
             type="text"
             handleFilter={this.props.handleFilter}
+          />
+          <SortBar
+            onSortChange={this.handleSortChange}
+            sortOptions={sortOptions}
           />
         </SearchAndSortWrapper>
         <CardListWrapper>
