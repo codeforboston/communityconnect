@@ -25,7 +25,7 @@ export class SearchBar extends Component {
 
   render() {
     return (
-      <Input type="text" value={this.state.searchString} onChange={this.handleFilter} placeholder="Search Resources"/>
+      <Input type="text" value={this.state.searchString} onChange={this.handleFilter} placeholder="Search"/>
     );
   }
 }

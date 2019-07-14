@@ -6,7 +6,7 @@ import CardGrid from './CardGrid';
 
 const AdminPage = ({currentPosition}) => (
     <AdminPageWrapper>
-        <CategoryList />
+        <CategoryList currentPos={currentPosition} />
         <CardGrid currentPos={currentPosition} />
     </AdminPageWrapper>
 )
