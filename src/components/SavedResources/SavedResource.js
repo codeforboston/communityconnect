@@ -8,7 +8,6 @@ import qs from 'qs-lite';
 import { getDistance } from '../../utils/distance.js';
 import * as resourceAction from '../../action/resourceDataAction';
 import {
-  Alert,
   Card,
   CardBody,
   CardSubtitle,
@@ -24,22 +23,13 @@ class SavedResource extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false,
-      visible: false
+      modal: false
     };
 
-
-    this.confirmationAlertToggle = this.confirmationAlertToggle.bind(this);
+    this.confirmationModalToggle = this.confirmationModalToggle.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.removalConfirmed = this.removalConfirmed.bind(this);
   }
-
-  confirmationAlertToggle = () => {
-    this.setState({
-      visible: !this.state.visible
-    });
-  };
-
 
   confirmationModalToggle = () => {
     this.setState({
@@ -48,7 +38,7 @@ class SavedResource extends Component {
   };
 
   removeItem = () => {
-    this.confirmationAlertToggle();
+    this.confirmationModalToggle();
   };
 
   removalConfirmed = () => {
@@ -68,7 +58,7 @@ class SavedResource extends Component {
       pathname: window.location.pathname,
       search: `?resources=${resources.join(',')}`,
     });
-    this.removeItem();
+    this.confirmationModalToggle();
   };
 
   render() {
@@ -105,7 +95,7 @@ class SavedResource extends Component {
               </span>}
             <h3 className={styles.CardBody_headline}>{name}</h3>
             <span title='Remove item from Saved Resources' aria-label='Remove item from Saved Resources'
-              className={styles['remove-item']} onClick={this.removalConfirmed}>
+              className={styles['remove-item']} onClick={this.removeItem}>
               -
             </span>
             <CardSubtitle className={styles.CardBody_CardSubtitle}>
@@ -148,9 +138,14 @@ class SavedResource extends Component {
               </ul>}
           </CardBody>
         </Card>
-        <Alert isOpen={this.state.visible} toggle={this.removalConfirmed}>
-          {name} closed 
-        </Alert>
+        <Modal isOpen={this.state.modal} toggle={this.confirmationModalToggle} onClosed={this.toggle}>
+          <ModalHeader>Are you sure?</ModalHeader>
+          <ModalBody>Would you like to remove '{name}'' from your saved resources?</ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.removalConfirmed}>Yes</Button>{' '}
+            <Button color="secondary" onClick={this.confirmationModalToggle}>No</Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }
