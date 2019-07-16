@@ -58,7 +58,6 @@ export class CardGrid extends Component {
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
     const sortedData = this.state.dataSort();
-
     return (
       <CardGridWrapper>
         <SearchAndSortWrapper>

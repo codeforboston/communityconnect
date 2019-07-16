@@ -9,7 +9,6 @@ export class CategoryList extends Component {
 
   constructor(props) {
     super(props);
-    this.myFormRef = 0
     this.state = {
       selectedCategory: []
     }
@@ -31,8 +30,11 @@ export class CategoryList extends Component {
 
   formReset = (event) => {
     event.preventDefault();
+    this.props.actions.filterByCategories(this.props.resource);
     this.formRef.current.reset();
   }
+
+
 
   categoryMenuItems() {
     return this.props.categories.map((cat) =>
