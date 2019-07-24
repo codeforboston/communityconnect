@@ -23,6 +23,7 @@
 ---
 
 ## Table of Contents
+
 - [Table of Contents](#Table-of-Contents)
 - [Features](#Features)
 - [Getting Started](#Getting-Started)
@@ -35,27 +36,35 @@
 - [History](#History)
 
 ---
+
 ## Features
+
 - Dynamically updated resources from any Google Sheet
 - Save resources for viewing later
 - Share a link with your saved resources
 - Filter resources by category or search term
 
 ---
+
 ## Getting Started
+
 ### Live Demo
+
 Want to see what Community Connect is all about? Check out our live site for Revere at [ccfor.me/`revere`](http://ccfor.me/revere). To manage resources, enter the 'admin' view by adding `/admin` to the end of the URL, such as [ccfor.me/`revere/admin`](http://ccfor.me/revere/admin).
 
 ### Running Locally
-1) Clone the repository
-2) Install yarn
-3) Install dependencies by running `yarn`
-4) Start the development server by running `yarn start`
-5) Visit `localhost:3000` in your browser to see it running! 🎉
+
+1. Clone the repository
+2. Install yarn
+3. Install dependencies by running `yarn`
+4. Start the development server by running `yarn start`
+5. Visit `localhost:3000` in your browser to see it running! 🎉
 
 ### Customizing Google Sheet
+
 You can use a custom Google Sheet with your local installation of Community Connect. You might want to do this for testing or development purposes.
-*Prefer to see a gif of this process instead of reading steps? Click [here](https://imgur.com/a/N6kdSjC)*
+_Prefer to see a gif of this process instead of reading steps? Click [here](https://imgur.com/a/N6kdSjC)_
+
 <details>
   <summary>Click to see instructions for creating your own sheet</summary>
   <ol>
@@ -72,30 +81,34 @@ You can use a custom Google Sheet with your local installation of Community Conn
    <li>Open "src/googlesheetApi.js" in the codebase</li>
    <li>Replace "revere_key" with a portion of the URL in your clipboard</li>
 
-   For Example, if the URL of your Google Spreadsheet is
-   https://docs.google.com/spreadsheets/d/1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M/edit?usp=sharing
+For Example, if the URL of your Google Spreadsheet is
+https://docs.google.com/spreadsheets/d/1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M/edit?usp=sharing
 
-   Set the build-time environment variable REACT_APP_GOOGLE_SHEETS_ID to "1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M"
+Set the build-time environment variable REACT_APP_GOOGLE_SHEETS_ID to "1FRd8Jw7y4CnnHCKIvkM-pjNjRVFHFHuobVU-ajXre6M"
+
    </ol>
 </details>
-
 
 ---
 
 ## Contributing
+
 Thank you for your willingness to help out! To get started on helping build Community Connect, take a look at [our contribution guide.](/docs/CONTRIBUTING.md)
 
 ---
 
 ## Support
+
 Join our [Code for Boston](https://www.codeforboston.org/) Slack channel: [#community-connect](https://communityinviter.com/apps/cfb-public/code-for-boston-slack-invite) or look for us at the [Code for Boston Tuesday meet-ups](https://meetup.com/Code-For-Boston).
 
 ---
 
 ## License
+
 [MIT License](/LICENSE)
 
 ---
 
 ## History
+
 The original architectural design for this app was designed proven out by [Bob Breznak](https://github.com/bobbrez) for an organization assisting with the refugee crisis in Greece in 2016, [Prosper](http://prosper.community/). They needed help consolidating, vetting and displaying resources on the web. In May 2018 he re-wrote the frontend in react.js to create an app that assists homeless people [Seeking Shelter](https://makao2.brez.io/) and resources. In August 2018 Code for Boston’s Community Connect project had similar aims and the repo was moved into their org. The data used for this project was initially collected from [Nevil Desai](https://www.linkedin.com/in/nevildesai/) during his internship with Revere CARES, a coalition group under the umbrella of MGH Center for Community Health Improvement.

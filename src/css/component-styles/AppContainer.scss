@@ -6,7 +6,7 @@
   top: 0;
 }
 
-.header {
+.viewport-header {
   top: 0;
   width: 100%;
   height: 63px;
@@ -19,16 +19,18 @@
   height: 100px;
 }
 
-.feedbackContainer {
-  z-index: 999;
-  color: #000;
-  position: fixed;
+.feedback-container {
+  background-color: #e6e6e6;
   bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
   left: 0px;
+  padding: 10px 30px 10px 10px;
   text-align: center;
   width: 100%;
-  padding: 10px 30px 10px 10px;
-  background-color: #e6e6e6;
+  z-index: 999;
 }
 
 .badge {

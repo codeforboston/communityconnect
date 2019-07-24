@@ -6,17 +6,5 @@
   top: 50px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-}
-
-.resultsPartialWidth {
-  width: 60%;
-}
-.resultsFullWidth {
   width: 100%;
-}
-
-@media (max-width: 767px) {
-  .results {
-    width: 100%;
-  }
 }
