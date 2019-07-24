@@ -22,10 +22,6 @@ class SavedResource extends Component {
       modal: false,
       visible: false,
     };
-
-    this.confirmationModalToggle = this.confirmationModalToggle.bind(this);
-    this.removeItem = this.removeItem.bind(this);
-    this.removalConfirmed = this.removalConfirmed.bind(this);
   }
 
   confirmationAlertToggle = () => {
