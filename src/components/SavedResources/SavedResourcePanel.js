@@ -1,77 +1,54 @@
 import React from 'react';
 import qs from 'qs-lite';
-import { Link, Route } from "react-router-dom";
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  Button
-} from 'reactstrap';
-import styles from './SavedResourcePanel.module.css';
+import { Link, Route } from 'react-router-dom';
+import { Card, CardBody, CardHeader, Button } from 'reactstrap';
 import shareIcon from '../../share-symbol.svg';
 import SavedResources from './SavedResourcesContainer';
 
-/*
-const ToHomeButton = () => {
-  return (
-    <Button tag={Link} to="/" type="Map">To Home</Button>
-  )
-}*/
-
-let buttonStyle = {
-  float: 'right',
-  backgroundColor: 'rgba(0,0,0,.001)',
-  border: 'none',
-  padding: '0'
-};
-
-//Commenting this part for now
-//Duplicate functionality || Gives the same result as toShareButton function
-/*
-const ToMapButton = () => {
-  return (
-    <Button tag={Link} to="/" type="Map">To Map</Button>
-  )
-}*/
-
-const ToShareButton = (props) => {
+const ToShareButton = props => {
   const query = qs.parse(window.location.search.replace('?', ''));
   let resources = [];
-  let tempUrl = "";
+  let tempUrl = '';
   if (query.resources) {
     resources = query.resources.split(',');
-    tempUrl = `/` + props.resourcePath + `/?resources=${resources.join(',')}`
+    tempUrl = `/${props.resourcePath}/?resources=${resources.join(',')}`;
   }
 
   return (
     <Button
-      style={buttonStyle} tag={Link} type="Map" to={tempUrl} target="_blank">
-        <img className={styles['share-button']} src={shareIcon} alt=""/>
+      className="share-button"
+      tag={Link}
+      type="Map"
+      to={tempUrl}
+      target="_blank"
+    >
+      <img className="share-button-icon" src={shareIcon} alt="" />
     </Button>
-  )
-}
+  );
+};
+
 const SavedResourcePanel = () => {
-    return (
-      <div>
-        <Card>
-          <CardHeader>Saved Resources
+  return (
+    <div>
+      <Card>
+        <CardHeader>
+          Saved Resources
           <span>
-            <Route exact 
-              path="/:resource/admin" 
-              render={(props)=> 
-                <ToShareButton 
-                  resourcePath={props.match.params.resource}
-                  />
-              } 
+            <Route
+              exact
+              path="/:resource/admin"
+              render={props => (
+                <ToShareButton resourcePath={props.match.params.resource} />
+              )}
             />
           </span>
-          </CardHeader>
-          <CardBody className={styles['shopping-cart-card']}>
-            <SavedResources />
-          </CardBody>
-        </Card>
-      </div>
-    )
-}
+        </CardHeader>
+        <CardBody className="shopping-cart-card">
+          <SavedResources />
+        </CardBody>
+      </Card>
+    </div>
+  );
+};
 
 export default SavedResourcePanel;

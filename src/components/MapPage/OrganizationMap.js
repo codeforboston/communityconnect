@@ -6,60 +6,50 @@ const googleMapKey = 'AIzaSyAwKdrqS2GfCt9b2K1wAopDc9Ga0N1BVUM';
 const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${googleMapKey}&v=3.exp&libraries=geometry,drawing,places`;
 
 class OrganizationMap extends Component {
-
   markerHover = (key, event) => {
     event.map.getCanvas().style.cursor = 'pointer';
     this.setState({
-      hoveredItem: key
+      hoveredItem: key,
     });
-  }
+  };
 
   markerEndHover = (key, event) => {
     event.map.getCanvas().style.cursor = '';
     this.setState({
-      hoveredItem: ''
+      hoveredItem: '',
     });
-  }
+  };
 
-  //This unused function used to be for connecting with the result list
-  onOrganizationClick = (key, event) => {
-    const organizationZoom = 11;
-    const org = this.props.organizations.find(o => o.id === key);
-
-    this.setState({
-      center: [org.position.longitude, org.position.latitude],
-      zoom: [organizationZoom]
-    });
-  }
-  render() {
+  render () {
     return (
       <Map
         googleMapURL={googleMapURL}
         containerElement={<div style={{ height: '100%' }} />}
         mapElement={<div style={{ height: '100%' }} />}
-        loadingElement={<div style={{ height: `100%` }} />}
+        loadingElement={<div style={{ height: '100%' }} />}
         resource={this.props.mapResource}
       />
     );
   }
 }
 
-function mapStateToProps(state) {
-  let currentResource = state.savedResource.length > 0 ? state.savedResource : state.resource;
-  var locationArray = [];
+function mapStateToProps (state) {
+  const currentResource =
+    state.savedResource.length > 0 ? state.savedResource : state.resource;
+  const locationArray = [];
   currentResource.forEach(function (resource) {
     if (!locationArray[resource.hashCoordinates]) {
       locationArray[resource.hashCoordinates] = {
         coordinates: resource.coordinates,
         groupedResource: [],
-        showInfo: false
-      }
+        showInfo: false,
+      };
     }
     locationArray[resource.hashCoordinates].groupedResource.push(resource);
   });
-  let resource = Object.values(locationArray);
+  const resource = Object.values(locationArray);
   return {
-    mapResource: resource
-  }
+    mapResource: resource,
+  };
 }
-export default connect(mapStateToProps)(OrganizationMap)
+export default connect(mapStateToProps)(OrganizationMap);

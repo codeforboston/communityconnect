@@ -1,0 +1,22 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#1C3307",
+    "titleBar.activeBackground": "#27480A",
+    "titleBar.activeForeground": "#F6FDF0"
+  },
+  "editor.formatOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "html",
+      "autoFix": true
+    }
+  ],
+  "eslint.enable": true,
+  "eslint.options": {
+    "extensions": [".html", ".js", ".vue", ".jsx"]
+  },
+  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": true
+}
