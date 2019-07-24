@@ -2,9 +2,10 @@ import Tabletop from 'tabletop';
 
 function normalizeHeaders(element) {
   element["name"] = element["name"];
-  element["tags"] = String(element["serviceprovided"]).split(", ");
+  if (element["serviceprovided"]){
+    element["tags"] = String(element["serviceprovided"]).split(", ");
+  }
   element["twitterUrl"] = element["twitterurl"];
-  element["tags"] = String(element["serviceprovided"]);
   element["facebookUrl"] = element["facebookurl"];
   element["instagramUrl"] = element["instagramurl"];
   element["hashCoordinates"] = element["latitude"] + element["longitude"];
@@ -13,17 +14,12 @@ function normalizeHeaders(element) {
   }
   if (element["categoryautosortscript"]){
     element["categories"] = element["categoryautosortscript"];
-  }
-  else {
+  } else {
     element["categories"] = (element["categories"]);
   }
-
   if (element.city || element.address || element.state || element.zipcode) {
     element.location = element["combinedaddress"];
-  } else {
-    element.location = "";
   }
-
 }
 
 export let getAllResources = (resourceSheetId) => new Promise(function(resolve, reject){
@@ -35,7 +31,7 @@ export let getAllResources = (resourceSheetId) => new Promise(function(resolve, 
     callback: (data, tabletop) => {
       let resource = tabletop.sheets("Data").elements;
       let filteredResource = resource.filter(function (resource) {
-        return resource.truefalsevetting === 'TRUE'
+        return resource.truefalsevetting === 'TRUE';
       });
       resolve(filteredResource);
     }
