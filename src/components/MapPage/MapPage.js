@@ -6,12 +6,8 @@ import { SplitScreenSlidingPane } from './SplitScreenSlidingPane';
 import cx from 'classnames';
 
 class MapPage extends Component {
-  render () {
-    const { displayFeedbackLink } = this.props;
-    const mapClassName = cx({
-      'map-container': !displayFeedbackLink,
-      'map-container-footer': displayFeedbackLink,
-    });
+  render() {
+    const mapClassName = cx('map-container');
     return (
       <div className={mapClassName}>
         <SplitScreenSlidingPane>

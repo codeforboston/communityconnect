@@ -14,10 +14,10 @@ export const OrganizationCardBody = ({
     <div className="organization-card-body-subtitle">{categories}</div>
     {distance && <p>Distance from your location: {distance} miles</p>}
     {location && (
-      <div>
+      <span>
         <FontAwesomeIcon icon="map-marker-alt" className="text-danger" />{' '}
-        <p>{location}</p>
-      </div>
+        <span>{location}</span>
+      </span>
     )}
     {directionUrl && (
       <a href={directionUrl} target="_blank">

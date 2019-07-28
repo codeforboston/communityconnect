@@ -1,19 +1,7 @@
 .map-container {
+  height: calc(100% - 55px);
   position: absolute;
   width: 100%;
-  /* 63px is the height of the header*/
-  height: calc(100% - 63px);
-  margin-bottom: 0px;
-  z-index: 0;
-}
-
-.map-container-footer {
-  position: absolute;
-  width: 100%;
-  /* 63px is the height of the header, 67px is the height of the footer*/
-  height: calc(100% - 63px - 67px);
-  margin-bottom: 67px;
-  z-index: 0;
 }
 
 .static-pane {

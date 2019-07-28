@@ -4,9 +4,6 @@
 // }
 
 @media (max-width: $screen-size-xxlg) {
-  .card-list {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }
 
 @media (max-width: $screen-size-xlg) {
