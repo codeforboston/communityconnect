@@ -17,9 +17,8 @@ export const CardGridWrapper = styled("div")`
 `;
 
 export const SearchAndSortWrapper = styled("div")`
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-between;
+    display: flex;
+    justify-content: center;
 `;
 
 export const CardListWrapper = styled("div")`

@@ -26,7 +26,7 @@ const ToShareButton = (props) => {
     resources = query.resources.split(',');
     tempUrl = `/` + props.resourcePath + `/?resources=${resources.join(',')}`
   }
-
+  
   return (
     <Button
       style={buttonStyle} tag={Link} type="Map" to={tempUrl} target="_blank">

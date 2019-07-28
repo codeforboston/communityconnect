@@ -8,7 +8,7 @@ class SortBar extends React.Component {
         // Get new sort based on index of sortOption array
         if (this.props.sortOptions[e.target.value]) {
             const newSort = this.props.sortOptions[e.target.value].sort;
-            this.props.onSortChange(newSort);
+            this.props.onSortChange(newSort); 
         }
     }
 

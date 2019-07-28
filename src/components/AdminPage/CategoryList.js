@@ -4,13 +4,14 @@ import { bindActionCreators } from 'redux';
 
 import * as resourceAction from '../../action/resourceDataAction';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
+import SortBar from '../Common/SortBar.js';
 
 export class CategoryList extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      selectedCategory: []
+      selectedCategory: [],
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -31,9 +32,18 @@ export class CategoryList extends Component {
         <Input type="checkbox" key={cat} onChange={() => this.handleChange(cat)} />{cat}
       </FormGroup>);
   }
+
+  handleSortChange = (newSort) => {
+    this.props.changeSort(newSort);
+  }
+
   render() {
     return (
       <Form>
+        <SortBar
+          onSortChange={this.handleSortChange}
+          sortOptions={this.props.sortOptions}
+        />
         <Label>Filter by Category</Label>
         {this.categoryMenuItems()}
       </Form>
