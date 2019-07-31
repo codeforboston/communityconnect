@@ -48,3 +48,6 @@ export function addSavedResource (savedResource) {
 export function removeSavedResource (savedResourceIndex) {
   return { type: types.REMOVE_SAVED_RESOURCE, savedResourceIndex };
 }
+export function clearSavedResource () {
+  return { type: types.CLEAR_SAVED_RESOURCE };
+}
