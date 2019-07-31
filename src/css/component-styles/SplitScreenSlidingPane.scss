@@ -1,0 +1,24 @@
+.sliding-pane-toggle-button {
+  display: none;
+  position: absolute;
+  height: 40px;
+  width: 100px;
+  border: 0;
+  top: -40px;
+  left: 50%;
+  background-color: $transparent-white;
+  border-radius: $radius-sm $radius-sm 0 0;
+  margin-left: -50px;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.sliding-pane {
+  position: absolute;
+  top: 0;
+  right: 70%;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  transition: bottom 0.3s ease-in-out;
+}

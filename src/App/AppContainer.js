@@ -1,149 +1,172 @@
+// import React/Redux dependencies
 import React, { Component } from 'react';
-import {Route, Redirect} from 'react-router';
+import { Route } from 'react-router';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { loadResources } from '../action/resourceDataAction';
+import { getAllSites } from '../api/directoryGoogleSheets';
+
+// import components
+import { Badge } from 'reactstrap';
+import Loader from 'react-loader-spinner';
 import Header from '../components/Header/Header';
 import MapPage from '../components/MapPage/MapPage';
 import AdminPage from '../components/AdminPage/AdminPage';
 import { SplitScreenTogglePane } from '../components/AdminPage/SplitScreenTogglePane';
 import SavedResourcePanel from '../components/SavedResources/SavedResourcePanel';
-import { loadResources } from '../action/resourceDataAction';
-import {getAllSites} from '../api/directoryGoogleSheets';
-import { Badge } from 'reactstrap';
-import styles from './App.module.css';
-import Loader from 'react-loader-spinner'
-import PropTypes from 'prop-types'
-import NotFoundPage from '../components/NotFoundPage/NotFoundPage'
+import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
 
-const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID
-const revereSheetId = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
+const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 
-function sheetIdFromPath(directory, path){
-    for (var i=0; i < directory.length; i++) {
-        if (directory[i].path === path) {
-            return directory[i].sheetId;
-        }
+// unused code
+// const revereSheetId = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
+
+function sheetIdFromPath (directory, path) {
+  for (let i = 0; i < directory.length; i++) {
+    if (directory[i].path === path) {
+      return directory[i].sheetId;
     }
   }
-
-class AppContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            position: {},
-						displayFeedbackLink: true,
-						isValidPage: true
-        }
-        this.toggleSavedResourcesPane = this.toggleSavedResourcesPane.bind(this);
-    }
-
-
-    hideFeedbackLink(){
-        this.setState({
-            displayFeedbackLink: false
-        })
-    }
-
-    static propTypes = {
-        dispatch: PropTypes.func,
-    }
-
-    getLocation = () => {
-        if (window.navigator.geolocation) {
-            window.navigator.geolocation.getCurrentPosition(
-                position => {
-                    this.setState({
-                        position: {
-                            coordinates: {
-                                lat: parseFloat(position.coords.latitude),
-                                lng: parseFloat(position.coords.longitude)
-                            }
-                        }
-                    })
-                },
-                error => {
-                });
-        } else {
-        }
-    }
-
-    componentDidMount() {
-        var resourcePath = this.props.match.params.resource;
-        var resourceSheetId = null;
-
-        getAllSites.then(sites => {
-            resourceSheetId = sheetIdFromPath(sites, resourcePath) || envSheetId;
-        
-            if(resourceSheetId == null){
-								this.setState({isValidPage: false});
-                                console.log('invalid sheet');
-            }else{
-                var resourcesFromSheet = loadResources(resourceSheetId);
-                if (resourcesFromSheet){
-                    console.log('loaded!');
-                }
-                this.props.dispatch(resourcesFromSheet);
-                console.log('dispatched!');
-            }
-        });
-        
-        this.getLocation();
-    }
-
-    toggleSavedResourcesPane = () => {
-        this.setState({
-            isSavedResourcePaneOpen: !this.state.isSavedResourcePaneOpen
-        });
-    }
-
-    render() {
-				let { isFetchingResource } = this.props;
-				
-
-				if (!this.state.isValidPage) return <NotFoundPage />
-
-        return (
-            <div className="container-fluid">
-                { this.state.displayFeedbackLink &&
-                    <div className={styles.feedbackContainer}>
-                        Want to improve Community Connect? 
-                        <br/>
-                        <Badge className={styles.badge} href="https://forms.gle/bA33aBUnEUB7R9wC9" target="_new" color="primary">Submit feedback</Badge>
-                        <Badge className={styles.badge} onClick={this.hideFeedbackLink.bind(this)} color="light">Do it later</Badge>
-
-
-                    </div>
-                }
-                <div className={styles.viewport}>
-                    <div className={styles.header}>
-                        <Header
-                            toggleSavedResourcesPane={this.toggleSavedResourcesPane}
-                        />
-                    </div>
-                    {isFetchingResource && <div className={styles.spinner}><Loader
-                        type="TailSpin"
-                        color="#00BFFF"
-                        height="50"
-                        width="50"
-                    />  </div>}
-                    {(!isFetchingResource) &&
-                        <div>
-                            <Route exact path='/:resource/admin' render={(props) => <AdminPage currentPosition={this.state.position} />} />
-                            <Route exact path='/:resource/' render={(props) => <MapPage currentPosition={this.state.position} displayFeedbackLink={this.state.displayFeedbackLink} />} />
-                            <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
-                                <SavedResourcePanel resourcePath={this.props.match.params.resource} />
-                            </SplitScreenTogglePane>
-                        </div>
-                    }
-                </div>
-            </div>
-        );
-    }
 }
 
-function mapStateToProps(state, ownProps) {
-    let { isFetchingResource } = state;
-    return {
-        isFetchingResource: isFetchingResource
+class AppContainer extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      position: {},
+      displayFeedbackLink: true,
+      isValidPage: true,
+    };
+  }
+
+  static propTypes = {
+    dispatch: PropTypes.func,
+  };
+
+  componentDidMount () {
+    const resourcePath = this.props.match.params.resource;
+    let resourceSheetId = null;
+
+    getAllSites.then(sites => {
+      resourceSheetId = sheetIdFromPath(sites, resourcePath) || envSheetId;
+
+      if (resourceSheetId == null) {
+        this.setState({ isValidPage: false });
+      } else {
+        const resourcesFromSheet = loadResources(resourceSheetId);
+
+        this.props.dispatch(resourcesFromSheet);
+      }
+    });
+
+    this.getLocation();
+  }
+
+  hideFeedbackLink = () => {
+    this.setState({ displayFeedbackLink: false });
+  };
+
+  getLocation = () => {
+    if (window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition(
+        position => {
+          this.setState({
+            position: {
+              coordinates: {
+                lat: parseFloat(position.coords.latitude),
+                lng: parseFloat(position.coords.longitude),
+              },
+            },
+          });
+        },
+        error => {
+          console.log(error);
+        },
+      );
     }
+  };
+
+  toggleSavedResourcesPane = () => {
+    this.setState({
+      isSavedResourcePaneOpen: !this.state.isSavedResourcePaneOpen,
+    });
+  };
+
+  render () {
+    const { isFetchingResource } = this.props;
+
+    if (!this.state.isValidPage) return <NotFoundPage />;
+
+    return (
+      <div className="container-fluid">
+        <div className="viewport">
+          <div className="viewport-header">
+            <Header toggleSavedResourcesPane={this.toggleSavedResourcesPane} />
+          </div>
+          {isFetchingResource && (
+            <div className="spinner">
+              <Loader type="TailSpin" color="#00BFFF" height="50" width="50" />{' '}
+            </div>
+          )}
+          {!isFetchingResource && (
+            <div>
+              <Route
+                exact
+                path="/:resource/admin"
+                render={() => (
+                  <AdminPage currentPosition={this.state.position} />
+                )}
+              />
+              <Route
+                exact
+                path="/:resource/"
+                render={() => (
+                  <MapPage
+                    currentPosition={this.state.position}
+                    displayFeedbackLink={this.state.displayFeedbackLink}
+                  />
+                )}
+              />
+              <SplitScreenTogglePane
+                isOpen={this.state.isSavedResourcePaneOpen}
+              >
+                <SavedResourcePanel
+                  resourcePath={this.props.match.params.resource}
+                />
+              </SplitScreenTogglePane>
+            </div>
+          )}
+        </div>
+
+        {this.state.displayFeedbackLink && (
+          <div className="feedback-container">
+            <span>Want to improve Community Connect?</span>
+            <div className="d-flex justify-content-center">
+              <Badge
+                className="badge"
+                href="https://forms.gle/bA33aBUnEUB7R9wC9"
+                target="_new"
+                color="primary"
+              >
+                <span>Submit feedback</span>
+              </Badge>
+              <Badge
+                className="badge"
+                onClick={this.hideFeedbackLink}
+                color="light"
+              >
+                <span>Do it later</span>
+              </Badge>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+
+function mapStateToProps (state) {
+  const { isFetchingResource } = state;
+  return { isFetchingResource };
 }
 export default connect(mapStateToProps)(AppContainer);
