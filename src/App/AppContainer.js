@@ -21,7 +21,7 @@ const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 // unused code
 // const revereSheetId = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
 
-function sheetIdFromPath (directory, path) {
+function sheetIdFromPath(directory, path) {
   for (let i = 0; i < directory.length; i++) {
     if (directory[i].path === path) {
       return directory[i].sheetId;
@@ -30,7 +30,7 @@ function sheetIdFromPath (directory, path) {
 }
 
 class AppContainer extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       position: {},
@@ -43,7 +43,7 @@ class AppContainer extends Component {
     dispatch: PropTypes.func,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const resourcePath = this.props.match.params.resource;
     let resourceSheetId = null;
 
@@ -92,13 +92,13 @@ class AppContainer extends Component {
     });
   };
 
-  render () {
+  render() {
     const { isFetchingResource } = this.props;
 
     if (!this.state.isValidPage) return <NotFoundPage />;
 
     return (
-      <div className="container-fluid">
+      <div className="">
         <div className="viewport">
           <div className="viewport-header">
             <Header toggleSavedResourcesPane={this.toggleSavedResourcesPane} />
@@ -109,7 +109,7 @@ class AppContainer extends Component {
             </div>
           )}
           {!isFetchingResource && (
-            <div>
+            <div className="page">
               <Route
                 exact
                 path="/:resource/admin"
@@ -165,7 +165,7 @@ class AppContainer extends Component {
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   const { isFetchingResource } = state;
   return { isFetchingResource };
 }

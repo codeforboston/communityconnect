@@ -14,7 +14,7 @@ export class OrganizationMarker extends Component {
       this.setState({ open: this.props.open });
     }
   }
-  //scrollToElement  and handleClickOfInfoWindow is currently non-functional
+  // scrollToElement  and handleClickOfInfoWindow is currently non-functional
 
   scrollToElement = e => {
     this.setState({ open: true });
