@@ -98,7 +98,7 @@ class AppContainer extends Component {
     if (!this.state.isValidPage) return <NotFoundPage />;
 
     return (
-      <div className="container-fluid">
+      <div>
         <div className="viewport">
           <div className="viewport-header">
             <Header toggleSavedResourcesPane={this.toggleSavedResourcesPane} />
