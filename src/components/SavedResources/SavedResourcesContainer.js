@@ -63,33 +63,39 @@ class SavedResourcesContainer extends Component {
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
                 <div ref={provided.innerRef}>
-                  {data.map((item, index) => (
-                    <Draggable
-                      key={item.id}
-                      draggableId={item.id}
-                      index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style,
-                          )}
-                        >
-                          <SavedResource
-                            key={item.id}
-                            ref={item.id}
-                            organization={item}
-                            currentPos={this.props.currentPos}
-                            removeItem={() => this.props.removeItem(item)}
-                          />
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
+                  {data.length ? (
+                    data.map((item, index) => (
+                      <Draggable
+                        key={item.id}
+                        draggableId={item.id}
+                        index={index}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={getItemStyle(
+                              snapshot.isDragging,
+                              provided.draggableProps.style,
+                            )}
+                          >
+                            <SavedResource
+                              key={item.id}
+                              ref={item.id}
+                              organization={item}
+                              currentPos={this.props.currentPos}
+                              removeItem={() => this.props.removeItem(item)}
+                            />
+                          </div>
+                        )}
+                      </Draggable>
+                    ))
+                  ) : (
+                    <h3 className="text-light">
+                      There are no resources added to the cart
+                    </h3>
+                  )}
                   {provided.placeholder}
                 </div>
               )}
