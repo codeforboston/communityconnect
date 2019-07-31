@@ -119,7 +119,7 @@ class OrganizationCard extends Component {
           <div className="organization-card-header-text">{name}</div>
           {this.props.saveable ? (
             <OrganizationCardSaveButton
-              saveItem={this.toggleItem}
+              onClick={this.toggleItem}
               saveExist={this.state.saveExist}
             />
           ) : null}

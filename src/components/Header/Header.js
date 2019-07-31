@@ -14,7 +14,7 @@ import {
 } from 'reactstrap';
 
 class Header extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -48,7 +48,7 @@ class Header extends Component {
     this.modalToggle();
   };
 
-  render () {
+  render() {
     const { savedResource, toggleSavedResourcesPane } = this.props;
     const savedResourceButtonClassNames = cx('saved-resource-button', {
       'has-selections': savedResource.length,
@@ -56,12 +56,7 @@ class Header extends Component {
 
     return (
       <>
-        <Navbar
-          color="light"
-          light
-          expand="md"
-          style={{ justifyContent: 'space-between' }}
-        >
+        <Navbar color="light" className="main-nav-bar">
           <NavbarBrand className="Logo" onClick={this.modalOpen}>
             <span>Community Connect</span>
           </NavbarBrand>
@@ -97,7 +92,7 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps (state, ownProps) {
+function mapStateToProps(state, ownProps) {
   return {
     savedResource: state.savedResource,
   };

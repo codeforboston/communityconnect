@@ -11,3 +11,12 @@ a {
 .hidden {
   display: none !important;
 }
+
+.main-nav-bar {
+  width: 100%;
+  border-bottom: 1px solid $black;
+}
+
+.page {
+  padding-top: $nav-height;
+}
