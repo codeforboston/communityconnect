@@ -56,6 +56,7 @@ export class OrganizationMarker extends Component {
                   key={resource.id}
                   id={resource.id}
                   onClick={this.handleClickOfInfoWindow}
+                  style={{ padding: "25px" }}
                 >
                   <h3>{resource.name}</h3>
                   <div>{resource.combinedaddress}</div>
