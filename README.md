@@ -1,6 +1,6 @@
 <p align="center">
   <img
-    src="https://github.com/codeforboston/communityconnect/blob/development/src/components/Header/Images/cc-mini-logo.png?raw=true"
+    src="https://github.com/codeforboston/communityconnect/blob/development/src/images/cc-logo-home.png?raw=true"
     width="100px">
   <h2 align="center">Community Connect</h2>
   <div align="center">
