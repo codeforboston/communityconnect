@@ -142,30 +142,30 @@ class AppContainer extends Component {
         <div className="viewport-header">
           <Header toggleSavedResourcesPane={this.toggleSavedResourcesPane} />
         </div>
-        {!isFetchingResource && (
-          <div className="page">
-            <Route
-              exact
-              path="/:resource/admin"
-              render={() => <AdminPage currentPosition={this.state.position} />}
-            />
-            <Route
-              exact
-              path="/:resource/"
-              render={() => (
-                <MapPage
-                  currentPosition={this.state.position}
-                  displayFeedbackLink={this.state.displayFeedbackLink}
-                />
-              )}
-            />
-            <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
-              <SavedResourcePanel
-                resourcePath={this.props.match.params.resource}
+
+        <div className="page">
+          <Route
+            exact
+            path="/:resource/admin"
+            render={() => <AdminPage currentPosition={this.state.position} />}
+          />
+          <Route
+            exact
+            path="/:resource/"
+            render={() => (
+              <MapPage
+                currentPosition={this.state.position}
+                displayFeedbackLink={this.state.displayFeedbackLink}
               />
-            </SplitScreenTogglePane>
-          </div>
-        )}
+            )}
+          />
+          <SplitScreenTogglePane isOpen={this.state.isSavedResourcePaneOpen}>
+            <SavedResourcePanel
+              resourcePath={this.props.match.params.resource}
+            />
+          </SplitScreenTogglePane>
+        </div>
+
         {this.state.displayFeedbackLink && feedbackContainer}
       </div>
     );
