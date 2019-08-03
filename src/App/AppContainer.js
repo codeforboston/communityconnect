@@ -7,16 +7,15 @@ import { loadResources } from '../action/resourceDataAction';
 import { getAllSites } from '../api/directoryGoogleSheets';
 
 // import components
-import { Badge } from 'reactstrap';
+
 import Header from '../components/Header/Header';
 import MapPage from '../components/MapPage/MapPage';
 import AdminPage from '../components/AdminPage/AdminPage';
 import { SplitScreenTogglePane } from '../components/AdminPage/SplitScreenTogglePane';
 import SavedResourcePanel from '../components/SavedResources/SavedResourcePanel';
 import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
-
-// import image
-import Logo from '../images/cc-logo-home.png';
+import { Loading } from '../components/Common/Loading';
+import { FeedbackContainer } from '../components/Common/FeedbackContainer';
 
 const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 
@@ -97,44 +96,12 @@ class AppContainer extends Component {
   render() {
     const { isFetchingResource } = this.props;
 
-    const feedbackContainer = (
-      <div className="feedback-container">
-        <span>Want to improve Community Connect?</span>
-        <div className="d-flex justify-content-center">
-          <Badge
-            className="badge"
-            href="https://forms.gle/bA33aBUnEUB7R9wC9"
-            target="_new"
-            color="primary"
-          >
-            <span>Submit feedback</span>
-          </Badge>
-          <Badge
-            className="badge"
-            onClick={this.hideFeedbackLink}
-            color="light"
-          >
-            <span>Do it later</span>
-          </Badge>
-        </div>
-      </div>
-    );
-
-    if (!this.state.isValidPage) return <NotFoundPage />;
+    if (!this.state.isValidPage) {
+      return <NotFoundPage />;
+    }
 
     if (isFetchingResource) {
-      return (
-        <div className="viewport">
-          <div className="d-flex w-100 h-100 flex-column">
-            <div className="viewport-header">
-              <Header
-                toggleSavedResourcesPane={this.toggleSavedResourcesPane}
-              />
-            </div>
-            <img src={Logo} className="loading-logo" />
-          </div>
-        </div>
-      );
+      return <Loading />;
     }
 
     return (
@@ -166,7 +133,9 @@ class AppContainer extends Component {
           </SplitScreenTogglePane>
         </div>
 
-        {this.state.displayFeedbackLink && feedbackContainer}
+        {this.state.displayFeedbackLink && (
+          <FeedbackContainer hideFeedbackLink={this.hideFeedbackLink} />
+        )}
       </div>
     );
   }
