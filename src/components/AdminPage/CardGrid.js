@@ -72,6 +72,7 @@ export class CardGrid extends Component {
             sortOptions={sortOptions}
           />
         </div>
+        <div className="card-pane">
         <div className="card-list">
           {sortedData.map((resource, index) => (
             <OrganizationCard
@@ -83,6 +84,7 @@ export class CardGrid extends Component {
               saveable={true}
             />
           ))}
+        </div>
         </div>
       </div>
     );

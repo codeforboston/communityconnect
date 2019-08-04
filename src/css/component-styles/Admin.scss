@@ -10,6 +10,18 @@
   grid-template-rows: $spacing-lg auto;
 }
 
+.card-pane {
+  position: relative;
+  overflow: auto;
+  padding: 10px;
+
+}
+
+.category-pane {
+  height: 90%;
+  overflow: auto;
+}
+
 .search-and-sort {
   display: grid;
   grid-template-columns: auto auto;
@@ -21,4 +33,5 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: $spacing-lg;
   padding: $spacing-lg 0;
+  position: absolute;
 }
