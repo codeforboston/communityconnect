@@ -24,3 +24,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+.vscode
+
+key_file
+key_file.pub

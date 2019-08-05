@@ -223,7 +223,6 @@ const Map = compose(
   >
     <MarkerClusterer
       averageCenter={true}
-      // icon={iconMarker}
       enableRetinaIcons={true}
       gridSize={60}
       ref={props.onMarkerClick}
