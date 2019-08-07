@@ -45,7 +45,7 @@ export class CategoryList extends Component {
 
     return (
       <Form>
-        <Label>Filter by Category</Label>
+        <Label className="font-weight-bold">Filter by Category</Label>
         {categoryMenuItems}
       </Form>
     );
