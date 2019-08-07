@@ -1,21 +1,21 @@
 // import React/Redux dependencies
-import React, { Component } from 'react';
-import { Route } from 'react-router';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { loadResources } from '../action/resourceDataAction';
-import { getAllSites } from '../api/directoryGoogleSheets';
+import React, { Component } from "react";
+import { Route } from "react-router";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { loadResources } from "../action/resourceDataAction";
+import { getAllSites } from "../api/directoryGoogleSheets";
 
 // import components
 
-import Header from '../components/Header/Header';
-import MapPage from '../components/MapPage/MapPage';
-import AdminPage from '../components/AdminPage/AdminPage';
-import { SplitScreenTogglePane } from '../components/AdminPage/SplitScreenTogglePane';
-import SavedResourcePanel from '../components/SavedResources/SavedResourcePanel';
-import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
-import { Loading } from '../components/Common/Loading';
-import { FeedbackContainer } from '../components/Common/FeedbackContainer';
+import Header from "../components/Header/Header";
+import MapPage from "../components/MapPage/MapPage";
+import AdminPage from "../components/AdminPage/AdminPage";
+import { SplitScreenTogglePane } from "../components/AdminPage/SplitScreenTogglePane";
+import SavedResourcePanel from "../components/SavedResources/SavedResourcePanel";
+import NotFoundPage from "../components/NotFoundPage/NotFoundPage";
+import { Loading } from "../components/Common/Loading";
+import { FeedbackContainer } from "../components/Common/FeedbackContainer";
 
 const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 
@@ -36,12 +36,12 @@ class AppContainer extends Component {
     this.state = {
       position: {},
       displayFeedbackLink: true,
-      isValidPage: true,
+      isValidPage: true
     };
   }
 
   static propTypes = {
-    dispatch: PropTypes.func,
+    dispatch: PropTypes.func
   };
 
   componentDidMount() {
@@ -75,21 +75,21 @@ class AppContainer extends Component {
             position: {
               coordinates: {
                 lat: parseFloat(position.coords.latitude),
-                lng: parseFloat(position.coords.longitude),
-              },
-            },
+                lng: parseFloat(position.coords.longitude)
+              }
+            }
           });
         },
         error => {
           console.log(error);
-        },
+        }
       );
     }
   };
 
   toggleSavedResourcesPane = () => {
     this.setState({
-      isSavedResourcePaneOpen: !this.state.isSavedResourcePaneOpen,
+      isSavedResourcePaneOpen: !this.state.isSavedResourcePaneOpen
     });
   };
 
