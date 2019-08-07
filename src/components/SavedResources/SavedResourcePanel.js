@@ -33,7 +33,7 @@ const SavedResourcePanel = () => {
   return (
     <div className="saved-resource-panel">
       <div className="saved-resource-panel-header">
-        <h3>Saved Resources</h3>
+        <span style={{ fontSize: '22.4px' }}>Saved Resources</span>
         <span>
           <Route
             exact

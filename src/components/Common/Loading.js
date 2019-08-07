@@ -11,7 +11,7 @@ export const Loading = () => {
         <div className="viewport-header">
           <Header toggleSavedResourcesPane={this.toggleSavedResourcesPane} />
         </div>
-        <img src={Logo} className="loading-logo" />
+        <img src={Logo} alt="" className="loading-logo" />
       </div>
     </div>
   );

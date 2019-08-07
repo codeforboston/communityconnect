@@ -92,9 +92,9 @@ class SavedResourcesContainer extends Component {
                       </Draggable>
                     ))
                   ) : (
-                    <h3 className="text-light">
+                    <span className="text-light">
                       There are no resources added to the cart
-                    </h3>
+                    </span>
                   )}
                   {provided.placeholder}
                 </div>
