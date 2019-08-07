@@ -1,0 +1,59 @@
+.viewport {
+  width: 100vw;
+  height: 100vh;
+}
+
+.viewport-header {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+  width: 100vw;
+  height: $nav-height;
+}
+
+.feedback-container {
+  background-color: #e6e6e6;
+  bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  left: 0px;
+  padding: 10px 30px 10px 10px;
+  text-align: center;
+  width: 100%;
+  z-index: 999;
+}
+
+.badge {
+  margin: 0px 5px 0px 5px;
+  cursor: pointer;
+}
+
+.loading-logo {
+  max-width: 75%;
+  margin: auto;
+  animation: logo-expand 2s infinite;
+
+  @keyframes logo-expand {
+    0% {
+      box-shadow: 0 0 0 0 rgba($turquoise, 0.5);
+      filter: grayscale(0);
+    }
+
+    50% {
+      box-shadow: 0 0 0 100px rgba($turquoise, 0);
+      filter: grayscale(1);
+    }
+
+    75% {
+      filter: grayscale(0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      filter: grayscale(0);
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.saved-resource-panel {
+  background-color: $dark-gray;
+}
+
+.saved-resource-panel-header {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 4px 10px;
+  border-bottom: 1px solid black;
+}

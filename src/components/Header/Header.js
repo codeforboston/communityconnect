@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Route } from 'react-router';
+import React, { Component } from "react";
+import { Route, withRouter } from "react-router";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators, compose } from "redux";
+import * as resourceAction from "../../action/resourceDataAction";
+import cx from "classnames";
 
 import {
   Navbar,
@@ -9,81 +13,86 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
-} from 'reactstrap';
-
-import { Badge, SavedResourcesButton } from './HeaderLayout';
+  ModalFooter
+} from "reactstrap";
 
 class Header extends Component {
   constructor(props) {
     super(props);
 
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.modalOpen = this.modalOpen.bind(this);
-    this.modalToggle = this.modalToggle.bind(this);
-    this.confirmationModalToggle = this.confirmationModalToggle.bind(this);
     this.state = {
       collapsed: true,
-      modal: false,
+      modal: false
     };
   }
 
-  toggleNavbar() {
+  toggleNavbar = () => {
     this.setState({
       collapsed: !this.state.collapsed
     });
-  }
+  };
 
-  modalOpen() {
-    if (this.props.savedResource.length > 0)
+  modalOpen = () => {
+    if (this.props.savedResource.length > 0) {
       this.modalToggle();
-    else
+    } else {
       window.location.reload();
-  }
+    }
+  };
 
-  modalToggle() {
+  modalToggle = () => {
     this.setState({
       modal: !this.state.modal
     });
-  }
+  };
 
   confirmationModalToggle = () => {
-    window.location.href = "/admin";
+    this.props.actions.clearSavedResource();
     this.modalToggle();
   };
 
-  hasItems = () => {
-    return (this.props.savedResource.length >= 1);
-  }
-
-  btnBadge = () => {
-    const savedResources = this.props.savedResource;
-    return savedResources.length
-      ? <Badge>{savedResources.length}</Badge>
-      : null; 
-  }
-
   render() {
+    const { savedResource, toggleSavedResourcesPane } = this.props;
+    const savedResourceButtonClassNames = cx("saved-resource-button", {
+      "has-selections": savedResource.length
+    });
+
     return (
       <>
-        <Navbar color="light" light expand="md" style={{justifyContent: "space-between"}}>
+        <Navbar className="main-nav-bar">
           <NavbarBrand className="Logo" onClick={this.modalOpen}>
-            <h3>Community Connect</h3>
+            <span>Community Connect</span>
           </NavbarBrand>
-          <Route path='/:resource/admin' render={props =>
-            <SavedResourcesButton
-              hasItems={this.hasItems()}
-              onClick={() => this.props.toggleSavedResourcesPane()}>
-              Saved Resources {this.btnBadge()}
-            </SavedResourcesButton>
-          } />
+          <Route
+            path="/:resource/admin"
+            render={() => (
+              <button
+                className={savedResourceButtonClassNames}
+                onClick={toggleSavedResourcesPane}
+              >
+                Saved Resources {savedResource.length}
+              </button>
+            )}
+          />
         </Navbar>
         <Modal isOpen={this.state.modal} toggle={this.modalToggle}>
           <ModalHeader>Alert</ModalHeader>
-          <ModalBody>This action will clear all your saved resources. Do you want to proceed?</ModalBody>
+          <ModalBody>
+            This action will clear all your saved resources. Do you want to
+            proceed?
+          </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.modalToggle}>Cancel</Button>{' '}
-            <Button color="secondary" onClick={this.confirmationModalToggle}>Continue</Button>
+            <Button color="primary" onClick={this.modalToggle}>
+              Cancel
+            </Button>{" "}
+            <Button
+              tag={Link}
+              color="secondary"
+              onClick={this.confirmationModalToggle}
+              to={`/${this.props.match.params.resource}/admin`}
+            >
+              Continue
+            </Button>
           </ModalFooter>
         </Modal>
       </>
@@ -94,7 +103,18 @@ class Header extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     savedResource: state.savedResource
-  }
+  };
 }
 
-export default connect(mapStateToProps)(Header);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(resourceAction, dispatch)
+  };
+}
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withRouter
+)(Header);

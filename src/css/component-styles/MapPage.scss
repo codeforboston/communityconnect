@@ -1,0 +1,14 @@
+.map-container {
+  height: calc(100% - #{$nav-height});
+  position: absolute;
+  width: 100%;
+}
+
+.static-pane {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 30%;
+  overflow: auto;
+}

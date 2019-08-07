@@ -1,0 +1,6 @@
+.saved-resources-container {
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+  max-height: calc(100vh - #{$nav-height} - 50px);
+  padding: 10px;
+}
