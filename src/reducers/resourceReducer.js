@@ -91,6 +91,8 @@ export function savedResource(state = initialState.savedResource, action) {
             ];
         case types.REMOVE_SAVED_RESOURCE:
             return state.filter(resource => action.savedResourceIndex !== resource.id);
+        case types.CLEAR_SAVED_RESOURCE:
+            return [];
         default:
             return state;
     }
