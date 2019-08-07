@@ -61,6 +61,7 @@ export class ResultList extends Component {
 
   render () {
     const sortOptions = [
+
       { key: 'A-Z', sort: this.sortByAlphabet, disabled: false },
       {
         key: 'Distance',
