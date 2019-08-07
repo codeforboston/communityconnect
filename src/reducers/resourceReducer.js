@@ -7,7 +7,7 @@ import initialState from './initialState';
 export function resource(state = initialState.resource, action) {
     switch (action.type) {
         case types.LOAD_RESOURCE_DATA_SUCCESS:
-          return Object.assign([], state, action.resource);
+          return [...state, ...action.resource];
         default: return state;
     }
 }
@@ -36,7 +36,7 @@ export function categories(state = initialState.categories, action) {
                 categoryList.splice(index, 1);
             }
 
-            return Object.assign([], state, categoryList);
+            return [...state, ...categoryList];
 
         default:
             return state;
@@ -46,7 +46,7 @@ export function categories(state = initialState.categories, action) {
 export function filteredResource(state = initialState.filteredResource, action) {
     switch (action.type) {
         case types.LOAD_RESOURCE_DATA_SUCCESS:
-            return Object.assign([], state, action.resource);
+            return [...state, ...action.resource];
         case types.FILTER_RESOURCE_BY_CATEGORIES:
             return action.filteredResource;
         default:
@@ -57,7 +57,7 @@ export function filteredResource(state = initialState.filteredResource, action) 
 export function searchedResource(state = initialState.searchedResource, action) {
     switch (action.type) {
         case types.LOAD_RESOURCE_DATA_SUCCESS:
-            return Object.assign([], state, action.resource);
+            return [...state, ...action.resource];
         case types.FILTER_RESOURCE_BY_SEARCH:
             return action.searchedResource;
         default:
@@ -83,11 +83,12 @@ export function savedResource(state = initialState.savedResource, action) {
             });
           })
 
-          return Object.assign([], state, selectedResources);
+          return [...state, ...selectedResources];
         case types.ADD_SAVED_RESOURCE:
+
             return [
                 ...state,
-                Object.assign([], state, action.savedResource)
+                action.savedResource
             ];
         case types.REMOVE_SAVED_RESOURCE:
             return state.filter(resource => action.savedResourceIndex !== resource.id);
