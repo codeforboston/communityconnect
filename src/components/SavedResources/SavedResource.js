@@ -15,6 +15,8 @@ import {
   ModalBody,
 } from 'reactstrap';
 
+import { SavedResourceButton } from './SavedResourceButton';
+
 class SavedResource extends Component {
   constructor(props) {
     super(props);
@@ -88,25 +90,15 @@ class SavedResource extends Component {
       <div>
         <Card className="reactstrap-card" id={id}>
           <CardBody>
-            {website && (
-              <span>
-                <a href={website}>
-                  <span role={'img'} aria-label={'Link to website'}>
-                    &#128279;
-                  </span>
-                </a>
-              </span>
-            )}
             <div className="d-flex">
-              <h3 className="reactstrap-card-headline">{name}</h3>
-              <span
-                title="Remove item from Saved Resources"
-                aria-label="Remove item from Saved Resources"
-                className="remove-item"
-                onClick={this.removalConfirmed}
-              >
-                -
-              </span>
+              {website ? (
+                <a className="flex-grow-1" href={website}>
+                  <h3 className="reactstrap-card-headline">{name}</h3>
+                </a>
+              ) : (
+                <h3 className="reactstrap-card-headline">{name}</h3>
+              )}
+              <SavedResourceButton onClick={this.removalConfirmed} />
             </div>
             <CardSubtitle className=".reactstrap-card-body-card-subtitle">
               {categories}

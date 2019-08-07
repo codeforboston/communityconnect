@@ -1,9 +1,10 @@
 import React from 'react';
 import qs from 'qs-lite';
 import { Link, Route } from 'react-router-dom';
-import { Card, CardBody, CardHeader, Button } from 'reactstrap';
-import shareIcon from '../../share-symbol.svg';
+import { Button } from 'reactstrap';
 import SavedResources from './SavedResourcesContainer';
+import { faShare } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ToShareButton = props => {
   const query = qs.parse(window.location.search.replace('?', ''));
@@ -21,32 +22,29 @@ const ToShareButton = props => {
       type="Map"
       to={tempUrl}
       target="_blank"
+      color="info"
     >
-      <img className="share-button-icon" src={shareIcon} alt="" />
+      <FontAwesomeIcon icon={faShare} />
     </Button>
   );
 };
 
 const SavedResourcePanel = () => {
   return (
-    <div>
-      <Card>
-        <CardHeader>
-          Saved Resources
-          <span>
-            <Route
-              exact
-              path="/:resource/admin"
-              render={props => (
-                <ToShareButton resourcePath={props.match.params.resource} />
-              )}
-            />
-          </span>
-        </CardHeader>
-        <CardBody className="shopping-cart-card">
-          <SavedResources />
-        </CardBody>
-      </Card>
+    <div className="saved-resource-panel">
+      <div className="saved-resource-panel-header">
+        <span style={{ fontSize: '22.4px' }}>Saved Resources</span>
+        <span>
+          <Route
+            exact
+            path="/:resource/admin"
+            render={props => (
+              <ToShareButton resourcePath={props.match.params.resource} />
+            )}
+          />
+        </span>
+      </div>
+      <SavedResources />
     </div>
   );
 };

@@ -1,13 +1,8 @@
 .split-screen {
-  display: block;
-  position: absolute;
-  height: 100%;
+  position: fixed;
   width: 33%;
   border: 0;
-  top: 60px;
+  top: $nav-height;
   right: 0;
   background-color: white;
-  border-radius: 4px 4px 0 0;
-  margin-left: -50px;
-  font-size: 1.4rem;
 }

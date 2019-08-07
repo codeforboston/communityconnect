@@ -17,7 +17,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 class SavedResourcesContainer extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       data: Object.assign([], this.props.data),
@@ -26,10 +26,10 @@ class SavedResourcesContainer extends Component {
   }
 
   //Using deprecated function necessary to update data with store's data
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState({ data: Object.assign([], nextProps.data) });
   }
-  onDragEnd (result) {
+  onDragEnd(result) {
     // dropped outside the list
     if (!result.destination) {
       return;
@@ -49,7 +49,7 @@ class SavedResourcesContainer extends Component {
       data: newSavedResources,
     });
   };
-  render () {
+  render() {
     // Render will be called every time this.props.data is updated, and every time handleSortChange
     // updates the this.state.dataSort variable.
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
@@ -58,38 +58,44 @@ class SavedResourcesContainer extends Component {
     const { data } = this.state;
     return (
       <div>
-        <div className="saved-resources saved-resources-full-width">
+        <div className="saved-resources-container">
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
                 <div ref={provided.innerRef}>
-                  {data.map((item, index) => (
-                    <Draggable
-                      key={item.id}
-                      draggableId={item.id}
-                      index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style,
-                          )}
-                        >
-                          <SavedResource
-                            key={item.id}
-                            ref={item.id}
-                            organization={item}
-                            currentPos={this.props.currentPos}
-                            removeItem={() => this.props.removeItem(item)}
-                          />
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
+                  {data.length ? (
+                    data.map((item, index) => (
+                      <Draggable
+                        key={item.id}
+                        draggableId={item.id}
+                        index={index}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={getItemStyle(
+                              snapshot.isDragging,
+                              provided.draggableProps.style,
+                            )}
+                          >
+                            <SavedResource
+                              key={item.id}
+                              ref={item.id}
+                              organization={item}
+                              currentPos={this.props.currentPos}
+                              removeItem={() => this.props.removeItem(item)}
+                            />
+                          </div>
+                        )}
+                      </Draggable>
+                    ))
+                  ) : (
+                    <span className="text-light">
+                      There are no resources added to the cart
+                    </span>
+                  )}
                   {provided.placeholder}
                 </div>
               )}
@@ -105,7 +111,7 @@ SavedResourcesContainer.propTypes = {
   data: PropTypes.array.isRequired,
 };
 
-function mapStateToProps (state, ownProps) {
+function mapStateToProps(state, ownProps) {
   return {
     data: state.savedResource,
   };

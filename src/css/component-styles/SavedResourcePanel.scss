@@ -1,22 +1,11 @@
-.shopping-cart-card {
-  padding-left: 0;
-  padding-right: 0;
-  padding-bottom: 0;
+.saved-resource-panel {
+  background-color: $dark-gray;
 }
 
-.share-button-icon {
-  float: right;
-  margin: 0 10px 0 10px;
-  height: 20px;
-  width: 20px;
-  background-color: rgba(0, 0, 0, 0.001);
-  border: 0;
-  padding: 0;
-}
-
-.share-button {
-  float: right;
-  background-color: rgba(0, 0, 0, 0.001);
-  border: none;
-  padding: 0;
+.saved-resource-panel-header {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 4px 10px;
+  border-bottom: 1px solid black;
 }

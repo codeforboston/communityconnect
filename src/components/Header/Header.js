@@ -59,12 +59,7 @@ class Header extends Component {
 
     return (
       <>
-        <Navbar
-          color="light"
-          light
-          expand="md"
-          style={{ justifyContent: "space-between" }}
-        >
+        <Navbar className="main-nav-bar">
           <NavbarBrand className="Logo" onClick={this.modalOpen}>
             <span>Community Connect</span>
           </NavbarBrand>
