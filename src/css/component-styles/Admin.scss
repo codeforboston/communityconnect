@@ -2,12 +2,15 @@
   display: grid;
   grid-template-columns: 200px auto;
   padding: $spacing-lg;
+  padding-bottom: 0;
   gap: $spacing-lg;
+  height: calc(100vh - 55px);
 }
 
 .card-grid {
   display: grid;
   grid-template-rows: $spacing-lg auto;
+  height: 100%;
 }
 
 .card-pane {
@@ -16,7 +19,6 @@
 }
 
 .category-pane {
-  height: 90%;
   overflow: auto;
 }
 
@@ -28,6 +30,7 @@
 
 .card-list {
   display: grid;
+  margin: 0px 10px;
   grid-template-columns: 1fr 1fr 1fr;
   gap: $spacing-lg;
   padding: $spacing-lg 0;

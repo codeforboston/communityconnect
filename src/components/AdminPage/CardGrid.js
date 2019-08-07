@@ -1,60 +1,63 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import OrganizationCard from '../Common/OrganizationCard';
-import { SortBar } from '../Common/SortBar.js';
-import SearchBar from '../Header/SearchBar';
-import { getDistance } from '../../utils/distance.js';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import OrganizationCard from "../Common/OrganizationCard";
+import { SortBar } from "../Common/SortBar.js";
+import SearchBar from "../Header/SearchBar";
+import { getDistance } from "../../utils/distance.js";
 
 export class CardGrid extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      dataSort: this.sortByAlphabet,
+      dataSort: this.sortByAlphabet
     };
   }
 
-  getCloserResource = (a, b) => {
-    if (
-      getDistance(a, this.props.currentPos) >
-      getDistance(b, this.props.currentPos)
-    ) {
-      return 1;
-    }
-
-    return -1;
-  };
-
-  getCloserName = (a, b) => {
-    if (a.name > b.name) return 1;
-    else if (a.name < b.name) return -1;
-    else return 0;
-  };
-
   sortByAlphabet = () => {
-    return this.props.resource.slice().sort(this.getCloserName);
+    const getCloserName = (a, b) => {
+      if (a.name > b.name) {
+        return 1;
+      } else if (a.name < b.name) {
+        return -1;
+      } else {
+        return 0;
+      }
+    };
+
+    return this.props.resource.sort(getCloserName);
   };
 
   sortByDistance = () => {
-    return this.props.resource.slice().sort(this.getCloserResource);
+    const getCloserResource = (a, b) => {
+      if (
+        getDistance(a, this.props.currentPos) >
+        getDistance(b, this.props.currentPos)
+      ) {
+        return 1;
+      }
+
+      return -1;
+    };
+    return this.props.resource.sort(getCloserResource);
   };
 
   handleSortChange = newSort => {
     if (this.state.dataSort !== newSort)
       this.setState({
         // Set the dataSort variable to whichever sort function is chosen
-        dataSort: newSort,
+        dataSort: newSort
       });
   };
 
   render() {
     const sortOptions = [
-      { key: 'A-Z', sort: this.sortByAlphabet, disabled: false },
+      { key: "A-Z", sort: this.sortByAlphabet, disabled: false },
       {
-        key: 'Distance',
+        key: "Distance",
         sort: this.sortByDistance,
-        disabled: !this.props.currentPos,
-      },
+        disabled: !this.props.currentPos
+      }
     ];
 
     // Render will be called every time this.props.data is updated, and every time handleSortChange
@@ -73,18 +76,18 @@ export class CardGrid extends Component {
           />
         </div>
         <div className="card-pane">
-        <div className="card-list">
-          {sortedData.map((resource, index) => (
-            <OrganizationCard
-              key={resource.id}
-              index={resource.id}
-              organization={resource}
-              currentPos={this.props.currentPos}
-              saveItem={() => this.props.saveItem(resource)}
-              saveable={true}
-            />
-          ))}
-        </div>
+          <div className="card-list">
+            {sortedData.map((resource, index) => (
+              <OrganizationCard
+                key={resource.id}
+                index={resource.id}
+                organization={resource}
+                currentPos={this.props.currentPos}
+                saveItem={() => this.props.saveItem(resource)}
+                saveable={true}
+              />
+            ))}
+          </div>
         </div>
       </div>
     );
