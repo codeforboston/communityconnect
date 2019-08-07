@@ -18,6 +18,7 @@
     "node-sass": "^4.12.0",
     "npm": "^6.4.1",
     "popper.js": "^1.14.7",
+    "prop-types": "^15.7.2",
     "qs-lite": "^0.0.1",
     "query-string": "^6.2.0",
     "react": "^16.3.2",
@@ -33,6 +34,8 @@
     "react-router-dom": "^4.3.1",
     "react-testing-library": "^6.1.2",
     "reactstrap": "^5.0.0",
+    "redux": "^4.0.4",
+    "redux-immutable-state-invariant": "^2.1.0",
     "redux-thunk": "^2.3.0",
     "sass-loader": "^7.1.0",
     "tabletop": "^1.5.2"
@@ -43,16 +46,21 @@
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.js"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
     "babel-eslint": "^8.0.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
+    "eslint": "5.3.0",
+    "eslint-config-airbnb": "17.1.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2",
     "jest-emotion": "^10.0.10",
-    "react-scripts": "2.0.0-next.66cc7a90",
-    "redux-immutable-state-invariant": "^2.1.0"
+    "react-scripts": "2.0.0-next.66cc7a90"
   },
   "browserslist": {
     "development": [
@@ -66,5 +74,35 @@
       "Firefox ESR",
       "not ie < 11"
     ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": [
+      "airbnb"
+    ],
+    "rules": {
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ]
+    },
+    "env": {
+      "jest": true,
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    }
   }
 }
