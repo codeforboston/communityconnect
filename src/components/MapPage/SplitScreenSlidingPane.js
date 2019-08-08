@@ -6,7 +6,7 @@ export class SplitScreenSlidingPane extends Component {
     isOpen: true
   };
 
-  toggle = e => {
+  toggle = (e) => {
     e.preventDefault();
 
     this.setState({

@@ -20,7 +20,7 @@ class OrganizationMap extends Component {
     });
   };
 
-  render () {
+  render() {
     return (
       <Map
         googleMapURL={googleMapURL}
@@ -33,11 +33,10 @@ class OrganizationMap extends Component {
   }
 }
 
-function mapStateToProps (state) {
-  const currentResource =
-    state.savedResource.length > 0 ? state.savedResource : state.resource;
+function mapStateToProps(state) {
+  const currentResource = state.savedResource.length > 0 ? state.savedResource : state.resource;
   const locationArray = [];
-  currentResource.forEach(function (resource) {
+  currentResource.forEach((resource) => {
     if (!locationArray[resource.hashCoordinates]) {
       locationArray[resource.hashCoordinates] = {
         coordinates: resource.coordinates,

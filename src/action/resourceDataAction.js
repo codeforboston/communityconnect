@@ -15,39 +15,39 @@ const loadResourceDataFailure = error => ({
   error,
 });
 
-export function loadCategories () {
+export function loadCategories() {
   return { type: types.LOAD_CATEGORIES };
 }
 
-export function loadResources (resourcePath) {
+export function loadResources(resourcePath) {
   return function (dispatch) {
     dispatch(loadResourceDataStart());
     return getAllResources(resourcePath)
-      .then(resources => {
-        //update with call using specific
+      .then((resources) => {
+        // update with call using specific
         dispatch(loadResourceDataSuccess(resources));
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch(loadResourceDataFailure(error));
       });
   };
 }
 
-export function filterByCategories (filteredResource) {
+export function filterByCategories(filteredResource) {
   return { type: types.FILTER_RESOURCE_BY_CATEGORIES, filteredResource };
 }
 
-export function filterBySearch (searchedResource) {
+export function filterBySearch(searchedResource) {
   return { type: types.FILTER_RESOURCE_BY_SEARCH, searchedResource };
 }
 
-export function addSavedResource (savedResource) {
+export function addSavedResource(savedResource) {
   return { type: types.ADD_SAVED_RESOURCE, savedResource };
 }
 
-export function removeSavedResource (savedResourceIndex) {
+export function removeSavedResource(savedResourceIndex) {
   return { type: types.REMOVE_SAVED_RESOURCE, savedResourceIndex };
 }
-export function clearSavedResource () {
+export function clearSavedResource() {
   return { type: types.CLEAR_SAVED_RESOURCE };
 }

@@ -4,7 +4,7 @@ import React from 'react';
  * @param sortOptions
  */
 export class SortBar extends React.Component {
-  handleClick = e => {
+  handleClick = (e) => {
     // Get new sort based on index of sortOption array
     if (this.props.sortOptions[e.target.value]) {
       const newSort = this.props.sortOptions[e.target.value].sort;
@@ -12,7 +12,7 @@ export class SortBar extends React.Component {
     }
   };
 
-  render () {
+  render() {
     return (
       <span>
         <b>Sort by: </b>

@@ -7,7 +7,7 @@ import { getDistance } from '../../utils/distance.js';
 import * as resourceAction from '../../action/resourceDataAction';
 
 export class ResultList extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -17,8 +17,8 @@ export class ResultList extends Component {
 
   getCloserResource = (a, b) => {
     if (
-      getDistance(a, this.props.currentPos) >
-      getDistance(b, this.props.currentPos)
+      getDistance(a, this.props.currentPos)
+      > getDistance(b, this.props.currentPos)
     ) {
       return 1;
     }
@@ -28,38 +28,34 @@ export class ResultList extends Component {
 
   getCloserName = (a, b) => {
     if (a.name > b.name) return 1;
-    else if (a.name < b.name) return -1;
-    else return 0;
+    if (a.name < b.name) return -1;
+    return 0;
   };
 
-  sortByAlphabet = () => {
-    return this.props.savedResource.slice().sort(this.getCloserName);
-  };
+  sortByAlphabet = () => this.props.savedResource.slice().sort(this.getCloserName);
 
-  sortByDistance = () => {
-    return this.props.savedResource.slice().sort(this.getCloserResource);
-  };
+  sortByDistance = () => this.props.savedResource.slice().sort(this.getCloserResource);
 
-  handleSortChange = newSort => {
-    if (this.state.dataSort !== newSort)
+  handleSortChange = (newSort) => {
+    if (this.state.dataSort !== newSort) {
       this.setState({
-        // Set the dataSort variable to whichever sort function is chosen
+      // Set the dataSort variable to whichever sort function is chosen
         dataSort: newSort,
       });
+    }
   };
 
-  cardClick = id => {
-    this.props.savedResource.findIndex(resource => {
-      return resource.id === id;
-    });
+  cardClick = (id) => {
+    this.props.savedResource.findIndex(resource => resource.id === id);
   };
-  saveResource = resource => {
+
+  saveResource = (resource) => {
     if (!this.props.savedResource.some(r => r.id === resource.id)) {
       this.props.actions.addSavedResource(this.props.savedResource.slice());
     }
   };
 
-  render () {
+  render() {
     const sortOptions = [
 
       { key: 'A-Z', sort: this.sortByAlphabet, disabled: false },
@@ -99,14 +95,14 @@ export class ResultList extends Component {
   }
 }
 
-function mapStateToProps (state, ownProps) {
+function mapStateToProps(state, ownProps) {
   return {
     savedResource:
       state.savedResource.length > 0 ? state.savedResource : state.resource,
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(resourceAction, dispatch),
   };

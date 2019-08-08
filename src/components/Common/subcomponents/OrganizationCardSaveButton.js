@@ -4,7 +4,7 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 
-export const OrganizationCardSaveButton = props => {
+export const OrganizationCardSaveButton = (props) => {
   const { saveExist, onClick } = props;
   const buttonIcon = saveExist ? faMinus : faPlus;
   const buttonClassName = cx('organization-card-button', {

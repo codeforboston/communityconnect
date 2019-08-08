@@ -4,8 +4,6 @@ import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import qs from 'qs-lite';
-import { getDistance } from '../../utils/distance.js';
-import * as resourceAction from '../../action/resourceDataAction';
 import {
   Alert,
   Card,
@@ -14,6 +12,8 @@ import {
   ModalHeader,
   ModalBody,
 } from 'reactstrap';
+import { getDistance } from '../../utils/distance.js';
+import * as resourceAction from '../../action/resourceDataAction';
 
 import { SavedResourceButton } from './SavedResourceButton';
 
@@ -73,7 +73,8 @@ class SavedResource extends Component {
       phone,
     } = this.props.organization;
 
-    let distance, distanceElement;
+    let distance; let
+      distanceElement;
     if (this.props.currentPos && this.props.currentPos.coordinates) {
       distance = getDistance(
         { coordinates: this.props.organization.coordinates },
@@ -81,7 +82,12 @@ class SavedResource extends Component {
       );
       if (distance) {
         distanceElement = (
-          <p>Distance from your Location: {distance.toPrecision(4)} miles</p>
+          <p>
+Distance from your Location:
+            {distance.toPrecision(4)}
+            {' '}
+miles
+          </p>
         );
       }
     }
@@ -114,10 +120,11 @@ class SavedResource extends Component {
             {phone && (
               <p>
                 {' '}
-                <span role={'img'} aria-label={'Phone number'}>
+                <span role="img" aria-label="Phone number">
                   {' '}
                   &#128222;
-                </span>{' '}
+                </span>
+                {' '}
                 {phone}
               </p>
             )}
@@ -164,10 +171,17 @@ class SavedResource extends Component {
           </CardBody>
         </Card>
         <Alert isOpen={this.state.visible} toggle={this.removalConfirmed}>
-          <ModalHeader>Are you sure?</ModalHeader> {name} closed
+          <ModalHeader>Are you sure?</ModalHeader>
+          {' '}
+          {name}
+          {' '}
+closed
           <ModalBody>
-            Would you like to remove '{name}'' from your saved resources?
-          </ModalBody>{' '}
+            Would you like to remove '
+            {name}
+'' from your saved resources?
+          </ModalBody>
+          {' '}
         </Alert>
       </div>
     );
