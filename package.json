@@ -54,10 +54,13 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "eslint-config-airbnb": "17.1.1",
+    "eslint-config-prettier": "6.0.0",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "3.1.0",
     "eslint-plugin-react": "^7.14.2",
     "jest-emotion": "^10.0.10",
+    "prettier": "1.18.2",
     "react-scripts": "3.0.1"
   },
   "browserslist": {
@@ -76,7 +79,8 @@
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
-      "airbnb"
+      "airbnb",
+      "plugin:prettier/recommended"
     ],
     "rules": {
       "react/jsx-filename-extension": [
@@ -97,7 +101,10 @@
           ]
         }
       ],
-      "react/destructuring-assignment": 0
+      "react/destructuring-assignment": 0,
+      "react/no-array-index-key": 0,
+      "jsx-a11y/no-static-element-interactions": 0,
+      "jsx-a11y/click-events-have-key-events": 0
     },
     "env": {
       "jest": true,
