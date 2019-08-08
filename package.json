@@ -2,6 +2,15 @@
   "name": "community-connect",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "eject": "react-scripts eject",
+    "lint": "eslint \"src/**/*.js\""
+  },
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
@@ -40,21 +49,10 @@
     "sass-loader": "^7.1.0",
     "tabletop": "^1.5.2"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.js"
-  },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
-    "babel-eslint": "^8.0.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
-    "eslint": "5.3.0",
     "eslint-config-airbnb": "17.1.1",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
@@ -89,7 +87,17 @@
             ".jsx"
           ]
         }
-      ]
+      ],
+      "no-console": 0,
+      "react/forbid-prop-types": [
+        true,
+        {
+          "forbid": [
+            "any"
+          ]
+        }
+      ],
+      "react/destructuring-assignment": 0
     },
     "env": {
       "jest": true,
