@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import OrganizationCard from '../Common/OrganizationCard';
 import { SortBar } from '../Common/SortBar.js';
 import SearchBar from '../Header/SearchBar';
-import { getDistance } from '../../utils/distance.js';
+import getDistance from '../../utils/distance.js';
 
 export class CardGrid extends Component {
   constructor(props) {
@@ -38,7 +38,7 @@ export class CardGrid extends Component {
   handleSortChange = (newSort) => {
     if (this.state.dataSort !== newSort) {
       this.setState({
-      // Set the dataSort variable to whichever sort function is chosen
+        // Set the dataSort variable to whichever sort function is chosen
         dataSort: newSort,
       });
     }

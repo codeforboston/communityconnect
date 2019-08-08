@@ -24,20 +24,20 @@ export function isFetchingResource(state = initialState.isFetchingResource, acti
 
 export function categories(state = initialState.categories, action) {
   switch (action.type) {
-    case types.LOAD_RESOURCE_DATA_SUCCESS:
-      const categories = {};
-      for (const data of action.resource) {
+    case types.LOAD_RESOURCE_DATA_SUCCESS: {
+      const categoriesData = {};
+      action.resource.forEach((data) => {
         const category = data.categories.split(',');
-        category.forEach(cat => categories[cat] = cat.trim());
-      }
-      const categoryList = [...(new Set(Object.values(categories)))];
+        category.forEach((cat) => { categoriesData[cat] = cat.trim(); });
+      });
+      const categoryList = [...(new Set(Object.values(categoriesData)))];
       const index = categoryList.indexOf('');
       if (index > -1) {
         categoryList.splice(index, 1);
       }
 
       return [...state, ...categoryList];
-
+    }
     default:
       return state;
   }
@@ -67,7 +67,7 @@ export function searchedResource(state = initialState.searchedResource, action) 
 
 export function savedResource(state = initialState.savedResource, action) {
   switch (action.type) {
-    case types.LOAD_RESOURCE_DATA_SUCCESS:
+    case types.LOAD_RESOURCE_DATA_SUCCESS: {
       const query = qs.parse(window.location.search.replace('?', ''));
       let selectedResourceIds = [];
       if (query.resources) {
@@ -76,14 +76,15 @@ export function savedResource(state = initialState.savedResource, action) {
 
       const selectedResources = [];
       selectedResourceIds.forEach((selectedResourceId) => {
-        action.resource.forEach((resource) => {
+        action.resource.forEach((resourceData) => {
           if (resource.id === selectedResourceId) {
-            selectedResources.push(resource);
+            selectedResources.push(resourceData);
           }
         });
       });
 
       return [...state, ...selectedResources];
+    }
     case types.ADD_SAVED_RESOURCE:
 
       return [
@@ -91,7 +92,7 @@ export function savedResource(state = initialState.savedResource, action) {
         action.savedResource,
       ];
     case types.REMOVE_SAVED_RESOURCE:
-      return state.filter(resource => action.savedResourceIndex !== resource.id);
+      return state.filter(resourceData => action.savedResourceIndex !== resourceData.id);
     case types.CLEAR_SAVED_RESOURCE:
       return [];
     default:

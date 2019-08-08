@@ -13,6 +13,11 @@ import youth from '../../images/icons/youth.png'
 import couple from '../../images/icons/couple.png'
 
 export class OrganizationMarker extends Component {
+  static propTypes = {
+    open: PropTypes.bool.isRequired,
+    resource: PropTypes.object.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -23,12 +28,16 @@ export class OrganizationMarker extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.open !== this.props.open) {
-      this.setState({ open: this.props.open });
+      this.updateOpen();
     }
   }
-  // scrollToElement  and handleClickOfInfoWindow is currently non-functional
 
-  scrollToElement = (e) => {
+  // scrollToElement  and handleClickOfInfoWindow is currently non-functional
+  updateOpen = () => {
+    this.setState({ open: this.props.open });
+  }
+
+  scrollToElement = () => {
     this.setState({ open: true });
   };
 
@@ -102,10 +111,10 @@ export class OrganizationMarker extends Component {
         {this.state.open && (
           <InfoWindow onCloseClick={this.handleClose} style={InfoWindowStyle}>
             <div>
-              {resource.groupedResource.map(resource => (
+              {resource.groupedResource.map(resourceData => (
                 <div
-                  key={resource.id}
-                  id={resource.id}
+                  key={resourceData.id}
+                  id={resourceData.id}
                   onClick={this.handleClickOfInfoWindow}
                   style={{ padding: "25px" }}
                 >

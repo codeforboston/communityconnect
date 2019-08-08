@@ -17,7 +17,7 @@ import './css/index.scss';
 
 library.add(fab, fas);
 
-export const getRoutes = store => (
+const getRoutes = store => (
   <div>
     <Switch>
       <Route exact path="/admin" component={AppContainer} />
