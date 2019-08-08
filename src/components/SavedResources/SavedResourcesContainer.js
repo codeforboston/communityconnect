@@ -6,7 +6,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 // import styles from './SavedResourcesContainer.module.css';
 import SavedResource from './SavedResource';
 
-const getItemStyle = (isDragging, draggableStyle) => ({
+const getItemStyle = (_, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
 
@@ -17,6 +17,12 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 class SavedResourcesContainer extends Component {
+  static propTypes = {
+    data: PropTypes.array.isRequired,
+    currentPos: PropTypes.object.isRequired,
+    removeItem: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -63,7 +69,7 @@ class SavedResourcesContainer extends Component {
         <div className="saved-resources-container">
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable">
-              {(provided, snapshot) => (
+              {provided => (
                 <div ref={provided.innerRef}>
                   {data.length ? (
                     data.map((item, index) => (
@@ -72,14 +78,14 @@ class SavedResourcesContainer extends Component {
                         draggableId={item.id}
                         index={index}
                       >
-                        {(provided, snapshot) => (
+                        {(provided2, snapshot) => (
                           <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
+                            ref={provided2.innerRef}
+                            {...provided2.draggableProps}
+                            {...provided2.dragHandleProps}
                             style={getItemStyle(
                               snapshot.isDragging,
-                              provided.draggableProps.style,
+                              provided2.draggableProps.style,
                             )}
                           >
                             <SavedResource
@@ -95,7 +101,7 @@ class SavedResourcesContainer extends Component {
                     ))
                   ) : (
                     <span className="text-light">
-                      There are no resources added to the cart
+                        There are no resources added to the cart
                     </span>
                   )}
                   {provided.placeholder}
@@ -109,11 +115,7 @@ class SavedResourcesContainer extends Component {
   }
 }
 
-SavedResourcesContainer.propTypes = {
-  data: PropTypes.array.isRequired,
-};
-
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     data: state.savedResource,
   };

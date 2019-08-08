@@ -1,7 +1,7 @@
 // DEAD CODE
 import styled from '@emotion/styled';
 
-export const NotFoundPageLayout = styled('div')`
+const NotFoundPageLayout = styled('div')`
   max-width: 500px;
   padding: 20% 20px 0px 20px;
   text-align: center;
@@ -12,3 +12,5 @@ export const NotFoundPageLayout = styled('div')`
   right: 0;
   margin: auto;
 `;
+
+export default NotFoundPageLayout;

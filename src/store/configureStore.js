@@ -9,7 +9,8 @@ export default function configureStore(initialState) {
     initialState,
     applyMiddleware(
       thunk,
-      // Redux middleware that spits an error on you when you try to mutate your state either inside a dispatch or between dispatches.
+      // Redux middleware that spits an error
+      // when you try to mutate your state either inside a dispatch or between dispatches.
       reduxImmutableStateInvariant(),
     ),
   );

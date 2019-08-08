@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router';
@@ -12,24 +13,29 @@ import {
   ModalHeader,
   ModalBody,
 } from 'reactstrap';
-import { getDistance } from '../../utils/distance.js';
+import getDistance from '../../utils/distance';
 import * as resourceAction from '../../action/resourceDataAction';
 
-import { SavedResourceButton } from './SavedResourceButton';
+import SavedResourceButton from './SavedResourceButton';
 
 class SavedResource extends Component {
+  static propTypes = {
+    organization: PropTypes.object.isRequired,
+    savedResource: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+    currentPos: PropTypes.object.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
-      modal: false,
       visible: false,
     };
   }
 
   confirmationAlertToggle = () => {
-    this.setState({
-      visible: !this.state.visible,
-    });
+    this.setState(prevState => ({ visible: !prevState.visible }));
   };
 
   removeItem = () => {
@@ -83,10 +89,10 @@ class SavedResource extends Component {
       if (distance) {
         distanceElement = (
           <p>
-Distance from your Location:
+            Distance from your Location:
             {distance.toPrecision(4)}
             {' '}
-miles
+            miles
           </p>
         );
       }
@@ -175,11 +181,11 @@ miles
           {' '}
           {name}
           {' '}
-closed
+          closed
           <ModalBody>
-            Would you like to remove '
+            Would you like to remove
             {name}
-'' from your saved resources?
+            from your saved resources?
           </ModalBody>
           {' '}
         </Alert>
@@ -188,7 +194,7 @@ closed
   }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return { savedResource: state.savedResource };
 }
 

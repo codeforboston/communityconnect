@@ -1,37 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Map from './Map';
 
 const googleMapKey = 'AIzaSyAwKdrqS2GfCt9b2K1wAopDc9Ga0N1BVUM';
 const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${googleMapKey}&v=3.exp&libraries=geometry,drawing,places`;
 
-class OrganizationMap extends Component {
-  markerHover = (key, event) => {
-    event.map.getCanvas().style.cursor = 'pointer';
-    this.setState({
-      hoveredItem: key,
-    });
-  };
+const OrganizationMap = ({ mapResource }) => (
+  <Map
+    googleMapURL={googleMapURL}
+    containerElement={<div style={{ height: '100%' }} />}
+    mapElement={<div style={{ height: '100%' }} />}
+    loadingElement={<div style={{ height: '100%' }} />}
+    resource={mapResource}
+  />
+);
 
-  markerEndHover = (key, event) => {
-    event.map.getCanvas().style.cursor = '';
-    this.setState({
-      hoveredItem: '',
-    });
-  };
-
-  render() {
-    return (
-      <Map
-        googleMapURL={googleMapURL}
-        containerElement={<div style={{ height: '100%' }} />}
-        mapElement={<div style={{ height: '100%' }} />}
-        loadingElement={<div style={{ height: '100%' }} />}
-        resource={this.props.mapResource}
-      />
-    );
-  }
-}
+OrganizationMap.propTypes = {
+  mapResource: PropTypes.object.isRequired,
+};
 
 function mapStateToProps(state) {
   const currentResource = state.savedResource.length > 0 ? state.savedResource : state.resource;

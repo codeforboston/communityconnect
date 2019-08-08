@@ -4,7 +4,7 @@ import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router';
 import qs from 'qs-lite';
 import isUrl from 'is-url';
-import { getDistance } from '../../utils/distance.js';
+import getDistance from '../../utils/distance.js';
 import * as resourceAction from '../../action/resourceDataAction';
 
 import {

@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import OrganizationCard from '../Common/OrganizationCard';
-import { SortBar } from '../Common/SortBar.js';
-import { getDistance } from '../../utils/distance.js';
+import { SortBar } from '../Common/SortBar';
+import getDistance from '../../utils/distance';
 import * as resourceAction from '../../action/resourceDataAction';
 
-export class ResultList extends Component {
+class ResultList extends Component {
+  static propTypes = {
+    currentPos: PropTypes.object.isRequired,
+    savedResource: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired,
+    saveItem: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -39,7 +47,7 @@ export class ResultList extends Component {
   handleSortChange = (newSort) => {
     if (this.state.dataSort !== newSort) {
       this.setState({
-      // Set the dataSort variable to whichever sort function is chosen
+        // Set the dataSort variable to whichever sort function is chosen
         dataSort: newSort,
       });
     }
@@ -78,7 +86,7 @@ export class ResultList extends Component {
           sortOptions={sortOptions}
         />
         <div className="results" ref={this.listRef}>
-          {sortedData.map((resource, index) => (
+          {sortedData.map(resource => (
             <OrganizationCard
               key={resource.id}
               ref={resource.id}
@@ -95,7 +103,7 @@ export class ResultList extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     savedResource:
       state.savedResource.length > 0 ? state.savedResource : state.resource,
