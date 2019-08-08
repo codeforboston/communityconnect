@@ -1,5 +1,4 @@
 import React from 'react';
-import AppContainer from './AppContainer';
 import {
   render,
   fireEvent,
@@ -12,6 +11,7 @@ import { createStore } from 'redux';
 import { MemoryRouter } from 'react-router';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import AppContainer from './AppContainer';
 
 Enzyme.configure({ adapter: new Adapter() });
 

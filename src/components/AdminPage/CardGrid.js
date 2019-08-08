@@ -16,8 +16,8 @@ export class CardGrid extends Component {
 
   getCloserResource = (a, b) => {
     if (
-      getDistance(a, this.props.currentPos) >
-      getDistance(b, this.props.currentPos)
+      getDistance(a, this.props.currentPos)
+      > getDistance(b, this.props.currentPos)
     ) {
       return 1;
     }
@@ -27,24 +27,21 @@ export class CardGrid extends Component {
 
   getCloserName = (a, b) => {
     if (a.name > b.name) return 1;
-    else if (a.name < b.name) return -1;
-    else return 0;
+    if (a.name < b.name) return -1;
+    return 0;
   };
 
-  sortByAlphabet = () => {
-    return this.props.resource.slice().sort(this.getCloserName);
-  };
+  sortByAlphabet = () => this.props.resource.slice().sort(this.getCloserName);
 
-  sortByDistance = () => {
-    return this.props.resource.slice().sort(this.getCloserResource);
-  };
+  sortByDistance = () => this.props.resource.slice().sort(this.getCloserResource);
 
-  handleSortChange = newSort => {
-    if (this.state.dataSort !== newSort)
+  handleSortChange = (newSort) => {
+    if (this.state.dataSort !== newSort) {
       this.setState({
-        // Set the dataSort variable to whichever sort function is chosen
+      // Set the dataSort variable to whichever sort function is chosen
         dataSort: newSort,
       });
+    }
   };
 
   render() {
@@ -80,7 +77,7 @@ export class CardGrid extends Component {
               organization={resource}
               currentPos={this.props.currentPos}
               saveItem={() => this.props.saveItem(resource)}
-              saveable={true}
+              saveable
             />
           ))}
         </div>

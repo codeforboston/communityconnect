@@ -5,25 +5,23 @@ import { bindActionCreators } from 'redux';
 import * as resourceAction from '../../action/resourceDataAction';
 
 export class SearchBar extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       searchString: '',
     };
   }
 
-  handleFilter = e => {
+  handleFilter = (e) => {
     this.setState({ searchString: e.target.value });
-    const searchedResource = this.props.resource.filter(function (i) {
-      return i.name.toLowerCase().match(e.target.value.toLowerCase());
-    });
+    const searchedResource = this.props.resource.filter(i => i.name.toLowerCase().match(e.target.value.toLowerCase()));
 
     this.props.actions.filterBySearch(
       e.target.value.length > 0 ? searchedResource : this.props.resource,
     );
   };
 
-  render () {
+  render() {
     return (
       <input
         className="search-bar-input"
@@ -36,7 +34,7 @@ export class SearchBar extends Component {
   }
 }
 
-function mapStateToProps (state, ownProps) {
+function mapStateToProps(state, ownProps) {
   return {
     resource:
       state.filteredResource.length > 0
@@ -44,7 +42,7 @@ function mapStateToProps (state, ownProps) {
         : state.resource,
   };
 }
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(resourceAction, dispatch),
   };

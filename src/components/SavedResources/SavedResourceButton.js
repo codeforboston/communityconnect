@@ -4,7 +4,7 @@ import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
 
-export const SavedResourceButton = props => {
+export const SavedResourceButton = (props) => {
   const { onClick } = props;
   const buttonIcon = faMinus;
   const buttonClassName = cx('saved-resource-card-button', {

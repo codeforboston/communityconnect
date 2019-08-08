@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router';
 import qs from 'qs-lite';
+import isUrl from 'is-url';
 import { getDistance } from '../../utils/distance.js';
 import * as resourceAction from '../../action/resourceDataAction';
-import isUrl from 'is-url';
 
 import {
   OrganizationCardBody,
@@ -99,7 +99,8 @@ class OrganizationCard extends Component {
     } = this.props.organization;
 
     const websiteUrl = isUrl(website) ? website : '';
-    let distance, directionUrl, encodedCoordinates;
+    let distance; let directionUrl; let
+      encodedCoordinates;
 
     if (this.props.currentPos && this.props.organization.coordinates) {
       distance = getDistance(
@@ -108,10 +109,9 @@ class OrganizationCard extends Component {
       );
     }
 
-    encodedCoordinates = encodeURIComponent(latitude + ',' + longitude);
-    directionUrl =
-      'https://www.google.com/maps?saddr=My+Location&daddr=' +
-      encodedCoordinates;
+    encodedCoordinates = encodeURIComponent(`${latitude},${longitude}`);
+    directionUrl = `https://www.google.com/maps?saddr=My+Location&daddr=${
+      encodedCoordinates}`;
 
     return (
       <div className="organization-card" id={this.props.index}>

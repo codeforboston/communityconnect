@@ -1,7 +1,7 @@
 
 export const getDistance = (targetLocation, myLocation) => {
   // return undefined if we are missing either coordinate
-  if(!targetLocation.coordinates || !myLocation.coordinates) {
+  if (!targetLocation.coordinates || !myLocation.coordinates) {
     return;
   }
 
@@ -15,11 +15,11 @@ export const getDistance = (targetLocation, myLocation) => {
   const latMyLocation = degreesToRadians(myLocation.coordinates.lat);
 
   // calculate changes in latitude and longitude
-  const changeInLat  = degreesToRadians(myLocation.coordinates.lat - targetLocation.coordinates.lat);
-  const changeInLong =  degreesToRadians(myLocation.coordinates.lng - targetLocation.coordinates.lng);
+  const changeInLat = degreesToRadians(myLocation.coordinates.lat - targetLocation.coordinates.lat);
+  const changeInLong = degreesToRadians(myLocation.coordinates.lng - targetLocation.coordinates.lng);
 
   // a is the square of half the chord length between the points
-  const a = Math.pow(Math.sin(changeInLat/2), 2) + Math.cos(latTargetLocation) * Math.cos(latMyLocation) * Math.pow(Math.sin(changeInLong/2), 2);
+  const a = Math.pow(Math.sin(changeInLat / 2), 2) + Math.cos(latTargetLocation) * Math.cos(latMyLocation) * Math.pow(Math.sin(changeInLong / 2), 2);
 
   // c is angular distance in radians
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
@@ -30,7 +30,7 @@ export const getDistance = (targetLocation, myLocation) => {
   const metersToMiles = meters => meters / NUM_METERS_IN_ONE_MILE;
 
   // convert meters to miles and set to two decimal points
-  let distanceInMiles = +(metersToMiles(distanceInMeters)).toFixed(2);
+  const distanceInMiles = +(metersToMiles(distanceInMeters)).toFixed(2);
 
   return distanceInMiles;
-}
+};

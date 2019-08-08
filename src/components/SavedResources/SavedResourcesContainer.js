@@ -25,10 +25,11 @@ class SavedResourcesContainer extends Component {
     this.onDragEnd = this.onDragEnd.bind(this);
   }
 
-  //Using deprecated function necessary to update data with store's data
+  // Using deprecated function necessary to update data with store's data
   componentWillReceiveProps(nextProps) {
     this.setState({ data: Object.assign([], nextProps.data) });
   }
+
   onDragEnd(result) {
     // dropped outside the list
     if (!result.destination) {
@@ -49,6 +50,7 @@ class SavedResourcesContainer extends Component {
       data: newSavedResources,
     });
   };
+
   render() {
     // Render will be called every time this.props.data is updated, and every time handleSortChange
     // updates the this.state.dataSort variable.

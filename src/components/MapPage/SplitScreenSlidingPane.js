@@ -6,7 +6,7 @@ export class SplitScreenSlidingPane extends Component {
     isOpen: true,
   };
 
-  toggle = e => {
+  toggle = (e) => {
     e.preventDefault();
 
     this.setState({
@@ -14,7 +14,7 @@ export class SplitScreenSlidingPane extends Component {
     });
   };
 
-  render () {
+  render() {
     const slidingPaneClassNames = cx('sliding-pane', {
       open: this.state.isOpen,
     });

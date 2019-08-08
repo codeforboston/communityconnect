@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
+import cx from 'classnames';
 import ResultList from './ResultList';
 import OrganizationMap from './OrganizationMap';
 import { SplitScreenSlidingPane } from './SplitScreenSlidingPane';
-import cx from 'classnames';
 
 class MapPage extends Component {
   render() {
@@ -12,12 +12,12 @@ class MapPage extends Component {
       <div className={mapClassName}>
         <SplitScreenSlidingPane>
           <ResultList
-            ref={instance => {
+            ref={(instance) => {
               this.resultListItem = instance;
             }}
             cardClick={this.cardClick}
             currentPos={this.props.currentPosition}
-            fullWidth={true}
+            fullWidth
           />
         </SplitScreenSlidingPane>
         <div className="static-pane">

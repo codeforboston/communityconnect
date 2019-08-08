@@ -14,14 +14,14 @@ export class OrganizationMarker extends Component {
       this.setState({ open: this.props.open });
     }
   }
-  //scrollToElement  and handleClickOfInfoWindow is currently non-functional
+  // scrollToElement  and handleClickOfInfoWindow is currently non-functional
 
-  scrollToElement = e => {
+  scrollToElement = (e) => {
     this.setState({ open: true });
   };
 
-  handleClickOfInfoWindow = e => {
-    var element = document.getElementById(e.currentTarget.id);
+  handleClickOfInfoWindow = (e) => {
+    const element = document.getElementById(e.currentTarget.id);
     element.scrollIntoView();
   };
 
@@ -30,7 +30,7 @@ export class OrganizationMarker extends Component {
   };
 
   render() {
-    let { resource } = this.props;
+    const { resource } = this.props;
     return (
       <Marker
         optimize={false}
