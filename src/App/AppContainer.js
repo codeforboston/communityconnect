@@ -51,7 +51,7 @@ class AppContainer extends Component {
     const resourcePath = this.props.match.params.resource;
     let resourceSheetId = null;
 
-    getAllSites.then(sites => {
+    getAllSites.then((sites) => {
       resourceSheetId = sheetIdFromPath(sites, resourcePath) || envSheetId;
 
       if (resourceSheetId == null) {
@@ -73,7 +73,7 @@ class AppContainer extends Component {
   getLocation = () => {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(
-        position => {
+        (position) => {
           this.setState({
             position: {
               coordinates: {
@@ -83,7 +83,7 @@ class AppContainer extends Component {
             }
           });
         },
-        error => {
+        (error) => {
           console.log(error);
         }
       );
@@ -114,7 +114,7 @@ class AppContainer extends Component {
     }
 
     if (isFetchingResource) {
-      return <Loading />;
+      return <Loading toggleSavedResourcesPane={this.toggleSavedResourcesPane} />;
     }
 
 
