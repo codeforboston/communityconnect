@@ -25,7 +25,6 @@
     "lodash": "^4.17.15",
     "mapbox-gl": "^0.45.0-beta.1",
     "node-sass": "^4.12.0",
-    "npm": "^6.4.1",
     "popper.js": "^1.14.7",
     "prop-types": "^15.7.2",
     "qs-lite": "^0.0.1",
@@ -39,8 +38,8 @@
     "react-mapbox-gl": "^3.8.0",
     "react-read-more-less": "^0.1.6",
     "react-redux": "^5.0.7",
-    "react-router": "latest",
-    "react-router-dom": "^4.3.1",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
     "react-testing-library": "^6.1.2",
     "reactstrap": "^5.0.0",
     "redux": "^4.0.4",
@@ -58,7 +57,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
     "jest-emotion": "^10.0.10",
-    "react-scripts": "2.0.0-next.66cc7a90"
+    "react-scripts": "3.0.1"
   },
   "browserslist": {
     "development": [
