@@ -95,7 +95,6 @@ class SavedResourcesContainer extends Component {
                           >
                             <SavedResource
                               key={item.id}
-                              ref={item.id}
                               organization={item}
                               currentPos={this.props.currentPos}
                               removeItem={() => this.props.removeItem(item)}
