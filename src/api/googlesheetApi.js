@@ -2,7 +2,6 @@
 import Tabletop from "tabletop";
 
 function normalizeHeaders(element) {
-  element.name = element.name;
   if (element.serviceprovided) {
     element.tags = String(element.serviceprovided).split(", ");
   }
@@ -19,8 +18,6 @@ function normalizeHeaders(element) {
 
   if (element.categoryautosortscript) {
     element.categories = element.categoryautosortscript;
-  } else {
-    element.categories = element.categories;
   }
 
   if (element.city || element.address || element.state || element.zipcode) {

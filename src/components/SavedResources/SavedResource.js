@@ -24,7 +24,11 @@ class SavedResource extends Component {
     savedResource: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
-    currentPos: PropTypes.object.isRequired
+    currentPos: PropTypes.object
+  };
+
+  static defaultProps = {
+    currentPos: null
   };
 
   constructor(props) {

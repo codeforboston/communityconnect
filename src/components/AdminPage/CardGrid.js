@@ -10,8 +10,13 @@ class CardGrid extends Component {
   static propTypes = {
     currentPos: PropTypes.object.isRequired,
     resource: PropTypes.array.isRequired,
-    handleFilter: PropTypes.func.isRequired,
-    saveItem: PropTypes.func.isRequired
+    handleFilter: PropTypes.func,
+    saveItem: PropTypes.func
+  };
+
+  static defaultProps = {
+    handleFilter: null,
+    saveItem: null
   };
 
   constructor(props) {
