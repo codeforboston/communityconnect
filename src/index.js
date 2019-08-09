@@ -1,19 +1,19 @@
-import React from 'react';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { Route, Switch, Redirect } from 'react-router';
-import configureStore from './store/configureStore';
-import AppContainer from './App/AppContainer';
-import NotFoundPage from './components/NotFoundPage/NotFoundPage';
-import registerServiceWorker from './registerServiceWorker';
+import React from "react";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { Route, Switch, Redirect } from "react-router";
+import configureStore from "./store/configureStore";
+import AppContainer from "./App/AppContainer";
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
+import registerServiceWorker from "./registerServiceWorker";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import './css/index.scss';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "mapbox-gl/dist/mapbox-gl.css";
+import "./css/index.scss";
 
 library.add(fab, fas);
 

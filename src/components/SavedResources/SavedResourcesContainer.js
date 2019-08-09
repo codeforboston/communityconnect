@@ -1,32 +1,37 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import PropTypes from 'prop-types';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import PropTypes from "prop-types";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 // import styles from './SavedResourcesContainer.module.css';
-import SavedResource from './SavedResource';
+import SavedResource from "./SavedResource";
 
 const getItemStyle = (_, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
-  userSelect: 'none',
+  userSelect: "none",
 
   // change background colour if dragging
 
   // styles we need to apply on draggables
-  ...draggableStyle,
+  ...draggableStyle
 });
 
 class SavedResourcesContainer extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
-    currentPos: PropTypes.object.isRequired,
-    removeItem: PropTypes.func.isRequired,
+    currentPos: PropTypes.object,
+    removeItem: PropTypes.func
+  };
+
+  static defaultProps = {
+    currentPos: null,
+    removeItem: null
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      data: Object.assign([], this.props.data),
+      data: Object.assign([], this.props.data)
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -47,13 +52,12 @@ class SavedResourcesContainer extends Component {
 
   orderResources = (sourceIndex, destinationIndex) => {
     const newSavedResources = this.props.data.slice();
-
     const movedResource = newSavedResources[sourceIndex];
     newSavedResources.splice(sourceIndex, 1);
     newSavedResources.splice(destinationIndex, 0, movedResource);
 
     this.setState({
-      data: newSavedResources,
+      data: newSavedResources
     });
   };
 
@@ -64,6 +68,7 @@ class SavedResourcesContainer extends Component {
     // source of data
 
     const { data } = this.state;
+
     return (
       <div>
         <div className="saved-resources-container">
@@ -85,7 +90,7 @@ class SavedResourcesContainer extends Component {
                             {...provided2.dragHandleProps}
                             style={getItemStyle(
                               snapshot.isDragging,
-                              provided2.draggableProps.style,
+                              provided2.draggableProps.style
                             )}
                           >
                             <SavedResource
@@ -101,7 +106,7 @@ class SavedResourcesContainer extends Component {
                     ))
                   ) : (
                     <span className="text-light">
-                        There are no resources added to the cart
+                      There are no resources added to the cart
                     </span>
                   )}
                   {provided.placeholder}
@@ -117,7 +122,7 @@ class SavedResourcesContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    data: state.savedResource,
+    data: state.savedResource
   };
 }
 

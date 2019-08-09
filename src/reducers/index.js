@@ -1,8 +1,6 @@
-import { combineReducers } from 'redux';
-import * as resources from './resourceReducer';
+import { combineReducers } from "redux";
+import * as resources from "./resourceReducer";
 
-const rootReducer = combineReducers(
-  resources,
-);
+const rootReducer = combineReducers(resources);
 
 export default rootReducer;

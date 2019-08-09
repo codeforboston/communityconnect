@@ -12,11 +12,11 @@ import church from '../../images/icons/church.png'
 import youth from '../../images/icons/youth.png'
 import couple from '../../images/icons/couple.png'
 
-export class OrganizationMarker extends Component {
+class OrganizationMarker extends Component {
   static propTypes = {
     open: PropTypes.bool.isRequired,
-    resource: PropTypes.object.isRequired,
-  }
+    resource: PropTypes.object.isRequired
+  };
 
   constructor(props) {
     super(props);
@@ -35,13 +35,13 @@ export class OrganizationMarker extends Component {
   // scrollToElement  and handleClickOfInfoWindow is currently non-functional
   updateOpen = () => {
     this.setState({ open: this.props.open });
-  }
+  };
 
   scrollToElement = () => {
     this.setState({ open: true });
   };
 
-  handleClickOfInfoWindow = (e) => {
+  handleClickOfInfoWindow = e => {
     const element = document.getElementById(e.currentTarget.id);
     element.scrollIntoView();
   };

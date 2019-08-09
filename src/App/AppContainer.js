@@ -25,14 +25,16 @@ const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 // const revereSheetId = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
 
 function sheetIdFromPath(directory, path) {
-  for (let i = 0; i < directory.length; i++) {
-    if (directory[i].path === path) {
-      return directory[i].sheetId;
-    }
-  }
+  return directory.find(x => x.path === path).sheetId;
 }
 
 class AppContainer extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    match: PropTypes.object.isRequired,
+    isFetchingResource: PropTypes.bool.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -51,7 +53,7 @@ class AppContainer extends Component {
     const resourcePath = this.props.match.params.resource;
     let resourceSheetId = null;
 
-    getAllSites.then((sites) => {
+    getAllSites.then(sites => {
       resourceSheetId = sheetIdFromPath(sites, resourcePath) || envSheetId;
 
       if (resourceSheetId == null) {
@@ -73,7 +75,7 @@ class AppContainer extends Component {
   getLocation = () => {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(
-        (position) => {
+        position => {
           this.setState({
             position: {
               coordinates: {
@@ -83,7 +85,7 @@ class AppContainer extends Component {
             }
           });
         },
-        (error) => {
+        error => {
           console.log(error);
         }
       );
@@ -113,8 +115,10 @@ class AppContainer extends Component {
       return <NotFoundPage />;
     }
 
-    if (isFetchingResource) {
-      return <Loading toggleSavedResourcesPane={this.toggleSavedResourcesPane} />;
+    if (this.props.isFetchingResource) {
+      return (
+        <Loading toggleSavedResourcesPane={this.toggleSavedResourcesPane} />
+      );
     }
 
 
@@ -164,6 +168,7 @@ class AppContainer extends Component {
 
 function mapStateToProps(state) {
   const { isFetchingResource } = state;
+
   return { isFetchingResource };
 }
 export default connect(mapStateToProps)(AppContainer);

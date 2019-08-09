@@ -1,15 +1,16 @@
-import React from 'react';
-import { Button } from 'reactstrap';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import cx from 'classnames';
+import React from "react";
+import PropTypes from "prop-types";
+import { Button } from "reactstrap";
+import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import cx from "classnames";
 
-export const OrganizationCardSaveButton = (props) => {
-  const { saveExist, onClick } = props;
+const OrganizationCardSaveButton = ({ saveExist, onClick }) => {
   const buttonIcon = saveExist ? faMinus : faPlus;
-  const buttonClassName = cx('organization-card-button', {
+
+  const buttonClassName = cx("organization-card-button", {
     plus: !saveExist,
-    minus: saveExist,
+    minus: saveExist
   });
 
   return (
@@ -17,7 +18,7 @@ export const OrganizationCardSaveButton = (props) => {
       <Button
         title="Add item to Saved Resources"
         aria-label="Add item to Saved Resources"
-        color={saveExist ? 'light' : 'info'}
+        color={saveExist ? "light" : "info"}
         className={buttonClassName}
         onClick={onClick}
       >
@@ -26,3 +27,9 @@ export const OrganizationCardSaveButton = (props) => {
     </span>
   );
 };
+
+OrganizationCardSaveButton.propTypes = {
+  saveExist: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired
+};
+export default OrganizationCardSaveButton;
