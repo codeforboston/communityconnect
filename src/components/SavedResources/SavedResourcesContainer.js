@@ -33,7 +33,6 @@ class SavedResourcesContainer extends Component {
     this.state = {
       data: Object.assign([], this.props.data)
     };
-    this.onDragEnd = this.onDragEnd.bind(this);
   }
 
   // Using deprecated function necessary to update data with store's data
@@ -41,14 +40,14 @@ class SavedResourcesContainer extends Component {
     this.setState({ data: Object.assign([], nextProps.data) });
   }
 
-  onDragEnd(result) {
+  onDragEnd = result => {
     // dropped outside the list
     if (!result.destination) {
       return;
     }
 
     this.orderResources(result.source.index, result.destination.index);
-  }
+  };
 
   orderResources = (sourceIndex, destinationIndex) => {
     const newSavedResources = this.props.data.slice();
