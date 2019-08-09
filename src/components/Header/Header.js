@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators, compose } from 'redux';
-import cx from 'classnames';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Route, withRouter } from "react-router";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators, compose } from "redux";
+import cx from "classnames";
 
 import {
   Navbar,
@@ -12,24 +13,29 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
-} from 'reactstrap';
-import * as resourceAction from '../../action/resourceDataAction';
+  ModalFooter
+} from "reactstrap";
+import * as resourceAction from "../../action/resourceDataAction";
 
 class Header extends Component {
+  static propTypes = {
+    savedResource: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired,
+    toggleSavedResourcesPane: PropTypes.func.isRequired,
+    match: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props);
 
     this.state = {
       collapsed: true,
-      modal: false,
+      modal: false
     };
   }
 
   toggleNavbar = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
+    this.setState(prevState => ({ collapsed: !prevState.collapsed }));
   };
 
   modalOpen = () => {
@@ -41,9 +47,7 @@ class Header extends Component {
   };
 
   modalToggle = () => {
-    this.setState({
-      modal: !this.state.modal,
-    });
+    this.setState(prevState => ({ modal: !prevState.modal }));
   };
 
   confirmationModalToggle = () => {
@@ -53,8 +57,9 @@ class Header extends Component {
 
   render() {
     const { savedResource, toggleSavedResourcesPane } = this.props;
-    const savedResourceButtonClassNames = cx('saved-resource-button', {
-      'has-selections': savedResource.length,
+
+    const savedResourceButtonClassNames = cx("saved-resource-button", {
+      "has-selections": savedResource.length
     });
 
     return (
@@ -67,12 +72,11 @@ class Header extends Component {
             path="/:resource/admin"
             render={() => (
               <button
+                type="button"
                 className={savedResourceButtonClassNames}
                 onClick={toggleSavedResourcesPane}
               >
-                Saved Resources
-                {' '}
-                {savedResource.length}
+                Saved Resources {savedResource.length}
               </button>
             )}
           />
@@ -86,8 +90,7 @@ class Header extends Component {
           <ModalFooter>
             <Button color="primary" onClick={this.modalToggle}>
               Cancel
-            </Button>
-            {' '}
+            </Button>{" "}
             <Button
               tag={Link}
               color="secondary"
@@ -103,21 +106,21 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
-    savedResource: state.savedResource,
+    savedResource: state.savedResource
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(resourceAction, dispatch),
+    actions: bindActionCreators(resourceAction, dispatch)
   };
 }
 export default compose(
   connect(
     mapStateToProps,
-    mapDispatchToProps,
+    mapDispatchToProps
   ),
-  withRouter,
+  withRouter
 )(Header);

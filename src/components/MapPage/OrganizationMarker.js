@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Marker, InfoWindow } from 'react-google-maps';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Marker, InfoWindow } from "react-google-maps";
 
-export class OrganizationMarker extends Component {
+class OrganizationMarker extends Component {
   static propTypes = {
     open: PropTypes.bool.isRequired,
-    resource: PropTypes.object.isRequired,
-  }
+    resource: PropTypes.object.isRequired
+  };
 
   constructor(props) {
     super(props);
     this.state = {
-      open: this.props.open,
+      open: this.props.open
     };
   }
 
@@ -24,13 +24,13 @@ export class OrganizationMarker extends Component {
   // scrollToElement  and handleClickOfInfoWindow is currently non-functional
   updateOpen = () => {
     this.setState({ open: this.props.open });
-  }
+  };
 
   scrollToElement = () => {
     this.setState({ open: true });
   };
 
-  handleClickOfInfoWindow = (e) => {
+  handleClickOfInfoWindow = e => {
     const element = document.getElementById(e.currentTarget.id);
     element.scrollIntoView();
   };
@@ -41,6 +41,7 @@ export class OrganizationMarker extends Component {
 
   render() {
     const { resource } = this.props;
+
     return (
       <Marker
         optimize={false}

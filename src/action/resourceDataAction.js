@@ -1,18 +1,20 @@
-import * as types from './actionType';
-import { getAllResources } from '../api/googlesheetApi';
+import * as types from "./actionType";
+import getAllResources from "../api/googlesheetApi";
 
 const loadResourceDataStart = () => ({
   type: types.LOAD_RESOURCE_DATA_START,
-  isFetchingResource: true,
+  isFetchingResource: true
 });
+
 const loadResourceDataSuccess = resource => ({
   type: types.LOAD_RESOURCE_DATA_SUCCESS,
   resource,
-  isFetchingResource: false,
+  isFetchingResource: false
 });
+
 const loadResourceDataFailure = error => ({
   type: types.LOAD_RESOURCE_DATA_FAILURE,
-  error,
+  error
 });
 
 export function loadCategories() {
@@ -20,14 +22,15 @@ export function loadCategories() {
 }
 
 export function loadResources(resourcePath) {
-  return function (dispatch) {
+  return dispatch => {
     dispatch(loadResourceDataStart());
+
     return getAllResources(resourcePath)
-      .then((resources) => {
+      .then(resources => {
         // update with call using specific
         dispatch(loadResourceDataSuccess(resources));
       })
-      .catch((error) => {
+      .catch(error => {
         dispatch(loadResourceDataFailure(error));
       });
   };
@@ -48,6 +51,7 @@ export function addSavedResource(savedResource) {
 export function removeSavedResource(savedResourceIndex) {
   return { type: types.REMOVE_SAVED_RESOURCE, savedResourceIndex };
 }
+
 export function clearSavedResource() {
   return { type: types.CLEAR_SAVED_RESOURCE };
 }
