@@ -57,11 +57,13 @@ class OrganizationMarker extends Component {
                   id={resourceData.id}
                   onClick={this.handleClickOfInfoWindow}
                 >
-                  <h3>{resource.name}</h3>
-                  <div>{resource.combinedaddress}</div>
-                  <div>{resource.tags}</div>
+                  <h3>{resourceData.name}</h3>
+                  <div>{resourceData.combinedaddress}</div>
+                  <div>{resourceData.tags}</div>
                   <div>
-                    <a href={`tel:${resource.phone}`}>{resource.phone}</a>
+                    <a href={`tel:${resourceData.phone}`}>
+                      {resourceData.phone}
+                    </a>
                   </div>
                 </div>
               ))}
