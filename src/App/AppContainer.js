@@ -30,7 +30,7 @@ class AppContainer extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
-    isFetchingResource: PropTypes.bool.isRequired
+    isFetchingResource: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -38,7 +38,7 @@ class AppContainer extends Component {
     this.state = {
       position: {},
       displayFeedbackLink: true,
-      isValidPage: true
+      isValidPage: true,
     };
   }
 
@@ -73,9 +73,9 @@ class AppContainer extends Component {
             position: {
               coordinates: {
                 lat: parseFloat(position.coords.latitude),
-                lng: parseFloat(position.coords.longitude)
-              }
-            }
+                lng: parseFloat(position.coords.longitude),
+              },
+            },
           });
         },
         error => {
@@ -87,7 +87,7 @@ class AppContainer extends Component {
 
   toggleSavedResourcesPane = () => {
     this.setState(prevState => ({
-      isSavedResourcePaneOpen: !prevState.isSavedResourcePaneOpen
+      isSavedResourcePaneOpen: !prevState.isSavedResourcePaneOpen,
     }));
   };
 

@@ -22,7 +22,7 @@ const FeedbackContainer = ({ hideFeedbackLink }) => (
 );
 
 FeedbackContainer.propTypes = {
-  hideFeedbackLink: PropTypes.func.isRequired
+  hideFeedbackLink: PropTypes.func.isRequired,
 };
 
 export default FeedbackContainer;

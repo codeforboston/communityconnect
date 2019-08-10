@@ -7,7 +7,7 @@ import SplitScreenSlidingPane from "./SplitScreenSlidingPane";
 
 class MapPage extends Component {
   static propTypes = {
-    currentPosition: PropTypes.object.isRequired
+    currentPosition: PropTypes.object.isRequired,
   };
 
   render() {

@@ -10,7 +10,7 @@ const OrganizationCardSaveButton = ({ saveExist, onClick }) => {
 
   const buttonClassName = cx("organization-card-button", {
     plus: !saveExist,
-    minus: saveExist
+    minus: saveExist,
   });
 
   return (
@@ -30,6 +30,6 @@ const OrganizationCardSaveButton = ({ saveExist, onClick }) => {
 
 OrganizationCardSaveButton.propTypes = {
   saveExist: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 export default OrganizationCardSaveButton;

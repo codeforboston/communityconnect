@@ -8,7 +8,7 @@ const OrganizationCardBody = ({
   location,
   directionUrl,
   phone,
-  url
+  url,
 }) => (
   <div className="organization-card-body">
     <div className="organization-card-body-subtitle">{categories}</div>
@@ -53,7 +53,7 @@ OrganizationCardBody.propTypes = {
   location: PropTypes.string,
   directionUrl: PropTypes.string,
   url: PropTypes.string,
-  phone: PropTypes.string
+  phone: PropTypes.string,
 };
 
 OrganizationCardBody.defaultProps = {
@@ -62,6 +62,6 @@ OrganizationCardBody.defaultProps = {
   location: null,
   directionUrl: null,
   url: null,
-  phone: null
+  phone: null,
 };
 export default OrganizationCardBody;

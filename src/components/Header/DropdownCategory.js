@@ -4,21 +4,21 @@ import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
 } from "reactstrap";
 // import { DropdownCategory } from './HeaderLayout';
 
 class DropdownCategory extends Component {
   static propTypes = {
     categories: PropTypes.array.isRequired,
-    handleEvent: PropTypes.func.isRequired
+    handleEvent: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       dropdownOpen: false,
-      activeItem: []
+      activeItem: [],
     };
   }
 
@@ -30,13 +30,13 @@ class DropdownCategory extends Component {
     this.props.handleEvent(cat, "categories");
     if (index === -1)
       this.setState({
-        activeItem: []
+        activeItem: [],
       });
     const includesIndex = this.state.activeItem.includes(index);
 
     if (includesIndex) {
       return this.setState(prevState => ({
-        activeItem: prevState.activeItem.filter(selected => selected !== index)
+        activeItem: prevState.activeItem.filter(selected => selected !== index),
       }));
     }
 

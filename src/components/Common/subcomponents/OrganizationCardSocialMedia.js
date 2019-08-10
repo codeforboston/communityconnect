@@ -16,12 +16,12 @@ const OrganizationCardSocialMedia = ({ url, icon, title }) =>
 OrganizationCardSocialMedia.propTypes = {
   url: PropTypes.string,
   icon: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 OrganizationCardSocialMedia.defaultProps = {
   url: null,
   icon: null,
-  title: null
+  title: null,
 };
 export default OrganizationCardSocialMedia;

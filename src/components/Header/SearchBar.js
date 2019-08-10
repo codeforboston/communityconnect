@@ -8,13 +8,13 @@ import * as resourceAction from "../../action/resourceDataAction";
 class SearchBar extends Component {
   static propTypes = {
     resource: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      searchString: ""
+      searchString: "",
     };
   }
 
@@ -47,13 +47,13 @@ function mapStateToProps(state) {
     resource:
       state.filteredResource.length > 0
         ? state.filteredResource
-        : state.resource
+        : state.resource,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(resourceAction, dispatch)
+    actions: bindActionCreators(resourceAction, dispatch),
   };
 }
 

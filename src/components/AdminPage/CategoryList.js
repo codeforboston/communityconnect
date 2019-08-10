@@ -9,13 +9,13 @@ class CategoryList extends Component {
   static propTypes = {
     resource: PropTypes.array.isRequired,
     categories: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      selectedCategory: []
+      selectedCategory: [],
     };
   }
 
@@ -66,13 +66,13 @@ class CategoryList extends Component {
 function mapStateToProps(state) {
   return {
     categories: state.categories,
-    resource: state.resource
+    resource: state.resource,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(resourceAction, dispatch)
+    actions: bindActionCreators(resourceAction, dispatch),
   };
 }
 

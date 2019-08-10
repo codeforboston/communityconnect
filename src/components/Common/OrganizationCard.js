@@ -12,7 +12,7 @@ import {
   OrganizationCardBody,
   OrganizationCardOverview,
   OrganizationCardSocialMedia,
-  OrganizationCardSaveButton
+  OrganizationCardSaveButton,
 } from "./subcomponents";
 
 class OrganizationCard extends Component {
@@ -23,11 +23,11 @@ class OrganizationCard extends Component {
     savedResource: PropTypes.array.isRequired,
     currentPos: PropTypes.object.isRequired,
     saveable: PropTypes.bool,
-    index: PropTypes.string.isRequired
+    index: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
-    saveable: null
+    saveable: null,
   };
 
   constructor(props) {
@@ -61,7 +61,7 @@ class OrganizationCard extends Component {
 
     this.props.history.push({
       pathname: window.location.pathname,
-      search: `?resources=${resources.join(",")}`
+      search: `?resources=${resources.join(",")}`,
     });
   };
 
@@ -88,7 +88,7 @@ class OrganizationCard extends Component {
 
     this.props.history.push({
       pathname: window.location.pathname,
-      search: `?resources=${resources.join(",")}`
+      search: `?resources=${resources.join(",")}`,
     });
   };
 
@@ -113,7 +113,7 @@ class OrganizationCard extends Component {
       twitterUrl,
       phone,
       latitude,
-      longitude
+      longitude,
     } = this.props.organization;
 
     const websiteUrl = isUrl(website) ? website : "";
@@ -172,13 +172,13 @@ class OrganizationCard extends Component {
 
 function mapStateToProps(state) {
   return {
-    savedResource: state.savedResource
+    savedResource: state.savedResource,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(resourceAction, dispatch)
+    actions: bindActionCreators(resourceAction, dispatch),
   };
 }
 

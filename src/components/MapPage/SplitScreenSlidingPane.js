@@ -6,11 +6,11 @@ import cx from "classnames";
 
 class SplitScreenSlidingPane extends Component {
   static propTypes = {
-    children: PropTypes.element.isRequired
+    children: PropTypes.element.isRequired,
   };
 
   state = {
-    isOpen: true
+    isOpen: true,
   };
 
   toggle = e => {
@@ -21,7 +21,7 @@ class SplitScreenSlidingPane extends Component {
 
   render() {
     const slidingPaneClassNames = cx("sliding-pane", {
-      open: this.state.isOpen
+      open: this.state.isOpen,
     });
 
     return (

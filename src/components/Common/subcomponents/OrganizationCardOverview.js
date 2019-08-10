@@ -17,10 +17,10 @@ const OrganizationCardOverview = ({ overview }) =>
   ) : null;
 
 OrganizationCardOverview.propTypes = {
-  overview: PropTypes.string
+  overview: PropTypes.string,
 };
 
 OrganizationCardOverview.defaultProps = {
-  overview: null
+  overview: null,
 };
 export default OrganizationCardOverview;

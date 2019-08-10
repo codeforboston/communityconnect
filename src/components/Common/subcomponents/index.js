@@ -1,10 +1,10 @@
 export { default as OrganizationCardBody } from "./OrganizationCardBody";
 export {
-  default as OrganizationCardOverview
+  default as OrganizationCardOverview,
 } from "./OrganizationCardOverview";
 export {
-  default as OrganizationCardSocialMedia
+  default as OrganizationCardSocialMedia,
 } from "./OrganizationCardSocialMedia";
 export {
-  default as OrganizationCardSaveButton
+  default as OrganizationCardSaveButton,
 } from "./OrganizationCardSaveButton";

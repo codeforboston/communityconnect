@@ -11,7 +11,7 @@ import {
   CardBody,
   CardSubtitle,
   ModalHeader,
-  ModalBody
+  ModalBody,
 } from "reactstrap";
 import getDistance from "../../utils/distance";
 import * as resourceAction from "../../action/resourceDataAction";
@@ -24,17 +24,17 @@ class SavedResource extends Component {
     savedResource: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
-    currentPos: PropTypes.object
+    currentPos: PropTypes.object,
   };
 
   static defaultProps = {
-    currentPos: null
+    currentPos: null,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
     };
   }
 
@@ -67,7 +67,7 @@ class SavedResource extends Component {
 
     this.props.history.push({
       pathname: window.location.pathname,
-      search: `?resources=${resources.join(",")}`
+      search: `?resources=${resources.join(",")}`,
     });
     this.removeItem();
   };
@@ -83,7 +83,7 @@ class SavedResource extends Component {
       facebookUrl,
       instagramUrl,
       twitterUrl,
-      phone
+      phone,
     } = this.props.organization;
 
     let distance;
@@ -204,7 +204,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(resourceAction, dispatch)
+    actions: bindActionCreators(resourceAction, dispatch),
   };
 }
 

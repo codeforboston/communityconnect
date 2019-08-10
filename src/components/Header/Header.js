@@ -13,7 +13,7 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
 } from "reactstrap";
 import * as resourceAction from "../../action/resourceDataAction";
 
@@ -22,7 +22,7 @@ class Header extends Component {
     savedResource: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
     toggleSavedResourcesPane: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -30,7 +30,7 @@ class Header extends Component {
 
     this.state = {
       collapsed: true,
-      modal: false
+      modal: false,
     };
   }
 
@@ -59,7 +59,7 @@ class Header extends Component {
     const { savedResource, toggleSavedResourcesPane } = this.props;
 
     const savedResourceButtonClassNames = cx("saved-resource-button", {
-      "has-selections": savedResource.length
+      "has-selections": savedResource.length,
     });
 
     return (
@@ -108,13 +108,13 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    savedResource: state.savedResource
+    savedResource: state.savedResource,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(resourceAction, dispatch)
+    actions: bindActionCreators(resourceAction, dispatch),
   };
 }
 export default compose(

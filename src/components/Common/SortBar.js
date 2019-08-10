@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 class SortBar extends React.Component {
   static propTypes = {
     sortOptions: PropTypes.array.isRequired,
-    onSortChange: PropTypes.func.isRequired
+    onSortChange: PropTypes.func.isRequired,
   };
 
   handleClick = e => {
