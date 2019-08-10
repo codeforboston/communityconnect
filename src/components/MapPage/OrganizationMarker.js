@@ -1,7 +1,13 @@
-import React, { Component } from 'react';
-import { Marker, InfoWindow } from 'react-google-maps';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Marker, InfoWindow } from "react-google-maps";
 
-export class OrganizationMarker extends Component {
+class OrganizationMarker extends Component {
+  static propTypes = {
+    open: PropTypes.bool.isRequired,
+    resource: PropTypes.object.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -11,17 +17,21 @@ export class OrganizationMarker extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.open !== this.props.open) {
-      this.setState({ open: this.props.open });
+      this.updateOpen();
     }
   }
-  //scrollToElement  and handleClickOfInfoWindow is currently non-functional
 
-  scrollToElement = e => {
+  // scrollToElement  and handleClickOfInfoWindow is currently non-functional
+  updateOpen = () => {
+    this.setState({ open: this.props.open });
+  };
+
+  scrollToElement = () => {
     this.setState({ open: true });
   };
 
   handleClickOfInfoWindow = e => {
-    var element = document.getElementById(e.currentTarget.id);
+    const element = document.getElementById(e.currentTarget.id);
     element.scrollIntoView();
   };
 
@@ -30,7 +40,8 @@ export class OrganizationMarker extends Component {
   };
 
   render() {
-    let { resource } = this.props;
+    const { resource } = this.props;
+
     return (
       <Marker
         optimize={false}
@@ -40,17 +51,19 @@ export class OrganizationMarker extends Component {
         {this.state.open && (
           <InfoWindow onCloseClick={this.handleClose}>
             <div>
-              {resource.groupedResource.map(resource => (
+              {resource.groupedResource.map(resourceData => (
                 <div
-                  key={resource.id}
-                  id={resource.id}
+                  key={resourceData.id}
+                  id={resourceData.id}
                   onClick={this.handleClickOfInfoWindow}
                 >
-                  <h3>{resource.name}</h3>
-                  <div>{resource.combinedaddress}</div>
-                  <div>{resource.tags}</div>
+                  <h3>{resourceData.name}</h3>
+                  <div>{resourceData.combinedaddress}</div>
+                  <div>{resourceData.tags}</div>
                   <div>
-                    <a href={`tel:${resource.phone}`}>{resource.phone}</a>
+                    <a href={`tel:${resourceData.phone}`}>
+                      {resourceData.phone}
+                    </a>
                   </div>
                 </div>
               ))}

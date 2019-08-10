@@ -1,30 +1,33 @@
-import * as types from './actionType';
-import { getAllResources } from '../api/googlesheetApi';
+import * as types from "./actionType";
+import getAllResources from "../api/googlesheetApi";
 
 const loadResourceDataStart = () => ({
   type: types.LOAD_RESOURCE_DATA_START,
   isFetchingResource: true,
 });
+
 const loadResourceDataSuccess = resource => ({
   type: types.LOAD_RESOURCE_DATA_SUCCESS,
   resource,
   isFetchingResource: false,
 });
+
 const loadResourceDataFailure = error => ({
   type: types.LOAD_RESOURCE_DATA_FAILURE,
   error,
 });
 
-export function loadCategories () {
+export function loadCategories() {
   return { type: types.LOAD_CATEGORIES };
 }
 
-export function loadResources (resourcePath) {
-  return function (dispatch) {
+export function loadResources(resourcePath) {
+  return dispatch => {
     dispatch(loadResourceDataStart());
+
     return getAllResources(resourcePath)
       .then(resources => {
-        //update with call using specific
+        // update with call using specific
         dispatch(loadResourceDataSuccess(resources));
       })
       .catch(error => {
@@ -33,21 +36,22 @@ export function loadResources (resourcePath) {
   };
 }
 
-export function filterByCategories (filteredResource) {
+export function filterByCategories(filteredResource) {
   return { type: types.FILTER_RESOURCE_BY_CATEGORIES, filteredResource };
 }
 
-export function filterBySearch (searchedResource) {
+export function filterBySearch(searchedResource) {
   return { type: types.FILTER_RESOURCE_BY_SEARCH, searchedResource };
 }
 
-export function addSavedResource (savedResource) {
+export function addSavedResource(savedResource) {
   return { type: types.ADD_SAVED_RESOURCE, savedResource };
 }
 
-export function removeSavedResource (savedResourceIndex) {
+export function removeSavedResource(savedResourceIndex) {
   return { type: types.REMOVE_SAVED_RESOURCE, savedResourceIndex };
 }
-export function clearSavedResource () {
+
+export function clearSavedResource() {
   return { type: types.CLEAR_SAVED_RESOURCE };
 }

@@ -1,46 +1,49 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from 'reactstrap';
-import { DropdownCategory } from './HeaderLayout';
+} from "reactstrap";
+// import { DropdownCategory } from './HeaderLayout';
 
 class DropdownCategory extends Component {
-  constructor (props) {
+  static propTypes = {
+    categories: PropTypes.array.isRequired,
+    handleEvent: PropTypes.func.isRequired,
+  };
+
+  constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
-      value: 'Categories',
       activeItem: [],
     };
   }
 
-  toggle () {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen,
-    });
-  }
+  toggle = () => {
+    this.setState(prevState => ({ dropdownOpen: !prevState.dropdownOpen }));
+  };
 
-  handleClick (cat, index) {
-    this.props.handleEvent(cat, 'categories');
+  handleClick = (cat, index) => {
+    this.props.handleEvent(cat, "categories");
     if (index === -1)
       this.setState({
         activeItem: [],
       });
-    this.state.activeItem.includes(index)
-      ? this.setState({
-        activeItem: this.state.activeItem.filter(
-          selected => selected !== index,
-        ),
-      })
-      : this.state.activeItem.push(index);
-  }
+    const includesIndex = this.state.activeItem.includes(index);
 
-  categoryMenuItems () {
+    if (includesIndex) {
+      return this.setState(prevState => ({
+        activeItem: prevState.activeItem.filter(selected => selected !== index),
+      }));
+    }
+
+    return this.state.activeItem.push(index);
+  };
+
+  categoryMenuItems() {
     return this.props.categories.map((cat, index) => (
       <DropdownItem
         toggle={false}
@@ -56,7 +59,7 @@ class DropdownCategory extends Component {
     ));
   }
 
-  render () {
+  render() {
     return (
       <div>
         <Dropdown
@@ -69,8 +72,8 @@ class DropdownCategory extends Component {
           </DropdownToggle>
           <DropdownMenu right>
             <DropdownItem
-              onClick={() => this.handleClick('Clear', -1)}
-              key={'Clear'}
+              onClick={() => this.handleClick("Clear", -1)}
+              key="Clear"
             >
               Clear
             </DropdownItem>
