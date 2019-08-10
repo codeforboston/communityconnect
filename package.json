@@ -9,7 +9,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
-    "lint": "eslint \"src/**/*.js\""
+    "lint": "eslint \"src/**/*.{js,jsx}\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
@@ -58,9 +58,22 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "3.1.0",
     "eslint-plugin-react": "^7.14.2",
+    "husky": "3.0.3",
     "jest-emotion": "^10.0.10",
+    "lint-staged": "9.2.1",
     "prettier": "1.18.2",
     "react-scripts": "3.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "browserslist": {
     "development": [
