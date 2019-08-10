@@ -32,7 +32,7 @@ const ToShareButton = ({ resourcePath }) => {
 };
 
 ToShareButton.propTypes = {
-  resourcePath: PropTypes.string.isRequired
+  resourcePath: PropTypes.string.isRequired,
 };
 
 const SavedResourcePanel = () => (

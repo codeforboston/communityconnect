@@ -12,18 +12,18 @@ class ResultList extends Component {
     currentPos: PropTypes.object.isRequired,
     savedResource: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
-    saveItem: PropTypes.func
+    saveItem: PropTypes.func,
   };
 
   static defaultProps = {
-    saveItem: null
+    saveItem: null,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      dataSort: this.sortByAlphabet
+      dataSort: this.sortByAlphabet,
     };
   }
 
@@ -55,7 +55,7 @@ class ResultList extends Component {
     if (this.state.dataSort !== newSort) {
       this.setState({
         // Set the dataSort variable to whichever sort function is chosen
-        dataSort: newSort
+        dataSort: newSort,
       });
     }
   };
@@ -76,8 +76,8 @@ class ResultList extends Component {
       {
         key: "Distance",
         sort: this.sortByDistance,
-        disabled: !this.props.currentPos
-      }
+        disabled: !this.props.currentPos,
+      },
     ];
 
     // Render will be called every time this.props.data is updated, and every time handleSortChange
@@ -112,13 +112,13 @@ class ResultList extends Component {
 function mapStateToProps(state) {
   return {
     savedResource:
-      state.savedResource.length > 0 ? state.savedResource : state.resource
+      state.savedResource.length > 0 ? state.savedResource : state.resource,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(resourceAction, dispatch)
+    actions: bindActionCreators(resourceAction, dispatch),
   };
 }
 

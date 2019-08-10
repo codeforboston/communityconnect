@@ -23,9 +23,9 @@ const Map = compose(
             );
           });
           map.fitBounds(bounds);
-        }
+        },
       });
-    }
+    },
   }),
 
   withScriptjs,

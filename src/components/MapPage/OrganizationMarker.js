@@ -15,13 +15,13 @@ import couple from '../../images/icons/couple.png'
 class OrganizationMarker extends Component {
   static propTypes = {
     open: PropTypes.bool.isRequired,
-    resource: PropTypes.object.isRequired
+    resource: PropTypes.object.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      open: this.props.open
+      open: this.props.open,
     };
   }
   

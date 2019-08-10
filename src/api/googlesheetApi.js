@@ -12,7 +12,7 @@ function normalizeHeaders(element) {
   if (element.latitude && element.longitude) {
     element.coordinates = {
       lat: parseFloat(element.latitude),
-      lng: parseFloat(element.longitude)
+      lng: parseFloat(element.longitude),
     };
   }
 
@@ -39,7 +39,7 @@ const getAllResources = resourceSheetId =>
           resourceData => resourceData.truefalsevetting === "TRUE"
         );
         resolve(filteredResource);
-      }
+      },
     });
   });
 export default getAllResources;

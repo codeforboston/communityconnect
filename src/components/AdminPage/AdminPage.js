@@ -11,7 +11,7 @@ const AdminPage = ({ currentPosition }) => (
 );
 
 AdminPage.propTypes = {
-  currentPosition: PropTypes.object.isRequired
+  currentPosition: PropTypes.object.isRequired,
 };
 
 export default AdminPage;

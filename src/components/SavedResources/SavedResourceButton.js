@@ -9,7 +9,7 @@ const SavedResourceButton = ({ onClick }) => {
   const buttonIcon = faMinus;
 
   const buttonClassName = cx("saved-resource-card-button", {
-    faMinus
+    faMinus,
   });
 
   return (
@@ -28,7 +28,7 @@ const SavedResourceButton = ({ onClick }) => {
 };
 
 SavedResourceButton.propTypes = {
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 export default SavedResourceButton;

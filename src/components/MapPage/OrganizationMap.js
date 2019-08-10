@@ -17,7 +17,7 @@ const OrganizationMap = ({ mapResource }) => (
 );
 
 OrganizationMap.propTypes = {
-  mapResource: PropTypes.array.isRequired
+  mapResource: PropTypes.array.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -31,7 +31,7 @@ function mapStateToProps(state) {
       locationArray[resource.hashCoordinates] = {
         coordinates: resource.coordinates,
         groupedResource: [],
-        showInfo: false
+        showInfo: false,
       };
     }
 
@@ -41,7 +41,7 @@ function mapStateToProps(state) {
   const resource = Object.values(locationArray);
 
   return {
-    mapResource: resource
+    mapResource: resource,
   };
 }
 

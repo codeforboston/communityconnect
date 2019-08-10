@@ -13,25 +13,25 @@ const getItemStyle = (_, draggableStyle) => ({
   // change background colour if dragging
 
   // styles we need to apply on draggables
-  ...draggableStyle
+  ...draggableStyle,
 });
 
 class SavedResourcesContainer extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
     currentPos: PropTypes.object,
-    removeItem: PropTypes.func
+    removeItem: PropTypes.func,
   };
 
   static defaultProps = {
     currentPos: null,
-    removeItem: null
+    removeItem: null,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      data: Object.assign([], this.props.data)
+      data: Object.assign([], this.props.data),
     };
   }
 
@@ -56,7 +56,7 @@ class SavedResourcesContainer extends Component {
     newSavedResources.splice(destinationIndex, 0, movedResource);
 
     this.setState({
-      data: newSavedResources
+      data: newSavedResources,
     });
   };
 
@@ -120,7 +120,7 @@ class SavedResourcesContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    data: state.savedResource
+    data: state.savedResource,
   };
 }
 

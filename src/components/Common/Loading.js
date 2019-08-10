@@ -17,7 +17,7 @@ const Loading = ({ toggleSavedResourcesPane }) => (
 );
 
 Loading.propTypes = {
-  toggleSavedResourcesPane: PropTypes.func.isRequired
+  toggleSavedResourcesPane: PropTypes.func.isRequired,
 };
 
 export default Loading;

@@ -4,7 +4,7 @@ import cx from "classnames";
 
 const SplitScreenTogglePane = ({ isOpen, children }) => {
   const splitScreenTogglePaneClassName = cx("split-screen", {
-    hidden: !isOpen
+    hidden: !isOpen,
   });
 
   return <div className={splitScreenTogglePaneClassName}>{children}</div>;
@@ -12,10 +12,10 @@ const SplitScreenTogglePane = ({ isOpen, children }) => {
 
 SplitScreenTogglePane.propTypes = {
   isOpen: PropTypes.bool,
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
 
 SplitScreenTogglePane.defaultProps = {
-  isOpen: false
+  isOpen: false,
 };
 export default SplitScreenTogglePane;

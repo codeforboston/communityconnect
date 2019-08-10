@@ -18,7 +18,7 @@ const getAllSites = new Promise(resolve => {
     callback: (data, tabletop) => {
       const directory = tabletop.sheets("data").elements;
       resolve(directory);
-    }
+    },
   });
 });
 

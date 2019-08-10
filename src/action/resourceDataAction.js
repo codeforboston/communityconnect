@@ -3,18 +3,18 @@ import getAllResources from "../api/googlesheetApi";
 
 const loadResourceDataStart = () => ({
   type: types.LOAD_RESOURCE_DATA_START,
-  isFetchingResource: true
+  isFetchingResource: true,
 });
 
 const loadResourceDataSuccess = resource => ({
   type: types.LOAD_RESOURCE_DATA_SUCCESS,
   resource,
-  isFetchingResource: false
+  isFetchingResource: false,
 });
 
 const loadResourceDataFailure = error => ({
   type: types.LOAD_RESOURCE_DATA_FAILURE,
-  error
+  error,
 });
 
 export function loadCategories() {
