@@ -75,6 +75,9 @@
       "git add"
     ]
   },
+  "prettier": {
+    "trailingComma": "es5"
+  },
   "browserslist": {
     "development": [
       "last 2 chrome versions",
