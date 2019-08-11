@@ -2,106 +2,90 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as resourceAction from '../../action/resourceDataAction';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { ListGroup, ListGroupItem, Label, Button } from 'reactstrap';
+import _ from 'lodash'
 
 export class CategoryList extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      selectedCategory: [],
-      isChecked: {}
+      selectedCategory: []
     };
   }
 
-  componentDidMount () {
-    const { categories } = this.props
-    categories.sort()
-    categories.forEach((curr, index) => {
-      this.setState((prevState) => ({
-        isChecked: {
-          ...prevState.isChecked, [curr]: false
+  componentDidUpdate () {
+    const { selectedCategory } = this.state;
+    const { resource } = this.props
+    const filteredResource = []
+    if (selectedCategory.length === 0) {
+      this.props.actions.filterByCategories(resource)
+    } else {
+      resource.forEach(res => {
+        const isMatch = selectedCategory.some(cat => res.categories === cat)
+        if (isMatch) {
+          filteredResource.push(res)
         }
-      }));
-    });
-};
-
-filteredResource = () => {
-  const { selectedCategory } = this.state;
-  this.props.resource.filter(resource => {
-    return selectedCategory.some(searchCategory =>
-      resource.categories
-        .split(',')
-        .map(item => item.trim())
-        .includes(searchCategory),
-    );
-  });
+      })
+      this.props.actions.filterByCategories(filteredResource)
+    }
 }
 
-  handleChange = event => {
+  handleClick = async event => {
     event.persist()
-    console.log(event.target.checked)
-    const { selectedCategory } = this.state;
-    // const index = selectedCategory.indexOf(selected);
-    // index !== -1
-    //   ? selectedCategory.splice(index, 1)
-    //   : selectedCategory.push(selected);
-    // const filteredResource = this.props.resource.filter(resource => {
-    //   return selectedCategory.some(searchCategory =>
-    //     resource.categories
-    //       .split(',')
-    //       .map(item => item.trim())
-    //       .includes(searchCategory),
-    //   );
-    // });
-    const filtered = this.filteredResource()
-    this.props.actions.filterByCategories(
-      selectedCategory.length > 0 ? filtered : this.props.resource,
-    );
-    this.setState((prevState) => ({
-      selectedCategory: [...prevState.selectedCategory, event.target.name],
-      isChecked: {
-        ...prevState.isChecked, [event.target.name]: !prevState.isChecked[event.target.name]
-      }})
-    );
+    const isContains = event.target.classList.contains("list-group-item-success")
+    const selectedCategoryLength = this.state.selectedCategory.length
+
+    if (isContains && selectedCategoryLength === 1) {
+      this.setState({
+        selectedCategory: []
+      })
+    } else if (isContains) {
+      this.setState((prevState) => {
+        const selectedCategoryCopy = prevState.selectedCategory.slice()
+        _.remove(selectedCategoryCopy, (cat) => cat === event.target.innerHTML)
+
+        return {
+          selectedCategory: selectedCategoryCopy
+        }
+      });
+    } else {
+      this.setState((prevState) => ({
+        selectedCategory: [...prevState.selectedCategory, event.target.innerHTML]
+        })
+      );
+    };
   };
 
-  clearChecks = event => {
-  event.preventDefault()
-  const { categories } = this.props
-  categories.sort()
-  categories.forEach((curr, index) => {
-    this.setState((prevState) => ({
-      selectedCategory: [],
-      isChecked: {
-        ...prevState.isChecked, [curr]: false
-      }
-    }))
-  })
-  this.props.actions.filterByCategories(this.props.resource);
+  clearChecks = () => {
+    this.setState({
+      selectedCategory: []
+    })
 };
 
   render () {
-    const { isChecked, selectedCategory } = this.state
+    const { selectedCategory } = this.state
     const { categories } = this.props
+    categories.sort()
     const categoryMenuItems = categories.map((curr, index) => (
-      <FormGroup key={curr} check>
-        <Input
+        <ListGroupItem
           key = {index.toString()}
-          type = "checkbox"
-          name = {curr}
-          checked = {isChecked[curr]}
-          onChange = {this.handleChange}
-        />
+          color = {_.indexOf(selectedCategory, curr) !== -1 ? "success" : ""}
+          onClick = {this.handleClick}
+        >
         {curr}
-      </FormGroup>
+        </ListGroupItem>
     ));
 
     return (
-      <Form>
+      <div>
         <Label>Filter by Category</Label>
-        <Button onClick={this.clearChecks}>Clear</Button>
-        {categoryMenuItems}
-      </Form>
+        <Button color="info" className="w-100" onClick={this.clearChecks}>Clear</Button>
+        <div style={{ height: '400px', overflow: 'auto', cursor: 'pointer' }}>
+          <ListGroup>
+            {categoryMenuItems}
+          </ListGroup>
+        </div>
+      </div>
     );
   }
 }
