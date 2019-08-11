@@ -3,16 +3,16 @@ import qs from "qs-lite";
 import * as types from "../action/actionType";
 import initialState from "./initialState";
 
-export function resource(state = initialState.resource, action) {
+function resourcesReducer(state = initialState.resources, action) {
   switch (action.type) {
     case types.LOAD_RESOURCE_DATA_SUCCESS:
-      return [...state, ...action.resource];
+      return [...state, ...action.resources];
     default:
       return state;
   }
 }
 
-export function isFetchingResource(
+function isFetchingResourceReducer(
   state = initialState.isFetchingResource,
   action
 ) {
@@ -26,12 +26,12 @@ export function isFetchingResource(
   }
 }
 
-export function categories(state = initialState.categories, action) {
+function categoriesReducer(state = initialState.categories, action) {
   switch (action.type) {
     case types.LOAD_RESOURCE_DATA_SUCCESS: {
       const categoriesData = {};
 
-      action.resource.forEach(data => {
+      action.resources.forEach(data => {
         const category = data.categories.split(",");
 
         category.forEach(cat => {
@@ -53,35 +53,35 @@ export function categories(state = initialState.categories, action) {
   }
 }
 
-export function filteredResource(
-  state = initialState.filteredResource,
+function filteredResourcesReducer(
+  state = initialState.filteredResources,
   action
 ) {
   switch (action.type) {
     case types.LOAD_RESOURCE_DATA_SUCCESS:
-      return [...state, ...action.resource];
-    case types.FILTER_RESOURCE_BY_CATEGORIES:
+      return [...state, ...action.resources];
+    case types.FILTER_RESOURCES_BY_CATEGORIES:
       return action.filteredResource;
     default:
       return state;
   }
 }
 
-export function searchedResource(
-  state = initialState.searchedResource,
+function searchedResourcesReducer(
+  state = initialState.searchedResources,
   action
 ) {
   switch (action.type) {
     case types.LOAD_RESOURCE_DATA_SUCCESS:
-      return [...state, ...action.resource];
-    case types.FILTER_RESOURCE_BY_SEARCH:
+      return [...state, ...action.resources];
+    case types.FILTER_RESOURCES_BY_SEARCH:
       return action.searchedResource;
     default:
       return state;
   }
 }
 
-export function savedResource(state = initialState.savedResource, action) {
+function savedResourcesReducer(state = initialState.savedResources, action) {
   switch (action.type) {
     case types.LOAD_RESOURCE_DATA_SUCCESS: {
       const query = qs.parse(window.location.search.replace("?", ""));
@@ -94,9 +94,9 @@ export function savedResource(state = initialState.savedResource, action) {
       const selectedResources = [];
 
       selectedResourceIds.forEach(selectedResourceId => {
-        action.resource.forEach(resourceData => {
+        action.resources.forEach(resource => {
           if (resource.id === selectedResourceId) {
-            selectedResources.push(resourceData);
+            selectedResources.push(resource);
           }
         });
       });
@@ -107,11 +107,20 @@ export function savedResource(state = initialState.savedResource, action) {
       return [...state, action.savedResource];
     case types.REMOVE_SAVED_RESOURCE:
       return state.filter(
-        resourceData => action.savedResourceIndex !== resourceData.id
+        resource => action.savedResourceIndex !== resource.id
       );
-    case types.CLEAR_SAVED_RESOURCE:
+    case types.CLEAR_SAVED_RESOURCES:
       return [];
     default:
       return state;
   }
 }
+
+export default {
+  resources: resourcesReducer,
+  isFetchingResource: isFetchingResourceReducer,
+  categories: categoriesReducer,
+  filteredResources: filteredResourcesReducer,
+  searchedResources: searchedResourcesReducer,
+  savedResources: savedResourcesReducer,
+};

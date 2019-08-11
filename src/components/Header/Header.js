@@ -19,7 +19,7 @@ import * as resourceAction from "../../action/resourceDataAction";
 
 class Header extends Component {
   static propTypes = {
-    savedResource: PropTypes.array.isRequired,
+    savedResources: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
     toggleSavedResourcesPane: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
@@ -39,7 +39,7 @@ class Header extends Component {
   };
 
   modalOpen = () => {
-    if (this.props.savedResource.length > 0) {
+    if (this.props.savedResources.length > 0) {
       this.modalToggle();
     } else {
       window.location.reload();
@@ -51,15 +51,15 @@ class Header extends Component {
   };
 
   confirmationModalToggle = () => {
-    this.props.actions.clearSavedResource();
+    this.props.actions.clearSavedResources();
     this.modalToggle();
   };
 
   render() {
-    const { savedResource, toggleSavedResourcesPane } = this.props;
+    const { savedResources, toggleSavedResourcesPane } = this.props;
 
     const savedResourceButtonClassNames = cx("saved-resource-button", {
-      "has-selections": savedResource.length,
+      "has-selections": savedResources.length,
     });
 
     return (
@@ -76,7 +76,7 @@ class Header extends Component {
                 className={savedResourceButtonClassNames}
                 onClick={toggleSavedResourcesPane}
               >
-                Saved Resources {savedResource.length}
+                Saved Resources {savedResources.length}
               </button>
             )}
           />
@@ -108,7 +108,7 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    savedResource: state.savedResource,
+    savedResources: state.savedResources,
   };
 }
 

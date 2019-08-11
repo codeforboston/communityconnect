@@ -20,7 +20,7 @@ class OrganizationCard extends Component {
     organization: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
-    savedResource: PropTypes.array.isRequired,
+    savedResources: PropTypes.array.isRequired,
     currentPos: PropTypes.object.isRequired,
     saveable: PropTypes.bool,
     index: PropTypes.string.isRequired,
@@ -36,7 +36,7 @@ class OrganizationCard extends Component {
   }
 
   static getDerivedStateFromProps(props) {
-    if (!props.savedResource.some(r => r.id === props.organization.id)) {
+    if (!props.savedResources.some(r => r.id === props.organization.id)) {
       return { saveExist: false };
     }
 
@@ -78,7 +78,7 @@ class OrganizationCard extends Component {
     const indexOfResource = resources.indexOf(this.props.organization.id);
 
     if (
-      this.props.savedResource.some(
+      this.props.savedResources.some(
         resource => resource.id === this.props.organization.id
       )
     ) {
@@ -172,7 +172,7 @@ class OrganizationCard extends Component {
 
 function mapStateToProps(state) {
   return {
-    savedResource: state.savedResource,
+    savedResources: state.savedResources,
   };
 }
 

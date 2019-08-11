@@ -35,7 +35,7 @@ const Map = compose(
       ref={props.onMarkerClick}
       defaultMaxZoom={16}
     >
-      {props.resource
+      {props.resources
         .filter(resource => resource.coordinates)
         .map((resource, index) => (
           <OrganizationMarker

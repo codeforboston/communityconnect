@@ -7,7 +7,7 @@ import * as resourceAction from "../../action/resourceDataAction";
 
 class SearchBar extends Component {
   static propTypes = {
-    resource: PropTypes.array.isRequired,
+    resources: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
   };
 
@@ -20,12 +20,12 @@ class SearchBar extends Component {
 
   handleFilter = e => {
     this.setState({ searchString: e.target.value });
-    const searchedResource = this.props.resource.filter(i =>
+    const searchedResource = this.props.resources.filter(i =>
       i.name.toLowerCase().match(e.target.value.toLowerCase())
     );
 
     this.props.actions.filterBySearch(
-      e.target.value.length > 0 ? searchedResource : this.props.resource
+      e.target.value.length > 0 ? searchedResource : this.props.resources
     );
   };
 
@@ -44,10 +44,10 @@ class SearchBar extends Component {
 
 function mapStateToProps(state) {
   return {
-    resource:
-      state.filteredResource.length > 0
-        ? state.filteredResource
-        : state.resource,
+    resources:
+      state.filteredResources.length > 0
+        ? state.filteredResources
+        : state.resources,
   };
 }
 

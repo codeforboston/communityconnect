@@ -7,7 +7,7 @@ import * as resourceAction from "../../action/resourceDataAction";
 
 class CategoryList extends Component {
   static propTypes = {
-    resource: PropTypes.array.isRequired,
+    resources: PropTypes.array.isRequired,
     categories: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
   };
@@ -28,7 +28,7 @@ class CategoryList extends Component {
       ? selectedCategory.splice(index, 1)
       : selectedCategory.push(selected);
 
-    const filteredResource = this.props.resource.filter(resource =>
+    const filteredResources = this.props.resources.filter(resource =>
       this.state.selectedCategory.some(searchCategory =>
         resource.categories
           .split(",")
@@ -38,7 +38,7 @@ class CategoryList extends Component {
     );
 
     this.props.actions.filterByCategories(
-      selectedCategory.length > 0 ? filteredResource : this.props.resource
+      selectedCategory.length > 0 ? filteredResources : this.props.resources
     );
   };
 
@@ -66,7 +66,7 @@ class CategoryList extends Component {
 function mapStateToProps(state) {
   return {
     categories: state.categories,
-    resource: state.resource,
+    resources: state.resources,
   };
 }
 

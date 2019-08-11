@@ -120,7 +120,7 @@ class SavedResourcesContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    data: state.savedResource,
+    data: state.savedResources,
   };
 }
 

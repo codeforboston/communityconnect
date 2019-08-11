@@ -21,7 +21,7 @@ import SavedResourceButton from "./SavedResourceButton";
 class SavedResource extends Component {
   static propTypes = {
     organization: PropTypes.object.isRequired,
-    savedResource: PropTypes.array.isRequired,
+    savedResources: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     currentPos: PropTypes.object,
@@ -57,7 +57,7 @@ class SavedResource extends Component {
     const indexOfResource = resources.indexOf(this.props.organization.id);
 
     if (
-      this.props.savedResource.some(
+      this.props.savedResources.some(
         resource => resource.id === this.props.organization.id
       )
     ) {
@@ -199,7 +199,7 @@ class SavedResource extends Component {
 }
 
 function mapStateToProps(state) {
-  return { savedResource: state.savedResource };
+  return { savedResources: state.savedResources };
 }
 
 function mapDispatchToProps(dispatch) {

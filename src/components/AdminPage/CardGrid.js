@@ -9,7 +9,7 @@ import getDistance from "../../utils/distance";
 class CardGrid extends Component {
   static propTypes = {
     currentPos: PropTypes.object.isRequired,
-    resource: PropTypes.array.isRequired,
+    resources: PropTypes.array.isRequired,
     handleFilter: PropTypes.func,
     saveItem: PropTypes.func,
   };
@@ -45,10 +45,10 @@ class CardGrid extends Component {
     return 0;
   };
 
-  sortByAlphabet = () => this.props.resource.slice().sort(this.getCloserName);
+  sortByAlphabet = () => this.props.resources.slice().sort(this.getCloserName);
 
   sortByDistance = () =>
-    this.props.resource.slice().sort(this.getCloserResource);
+    this.props.resources.slice().sort(this.getCloserResource);
 
   handleSortChange = newSort => {
     if (this.state.dataSort !== newSort) {
@@ -102,13 +102,13 @@ class CardGrid extends Component {
 }
 
 function mapStateToProps(state) {
-  const filteredResourceSet = new Set(state.filteredResource.map(x => x.id));
+  const filteredResourcesSet = new Set(state.filteredResources.map(x => x.id));
 
-  const resource = state.searchedResource.filter(x =>
-    filteredResourceSet.has(x.id)
+  const resources = state.searchedResources.filter(x =>
+    filteredResourcesSet.has(x.id)
   );
 
-  return { resource };
+  return { resources };
 }
 
 export default connect(mapStateToProps)(CardGrid);

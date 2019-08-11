@@ -10,7 +10,7 @@ import * as resourceAction from "../../action/resourceDataAction";
 class ResultList extends Component {
   static propTypes = {
     currentPos: PropTypes.object.isRequired,
-    savedResource: PropTypes.array.isRequired,
+    savedResources: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
     saveItem: PropTypes.func,
   };
@@ -46,10 +46,10 @@ class ResultList extends Component {
   };
 
   sortByAlphabet = () =>
-    this.props.savedResource.slice().sort(this.getCloserName);
+    this.props.savedResources.slice().sort(this.getCloserName);
 
   sortByDistance = () =>
-    this.props.savedResource.slice().sort(this.getCloserResource);
+    this.props.savedResources.slice().sort(this.getCloserResource);
 
   handleSortChange = newSort => {
     if (this.state.dataSort !== newSort) {
@@ -61,12 +61,12 @@ class ResultList extends Component {
   };
 
   cardClick = id => {
-    this.props.savedResource.findIndex(resource => resource.id === id);
+    this.props.savedResources.findIndex(resource => resource.id === id);
   };
 
   saveResource = resource => {
-    if (!this.props.savedResource.some(r => r.id === resource.id)) {
-      this.props.actions.addSavedResource(this.props.savedResource.slice());
+    if (!this.props.savedResources.some(r => r.id === resource.id)) {
+      this.props.actions.addSavedResource(this.props.savedResources.slice());
     }
   };
 
@@ -111,8 +111,8 @@ class ResultList extends Component {
 
 function mapStateToProps(state) {
   return {
-    savedResource:
-      state.savedResource.length > 0 ? state.savedResource : state.resource,
+    savedResources:
+      state.savedResources.length > 0 ? state.savedResources : state.resources,
   };
 }
 
