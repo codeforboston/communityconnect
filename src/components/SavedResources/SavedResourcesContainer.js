@@ -36,8 +36,10 @@ class SavedResourcesContainer extends Component {
   }
 
   // Using deprecated function necessary to update data with store's data
-  componentWillReceiveProps(nextProps) {
-    this.setState({ data: Object.assign([], nextProps.data) });
+  static getDerivedStateFromProps(props) {
+    return {
+      data: [...props.data],
+    };
   }
 
   onDragEnd = result => {

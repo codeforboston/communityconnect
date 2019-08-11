@@ -6,7 +6,7 @@ import OrganizationMarker from "./OrganizationMarker";
 
 const Map = compose(
   lifecycle({
-    componentWillMount() {
+    componentDidMount() {
       this.setState({
         zoomToMarkers: map => {
           const bounds = new window.google.maps.LatLngBounds();
