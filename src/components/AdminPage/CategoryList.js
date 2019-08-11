@@ -1,76 +1,118 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Form, FormGroup, Label, Input } from "reactstrap";
-import * as resourceAction from "../../action/resourceDataAction";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as resourceAction from '../../action/resourceDataAction';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
-class CategoryList extends Component {
-  static propTypes = {
-    resource: PropTypes.array.isRequired,
-    categories: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
-  };
-
-  constructor(props) {
+export class CategoryList extends Component {
+  constructor (props) {
     super(props);
     this.state = {
       selectedCategory: [],
+      isChecked: {}
     };
   }
 
-  handleChange = selected => {
-    const { selectedCategory } = this.state;
-    const index = selectedCategory.indexOf(selected);
+  componentDidMount () {
+    const { categories } = this.props
+    categories.sort()
+    categories.forEach((curr, index) => {
+      this.setState((prevState) => ({
+        isChecked: {
+          ...prevState.isChecked, [curr]: false
+        }
+      }));
+    });
+};
 
-    // eslint-disable-next-line no-unused-expressions
-    index !== -1
-      ? selectedCategory.splice(index, 1)
-      : selectedCategory.push(selected);
-
-    const filteredResource = this.props.resource.filter(resource =>
-      this.state.selectedCategory.some(searchCategory =>
-        resource.categories
-          .split(",")
-          .map(item => item.trim())
-          .includes(searchCategory)
-      )
+filteredResource = () => {
+  const { selectedCategory } = this.state;
+  this.props.resource.filter(resource => {
+    return selectedCategory.some(searchCategory =>
+      resource.categories
+        .split(',')
+        .map(item => item.trim())
+        .includes(searchCategory),
     );
+  });
+}
 
+  handleChange = event => {
+    event.persist()
+    console.log(event.target.checked)
+    const { selectedCategory } = this.state;
+    // const index = selectedCategory.indexOf(selected);
+    // index !== -1
+    //   ? selectedCategory.splice(index, 1)
+    //   : selectedCategory.push(selected);
+    // const filteredResource = this.props.resource.filter(resource => {
+    //   return selectedCategory.some(searchCategory =>
+    //     resource.categories
+    //       .split(',')
+    //       .map(item => item.trim())
+    //       .includes(searchCategory),
+    //   );
+    // });
+    const filtered = this.filteredResource()
     this.props.actions.filterByCategories(
-      selectedCategory.length > 0 ? filteredResource : this.props.resource
+      selectedCategory.length > 0 ? filtered : this.props.resource,
+    );
+    this.setState((prevState) => ({
+      selectedCategory: [...prevState.selectedCategory, event.target.name],
+      isChecked: {
+        ...prevState.isChecked, [event.target.name]: !prevState.isChecked[event.target.name]
+      }})
     );
   };
 
-  render() {
-    const categoryMenuItems = this.props.categories.map(cat => (
-      <FormGroup key={cat} check>
+  clearChecks = event => {
+  event.preventDefault()
+  const { categories } = this.props
+  categories.sort()
+  categories.forEach((curr, index) => {
+    this.setState((prevState) => ({
+      selectedCategory: [],
+      isChecked: {
+        ...prevState.isChecked, [curr]: false
+      }
+    }))
+  })
+  this.props.actions.filterByCategories(this.props.resource);
+};
+
+  render () {
+    const { isChecked, selectedCategory } = this.state
+    const { categories } = this.props
+    const categoryMenuItems = categories.map((curr, index) => (
+      <FormGroup key={curr} check>
         <Input
-          type="checkbox"
-          key={cat}
-          onChange={() => this.handleChange(cat)}
+          key = {index.toString()}
+          type = "checkbox"
+          name = {curr}
+          checked = {isChecked[curr]}
+          onChange = {this.handleChange}
         />
-        {cat}
+        {curr}
       </FormGroup>
     ));
 
     return (
       <Form>
         <Label>Filter by Category</Label>
+        <Button onClick={this.clearChecks}>Clear</Button>
         {categoryMenuItems}
       </Form>
     );
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state, ownProps) {
   return {
     categories: state.categories,
     resource: state.resource,
   };
 }
-
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(resourceAction, dispatch),
   };
@@ -78,5 +120,5 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(CategoryList);
