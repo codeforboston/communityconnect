@@ -30,12 +30,12 @@ function mapStateToProps(state) {
     if (!locations[resource.hashCoordinates]) {
       locations[resource.hashCoordinates] = {
         coordinates: resource.coordinates,
-        groupedResource: [],
+        groupedResources: [],
         showInfo: false,
       };
     }
 
-    locations[resource.hashCoordinates].groupedResource.push(resource);
+    locations[resource.hashCoordinates].groupedResources.push(resource);
   });
 
   const resources = Object.values(locations);
