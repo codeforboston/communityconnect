@@ -101,8 +101,12 @@ class CategoryList extends Component {
 CategoryList.propTypes = {
   resource: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
-  filterByCategories: PropTypes.func.isRequired,
-  categories: PropTypes.object.isRequired,
+  filterByCategories: PropTypes.func,
+  categories: PropTypes.array.isRequired,
+};
+
+CategoryList.defaultProps = {
+  filterByCategories: undefined,
 };
 
 function mapStateToProps(state) {
