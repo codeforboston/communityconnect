@@ -12,7 +12,6 @@ import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import registerServiceWorker from "./registerServiceWorker";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "mapbox-gl/dist/mapbox-gl.css";
 import "./css/index.scss";
 
 library.add(fab, fas);
