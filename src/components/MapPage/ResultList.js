@@ -8,6 +8,10 @@ import getDistance from "../../utils/distance";
 import * as resourceAction from "../../action/resourceDataAction";
 
 class ResultList extends Component {
+  state = {
+    sortFunction: this.getCloserName,
+  };
+
   getCloserResource = (a, b) => {
     if (
       getDistance(a, this.props.currentPos) >
@@ -26,17 +30,13 @@ class ResultList extends Component {
     return 0;
   };
 
-  sortByAlphabet = () =>
-    this.props.savedResources.slice().sort(this.getCloserName);
-
-  sortByDistance = () =>
-    this.props.savedResources.slice().sort(this.getCloserResource);
+  sortData = () =>
+    this.props.savedResources.slice().sort(this.state.sortFunction);
 
   handleSortChange = newSort => {
-    if (this.state.dataSort !== newSort) {
+    if (this.state.sortFunction !== newSort) {
       this.setState({
-        // Set the dataSort variable to whichever sort function is chosen
-        dataSort: newSort,
+        sortFunction: newSort,
       });
     }
   };
@@ -53,10 +53,10 @@ class ResultList extends Component {
 
   render() {
     const sortOptions = [
-      { key: "A-Z", sort: this.sortByAlphabet, disabled: false },
+      { key: "A-Z", sort: this.getCloserName, disabled: false },
       {
         key: "Distance",
-        sort: this.sortByDistance,
+        sort: this.getCloserResource,
         disabled: !this.props.currentPos,
       },
     ];
@@ -65,7 +65,7 @@ class ResultList extends Component {
     // updates the this.state.dataSort variable.
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
-    const sortedData = this.sortByAlphabet();
+    const sortedData = this.sortData();
 
     return (
       <div>

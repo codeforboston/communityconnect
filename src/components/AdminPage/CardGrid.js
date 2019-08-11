@@ -8,7 +8,7 @@ import getDistance from "../../utils/distance";
 
 class CardGrid extends Component {
   state = {
-    dataSort: this.sortByAlphabet,
+    sortFunction: this.getCloserName,
   };
 
   getCloserResource = (a, b) => {
@@ -29,26 +29,22 @@ class CardGrid extends Component {
     return 0;
   };
 
-  sortByAlphabet = () => this.props.resources.slice().sort(this.getCloserName);
-
-  sortByDistance = () =>
-    this.props.resources.slice().sort(this.getCloserResource);
+  sortData = () => this.props.resources.slice().sort(this.state.sortFunction);
 
   handleSortChange = newSort => {
-    if (this.state.dataSort !== newSort) {
+    if (this.state.sortFunction !== newSort) {
       this.setState({
-        // Set the dataSort variable to whichever sort function is chosen
-        dataSort: newSort,
+        sortFunction: newSort,
       });
     }
   };
 
   render() {
     const sortOptions = [
-      { key: "A-Z", sort: this.sortByAlphabet, disabled: false },
+      { key: "A-Z", sort: this.getCloserName, disabled: false },
       {
         key: "Distance",
-        sort: this.sortByDistance,
+        sort: this.getCloserResource,
         disabled: !this.props.currentPos,
       },
     ];
@@ -57,7 +53,7 @@ class CardGrid extends Component {
     // updates the this.state.dataSort variable.
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
-    const sortedData = this.state.dataSort();
+    const sortedData = this.sortData();
 
     return (
       <div className="card-grid">
