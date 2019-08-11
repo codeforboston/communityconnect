@@ -16,24 +16,7 @@ import {
 } from "./subcomponents";
 
 class OrganizationCard extends Component {
-  static propTypes = {
-    organization: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-    savedResources: PropTypes.array.isRequired,
-    currentPos: PropTypes.object.isRequired,
-    saveable: PropTypes.bool,
-    index: PropTypes.string.isRequired,
-  };
-
-  static defaultProps = {
-    saveable: null,
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  state = {};
 
   static getDerivedStateFromProps(props) {
     if (!props.savedResources.some(r => r.id === props.organization.id)) {
@@ -169,6 +152,20 @@ class OrganizationCard extends Component {
     );
   }
 }
+
+OrganizationCard.propTypes = {
+  organization: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  savedResources: PropTypes.array.isRequired,
+  currentPos: PropTypes.object.isRequired,
+  saveable: PropTypes.bool,
+  index: PropTypes.string.isRequired,
+};
+
+OrganizationCard.defaultProps = {
+  saveable: null,
+};
 
 function mapStateToProps(state) {
   return {

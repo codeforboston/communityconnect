@@ -3,17 +3,9 @@ import PropTypes from "prop-types";
 import { Marker, InfoWindow } from "react-google-maps";
 
 class OrganizationMarker extends Component {
-  static propTypes = {
-    open: PropTypes.bool.isRequired,
-    resource: PropTypes.object.isRequired,
+  state = {
+    open: this.props.open,
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: this.props.open,
-    };
-  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.open !== this.props.open) {
@@ -70,5 +62,10 @@ class OrganizationMarker extends Component {
     );
   }
 }
+
+OrganizationMarker.propTypes = {
+  open: PropTypes.bool.isRequired,
+  resource: PropTypes.object.isRequired,
+};
 
 export default OrganizationMarker;

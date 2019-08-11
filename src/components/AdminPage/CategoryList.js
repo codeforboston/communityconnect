@@ -6,18 +6,9 @@ import { Form, FormGroup, Label, Input } from "reactstrap";
 import * as resourceAction from "../../action/resourceDataAction";
 
 class CategoryList extends Component {
-  static propTypes = {
-    resources: PropTypes.array.isRequired,
-    categories: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
+  state = {
+    selectedCategory: [],
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedCategory: [],
-    };
-  }
 
   handleChange = selected => {
     const { selectedCategory } = this.state;
@@ -62,6 +53,12 @@ class CategoryList extends Component {
     );
   }
 }
+
+CategoryList.propTypes = {
+  resources: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

@@ -6,17 +6,9 @@ import { bindActionCreators } from "redux";
 import * as resourceAction from "../../action/resourceDataAction";
 
 class SearchBar extends Component {
-  static propTypes = {
-    resources: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
+  state = {
+    searchString: "",
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchString: "",
-    };
-  }
 
   handleFilter = e => {
     this.setState({ searchString: e.target.value });
@@ -41,6 +33,11 @@ class SearchBar extends Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  resources: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

@@ -7,25 +7,9 @@ import SearchBar from "../Header/SearchBar";
 import getDistance from "../../utils/distance";
 
 class CardGrid extends Component {
-  static propTypes = {
-    currentPos: PropTypes.object.isRequired,
-    resources: PropTypes.array.isRequired,
-    handleFilter: PropTypes.func,
-    saveItem: PropTypes.func,
+  state = {
+    dataSort: this.sortByAlphabet,
   };
-
-  static defaultProps = {
-    handleFilter: null,
-    saveItem: null,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dataSort: this.sortByAlphabet,
-    };
-  }
 
   getCloserResource = (a, b) => {
     if (
@@ -100,6 +84,18 @@ class CardGrid extends Component {
     );
   }
 }
+
+CardGrid.propTypes = {
+  currentPos: PropTypes.object.isRequired,
+  resources: PropTypes.array.isRequired,
+  handleFilter: PropTypes.func,
+  saveItem: PropTypes.func,
+};
+
+CardGrid.defaultProps = {
+  handleFilter: null,
+  saveItem: null,
+};
 
 function mapStateToProps(state) {
   const filteredResourcesSet = new Set(state.filteredResources.map(x => x.id));

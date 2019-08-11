@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
@@ -17,23 +18,9 @@ const getItemStyle = (_, draggableStyle) => ({
 });
 
 class SavedResourcesContainer extends Component {
-  static propTypes = {
-    data: PropTypes.array.isRequired,
-    currentPos: PropTypes.object,
-    removeItem: PropTypes.func,
+  state = {
+    data: Object.assign([], this.props.data),
   };
-
-  static defaultProps = {
-    currentPos: null,
-    removeItem: null,
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: Object.assign([], this.props.data),
-    };
-  }
 
   // Using deprecated function necessary to update data with store's data
   static getDerivedStateFromProps(props) {
@@ -84,14 +71,14 @@ class SavedResourcesContainer extends Component {
                         draggableId={item.id}
                         index={index}
                       >
-                        {(provided2, snapshot) => (
+                        {(subprovided, snapshot) => (
                           <div
-                            ref={provided2.innerRef}
-                            {...provided2.draggableProps}
-                            {...provided2.dragHandleProps}
+                            ref={subprovided.innerRef}
+                            {...subprovided.draggableProps}
+                            {...subprovided.dragHandleProps}
                             style={getItemStyle(
                               snapshot.isDragging,
-                              provided2.draggableProps.style
+                              subprovided.draggableProps.style
                             )}
                           >
                             <SavedResource
@@ -119,6 +106,17 @@ class SavedResourcesContainer extends Component {
     );
   }
 }
+
+SavedResourcesContainer.propTypes = {
+  data: PropTypes.array.isRequired,
+  currentPos: PropTypes.object,
+  removeItem: PropTypes.func,
+};
+
+SavedResourcesContainer.defaultProps = {
+  currentPos: null,
+  removeItem: null,
+};
 
 function mapStateToProps(state) {
   return {

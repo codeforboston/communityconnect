@@ -19,24 +19,9 @@ import * as resourceAction from "../../action/resourceDataAction";
 import SavedResourceButton from "./SavedResourceButton";
 
 class SavedResource extends Component {
-  static propTypes = {
-    organization: PropTypes.object.isRequired,
-    savedResources: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-    currentPos: PropTypes.object,
+  state = {
+    visible: false,
   };
-
-  static defaultProps = {
-    currentPos: null,
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-    };
-  }
 
   confirmationAlertToggle = () => {
     this.setState(prevState => ({ visible: !prevState.visible }));
@@ -197,6 +182,18 @@ class SavedResource extends Component {
     );
   }
 }
+
+SavedResource.propTypes = {
+  organization: PropTypes.object.isRequired,
+  savedResources: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  currentPos: PropTypes.object,
+};
+
+SavedResource.defaultProps = {
+  currentPos: null,
+};
 
 function mapStateToProps(state) {
   return { savedResources: state.savedResources };

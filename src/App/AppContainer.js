@@ -27,20 +27,11 @@ function sheetIdFromPath(directory, path) {
 }
 
 class AppContainer extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired,
-    isFetchingResource: PropTypes.bool.isRequired,
+  state = {
+    position: {},
+    displayFeedbackLink: true,
+    isValidPage: true,
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      position: {},
-      displayFeedbackLink: true,
-      isValidPage: true,
-    };
-  }
 
   componentDidMount() {
     const resourcePath = this.props.match.params.resource;
@@ -138,6 +129,12 @@ class AppContainer extends Component {
     );
   }
 }
+
+AppContainer.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  isFetchingResource: PropTypes.bool.isRequired,
+};
 
 function mapStateToProps(state) {
   const { isFetchingResource } = state;

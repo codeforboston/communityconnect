@@ -6,10 +6,6 @@ import OrganizationMap from "./OrganizationMap";
 import SplitScreenSlidingPane from "./SplitScreenSlidingPane";
 
 class MapPage extends Component {
-  static propTypes = {
-    currentPosition: PropTypes.object.isRequired,
-  };
-
   render() {
     const mapClassName = cx("map-container");
 
@@ -29,5 +25,9 @@ class MapPage extends Component {
     );
   }
 }
+
+MapPage.propTypes = {
+  currentPosition: PropTypes.object.isRequired,
+};
 
 export default MapPage;

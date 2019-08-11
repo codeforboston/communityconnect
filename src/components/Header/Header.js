@@ -18,21 +18,10 @@ import {
 import * as resourceAction from "../../action/resourceDataAction";
 
 class Header extends Component {
-  static propTypes = {
-    savedResources: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
-    toggleSavedResourcesPane: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired,
+  state = {
+    collapsed: true,
+    modal: false,
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      collapsed: true,
-      modal: false,
-    };
-  }
 
   toggleNavbar = () => {
     this.setState(prevState => ({ collapsed: !prevState.collapsed }));
@@ -105,6 +94,13 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  savedResources: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  toggleSavedResourcesPane: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

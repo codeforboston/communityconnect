@@ -8,25 +8,6 @@ import getDistance from "../../utils/distance";
 import * as resourceAction from "../../action/resourceDataAction";
 
 class ResultList extends Component {
-  static propTypes = {
-    currentPos: PropTypes.object.isRequired,
-    savedResources: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
-    saveItem: PropTypes.func,
-  };
-
-  static defaultProps = {
-    saveItem: null,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dataSort: this.sortByAlphabet,
-    };
-  }
-
   getCloserResource = (a, b) => {
     if (
       getDistance(a, this.props.currentPos) >
@@ -84,7 +65,7 @@ class ResultList extends Component {
     // updates the this.state.dataSort variable.
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
-    const sortedData = this.state.dataSort();
+    const sortedData = this.sortByAlphabet();
 
     return (
       <div>
@@ -108,6 +89,17 @@ class ResultList extends Component {
     );
   }
 }
+
+ResultList.propTypes = {
+  currentPos: PropTypes.object.isRequired,
+  savedResources: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  saveItem: PropTypes.func,
+};
+
+ResultList.defaultProps = {
+  saveItem: null,
+};
 
 function mapStateToProps(state) {
   return {

@@ -9,18 +9,10 @@ import {
 // import { DropdownCategory } from './HeaderLayout';
 
 class DropdownCategory extends Component {
-  static propTypes = {
-    categories: PropTypes.array.isRequired,
-    handleEvent: PropTypes.func.isRequired,
+  state = {
+    dropdownOpen: false,
+    activeItem: [],
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      dropdownOpen: false,
-      activeItem: [],
-    };
-  }
 
   toggle = () => {
     this.setState(prevState => ({ dropdownOpen: !prevState.dropdownOpen }));
@@ -85,5 +77,10 @@ class DropdownCategory extends Component {
     );
   }
 }
+
+DropdownCategory.propTypes = {
+  categories: PropTypes.array.isRequired,
+  handleEvent: PropTypes.func.isRequired,
+};
 
 export default DropdownCategory;
