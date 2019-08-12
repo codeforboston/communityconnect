@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { ListGroup, ListGroupItem, Label, Button } from "reactstrap";
+import { ListGroup, ListGroupItem, Button } from "reactstrap";
 import _ from "lodash";
 import * as resourceAction from "../../action/resourceDataAction";
 
@@ -77,6 +77,7 @@ class CategoryList extends Component {
     const categoryMenuItems = categories.map((curr, index) => (
       <ListGroupItem
         key={index.toString()}
+        className="category-group-item"
         color={_.indexOf(selectedCategory, curr) !== -1 ? "success" : ""}
         onClick={this.handleClick}
       >
@@ -85,14 +86,14 @@ class CategoryList extends Component {
     ));
 
     return (
-      <div>
-        <Label>Filter by Category</Label>
-        <Button color="info" className="w-100" onClick={this.clearChecks}>
+      <div className="category-parent-container">
+        <h4>Filter by Category</h4>
+        <div className="category-container">
+          <ListGroup className="category-group">{categoryMenuItems}</ListGroup>
+        </div>
+        <Button color="info" className="w-100 mt-2" onClick={this.clearChecks}>
           Clear
         </Button>
-        <div style={{ height: "400px", overflow: "auto", cursor: "pointer" }}>
-          <ListGroup>{categoryMenuItems}</ListGroup>
-        </div>
       </div>
     );
   }
