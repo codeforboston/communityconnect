@@ -1,6 +1,5 @@
-import qs from "qs-lite";
-
 import * as types from "../action/actionType";
+import { getQueryResources } from "../utils/resourcesQuery";
 import initialState from "./initialState";
 
 function resourcesReducer(state = initialState.resources, action) {
@@ -84,13 +83,7 @@ function searchedResourcesReducer(
 function savedResourcesReducer(state = initialState.savedResources, action) {
   switch (action.type) {
     case types.LOAD_RESOURCE_DATA_SUCCESS: {
-      const query = qs.parse(window.location.search.replace("?", ""));
-      let selectedResourceIds = [];
-
-      if (query.resources) {
-        selectedResourceIds = query.resources.split(",");
-      }
-
+      const selectedResourceIds = getQueryResources();
       const selectedResources = [];
 
       selectedResourceIds.forEach(selectedResourceId => {

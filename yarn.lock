@@ -8856,11 +8856,6 @@ q@^1.1.2:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
 
-qs-lite@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/qs-lite/-/qs-lite-0.0.1.tgz#9f43971bf8f979fe662d2650b82d139ddd7f61ea"
-  integrity sha1-n0OXG/j5ef5mLSZQuC0Tnd1/Yeo=
-
 qs@6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"

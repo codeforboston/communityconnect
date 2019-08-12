@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import { withRouter } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import qs from "qs-lite";
 import {
   Alert,
   Card,
@@ -13,6 +12,7 @@ import {
   ModalHeader,
   ModalBody,
 } from "reactstrap";
+import { getQueryResources, encodeResources } from "../../utils/resourcesQuery";
 import getDistance from "../../utils/distance";
 import * as resourceAction from "../../action/resourceDataAction";
 
@@ -32,13 +32,7 @@ class SavedResource extends Component {
   };
 
   removalConfirmed = () => {
-    const query = qs.parse(window.location.search.replace("?", ""));
-    let resources = [];
-
-    if (query.resources) {
-      resources = query.resources.split(",");
-    }
-
+    const resources = getQueryResources();
     const indexOfResource = resources.indexOf(this.props.organization.id);
 
     if (
@@ -52,7 +46,7 @@ class SavedResource extends Component {
 
     this.props.history.push({
       pathname: window.location.pathname,
-      search: `?resources=${resources.join(",")}`,
+      search: encodeResources(resources),
     });
     this.removeItem();
   };

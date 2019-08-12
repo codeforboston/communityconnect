@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import { withRouter } from "react-router";
-import qs from "qs-lite";
 import isUrl from "is-url";
+import { getQueryResources, encodeResources } from "../../utils/resourcesQuery";
 import getDistance from "../../utils/distance";
 import * as resourceAction from "../../action/resourceDataAction";
 
@@ -29,37 +29,21 @@ class OrganizationCard extends Component {
   saveItem = () => {
     this.props.actions.addSavedResource(this.props.organization);
 
-    const query = qs.parse(window.location.search.replace("?", ""));
-    let resources = [];
-
-    if (query.resources) {
-      resources = query.resources.split(",");
-    }
-
+    const resources = getQueryResources();
     const indexOfResource = resources.indexOf(this.props.organization.id);
 
     if (indexOfResource < 0) {
       resources.push(this.props.organization.id);
     }
 
-    setImmediate(() =>
-      this.props.history.push({
-        pathname: window.location.pathname,
-        search: `?resources=${resources.join(",")}`,
-      })
-    );
+    this.props.history.push({
+      pathname: window.location.pathname,
+      search: encodeResources(resources),
+    });
   };
 
   removeItem = () => {
-    // code copied verbatim from SavedResource.removalConfirmed()
-    // should probably refactor for cleanliness
-    const query = qs.parse(window.location.search.replace("?", ""));
-    let resources = [];
-
-    if (query.resources) {
-      resources = query.resources.split(",");
-    }
-
+    const resources = getQueryResources();
     const indexOfResource = resources.indexOf(this.props.organization.id);
 
     if (
@@ -71,12 +55,10 @@ class OrganizationCard extends Component {
       resources.splice(indexOfResource, 1);
     }
 
-    setImmediate(() =>
-      this.props.history.push({
-        pathname: window.location.pathname,
-        search: `?resources=${resources.join(",")}`,
-      })
-    );
+    this.props.history.push({
+      pathname: window.location.pathname,
+      search: encodeResources(resources),
+    });
   };
 
   toggleItem = () => {
