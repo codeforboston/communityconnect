@@ -42,10 +42,12 @@ class OrganizationCard extends Component {
       resources.push(this.props.organization.id);
     }
 
-    this.props.history.push({
-      pathname: window.location.pathname,
-      search: `?resources=${resources.join(",")}`,
-    });
+    setImmediate(() =>
+      this.props.history.push({
+        pathname: window.location.pathname,
+        search: `?resources=${resources.join(",")}`,
+      })
+    );
   };
 
   removeItem = () => {
@@ -69,10 +71,12 @@ class OrganizationCard extends Component {
       resources.splice(indexOfResource, 1);
     }
 
-    this.props.history.push({
-      pathname: window.location.pathname,
-      search: `?resources=${resources.join(",")}`,
-    });
+    setImmediate(() =>
+      this.props.history.push({
+        pathname: window.location.pathname,
+        search: `?resources=${resources.join(",")}`,
+      })
+    );
   };
 
   toggleItem = () => {
