@@ -9,7 +9,8 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
-    "lint": "eslint \"src/**/*.{js,jsx}\""
+    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.21",
@@ -41,6 +42,7 @@
     "redux-immutable-state-invariant": "2.1.0",
     "redux-thunk": "2.3.0",
     "sass-loader": "7.2.0",
+    "source-map-explorer": "2.0.1",
     "tabletop": "1.5.2"
   },
   "devDependencies": {
