@@ -16,6 +16,8 @@ import SavedResourcePanel from "../components/SavedResources/SavedResourcePanel"
 import NotFoundPage from "../components/NotFoundPage/NotFoundPage";
 import { Loading } from "../components/Common/Loading";
 import { FeedbackContainer } from "../components/Common/FeedbackContainer";
+import LandingPage from '../components/LandingPage/LandingPage';
+import Button from '../components/Button/Button'
 
 const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 
@@ -34,6 +36,7 @@ class AppContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      landingPage: true,
       position: {},
       displayFeedbackLink: true,
       isValidPage: true
@@ -93,8 +96,18 @@ class AppContainer extends Component {
     });
   };
 
+  goToResources = () => {
+    this.setState({
+      landingPage: false
+    })
+  }
+
+
+
+
   render() {
     const { isFetchingResource } = this.props;
+    const { landingPage } = this.state;
 
     if (!this.state.isValidPage) {
       return <NotFoundPage />;
@@ -103,14 +116,24 @@ class AppContainer extends Component {
     if (isFetchingResource) {
       return <Loading />;
     }
-
+    
     return (
-      <div className="viewport">
-        <div className="viewport-header">
+      <div className="viewport" >
+        {landingPage ? (
+          <div style={{ textAlign: "center", padding: "3rem" }}>
+            <LandingPage />
+        {/* <button >Go To resources </button> */}
+        <Button goToResources={this.goToResources} />
+          </div>
+        
+      ) : (
+        <div>
+          <div className="viewport-header">
           <Header toggleSavedResourcesPane={this.toggleSavedResourcesPane} />
         </div>
 
         <div className="page">
+
           <Route
             exact
             path="/:resource/admin"
@@ -136,6 +159,9 @@ class AppContainer extends Component {
         {this.state.displayFeedbackLink && (
           <FeedbackContainer hideFeedbackLink={this.hideFeedbackLink} />
         )}
+        </div>
+      )}
+        
       </div>
     );
   }
