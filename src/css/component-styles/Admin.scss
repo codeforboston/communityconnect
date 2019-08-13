@@ -16,6 +16,7 @@
 .card-pane {
   position: relative;
   overflow: auto;
+  transform: translateY(2vh);
 }
 
 .category-pane {
@@ -35,4 +36,20 @@
   gap: $spacing-lg;
   padding: $spacing-lg 0;
   position: absolute;
+}
+
+@media (max-width: 768px){
+  .category-pane {
+    grid-template-columns: auto;
+  }
+  .admin-pane {
+    grid-template-columns: 1fr;
+    grid-template-rows: 35% 65%;
+    grid-gap: 2vh;
+    transform: translateY(30px);
+}
+  .viewport-header {
+    width: 100%;
+    height: 40px;
+  }
 }
