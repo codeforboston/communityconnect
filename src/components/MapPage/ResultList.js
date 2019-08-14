@@ -72,11 +72,8 @@ class ResultList extends Component {
 
   render() {
     const sortOptions = [
-<<<<<<< HEAD
-      { key: 'A-Z', sort: this.sortByAlphabet, disabled: false },
-=======
+
       { key: "A-Z", sort: this.sortByAlphabet, disabled: false },
->>>>>>> ea3247dc923b7d54bec104e2a526901f3f0c59d6
       {
         key: "Distance",
         sort: this.sortByDistance,
