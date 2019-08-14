@@ -1,7 +1,14 @@
-import React, { Component } from 'react';
-import cx from 'classnames';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import cx from "classnames";
 
-export class SplitScreenSlidingPane extends Component {
+class SplitScreenSlidingPane extends Component {
+  static propTypes = {
+    children: PropTypes.element.isRequired,
+  };
+
   state = {
     isOpen: true,
   };
@@ -9,15 +16,14 @@ export class SplitScreenSlidingPane extends Component {
   toggle = e => {
     e.preventDefault();
 
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
+    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
   };
 
-  render () {
-    const slidingPaneClassNames = cx('sliding-pane', {
+  render() {
+    const slidingPaneClassNames = cx("sliding-pane", {
       open: this.state.isOpen,
     });
+
     return (
       <div className={slidingPaneClassNames}>
         <div className="sliding-pane-toggle-button" onClick={this.toggle}>
@@ -28,3 +34,5 @@ export class SplitScreenSlidingPane extends Component {
     );
   }
 }
+
+export default SplitScreenSlidingPane;

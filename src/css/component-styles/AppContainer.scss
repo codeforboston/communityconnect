@@ -1,20 +1,15 @@
 .viewport {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
 .viewport-header {
-  width: 100%;
-  height: 55px;
-}
-
-.spinner {
-  margin: auto;
-  width: 100px;
-  height: 100px;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+  width: 100vw;
+  height: $nav-height;
 }
 
 .feedback-container {
@@ -34,4 +29,31 @@
 .badge {
   margin: 0px 5px 0px 5px;
   cursor: pointer;
+}
+
+.loading-logo {
+  max-width: 75%;
+  margin: auto;
+  animation: logo-expand 2s infinite;
+
+  @keyframes logo-expand {
+    0% {
+      box-shadow: 0 0 0 0 rgba($turquoise, 0.5);
+      filter: grayscale(0);
+    }
+
+    50% {
+      box-shadow: 0 0 0 100px rgba($turquoise, 0);
+      filter: grayscale(1);
+    }
+
+    75% {
+      filter: grayscale(0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      filter: grayscale(0);
+    }
+  }
 }

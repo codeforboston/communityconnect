@@ -1,8 +1,37 @@
-.save-item {
-  cursor: pointer;
-  text-align: center;
-  font-size: 25px;
-  height: 25px;
-  width: 25px;
-  color: black;
+.organization-card-button {
+  &.plus {
+    animation: button-expand 0.5s linear;
+
+    @keyframes button-expand {
+      0% {
+        box-shadow: 0 0 0 0 rgba($turquoise, 0.4);
+      }
+
+      70% {
+        box-shadow: 0 0 0 100px rgba($turquoise, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba($turquoise, 0);
+      }
+    }
+  }
+
+  &.minus {
+    animation: button-expand-reverse 0.5s linear;
+
+    @keyframes button-expand-reverse {
+      100% {
+        box-shadow: 0 0 0 0 rgba($turquoise, 0.4);
+      }
+
+      30% {
+        box-shadow: 0 0 0 100px rgba($turquoise, 0);
+      }
+
+      0% {
+        box-shadow: 0 0 0 0 rgba($turquoise, 0);
+      }
+    }
+  }
 }

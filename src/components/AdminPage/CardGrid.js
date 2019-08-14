@@ -1,11 +1,24 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import OrganizationCard from "../Common/OrganizationCard";
-import { SortBar } from "../Common/SortBar.js";
+import SortBar from "../Common/SortBar";
 import SearchBar from "../Header/SearchBar";
-import { getDistance } from "../../utils/distance.js";
+import getDistance from "../../utils/distance";
 
-export class CardGrid extends Component {
+class CardGrid extends Component {
+  static propTypes = {
+    currentPos: PropTypes.object.isRequired,
+    resource: PropTypes.array.isRequired,
+    handleFilter: PropTypes.func,
+    saveItem: PropTypes.func,
+  };
+
+  static defaultProps = {
+    handleFilter: null,
+    saveItem: null,
+  };
+
   constructor(props) {
     super(props);
 
@@ -14,40 +27,36 @@ export class CardGrid extends Component {
     };
   }
 
-  sortByAlphabet = () => {
-    const getCloserName = (a, b) => {
-      if (a.name > b.name) {
-        return 1;
-      } else if (a.name < b.name) {
-        return -1;
-      } else {
-        return 0;
-      }
-    };
+  getCloserResource = (a, b) => {
+    if (
+      getDistance(a, this.props.currentPos) >
+      getDistance(b, this.props.currentPos)
+    ) {
+      return 1;
+    }
 
-    return this.props.resource.sort(getCloserName);
+    return -1;
   };
 
-  sortByDistance = () => {
-    const getCloserResource = (a, b) => {
-      if (
-        getDistance(a, this.props.currentPos) >
-        getDistance(b, this.props.currentPos)
-      ) {
-        return 1;
-      }
+  getCloserName = (a, b) => {
+    if (a.name > b.name) return 1;
+    if (a.name < b.name) return -1;
 
-      return -1;
-    };
-    return this.props.resource.sort(getCloserResource);
+    return 0;
   };
+
+  sortByAlphabet = () => this.props.resource.slice().sort(this.getCloserName);
+
+  sortByDistance = () =>
+    this.props.resource.slice().sort(this.getCloserResource);
 
   handleSortChange = newSort => {
-    if (this.state.dataSort !== newSort)
+    if (this.state.dataSort !== newSort) {
       this.setState({
         // Set the dataSort variable to whichever sort function is chosen
         dataSort: newSort
       });
+    }
   };
 
   render() {
@@ -75,8 +84,11 @@ export class CardGrid extends Component {
             sortOptions={sortOptions}
           />
         </div>
+
         <div className="card-pane">
+
           <div className="card-list">
+
             {sortedData.map((resource, index) => (
               <OrganizationCard
                 key={resource.id}
@@ -84,26 +96,24 @@ export class CardGrid extends Component {
                 organization={resource}
                 currentPos={this.props.currentPos}
                 saveItem={() => this.props.saveItem(resource)}
-                saveable={true}
+                saveable
               />
             ))}
+
           </div>
+
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const resource = [];
-  //Not the most efficient logic, but it works. Will have to optimize this later
-  for (let i = 0, len1 = state.searchedResource.length; i < len1; i++) {
-    for (let j = 0, len2 = state.filteredResource.length; j < len2; j++) {
-      if (state.searchedResource[i].id === state.filteredResource[j].id) {
-        resource.push(state.searchedResource[i]);
-      }
-    }
-  }
+function mapStateToProps(state) {
+  const filteredResourceSet = new Set(state.filteredResource.map(x => x.id));
+
+  const resource = state.searchedResource.filter(x =>
+    filteredResourceSet.has(x.id)
+  );
 
   return { resource };
 }
