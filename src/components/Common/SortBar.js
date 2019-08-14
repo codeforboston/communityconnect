@@ -15,6 +15,7 @@ class SortBar extends React.Component {
     }
   };
 
+
   render() {
     return (
       <span>

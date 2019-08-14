@@ -5,8 +5,13 @@ import CardGrid from "./CardGrid";
 
 const AdminPage = ({ currentPosition }) => (
   <div className="admin-pane">
-    <CategoryList />
+
+    <div className="category-pane">
+      <CategoryList />
+    </div>
+    
     <CardGrid currentPos={currentPosition} />
+    
   </div>
 );
 
