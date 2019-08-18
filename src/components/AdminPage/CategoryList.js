@@ -2,16 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Form, FormGroup, Label, Input } from "reactstrap";
+import { ListGroup, ListGroupItem, Button } from "reactstrap";
+import _ from "lodash";
 import * as resourceAction from "../../action/resourceDataAction";
 
 class CategoryList extends Component {
-  static propTypes = {
-    resource: PropTypes.array.isRequired,
-    categories: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -19,49 +14,101 @@ class CategoryList extends Component {
     };
   }
 
-  handleChange = selected => {
+  componentDidUpdate() {
     const { selectedCategory } = this.state;
-    const index = selectedCategory.indexOf(selected);
+    const { resource } = this.props;
+    const filteredResource = [];
 
-    // eslint-disable-next-line no-unused-expressions
-    index !== -1
-      ? selectedCategory.splice(index, 1)
-      : selectedCategory.push(selected);
+    if (selectedCategory.length === 0) {
+      this.props.actions.filterByCategories(resource);
+    } else {
+      resource.forEach(res => {
+        const isMatch = selectedCategory.some(cat => res.categories === cat);
 
-    const filteredResource = this.props.resource.filter(resource =>
-      this.state.selectedCategory.some(searchCategory =>
-        resource.categories
-          .split(",")
-          .map(item => item.trim())
-          .includes(searchCategory)
-      )
+        if (isMatch) {
+          filteredResource.push(res);
+        }
+      });
+      this.props.actions.filterByCategories(filteredResource);
+    }
+  }
+
+  handleClick = async event => {
+    event.persist();
+    const isContains = event.target.classList.contains(
+      "list-group-item-success"
     );
 
-    this.props.actions.filterByCategories(
-      selectedCategory.length > 0 ? filteredResource : this.props.resource
-    );
+    const selectedCategoryLength = this.state.selectedCategory.length;
+
+    if (isContains && selectedCategoryLength === 1) {
+      this.setState({
+        selectedCategory: [],
+      });
+    } else if (isContains) {
+      this.setState(prevState => {
+        const selectedCategoryCopy = prevState.selectedCategory.slice();
+        _.remove(selectedCategoryCopy, cat => cat === event.target.innerHTML);
+
+        return {
+          selectedCategory: selectedCategoryCopy,
+        };
+      });
+    } else {
+      this.setState(prevState => ({
+        selectedCategory: [
+          ...prevState.selectedCategory,
+          event.target.innerHTML,
+        ],
+      }));
+    }
+  };
+
+  clearChecks = () => {
+    this.setState({
+      selectedCategory: [],
+    });
   };
 
   render() {
-    const categoryMenuItems = this.props.categories.map(cat => (
-      <FormGroup key={cat} check>
-        <Input
-          type="checkbox"
-          key={cat}
-          onChange={() => this.handleChange(cat)}
-        />
-        {cat}
-      </FormGroup>
+    const { selectedCategory } = this.state;
+    const { categories } = this.props;
+    categories.sort();
+    const categoryMenuItems = categories.map((curr, index) => (
+      <ListGroupItem
+        key={index.toString()}
+        className="category-group-item"
+        color={_.indexOf(selectedCategory, curr) !== -1 ? "success" : ""}
+        onClick={this.handleClick}
+      >
+        {curr}
+      </ListGroupItem>
     ));
 
     return (
-      <Form>
-        <Label>Filter by Category</Label>
-        {categoryMenuItems}
-      </Form>
+      <div className="category-parent-container">
+        <h4>Filter by Category</h4>
+        <div className="category-container">
+          <ListGroup className="category-group">{categoryMenuItems}</ListGroup>
+        </div>
+        <Button color="info" className="w-100 mt-2" onClick={this.clearChecks}>
+          Clear
+        </Button>
+      </div>
     );
   }
 }
+
+CategoryList.propTypes = {
+  resource: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  filterByCategories: PropTypes.func,
+  categories: PropTypes.array.isRequired,
+};
+
+CategoryList.defaultProps = {
+  filterByCategories: undefined,
+};
 
 function mapStateToProps(state) {
   return {
