@@ -10,6 +10,12 @@
   grid-template-rows: $spacing-lg auto;
 }
 
+.category-container {
+  height: 50vh;
+  overflow: auto;
+  cursor: pointer;
+}
+
 .search-and-sort {
   display: grid;
   grid-template-columns: auto auto;
