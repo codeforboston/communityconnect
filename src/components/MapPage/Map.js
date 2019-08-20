@@ -1,9 +1,11 @@
 import React from "react";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
+import {Marker} from 'react-google-maps/lib/components/Marker'
 import OrganizationMarker from "./OrganizationMarker";
 import { compose, lifecycle } from "recompose";
 import Styles from "./mapStyles";
+
 
 const Map = compose(
   lifecycle({
@@ -15,14 +17,18 @@ const Map = compose(
             bounds.extend(
               new window.google.maps.LatLng(
                 child.props.resource.coordinates.lat,
-                child.props.resource.coordinates.lng
+                child.props.resource.coordinates.lng,
+                // console.log(child.props.resource.groupedResource[0].categories)
               )
             );
           });
           map.fitBounds(bounds);
         }
       });
+      
     }
+
+    
   }),
 
   withScriptjs,
@@ -36,7 +42,7 @@ const Map = compose(
       styles: Styles
     }}
   >
-    <MarkerClusterer
+    <Marker
       averageCenter={true}
       enableRetinaIcons={true}
       gridSize={60}
@@ -51,8 +57,10 @@ const Map = compose(
             open={resource.showInfo}
             resource={resource}
           />
+          
         ))}
-    </MarkerClusterer>
+        
+    </Marker>
   </GoogleMap>
 ));
 export default Map;

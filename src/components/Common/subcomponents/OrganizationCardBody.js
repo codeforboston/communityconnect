@@ -1,6 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+
+
 export const OrganizationCardBody = ({
   categories,
   distance,
@@ -11,7 +13,8 @@ export const OrganizationCardBody = ({
   children,
 }) => (
   <div className="organization-card-body">
-    <div className="organization-card-body-subtitle">{categories}</div>
+    <div className="organization-card-body-subtitle">{categories}  </div>
+    
     {distance && <p>Distance from your location: {distance} miles</p>}
     {location && (
       <span>

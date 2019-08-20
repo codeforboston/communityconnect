@@ -1,5 +1,16 @@
 import React, { Component } from "react";
 import { Marker, InfoWindow } from "react-google-maps";
+import housing from '../../images/icons/house.png'
+import baby from '../../images/icons/baby.png'
+import violence from '../../images/icons/violence.png'
+import education from '../../images/icons/education.png'
+import farmers from '../../images/icons/farmer.png'
+import hospital from '../../images/icons/hospital.png'
+import healthyFood from '../../images/icons/diet.png'
+import parks from '../../images/icons/tree.png'
+import church from '../../images/icons/church.png'
+import youth from '../../images/icons/youth.png'
+import couple from '../../images/icons/couple.png'
 
 export class OrganizationMarker extends Component {
   constructor(props) {
@@ -8,6 +19,7 @@ export class OrganizationMarker extends Component {
       open: this.props.open
     };
   }
+  
 
   componentDidUpdate(prevProps) {
     if (prevProps.open !== this.props.open) {
@@ -31,13 +43,52 @@ export class OrganizationMarker extends Component {
 
   render() {
     let { resource } = this.props;
-    let iconMarker = new window.google.maps.MarkerImage(
-      "https://cdn0.iconfinder.com/data/icons/business-human-resources-2/128/60-512.png",
-      null /* size is determined at runtime */,
-      null /* origin is 0,0 */,
-      null /* anchor is bottom center of the scaled image */,
-      new window.google.maps.Size(32, 32)
-    );
+    let iconImg = resource.groupedResource[0].categories;
+    let iconMarker = null;
+    switch(iconImg) {
+      case iconImg = 'Job Training and Opportunity':
+      case iconImg = "Childhood Support": 
+      case iconImg = "Transitioning and Integrating":
+      case iconImg = "Affordable Housing":
+      iconMarker = housing
+      break;
+      case iconImg = "Child Care" :
+      iconMarker = baby
+      break;
+      case iconImg = "Domestic Violence Support":
+      iconMarker = violence
+      break;
+      case iconImg = "Education":
+      iconMarker = education;
+      break;
+      case iconImg = 'Farmers Market':
+      case iconImg = "Community Markets":
+      iconMarker = farmers;
+      break;
+      case iconImg = "Health and Wellbeing":
+      case iconImg = "Health Care Centers and Clinics":
+      iconMarker = hospital;
+      break;
+      case iconImg = "Healthy Food Options and Food Pantries":
+      iconMarker = healthyFood
+      break;
+      case iconImg = "Parks and Community Gardens":
+      iconMarker = parks
+      break;
+      case iconImg = "Religious and Cultural Center":
+      iconMarker = church
+      break;
+      case iconImg = "Youth and Adolescence":
+      iconMarker = youth
+      break;
+      case iconImg = "Elderly Support":
+      iconMarker = couple
+      break;
+      
+    }
+  
+
+   
     const InfoWindowStyle = {
       backgroundColor: "green"
     };

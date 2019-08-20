@@ -1,7 +1,12 @@
 .viewport {
   width: 100vw;
   height: 100vh;
+  font-family: 'Fjalla One', sans-serif;
+  p, span, a {
+    font-family: 'Noto Sans', sans-serif;
+  }
 }
+
 
 .viewport-header {
   position: fixed;
