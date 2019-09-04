@@ -15,6 +15,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
+import { getQueryResources, encodeResources } from "../../utils/resourcesQuery";
 import * as resourceAction from "../../action/resourceDataAction";
 
 class Header extends Component {
@@ -44,6 +45,15 @@ class Header extends Component {
     this.modalToggle();
   };
 
+  toAdmin = () => {
+    const resources = getQueryResources();
+
+    this.props.history.push({
+      pathname: `/${this.props.match.params.resource}/admin`,
+      search: encodeResources(resources),
+    });
+  };
+
   render() {
     const { savedResources, toggleSavedResourcesPane } = this.props;
 
@@ -57,18 +67,53 @@ class Header extends Component {
           <NavbarBrand className="Logo" onClick={this.modalOpen}>
             <span>Community Connect</span>
           </NavbarBrand>
-          <Route
-            path="/:resource/admin"
-            render={() => (
-              <button
-                type="button"
-                className={savedResourceButtonClassNames}
-                onClick={toggleSavedResourcesPane}
-              >
-                Saved Resources {savedResources.length}
-              </button>
-            )}
-          />
+
+          <div>
+            <Route
+              path="/:resource"
+              exact
+              render={() => (
+                <Button
+                  tag={Link}
+                  color="info"
+                  to={{
+                    pathname: `/${this.props.match.params.resource}/admin`,
+                    search: this.props.location.search,
+                  }}
+                >
+                  Admin View
+                </Button>
+              )}
+            />
+            <Route
+              path="/:resource/admin"
+              exact
+              render={() => (
+                <Button
+                  tag={Link}
+                  color="info"
+                  to={{
+                    pathname: `/${this.props.match.params.resource}`,
+                    search: this.props.location.search,
+                  }}
+                >
+                  Map View
+                </Button>
+              )}
+            />
+            <Route
+              path="/:resource/admin"
+              render={() => (
+                <button
+                  type="button"
+                  className={savedResourceButtonClassNames}
+                  onClick={toggleSavedResourcesPane}
+                >
+                  Saved Resources {savedResources.length}
+                </button>
+              )}
+            />
+          </div>
         </Navbar>
         <Modal isOpen={this.state.modal} toggle={this.modalToggle}>
           <ModalHeader>Alert</ModalHeader>
@@ -100,6 +145,8 @@ Header.propTypes = {
   actions: PropTypes.object.isRequired,
   toggleSavedResourcesPane: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
