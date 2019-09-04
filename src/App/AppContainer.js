@@ -29,11 +29,18 @@ function sheetIdFromPath(directory, path) {
 class AppContainer extends Component {
   state = {
     position: {},
-    displayFeedbackLink: true,
+    displayFeedbackLink: false,
     isValidPage: true,
   };
 
   componentDidMount() {
+    const hideFeedbackTs = localStorage.getItem("hideFeedback");
+
+    if (hideFeedbackTs === null || Date.now() > parseInt(hideFeedbackTs, 10)) {
+      localStorage.removeItem("hideFeedback");
+      this.setState({ displayFeedbackLink: true });
+    }
+    console.log(hideFeedbackTs, typeof hideFeedbackTs);
     const resourcePath = this.props.match.params.resource;
     let resourceSheetId = null;
 
@@ -53,6 +60,8 @@ class AppContainer extends Component {
   }
 
   hideFeedbackLink = () => {
+    const weekMillis = 7 * 24 * 60 * 60 * 1000;
+    localStorage.setItem("hideFeedback", Date.now() + weekMillis);
     this.setState({ displayFeedbackLink: false });
   };
 
