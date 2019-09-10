@@ -66,8 +66,8 @@ class CategoryList extends Component {
   render() {
     const { selectedCategory } = this.state;
     const { categories } = this.props;
-    categories.sort();
-    const categoryMenuItems = categories.map((curr, index) => (
+
+    const categoryMenuItems = [...categories].sort().map((curr, index) => (
       <ListGroupItem
         key={index.toString()}
         className="category-group-item"
