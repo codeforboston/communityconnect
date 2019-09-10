@@ -14,20 +14,16 @@ class CategoryList extends Component {
   componentDidUpdate() {
     const { selectedCategory } = this.state;
     const { resources } = this.props;
-    const filteredResources = [];
 
     if (selectedCategory.length === 0) {
-      this.props.actions.filterByCategories(resources);
-    } else {
-      resources.forEach(res => {
-        const isMatch = selectedCategory.some(cat => res.categories === cat);
-
-        if (isMatch) {
-          filteredResources.push(res);
-        }
-      });
-      this.props.actions.filterByCategories(filteredResources);
+      return this.props.actions.filterByCategories(resources);
     }
+
+    const filteredResources = resources.filter(resource =>
+      selectedCategory.some(cat => resource.categories === cat)
+    );
+
+    return this.props.actions.filterByCategories(filteredResources);
   }
 
   handleClick = async event => {
