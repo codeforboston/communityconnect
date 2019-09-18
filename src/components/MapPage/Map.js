@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
@@ -9,20 +10,22 @@ import Styles from "./mapStyles";
 
 const Map = compose(
   lifecycle({
-    componentWillMount() {
+    componentDidMount() {
       this.setState({
         zoomToMarkers: map => {
-          const bounds = new window.google.maps.LatLngBounds();
+          if (map) {
+            const bounds = new window.google.maps.LatLngBounds();
 
-          map.props.children.props.children.forEach(child => {
-            bounds.extend(
-              new window.google.maps.LatLng(
-                child.props.resource.coordinates.lat,
-                child.props.resource.coordinates.lng
-              )
-            );
-          });
-          map.fitBounds(bounds);
+            map.props.children.props.children.forEach(child => {
+              bounds.extend(
+                new window.google.maps.LatLng(
+                  child.props.resource.coordinates.lat,
+                  child.props.resource.coordinates.lng
+                )
+              );
+            });
+            map.fitBounds(bounds);
+          }
         },
       });
     },
@@ -46,7 +49,7 @@ const Map = compose(
       ref={props.onMarkerClick}
       defaultMaxZoom={16}
     >
-      {props.resource
+      {props.resources
         .filter(resource => resource.coordinates)
         .map((resource, index) => (
           <OrganizationMarker

@@ -15,31 +15,21 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
+import { getQueryResources, encodeResources } from "../../utils/resourcesQuery";
 import * as resourceAction from "../../action/resourceDataAction";
 
 class Header extends Component {
-  static propTypes = {
-    savedResource: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
-    toggleSavedResourcesPane: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired,
+  state = {
+    collapsed: true,
+    modal: false,
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      collapsed: true,
-      modal: false,
-    };
-  }
 
   toggleNavbar = () => {
     this.setState(prevState => ({ collapsed: !prevState.collapsed }));
   };
 
   modalOpen = () => {
-    if (this.props.savedResource.length > 0) {
+    if (this.props.savedResources.length > 0) {
       this.modalToggle();
     } else {
       window.location.reload();
@@ -51,15 +41,24 @@ class Header extends Component {
   };
 
   confirmationModalToggle = () => {
-    this.props.actions.clearSavedResource();
+    this.props.actions.clearSavedResources();
     this.modalToggle();
   };
 
+  toAdmin = () => {
+    const resources = getQueryResources();
+
+    this.props.history.push({
+      pathname: `/${this.props.match.params.resource}/admin`,
+      search: encodeResources(resources),
+    });
+  };
+
   render() {
-    const { savedResource, toggleSavedResourcesPane } = this.props;
+    const { savedResources, toggleSavedResourcesPane } = this.props;
 
     const savedResourceButtonClassNames = cx("saved-resource-button", {
-      "has-selections": savedResource.length,
+      "has-selections": savedResources.length,
     });
 
     return (
@@ -68,18 +67,53 @@ class Header extends Component {
           <NavbarBrand className="Logo" onClick={this.modalOpen}>
             <span>Community Connect</span>
           </NavbarBrand>
-          <Route
-            path="/:resource/admin"
-            render={() => (
-              <button
-                type="button"
-                className={savedResourceButtonClassNames}
-                onClick={toggleSavedResourcesPane}
-              >
-                Saved Resources {savedResource.length}
-              </button>
-            )}
-          />
+
+          <div>
+            <Route
+              path="/:resource"
+              exact
+              render={() => (
+                <Button
+                  tag={Link}
+                  color="info"
+                  to={{
+                    pathname: `/${this.props.match.params.resource}/admin`,
+                    search: this.props.location.search,
+                  }}
+                >
+                  Admin View
+                </Button>
+              )}
+            />
+            <Route
+              path="/:resource/admin"
+              exact
+              render={() => (
+                <Button
+                  tag={Link}
+                  color="info"
+                  to={{
+                    pathname: `/${this.props.match.params.resource}`,
+                    search: this.props.location.search,
+                  }}
+                >
+                  Map View
+                </Button>
+              )}
+            />
+            <Route
+              path="/:resource/admin"
+              render={() => (
+                <button
+                  type="button"
+                  className={savedResourceButtonClassNames}
+                  onClick={toggleSavedResourcesPane}
+                >
+                  Saved Resources {savedResources.length}
+                </button>
+              )}
+            />
+          </div>
         </Navbar>
         <Modal isOpen={this.state.modal} toggle={this.modalToggle}>
           <ModalHeader>Alert</ModalHeader>
@@ -106,9 +140,18 @@ class Header extends Component {
   }
 }
 
+Header.propTypes = {
+  savedResources: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  toggleSavedResourcesPane: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+};
+
 function mapStateToProps(state) {
   return {
-    savedResource: state.savedResource,
+    savedResources: state.savedResources,
   };
 }
 

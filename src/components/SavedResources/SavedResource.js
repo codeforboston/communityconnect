@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import { withRouter } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import qs from "qs-lite";
 import {
   Alert,
   Card,
@@ -13,30 +12,16 @@ import {
   ModalHeader,
   ModalBody,
 } from "reactstrap";
+import { getQueryResources, encodeResources } from "../../utils/resourcesQuery";
 import getDistance from "../../utils/distance";
 import * as resourceAction from "../../action/resourceDataAction";
 
 import SavedResourceButton from "./SavedResourceButton";
 
 class SavedResource extends Component {
-  static propTypes = {
-    organization: PropTypes.object.isRequired,
-    savedResource: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-    currentPos: PropTypes.object,
+  state = {
+    visible: false,
   };
-
-  static defaultProps = {
-    currentPos: null,
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-    };
-  }
 
   confirmationAlertToggle = () => {
     this.setState(prevState => ({ visible: !prevState.visible }));
@@ -47,17 +32,11 @@ class SavedResource extends Component {
   };
 
   removalConfirmed = () => {
-    const query = qs.parse(window.location.search.replace("?", ""));
-    let resources = [];
-
-    if (query.resources) {
-      resources = query.resources.split(",");
-    }
-
+    const resources = getQueryResources();
     const indexOfResource = resources.indexOf(this.props.organization.id);
 
     if (
-      this.props.savedResource.some(
+      this.props.savedResources.some(
         resource => resource.id === this.props.organization.id
       )
     ) {
@@ -67,7 +46,7 @@ class SavedResource extends Component {
 
     this.props.history.push({
       pathname: window.location.pathname,
-      search: `?resources=${resources.join(",")}`,
+      search: encodeResources(resources),
     });
     this.removeItem();
   };
@@ -198,8 +177,20 @@ class SavedResource extends Component {
   }
 }
 
+SavedResource.propTypes = {
+  organization: PropTypes.object.isRequired,
+  savedResources: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  currentPos: PropTypes.object,
+};
+
+SavedResource.defaultProps = {
+  currentPos: null,
+};
+
 function mapStateToProps(state) {
-  return { savedResource: state.savedResource };
+  return { savedResources: state.savedResources };
 }
 
 function mapDispatchToProps(dispatch) {

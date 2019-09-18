@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import { withRouter } from "react-router";
-import qs from "qs-lite";
 import isUrl from "is-url";
+import { getQueryResources, encodeResources } from "../../utils/resourcesQuery";
 import getDistance from "../../utils/distance";
 import * as resourceAction from "../../action/resourceDataAction";
 
@@ -16,27 +16,10 @@ import {
 } from "./subcomponents";
 
 class OrganizationCard extends Component {
-  static propTypes = {
-    organization: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-    savedResource: PropTypes.array.isRequired,
-    currentPos: PropTypes.object.isRequired,
-    saveable: PropTypes.bool,
-    index: PropTypes.string.isRequired,
-  };
-
-  static defaultProps = {
-    saveable: null,
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  state = {};
 
   static getDerivedStateFromProps(props) {
-    if (!props.savedResource.some(r => r.id === props.organization.id)) {
+    if (!props.savedResources.some(r => r.id === props.organization.id)) {
       return { saveExist: false };
     }
 
@@ -46,13 +29,7 @@ class OrganizationCard extends Component {
   saveItem = () => {
     this.props.actions.addSavedResource(this.props.organization);
 
-    const query = qs.parse(window.location.search.replace("?", ""));
-    let resources = [];
-
-    if (query.resources) {
-      resources = query.resources.split(",");
-    }
-
+    const resources = getQueryResources();
     const indexOfResource = resources.indexOf(this.props.organization.id);
 
     if (indexOfResource < 0) {
@@ -61,24 +38,16 @@ class OrganizationCard extends Component {
 
     this.props.history.push({
       pathname: window.location.pathname,
-      search: `?resources=${resources.join(",")}`,
+      search: encodeResources(resources),
     });
   };
 
   removeItem = () => {
-    // code copied verbatim from SavedResource.removalConfirmed()
-    // should probably refactor for cleanliness
-    const query = qs.parse(window.location.search.replace("?", ""));
-    let resources = [];
-
-    if (query.resources) {
-      resources = query.resources.split(",");
-    }
-
+    const resources = getQueryResources();
     const indexOfResource = resources.indexOf(this.props.organization.id);
 
     if (
-      this.props.savedResource.some(
+      this.props.savedResources.some(
         resource => resource.id === this.props.organization.id
       )
     ) {
@@ -88,7 +57,7 @@ class OrganizationCard extends Component {
 
     this.props.history.push({
       pathname: window.location.pathname,
-      search: `?resources=${resources.join(",")}`,
+      search: encodeResources(resources),
     });
   };
 
@@ -170,9 +139,23 @@ class OrganizationCard extends Component {
   }
 }
 
+OrganizationCard.propTypes = {
+  organization: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  savedResources: PropTypes.array.isRequired,
+  currentPos: PropTypes.object.isRequired,
+  saveable: PropTypes.bool,
+  index: PropTypes.string.isRequired,
+};
+
+OrganizationCard.defaultProps = {
+  saveable: null,
+};
+
 function mapStateToProps(state) {
   return {
-    savedResource: state.savedResource,
+    savedResources: state.savedResources,
   };
 }
 

@@ -29,27 +29,20 @@ function sheetIdFromPath(directory, path) {
 }
 
 class AppContainer extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired,
-    isFetchingResource: PropTypes.bool.isRequired,
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      
-      position: {},
-      displayFeedbackLink: true,
-      isValidPage: true,
-    };
-  }
-
-  static propTypes = {
-    dispatch: PropTypes.func
+  state = {
+    position: {},
+    displayFeedbackLink: false,
+    isValidPage: true,
   };
 
   componentDidMount() {
+    const hideFeedbackTs = localStorage.getItem("hideFeedback");
+
+    if (hideFeedbackTs === null || Date.now() > parseInt(hideFeedbackTs, 10)) {
+      localStorage.removeItem("hideFeedback");
+      this.setState({ displayFeedbackLink: true });
+    }
+    console.log(hideFeedbackTs, typeof hideFeedbackTs);
     const resourcePath = this.props.match.params.resource;
     let resourceSheetId = null;
 
@@ -69,6 +62,8 @@ class AppContainer extends Component {
   }
 
   hideFeedbackLink = () => {
+    const weekMillis = 7 * 24 * 60 * 60 * 1000;
+    localStorage.setItem("hideFeedback", Date.now() + weekMillis);
     this.setState({ displayFeedbackLink: false });
   };
 
@@ -165,6 +160,12 @@ class AppContainer extends Component {
     );
   }
 }
+
+AppContainer.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  isFetchingResource: PropTypes.bool.isRequired,
+};
 
 function mapStateToProps(state) {
   const { isFetchingResource } = state;

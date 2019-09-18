@@ -6,42 +6,42 @@ import Map from "./Map";
 const googleMapKey = "AIzaSyAwKdrqS2GfCt9b2K1wAopDc9Ga0N1BVUM";
 const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${googleMapKey}&v=3.exp&libraries=geometry,drawing,places`;
 
-const OrganizationMap = ({ mapResource }) => (
+const OrganizationMap = ({ mapResources }) => (
   <Map
     googleMapURL={googleMapURL}
     containerElement={<div style={{ height: "100%" }} />}
     mapElement={<div style={{ height: "100%" }} />}
     loadingElement={<div style={{ height: "100%" }} />}
-    resource={mapResource}
+    resources={mapResources}
   />
 );
 
 OrganizationMap.propTypes = {
-  mapResource: PropTypes.array.isRequired,
+  mapResources: PropTypes.array.isRequired,
 };
 
 function mapStateToProps(state) {
-  const currentResource =
-    state.savedResource.length > 0 ? state.savedResource : state.resource;
+  const currentResources =
+    state.savedResources.length > 0 ? state.savedResources : state.resources;
 
-  const locationArray = [];
+  const locations = {};
 
-  currentResource.forEach(resource => {
-    if (!locationArray[resource.hashCoordinates]) {
-      locationArray[resource.hashCoordinates] = {
+  currentResources.forEach(resource => {
+    if (!locations[resource.hashCoordinates]) {
+      locations[resource.hashCoordinates] = {
         coordinates: resource.coordinates,
-        groupedResource: [],
+        groupedResources: [],
         showInfo: false,
       };
     }
 
-    locationArray[resource.hashCoordinates].groupedResource.push(resource);
+    locations[resource.hashCoordinates].groupedResources.push(resource);
   });
 
-  const resource = Object.values(locationArray);
+  const resources = Object.values(locations);
 
   return {
-    mapResource: resource,
+    mapResources: resources,
   };
 }
 

@@ -1,28 +1,23 @@
 import React from "react";
-import qs from "qs-lite";
 import { Link, Route } from "react-router-dom";
 import { Button } from "reactstrap";
 import PropTypes from "prop-types";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getQueryResources, encodeResources } from "../../utils/resourcesQuery";
 import SavedResources from "./SavedResourcesContainer";
 
 const ToShareButton = ({ resourcePath }) => {
-  const query = qs.parse(window.location.search.replace("?", ""));
-  let resources = [];
-  let tempUrl = "";
-
-  if (query.resources) {
-    resources = query.resources.split(",");
-    tempUrl = `/${resourcePath}/?resources=${resources.join(",")}`;
-  }
+  const resources = getQueryResources();
+  const query = encodeResources(resources);
+  const url = query && `/${resourcePath}/?${query}`;
 
   return (
     <Button
       className="share-button"
       tag={Link}
       type="Map"
-      to={tempUrl}
+      to={url}
       target="_blank"
       color="info"
     >

@@ -6,9 +6,9 @@ const loadResourceDataStart = () => ({
   isFetchingResource: true,
 });
 
-const loadResourceDataSuccess = resource => ({
+const loadResourceDataSuccess = resources => ({
   type: types.LOAD_RESOURCE_DATA_SUCCESS,
-  resource,
+  resources,
   isFetchingResource: false,
 });
 
@@ -37,11 +37,11 @@ export function loadResources(resourcePath) {
 }
 
 export function filterByCategories(filteredResource) {
-  return { type: types.FILTER_RESOURCE_BY_CATEGORIES, filteredResource };
+  return { type: types.FILTER_RESOURCES_BY_CATEGORIES, filteredResource };
 }
 
 export function filterBySearch(searchedResource) {
-  return { type: types.FILTER_RESOURCE_BY_SEARCH, searchedResource };
+  return { type: types.FILTER_RESOURCES_BY_SEARCH, searchedResource };
 }
 
 export function addSavedResource(savedResource) {
@@ -52,6 +52,6 @@ export function removeSavedResource(savedResourceIndex) {
   return { type: types.REMOVE_SAVED_RESOURCE, savedResourceIndex };
 }
 
-export function clearSavedResource() {
-  return { type: types.CLEAR_SAVED_RESOURCE };
+export function clearSavedResources() {
+  return { type: types.CLEAR_SAVED_RESOURCES };
 }
