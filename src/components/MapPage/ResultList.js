@@ -8,24 +8,9 @@ import getDistance from "../../utils/distance";
 import * as resourceAction from "../../action/resourceDataAction";
 
 class ResultList extends Component {
-  static propTypes = {
-    currentPos: PropTypes.object.isRequired,
-    savedResource: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
-    saveItem: PropTypes.func,
+  state = {
+    sortFunction: this.getCloserName,
   };
-
-  static defaultProps = {
-    saveItem: null,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dataSort: this.sortByAlphabet,
-    };
-  }
 
   getCloserResource = (a, b) => {
     if (
@@ -45,37 +30,33 @@ class ResultList extends Component {
     return 0;
   };
 
-  sortByAlphabet = () =>
-    this.props.savedResource.slice().sort(this.getCloserName);
-
-  sortByDistance = () =>
-    this.props.savedResource.slice().sort(this.getCloserResource);
+  sortData = () =>
+    this.props.savedResources.slice().sort(this.state.sortFunction);
 
   handleSortChange = newSort => {
-    if (this.state.dataSort !== newSort) {
+    if (this.state.sortFunction !== newSort) {
       this.setState({
-        // Set the dataSort variable to whichever sort function is chosen
-        dataSort: newSort,
+        sortFunction: newSort,
       });
     }
   };
 
   cardClick = id => {
-    this.props.savedResource.findIndex(resource => resource.id === id);
+    this.props.savedResources.findIndex(resource => resource.id === id);
   };
 
   saveResource = resource => {
-    if (!this.props.savedResource.some(r => r.id === resource.id)) {
-      this.props.actions.addSavedResource(this.props.savedResource.slice());
+    if (!this.props.savedResources.some(r => r.id === resource.id)) {
+      this.props.actions.addSavedResource(this.props.savedResources.slice());
     }
   };
 
   render() {
     const sortOptions = [
-      { key: "A-Z", sort: this.sortByAlphabet, disabled: false },
+      { key: "A-Z", sort: this.getCloserName, disabled: false },
       {
         key: "Distance",
-        sort: this.sortByDistance,
+        sort: this.getCloserResource,
         disabled: !this.props.currentPos,
       },
     ];
@@ -84,7 +65,7 @@ class ResultList extends Component {
     // updates the this.state.dataSort variable.
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
-    const sortedData = this.state.dataSort();
+    const sortedData = this.sortData();
 
     return (
       <div>
@@ -109,10 +90,21 @@ class ResultList extends Component {
   }
 }
 
+ResultList.propTypes = {
+  currentPos: PropTypes.object.isRequired,
+  savedResources: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  saveItem: PropTypes.func,
+};
+
+ResultList.defaultProps = {
+  saveItem: null,
+};
+
 function mapStateToProps(state) {
   return {
-    savedResource:
-      state.savedResource.length > 0 ? state.savedResource : state.resource,
+    savedResources:
+      state.savedResources.length > 0 ? state.savedResources : state.resources,
   };
 }
 

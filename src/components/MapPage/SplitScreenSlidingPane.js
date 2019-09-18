@@ -5,10 +5,6 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 
 class SplitScreenSlidingPane extends Component {
-  static propTypes = {
-    children: PropTypes.element.isRequired,
-  };
-
   state = {
     isOpen: true,
   };
@@ -34,5 +30,9 @@ class SplitScreenSlidingPane extends Component {
     );
   }
 }
+
+SplitScreenSlidingPane.propTypes = {
+  children: PropTypes.element.isRequired,
+};
 
 export default SplitScreenSlidingPane;

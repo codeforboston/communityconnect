@@ -5,15 +5,15 @@ module.exports = {
     "react/jsx-filename-extension": [
       1,
       {
-        extensions: [".js", ".jsx"]
-      }
+        extensions: [".js", ".jsx"],
+      },
     ],
     "no-console": 0,
     "react/forbid-prop-types": [
-      true,
+      2,
       {
-        forbid: ["any"]
-      }
+        forbid: ["any"],
+      },
     ],
     "react/destructuring-assignment": 0,
     "react/no-array-index-key": 0,
@@ -24,31 +24,7 @@ module.exports = {
       {
         blankLine: "never",
         prev: ["singleline-const", "singleline-let", "singleline-var"],
-        next: ["singleline-const", "singleline-let", "singleline-var"]
-      },
-      {
-        blankLine: "always",
-        prev: [
-          "class",
-          "function",
-          "multiline-const",
-          "multiline-let",
-          "multiline-var",
-          "multiline-expression",
-          "multiline-block-like"
-        ],
-        next: [
-          "class",
-          "function",
-          "multiline-const",
-          "multiline-let",
-          "multiline-var",
-          "multiline-expression",
-          "multiline-block-like",
-          "singleline-const",
-          "singleline-let",
-          "singleline-var"
-        ]
+        next: ["singleline-const", "singleline-let", "singleline-var"],
       },
       {
         blankLine: "always",
@@ -60,9 +36,6 @@ module.exports = {
           "multiline-var",
           "multiline-expression",
           "multiline-block-like",
-          "singleline-const",
-          "singleline-let",
-          "singleline-var"
         ],
         next: [
           "class",
@@ -71,42 +44,69 @@ module.exports = {
           "multiline-let",
           "multiline-var",
           "multiline-expression",
-          "multiline-block-like"
-        ]
+          "multiline-block-like",
+          "singleline-const",
+          "singleline-let",
+          "singleline-var",
+        ],
+      },
+      {
+        blankLine: "always",
+        prev: [
+          "class",
+          "function",
+          "multiline-const",
+          "multiline-let",
+          "multiline-var",
+          "multiline-expression",
+          "multiline-block-like",
+          "singleline-const",
+          "singleline-let",
+          "singleline-var",
+        ],
+        next: [
+          "class",
+          "function",
+          "multiline-const",
+          "multiline-let",
+          "multiline-var",
+          "multiline-expression",
+          "multiline-block-like",
+        ],
       },
       {
         blankLine: "always",
         prev: "*",
-        next: "cjs-export"
+        next: "cjs-export",
       },
       {
         blankLine: "always",
         prev: "cjs-import",
-        next: "*"
+        next: "*",
       },
       {
         blankLine: "never",
         prev: "cjs-import",
-        next: "cjs-import"
+        next: "cjs-import",
       },
       {
         blankLine: "always",
         prev: "*",
-        next: "return"
-      }
-    ]
+        next: "return",
+      },
+    ],
   },
   env: {
     jest: true,
     browser: true,
     node: true,
-    es6: true
+    es6: true,
   },
   parserOptions: {
     ecmaVersion: 6,
     sourceType: "module",
     ecmaFeatures: {
-      jsx: true
-    }
-  }
+      jsx: true,
+    },
+  },
 };

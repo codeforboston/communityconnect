@@ -3,17 +3,9 @@ import PropTypes from "prop-types";
 import { Marker, InfoWindow } from "react-google-maps";
 
 class OrganizationMarker extends Component {
-  static propTypes = {
-    open: PropTypes.bool.isRequired,
-    resource: PropTypes.object.isRequired,
+  state = {
+    open: this.props.open,
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: this.props.open,
-    };
-  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.open !== this.props.open) {
@@ -40,30 +32,26 @@ class OrganizationMarker extends Component {
   };
 
   render() {
-    const { resource } = this.props;
-
     return (
       <Marker
         optimize={false}
-        position={resource.coordinates}
+        position={this.props.resource.coordinates}
         onClick={this.scrollToElement}
       >
         {this.state.open && (
           <InfoWindow onCloseClick={this.handleClose}>
             <div>
-              {resource.groupedResource.map(resourceData => (
+              {this.props.resource.groupedResources.map(resource => (
                 <div
-                  key={resourceData.id}
-                  id={resourceData.id}
+                  key={resource.id}
+                  id={resource.id}
                   onClick={this.handleClickOfInfoWindow}
                 >
-                  <h3>{resourceData.name}</h3>
-                  <div>{resourceData.combinedaddress}</div>
-                  <div>{resourceData.tags}</div>
+                  <h3>{resource.name}</h3>
+                  <div>{resource.combinedaddress}</div>
+                  <div>{resource.tags}</div>
                   <div>
-                    <a href={`tel:${resourceData.phone}`}>
-                      {resourceData.phone}
-                    </a>
+                    <a href={`tel:${resource.phone}`}>{resource.phone}</a>
                   </div>
                 </div>
               ))}
@@ -74,5 +62,10 @@ class OrganizationMarker extends Component {
     );
   }
 }
+
+OrganizationMarker.propTypes = {
+  open: PropTypes.bool.isRequired,
+  resource: PropTypes.object.isRequired,
+};
 
 export default OrganizationMarker;

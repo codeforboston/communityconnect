@@ -7,30 +7,23 @@ import _ from "lodash";
 import * as resourceAction from "../../action/resourceDataAction";
 
 class CategoryList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedCategory: [],
-    };
-  }
+  state = {
+    selectedCategory: [],
+  };
 
   componentDidUpdate() {
     const { selectedCategory } = this.state;
-    const { resource } = this.props;
-    const filteredResource = [];
+    const { resources } = this.props;
 
     if (selectedCategory.length === 0) {
-      this.props.actions.filterByCategories(resource);
-    } else {
-      resource.forEach(res => {
-        const isMatch = selectedCategory.some(cat => res.categories === cat);
-
-        if (isMatch) {
-          filteredResource.push(res);
-        }
-      });
-      this.props.actions.filterByCategories(filteredResource);
+      return this.props.actions.filterByCategories(resources);
     }
+
+    const filteredResources = resources.filter(resource =>
+      selectedCategory.some(cat => resource.categories === cat)
+    );
+
+    return this.props.actions.filterByCategories(filteredResources);
   }
 
   handleClick = async event => {
@@ -73,8 +66,8 @@ class CategoryList extends Component {
   render() {
     const { selectedCategory } = this.state;
     const { categories } = this.props;
-    categories.sort();
-    const categoryMenuItems = categories.map((curr, index) => (
+
+    const categoryMenuItems = [...categories].sort().map((curr, index) => (
       <ListGroupItem
         key={index.toString()}
         className="category-group-item"
@@ -100,7 +93,7 @@ class CategoryList extends Component {
 }
 
 CategoryList.propTypes = {
-  resource: PropTypes.array.isRequired,
+  resources: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
   filterByCategories: PropTypes.func,
   categories: PropTypes.array.isRequired,
@@ -113,7 +106,7 @@ CategoryList.defaultProps = {
 function mapStateToProps(state) {
   return {
     categories: state.categories,
-    resource: state.resource,
+    resources: state.resources,
   };
 }
 
