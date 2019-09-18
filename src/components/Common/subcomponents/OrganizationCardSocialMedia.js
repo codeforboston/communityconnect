@@ -4,13 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const OrganizationCardSocialMedia = ({ url, icon, title }) =>
   url ? (
-    <div
+    <a
       className="organization-card-social-media"
-      href={url}
-      data-type="social"
-    >
-      <FontAwesomeIcon icon={["fab", icon]} size="2x" title={title} />
-    </div>
+      data-type="social" 
+      href={url} 
+      target="_blank" 
+      rel="noopener noreferrer">
+        <FontAwesomeIcon icon={["fab", icon]} size="2x" title={title} />
+    </a>
   ) : null;
 
 OrganizationCardSocialMedia.propTypes = {
