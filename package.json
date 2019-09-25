@@ -43,7 +43,8 @@
     "redux-thunk": "2.3.0",
     "sass-loader": "7.2.0",
     "source-map-explorer": "2.0.1",
-    "tabletop": "1.5.2"
+    "tabletop": "1.5.2",
+    "yarn": "^1.17.3"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "5.10.1",
