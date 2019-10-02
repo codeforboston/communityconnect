@@ -1,0 +1,18 @@
+.Collapsible__trigger {
+  background: $light-gray;
+  padding: 10px;
+
+  &.is-open {
+    &:after {
+      content: '▼';
+      padding: 15px;
+    }
+  }
+
+  &.is-closed {
+    &:after {
+      content: '▶';
+      padding: 15px;
+    }
+  }
+}
