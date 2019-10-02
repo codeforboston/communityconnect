@@ -1,6 +1,7 @@
 .Collapsible__trigger {
   background: $light-gray;
   padding: 10px;
+  border-radius: $radius-sm;
 
   &.is-open {
     &:after {
