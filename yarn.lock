@@ -8999,6 +8999,11 @@ react-beautiful-dnd@11.0.5:
     tiny-invariant "^1.0.4"
     use-memo-one "^1.1.0"
 
+react-collapsible@2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/react-collapsible/-/react-collapsible-2.6.0.tgz#8cc18e8b88c46032b21c119833cd6922344636c9"
+  integrity sha512-r4JSoqh3C3sUIzEr9eXtDC4WPNZsOffO1EeA3ZvyS7JeDIOwmfov9p/380XyewFhqW2B8MHY8IHQ2x1HH5PTxQ==
+
 react-dev-utils@^9.0.2:
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-9.0.2.tgz#14f9a75120513967e13599d4f66d43bced7a3fce"
