@@ -12,12 +12,7 @@ const OrganizationCardBody = ({
 }) => (
   <div className="organization-card-body">
     <div className="organization-card-body-subtitle">{categories}</div>
-    {distance && (
-      <p>
-        Distance from your location:
-        {distance} miles
-      </p>
-    )}
+    {distance && <p>Distance from your location: &nbsp;{distance} miles</p>}
     {location && (
       <span>
         <FontAwesomeIcon icon="map-marker-alt" className="text-danger" />{" "}
