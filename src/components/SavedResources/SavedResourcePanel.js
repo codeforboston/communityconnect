@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Route } from "react-router-dom";
 import { Button } from "reactstrap";
 import PropTypes from "prop-types";
@@ -31,11 +31,10 @@ ToShareButton.propTypes = {
 };
 
 const CopyButton = () => {
-  const btnTitle = "Copy Resource URL to Clipboard"
-
-  let tmpUrl = window.location.href;
-  tmpUrl.replace("/admin", "");
-  console.log('new url: ', tmpUrl);
+  // TODO: button should revert to original version (Copy icon) when resources change
+  const [btnTitle, setBtnTitle] = useState("Copy Resource URL to Clipboard");
+  const [btnIcon, setBtnIcon] = useState(faCopy);
+  const tmpUrl = window.location.href.toString().replace("/admin", "/");
 
   return (
     <Button
@@ -45,12 +44,14 @@ const CopyButton = () => {
       color="info"
       onClick={() => {
         navigator.clipboard.writeText(tmpUrl);
+        setBtnTitle("Resource URL Copied to Clipboard");
+        setBtnIcon(faCheck);
       }}
     >
-      <FontAwesomeIcon icon={faCopy} />
+      <FontAwesomeIcon icon={btnIcon} />
     </Button>
   );
-}
+};
 
 const SavedResourcePanel = () => (
   <div className="saved-resource-panel">
