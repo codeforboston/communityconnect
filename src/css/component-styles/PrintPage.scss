@@ -6,3 +6,8 @@
   border-bottom: 1px $shadow-black;
   width: 100%;
 }
+
+.print-button {
+  border-radius: $radius-sm;
+  margin-right: $spacing-md;
+}
