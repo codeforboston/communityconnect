@@ -26,6 +26,7 @@ function isFetchingResourceReducer(
 }
 
 function categoriesReducer(state = initialState.categories, action) {
+  console.log("Reducer: ", action);
   switch (action.type) {
     case types.LOAD_RESOURCE_DATA_SUCCESS: {
       const categoriesData = {};

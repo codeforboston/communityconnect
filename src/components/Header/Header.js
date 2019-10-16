@@ -74,6 +74,23 @@ class Header extends Component {
               exact
               render={() => (
                 <Button
+                  className={savedResourceButtonClassNames}
+                  tag={Link}
+                  color="info"
+                  to={{
+                    pathname: `/${this.props.match.params.resource}/print`,
+                    search: this.props.location.search,
+                  }}
+                >
+                  Print
+                </Button>
+              )}
+            />
+            <Route
+              path="/:resource"
+              exact
+              render={() => (
+                <Button
                   tag={Link}
                   color="info"
                   to={{
