@@ -9,3 +9,28 @@
   padding: 4px 10px;
   border-bottom: 1px solid black;
 }
+
+.resource-buttons {
+  button {
+    margin: 0 4px;
+  }
+  
+  .copy-button {
+    animation: button-expand-reverse 0.5s linear;
+
+    @keyframes button-expand-reverse {
+      0% {
+        box-shadow: 0 0 0 0 rgba($turquoise, 0.4);
+      }
+
+      70% {
+        box-shadow: 0 0 0 100px rgba($turquoise, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba($turquoise, 0);
+      }
+    }
+  }
+
+}

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Route } from "react-router-dom";
 import { Button } from "reactstrap";
 import PropTypes from "prop-types";
-import { faShare } from "@fortawesome/free-solid-svg-icons";
+import { faShare, faCopy, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getQueryResources, encodeResources } from "../../utils/resourcesQuery";
 import SavedResources from "./SavedResourcesContainer";
@@ -30,6 +30,29 @@ ToShareButton.propTypes = {
   resourcePath: PropTypes.string.isRequired,
 };
 
+const CopyButton = () => {
+  // TODO: button should revert to original version (Copy icon) when resources change
+  const [btnTitle, setBtnTitle] = useState("Copy Resource URL to Clipboard");
+  const [btnIcon, setBtnIcon] = useState(faCopy);
+  const tmpUrl = window.location.href.toString().replace("/admin", "/");
+
+  return (
+    <Button
+      className="copy-button"
+      title={btnTitle}
+      aria-label={btnTitle}
+      color="info"
+      onClick={() => {
+        navigator.clipboard.writeText(tmpUrl);
+        setBtnTitle("Resource URL Copied to Clipboard");
+        setBtnIcon(faCheck);
+      }}
+    >
+      <FontAwesomeIcon icon={btnIcon} />
+    </Button>
+  );
+};
+
 const SavedResourcePanel = () => (
   <div className="saved-resource-panel">
     <div className="saved-resource-panel-header">
@@ -39,7 +62,10 @@ const SavedResourcePanel = () => (
           exact
           path="/:resource/admin"
           render={({ match }) => (
-            <ToShareButton resourcePath={match.params.resource} />
+            <div className="resource-buttons">
+              <CopyButton />
+              <ToShareButton resourcePath={match.params.resource} />
+            </div>
           )}
         />
       </span>
