@@ -7,16 +7,16 @@ const PrintPanel = ({ resource }) => (
       <b>{resource.name}</b>
     </div>
     {resource.location && (
-      <span>
+      <div>
         <span>Address: </span>
         <span>{resource.location}</span>
-      </span>
+      </div>
     )}
-    {resource.url && (
-      <span>
-        <span>Url: </span>
-        <span>{resource.url}</span>
-      </span>
+    {resource.website && (
+      <div>
+        <span>Website: </span>
+        <span>{resource.website}</span>
+      </div>
     )}
     {resource.phone && (
       <div>

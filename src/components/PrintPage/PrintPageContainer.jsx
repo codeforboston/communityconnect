@@ -24,6 +24,8 @@ PrintPage.propTypes = {
 };
 
 function mapStateToProps(state) {
+  console.log("State: ", state);
+
   return {
     savedResources:
       state.savedResources.length > 0 ? state.savedResources : state.resources,
