@@ -6,11 +6,12 @@ const OrganizationCardSocialMedia = ({ url, icon, title }) =>
   url ? (
     <a
       className="organization-card-social-media"
-      data-type="social" 
-      href={url} 
-      target="_blank" 
-      rel="noopener noreferrer">
-        <FontAwesomeIcon icon={["fab", icon]} size="2x" title={title} />
+      data-type="social"
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <FontAwesomeIcon icon={["fab", icon]} size="2x" title={title} />
     </a>
   ) : null;
 
