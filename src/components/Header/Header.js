@@ -6,6 +6,9 @@ import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import cx from "classnames";
 
+import { faPrint } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   Navbar,
   NavbarBrand,
@@ -61,6 +64,8 @@ class Header extends Component {
       "has-selections": savedResources.length,
     });
 
+    const printButtonClassNames = cx("print-button");
+
     return (
       <>
         <Navbar className="main-nav-bar">
@@ -69,6 +74,23 @@ class Header extends Component {
           </NavbarBrand>
 
           <div>
+            <Route
+              path="/:resource"
+              exact
+              render={() => (
+                <Button
+                  className={printButtonClassNames}
+                  tag={Link}
+                  color="info"
+                  to={{
+                    pathname: `/${this.props.match.params.resource}/print`,
+                    search: this.props.location.search,
+                  }}
+                >
+                  <FontAwesomeIcon icon={faPrint} />
+                </Button>
+              )}
+            />
             <Route
               path="/:resource"
               exact

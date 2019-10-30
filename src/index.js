@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { Route, Switch, Redirect } from "react-router";
 import configureStore from "./store/configureStore";
 import AppContainer from "./App/AppContainer";
+import PrintPage from "./components/PrintPage/PrintPageContainer";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import registerServiceWorker from "./registerServiceWorker";
 
@@ -25,6 +26,13 @@ const getRoutes = store => (
         exact
         path="/:resource/"
         component={AppContainer}
+        dispatch={store.dispatch}
+      />
+
+      <Route
+        exact
+        path="/:resource/print"
+        component={PrintPage}
         dispatch={store.dispatch}
       />
 
