@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ListGroup, ListGroupItem, Button } from "reactstrap";
+import Collapsible from "react-collapsible";
 import _ from "lodash";
 import * as resourceAction from "../../action/resourceDataAction";
 
@@ -80,13 +81,25 @@ class CategoryList extends Component {
 
     return (
       <div className="category-parent-container">
-        <h4>Filter by Category</h4>
-        <div className="category-container">
-          <ListGroup className="category-group">{categoryMenuItems}</ListGroup>
-        </div>
-        <Button color="info" className="w-100 mt-2" onClick={this.clearChecks}>
-          Clear
-        </Button>
+        <Collapsible
+          triggerTagName="label"
+          trigger="Filter by Category"
+          open
+          transitionTime={100}
+        >
+          <div className="category-container">
+            <ListGroup className="category-group">
+              {categoryMenuItems}
+            </ListGroup>
+          </div>
+          <Button
+            color="info"
+            className="w-100 mt-2"
+            onClick={this.clearChecks}
+          >
+            Clear
+          </Button>
+        </Collapsible>
       </div>
     );
   }
