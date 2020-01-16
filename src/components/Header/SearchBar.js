@@ -21,7 +21,7 @@ class SearchBar extends Component {
     );
   };
 
-  render() {
+  render () {
     return (
       <input
         className="search-bar-input"

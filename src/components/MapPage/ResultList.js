@@ -51,7 +51,7 @@ class ResultList extends Component {
     }
   };
 
-  render() {
+  render () {
     const sortOptions = [
       { key: "A-Z", sort: this.getCloserName, disabled: false },
       {
@@ -108,7 +108,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(resourceAction, dispatch),
   };

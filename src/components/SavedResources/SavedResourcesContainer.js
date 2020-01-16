@@ -48,7 +48,6 @@ class SavedResourcesContainer extends Component {
       data: newSavedResources,
     });
   };
-
   render() {
     // Render will be called every time this.props.data is updated, and every time handleSortChange
     // updates the this.state.dataSort variable.
@@ -56,7 +55,6 @@ class SavedResourcesContainer extends Component {
     // source of data
 
     const { data } = this.state;
-
     return (
       <div>
         <div className="saved-resources-container">

@@ -51,7 +51,7 @@ class DropdownCategory extends Component {
     ));
   }
 
-  render() {
+  render () {
     return (
       <div>
         <Dropdown

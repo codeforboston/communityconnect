@@ -22,6 +22,11 @@ class OrganizationCard extends Component {
     if (!props.savedResources.some(r => r.id === props.organization.id)) {
       return { saveExist: false };
     }
+    return { saveExist: true };
+  }
+
+  saveItem = () => {
+    this.props.actions.addSavedResource(this.props.organization);
 
     return { saveExist: true };
   }

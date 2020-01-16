@@ -19,7 +19,6 @@ function normalizeHeaders(element) {
   if (element.categoryautosortscript) {
     element.categories = element.categoryautosortscript;
   }
-
   if (element.city || element.address || element.state || element.zipcode) {
     element.location = element.combinedaddress;
   }
