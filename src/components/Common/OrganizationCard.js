@@ -1,29 +1,25 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators, compose } from 'redux';
-import { withRouter } from 'react-router';
-import qs from 'qs-lite';
-import { getDistance } from '../../utils/distance.js';
-import * as resourceAction from '../../action/resourceDataAction';
-import isUrl from 'is-url';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { bindActionCreators, compose } from "redux";
+import { withRouter } from "react-router";
+import isUrl from "is-url";
+import { getQueryResources, encodeResources } from "../../utils/resourcesQuery";
+import getDistance from "../../utils/distance";
+import * as resourceAction from "../../action/resourceDataAction";
 
 import {
   OrganizationCardBody,
   OrganizationCardOverview,
   OrganizationCardSocialMedia,
   OrganizationCardSaveButton,
-} from './subcomponents';
+} from "./subcomponents";
 
 class OrganizationCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      saveExist: false,
-    };
-  }
+  state = {};
 
   static getDerivedStateFromProps(props) {
-    if (!props.savedResource.some(r => r.id === props.organization.id)) {
+    if (!props.savedResources.some(r => r.id === props.organization.id)) {
       return { saveExist: false };
     }
     return { saveExist: true };
@@ -32,45 +28,41 @@ class OrganizationCard extends Component {
   saveItem = () => {
     this.props.actions.addSavedResource(this.props.organization);
 
-    const query = qs.parse(window.location.search.replace('?', ''));
-    let resources = [];
+    return { saveExist: true };
+  }
 
-    if (query.resources) {
-      resources = query.resources.split(',');
-    }
+  saveItem = () => {
+    this.props.actions.addSavedResource(this.props.organization);
 
+    const resources = getQueryResources();
     const indexOfResource = resources.indexOf(this.props.organization.id);
+
     if (indexOfResource < 0) {
       resources.push(this.props.organization.id);
     }
 
     this.props.history.push({
       pathname: window.location.pathname,
-      search: `?resources=${resources.join(',')}`,
+      search: encodeResources(resources),
     });
   };
 
   removeItem = () => {
-    // code copied verbatim from SavedResource.removalConfirmed()
-    // should probably refactor for cleanliness
-    const query = qs.parse(window.location.search.replace('?', ''));
-    let resources = [];
-    if (query.resources) {
-      resources = query.resources.split(',');
-    }
+    const resources = getQueryResources();
     const indexOfResource = resources.indexOf(this.props.organization.id);
 
     if (
-      this.props.savedResource.some(
-        resource => resource.id === this.props.organization.id,
+      this.props.savedResources.some(
+        resource => resource.id === this.props.organization.id
       )
     ) {
       this.props.actions.removeSavedResource(this.props.organization.id);
       resources.splice(indexOfResource, 1);
     }
+
     this.props.history.push({
       pathname: window.location.pathname,
-      search: `?resources=${resources.join(',')}`,
+      search: encodeResources(resources),
     });
   };
 
@@ -98,20 +90,18 @@ class OrganizationCard extends Component {
       longitude,
     } = this.props.organization;
 
-    const websiteUrl = isUrl(website) ? website : '';
-    let distance, directionUrl, encodedCoordinates;
+    const websiteUrl = isUrl(website) ? website : "";
+    let distance;
 
     if (this.props.currentPos && this.props.organization.coordinates) {
       distance = getDistance(
         { coordinates: this.props.organization.coordinates },
-        this.props.currentPos,
+        this.props.currentPos
       );
     }
 
-    encodedCoordinates = encodeURIComponent(latitude + ',' + longitude);
-    directionUrl =
-      'https://www.google.com/maps?saddr=My+Location&daddr=' +
-      encodedCoordinates;
+    const encodedCoordinates = encodeURIComponent(`${latitude},${longitude}`);
+    const directionUrl = `https://www.google.com/maps?saddr=My+Location&daddr=${encodedCoordinates}`;
 
     return (
       <div className="organization-card" id={this.props.index}>
@@ -154,9 +144,23 @@ class OrganizationCard extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+OrganizationCard.propTypes = {
+  organization: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  savedResources: PropTypes.array.isRequired,
+  currentPos: PropTypes.object.isRequired,
+  saveable: PropTypes.bool,
+  index: PropTypes.string.isRequired,
+};
+
+OrganizationCard.defaultProps = {
+  saveable: null,
+};
+
+function mapStateToProps(state) {
   return {
-    savedResource: state.savedResource,
+    savedResources: state.savedResources,
   };
 }
 
@@ -169,7 +173,7 @@ function mapDispatchToProps(dispatch) {
 export default compose(
   connect(
     mapStateToProps,
-    mapDispatchToProps,
+    mapDispatchToProps
   ),
-  withRouter,
+  withRouter
 )(OrganizationCard);

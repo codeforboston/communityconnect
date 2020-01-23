@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import OrganizationCard from '../Common/OrganizationCard';
-import { SortBar } from '../Common/SortBar.js';
-import { getDistance } from '../../utils/distance.js';
-import * as resourceAction from '../../action/resourceDataAction';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import OrganizationCard from "../Common/OrganizationCard";
+import SortBar from "../Common/SortBar";
+import getDistance from "../../utils/distance";
+import * as resourceAction from "../../action/resourceDataAction";
 
-export class ResultList extends Component {
-  constructor (props) {
-    super(props);
-
-    this.state = {
-      dataSort: this.sortByAlphabet,
-    };
-  }
+class ResultList extends Component {
+  state = {
+    sortFunction: this.getCloserName,
+  };
 
   getCloserResource = (a, b) => {
     if (
@@ -28,44 +25,38 @@ export class ResultList extends Component {
 
   getCloserName = (a, b) => {
     if (a.name > b.name) return 1;
-    else if (a.name < b.name) return -1;
-    else return 0;
+    if (a.name < b.name) return -1;
+
+    return 0;
   };
 
-  sortByAlphabet = () => {
-    return this.props.savedResource.slice().sort(this.getCloserName);
-  };
-
-  sortByDistance = () => {
-    return this.props.savedResource.slice().sort(this.getCloserResource);
-  };
+  sortData = () =>
+    this.props.savedResources.slice().sort(this.state.sortFunction);
 
   handleSortChange = newSort => {
-    if (this.state.dataSort !== newSort)
+    if (this.state.sortFunction !== newSort) {
       this.setState({
-        // Set the dataSort variable to whichever sort function is chosen
-        dataSort: newSort,
+        sortFunction: newSort,
       });
+    }
   };
 
   cardClick = id => {
-    this.props.savedResource.findIndex(resource => {
-      return resource.id === id;
-    });
+    this.props.savedResources.findIndex(resource => resource.id === id);
   };
+
   saveResource = resource => {
-    if (!this.props.savedResource.some(r => r.id === resource.id)) {
-      this.props.actions.addSavedResource(this.props.savedResource.slice());
+    if (!this.props.savedResources.some(r => r.id === resource.id)) {
+      this.props.actions.addSavedResource(this.props.savedResources.slice());
     }
   };
 
   render () {
     const sortOptions = [
-
-      { key: 'A-Z', sort: this.sortByAlphabet, disabled: false },
+      { key: "A-Z", sort: this.getCloserName, disabled: false },
       {
-        key: 'Distance',
-        sort: this.sortByDistance,
+        key: "Distance",
+        sort: this.getCloserResource,
         disabled: !this.props.currentPos,
       },
     ];
@@ -74,7 +65,8 @@ export class ResultList extends Component {
     // updates the this.state.dataSort variable.
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
-    const sortedData = this.state.dataSort();
+    const sortedData = this.sortData();
+
     return (
       <div>
         <SortBar
@@ -82,10 +74,9 @@ export class ResultList extends Component {
           sortOptions={sortOptions}
         />
         <div className="results" ref={this.listRef}>
-          {sortedData.map((resource, index) => (
+          {sortedData.map(resource => (
             <OrganizationCard
               key={resource.id}
-              ref={resource.id}
               index={resource.id}
               cardClick={this.cardClick}
               organization={resource}
@@ -99,10 +90,21 @@ export class ResultList extends Component {
   }
 }
 
-function mapStateToProps (state, ownProps) {
+ResultList.propTypes = {
+  currentPos: PropTypes.object.isRequired,
+  savedResources: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  saveItem: PropTypes.func,
+};
+
+ResultList.defaultProps = {
+  saveItem: null,
+};
+
+function mapStateToProps(state) {
   return {
-    savedResource:
-      state.savedResource.length > 0 ? state.savedResource : state.resource,
+    savedResources:
+      state.savedResources.length > 0 ? state.savedResources : state.resources,
   };
 }
 
@@ -114,5 +116,5 @@ function mapDispatchToProps (dispatch) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ResultList);

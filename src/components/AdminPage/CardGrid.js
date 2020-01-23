@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import OrganizationCard from '../Common/OrganizationCard';
-import { SortBar } from '../Common/SortBar.js';
-import SearchBar from '../Header/SearchBar';
-import { getDistance } from '../../utils/distance.js';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import OrganizationCard from "../Common/OrganizationCard";
+import SortBar from "../Common/SortBar";
+import SearchBar from "../Header/SearchBar";
+import getDistance from "../../utils/distance";
 
-export class CardGrid extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dataSort: this.sortByAlphabet,
-    };
-  }
+class CardGrid extends Component {
+  state = {
+    sortFunction: this.getCloserName,
+  };
 
   getCloserResource = (a, b) => {
     if (
@@ -27,32 +24,27 @@ export class CardGrid extends Component {
 
   getCloserName = (a, b) => {
     if (a.name > b.name) return 1;
-    else if (a.name < b.name) return -1;
-    else return 0;
+    if (a.name < b.name) return -1;
+
+    return 0;
   };
 
-  sortByAlphabet = () => {
-    return this.props.resource.slice().sort(this.getCloserName);
-  };
-
-  sortByDistance = () => {
-    return this.props.resource.slice().sort(this.getCloserResource);
-  };
+  sortData = () => this.props.resources.slice().sort(this.state.sortFunction);
 
   handleSortChange = newSort => {
-    if (this.state.dataSort !== newSort)
+    if (this.state.sortFunction !== newSort) {
       this.setState({
-        // Set the dataSort variable to whichever sort function is chosen
-        dataSort: newSort,
+        sortFunction: newSort,
       });
+    }
   };
 
   render() {
     const sortOptions = [
-      { key: 'A-Z', sort: this.sortByAlphabet, disabled: false },
+      { key: "A-Z", sort: this.getCloserName, disabled: false },
       {
-        key: 'Distance',
-        sort: this.sortByDistance,
+        key: "Distance",
+        sort: this.getCloserResource,
         disabled: !this.props.currentPos,
       },
     ];
@@ -61,7 +53,7 @@ export class CardGrid extends Component {
     // updates the this.state.dataSort variable.
     // this.state.dataSort() sorts data to feed into the OrganizationCards without modifying the
     // source of data
-    const sortedData = this.state.dataSort();
+    const sortedData = this.sortData();
 
     return (
       <div className="card-grid">
@@ -73,14 +65,14 @@ export class CardGrid extends Component {
           />
         </div>
         <div className="card-list">
-          {sortedData.map((resource, index) => (
+          {sortedData.map(resource => (
             <OrganizationCard
               key={resource.id}
               index={resource.id}
               organization={resource}
               currentPos={this.props.currentPos}
               saveItem={() => this.props.saveItem(resource)}
-              saveable={true}
+              saveable
             />
           ))}
         </div>
@@ -89,11 +81,26 @@ export class CardGrid extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  const filteredResourceSet = new Set(state.filteredResource.map(x => x.id));
-  const resource = state.searchedResource.filter(x => filteredResourceSet.has(x.id));
+CardGrid.propTypes = {
+  currentPos: PropTypes.object.isRequired,
+  resources: PropTypes.array.isRequired,
+  handleFilter: PropTypes.func,
+  saveItem: PropTypes.func,
+};
 
-  return { resource };
+CardGrid.defaultProps = {
+  handleFilter: null,
+  saveItem: null,
+};
+
+function mapStateToProps(state) {
+  const filteredResourcesSet = new Set(state.filteredResources.map(x => x.id));
+
+  const resources = state.searchedResources.filter(x =>
+    filteredResourcesSet.has(x.id)
+  );
+
+  return { resources };
 }
 
 export default connect(mapStateToProps)(CardGrid);

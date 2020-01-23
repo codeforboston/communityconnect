@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators, compose } from 'redux';
-import { withRouter } from 'react-router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import qs from 'qs-lite';
-import { getDistance } from '../../utils/distance.js';
-import * as resourceAction from '../../action/resourceDataAction';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { bindActionCreators, compose } from "redux";
+import { withRouter } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Alert,
   Card,
@@ -13,23 +11,20 @@ import {
   CardSubtitle,
   ModalHeader,
   ModalBody,
-} from 'reactstrap';
+} from "reactstrap";
+import { getQueryResources, encodeResources } from "../../utils/resourcesQuery";
+import getDistance from "../../utils/distance";
+import * as resourceAction from "../../action/resourceDataAction";
 
-import { SavedResourceButton } from './SavedResourceButton';
+import SavedResourceButton from "./SavedResourceButton";
 
 class SavedResource extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modal: false,
-      visible: false,
-    };
-  }
+  state = {
+    visible: false,
+  };
 
   confirmationAlertToggle = () => {
-    this.setState({
-      visible: !this.state.visible,
-    });
+    this.setState(prevState => ({ visible: !prevState.visible }));
   };
 
   removeItem = () => {
@@ -37,24 +32,21 @@ class SavedResource extends Component {
   };
 
   removalConfirmed = () => {
-    const query = qs.parse(window.location.search.replace('?', ''));
-    let resources = [];
-    if (query.resources) {
-      resources = query.resources.split(',');
-    }
+    const resources = getQueryResources();
     const indexOfResource = resources.indexOf(this.props.organization.id);
 
     if (
-      this.props.savedResource.some(
-        resource => resource.id === this.props.organization.id,
+      this.props.savedResources.some(
+        resource => resource.id === this.props.organization.id
       )
     ) {
       this.props.actions.removeSavedResource(this.props.organization.id);
       resources.splice(indexOfResource, 1);
     }
+
     this.props.history.push({
       pathname: window.location.pathname,
-      search: `?resources=${resources.join(',')}`,
+      search: encodeResources(resources),
     });
     this.removeItem();
   };
@@ -73,15 +65,22 @@ class SavedResource extends Component {
       phone,
     } = this.props.organization;
 
-    let distance, distanceElement;
+    let distance;
+    let distanceElement;
+
     if (this.props.currentPos && this.props.currentPos.coordinates) {
       distance = getDistance(
         { coordinates: this.props.organization.coordinates },
-        this.props.currentPos,
+        this.props.currentPos
       );
+
       if (distance) {
         distanceElement = (
-          <p>Distance from your Location: {distance.toPrecision(4)} miles</p>
+          <p>
+            Distance from your Location:
+            {distance.toPrecision(4)}
+            miles
+          </p>
         );
       }
     }
@@ -113,11 +112,11 @@ class SavedResource extends Component {
             {overview && <p>{overview}</p>}
             {phone && (
               <p>
-                {' '}
-                <span role={'img'} aria-label={'Phone number'}>
-                  {' '}
+                {" "}
+                <span role="img" aria-label="Phone number">
+                  {" "}
                   &#128222;
-                </span>{' '}
+                </span>{" "}
                 {phone}
               </p>
             )}
@@ -127,7 +126,7 @@ class SavedResource extends Component {
                   <li>
                     <a href={facebookUrl} data-type="social">
                       <FontAwesomeIcon
-                        icon={['fab', 'facebook-square']}
+                        icon={["fab", "facebook-square"]}
                         className="text-black-50 mr-1"
                         size="2x"
                         title="Facebook Page"
@@ -139,7 +138,7 @@ class SavedResource extends Component {
                   <li>
                     <a href={instagramUrl} data-type="social">
                       <FontAwesomeIcon
-                        icon={['fab', 'instagram']}
+                        icon={["fab", "instagram"]}
                         className="text-black-50 mr-1"
                         size="2x"
                         title="Instagram Page"
@@ -151,7 +150,7 @@ class SavedResource extends Component {
                   <li>
                     <a href={twitterUrl} data-type="social">
                       <FontAwesomeIcon
-                        icon={['fab', 'twitter']}
+                        icon={["fab", "twitter"]}
                         className="text-black-50 mr-1"
                         size="2x"
                         title="Twitter Page"
@@ -164,18 +163,34 @@ class SavedResource extends Component {
           </CardBody>
         </Card>
         <Alert isOpen={this.state.visible} toggle={this.removalConfirmed}>
-          <ModalHeader>Are you sure?</ModalHeader> {name} closed
+          <ModalHeader>Are you sure?</ModalHeader>
+          {name}
+          closed
           <ModalBody>
-            Would you like to remove '{name}'' from your saved resources?
-          </ModalBody>{' '}
+            Would you like to remove
+            {name}
+            from your saved resources?
+          </ModalBody>{" "}
         </Alert>
       </div>
     );
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return { savedResource: state.savedResource };
+SavedResource.propTypes = {
+  organization: PropTypes.object.isRequired,
+  savedResources: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  currentPos: PropTypes.object,
+};
+
+SavedResource.defaultProps = {
+  currentPos: null,
+};
+
+function mapStateToProps(state) {
+  return { savedResources: state.savedResources };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -187,7 +202,7 @@ function mapDispatchToProps(dispatch) {
 export default compose(
   connect(
     mapStateToProps,
-    mapDispatchToProps,
+    mapDispatchToProps
   ),
-  withRouter,
+  withRouter
 )(SavedResource);

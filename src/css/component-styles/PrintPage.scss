@@ -1,0 +1,13 @@
+.print-header {
+  text-align: center;
+}
+.print-card-body {
+  padding: 1%;
+  border-bottom: 1px $shadow-black;
+  width: 100%;
+}
+
+.print-button {
+  border-radius: $radius-sm;
+  margin-right: $spacing-md;
+}

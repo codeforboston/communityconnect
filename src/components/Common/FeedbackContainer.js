@@ -1,7 +1,8 @@
-import React from 'react';
-import { Badge } from 'reactstrap';
+import React from "react";
+import PropTypes from "prop-types";
+import { Badge } from "reactstrap";
 
-export const FeedbackContainer = ({ hideFeedbackLink }) => (
+const FeedbackContainer = ({ hideFeedbackLink }) => (
   <div className="feedback-container">
     <span>Want to improve Community Connect?</span>
     <div className="d-flex justify-content-center">
@@ -19,3 +20,9 @@ export const FeedbackContainer = ({ hideFeedbackLink }) => (
     </div>
   </div>
 );
+
+FeedbackContainer.propTypes = {
+  hideFeedbackLink: PropTypes.func.isRequired,
+};
+
+export default FeedbackContainer;

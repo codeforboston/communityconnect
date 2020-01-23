@@ -1,9 +1,9 @@
 export default {
-      isFetchingResource: true,
-      resource: [],
-      searchedResource: [],
-      filteredResource: [],
-      savedResource: [],
-      categories: [],
-      mapResource: []
+  isFetchingResource: true,
+  resources: [],
+  searchedResources: [],
+  filteredResources: [],
+  savedResources: [],
+  categories: [],
+  mapResources: [],
 };

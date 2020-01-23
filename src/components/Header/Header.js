@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Route, withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
-import * as resourceAction from "../../action/resourceDataAction";
 import cx from "classnames";
+
+import { faPrint } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
   Navbar,
@@ -13,27 +16,23 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
 } from "reactstrap";
+import { getQueryResources, encodeResources } from "../../utils/resourcesQuery";
+import * as resourceAction from "../../action/resourceDataAction";
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      collapsed: true,
-      modal: false
-    };
-  }
+  state = {
+    collapsed: true,
+    modal: false,
+  };
 
   toggleNavbar = () => {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
+    this.setState(prevState => ({ collapsed: !prevState.collapsed }));
   };
 
   modalOpen = () => {
-    if (this.props.savedResource.length > 0) {
+    if (this.props.savedResources.length > 0) {
       this.modalToggle();
     } else {
       window.location.reload();
@@ -41,21 +40,31 @@ class Header extends Component {
   };
 
   modalToggle = () => {
-    this.setState({
-      modal: !this.state.modal
-    });
+    this.setState(prevState => ({ modal: !prevState.modal }));
   };
 
   confirmationModalToggle = () => {
-    this.props.actions.clearSavedResource();
+    this.props.actions.clearSavedResources();
     this.modalToggle();
   };
 
-  render() {
-    const { savedResource, toggleSavedResourcesPane } = this.props;
-    const savedResourceButtonClassNames = cx("saved-resource-button", {
-      "has-selections": savedResource.length
+  toAdmin = () => {
+    const resources = getQueryResources();
+
+    this.props.history.push({
+      pathname: `/${this.props.match.params.resource}/admin`,
+      search: encodeResources(resources),
     });
+  };
+
+  render() {
+    const { savedResources, toggleSavedResourcesPane } = this.props;
+
+    const savedResourceButtonClassNames = cx("saved-resource-button", {
+      "has-selections": savedResources.length,
+    });
+
+    const printButtonClassNames = cx("print-button");
 
     return (
       <>
@@ -63,17 +72,70 @@ class Header extends Component {
           <NavbarBrand className="Logo" onClick={this.modalOpen}>
             <span>Community Connect</span>
           </NavbarBrand>
-          <Route
-            path="/:resource/admin"
-            render={() => (
-              <button
-                className={savedResourceButtonClassNames}
-                onClick={toggleSavedResourcesPane}
-              >
-                Saved Resources {savedResource.length}
-              </button>
-            )}
-          />
+
+          <div>
+            <Route
+              path="/:resource"
+              exact
+              render={() => (
+                <Button
+                  className={printButtonClassNames}
+                  tag={Link}
+                  color="info"
+                  to={{
+                    pathname: `/${this.props.match.params.resource}/print`,
+                    search: this.props.location.search,
+                  }}
+                >
+                  <FontAwesomeIcon icon={faPrint} />
+                </Button>
+              )}
+            />
+            <Route
+              path="/:resource"
+              exact
+              render={() => (
+                <Button
+                  tag={Link}
+                  color="info"
+                  to={{
+                    pathname: `/${this.props.match.params.resource}/admin`,
+                    search: this.props.location.search,
+                  }}
+                >
+                  Admin View
+                </Button>
+              )}
+            />
+            <Route
+              path="/:resource/admin"
+              exact
+              render={() => (
+                <Button
+                  tag={Link}
+                  color="info"
+                  to={{
+                    pathname: `/${this.props.match.params.resource}`,
+                    search: this.props.location.search,
+                  }}
+                >
+                  Map View
+                </Button>
+              )}
+            />
+            <Route
+              path="/:resource/admin"
+              render={() => (
+                <button
+                  type="button"
+                  className={savedResourceButtonClassNames}
+                  onClick={toggleSavedResourcesPane}
+                >
+                  Saved Resources {savedResources.length}
+                </button>
+              )}
+            />
+          </div>
         </Navbar>
         <Modal isOpen={this.state.modal} toggle={this.modalToggle}>
           <ModalHeader>Alert</ModalHeader>
@@ -100,15 +162,24 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+Header.propTypes = {
+  savedResources: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  toggleSavedResourcesPane: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+};
+
+function mapStateToProps(state) {
   return {
-    savedResource: state.savedResource
+    savedResources: state.savedResources,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(resourceAction, dispatch)
+    actions: bindActionCreators(resourceAction, dispatch),
   };
 }
 export default compose(

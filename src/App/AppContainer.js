@@ -1,21 +1,21 @@
 // import React/Redux dependencies
-import React, { Component } from 'react';
-import { Route } from 'react-router';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { loadResources } from '../action/resourceDataAction';
-import { getAllSites } from '../api/directoryGoogleSheets';
+import React, { Component } from "react";
+import { Route } from "react-router";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { loadResources } from "../action/resourceDataAction";
+import getAllSites from "../api/directoryGoogleSheets";
 
 // import components
 
-import Header from '../components/Header/Header';
-import MapPage from '../components/MapPage/MapPage';
-import AdminPage from '../components/AdminPage/AdminPage';
-import { SplitScreenTogglePane } from '../components/AdminPage/SplitScreenTogglePane';
-import SavedResourcePanel from '../components/SavedResources/SavedResourcePanel';
-import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
-import { Loading } from '../components/Common/Loading';
-import { FeedbackContainer } from '../components/Common/FeedbackContainer';
+import Header from "../components/Header/Header";
+import MapPage from "../components/MapPage/MapPage";
+import AdminPage from "../components/AdminPage/AdminPage";
+import SplitScreenTogglePane from "../components/AdminPage/SplitScreenTogglePane";
+import SavedResourcePanel from "../components/SavedResources/SavedResourcePanel";
+import NotFoundPage from "../components/NotFoundPage/NotFoundPage";
+import Loading from "../components/Common/Loading";
+import FeedbackContainer from "../components/Common/FeedbackContainer";
 
 const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 
@@ -23,28 +23,24 @@ const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 // const revereSheetId = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
 
 function sheetIdFromPath(directory, path) {
-  for (let i = 0; i < directory.length; i++) {
-    if (directory[i].path === path) {
-      return directory[i].sheetId;
-    }
-  }
+  return directory.find(x => x.path === path).sheetId;
 }
 
 class AppContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      position: {},
-      displayFeedbackLink: true,
-      isValidPage: true,
-    };
-  }
-
-  static propTypes = {
-    dispatch: PropTypes.func,
+  state = {
+    position: {},
+    displayFeedbackLink: false,
+    isValidPage: true,
   };
 
   componentDidMount() {
+    const hideFeedbackTs = localStorage.getItem("hideFeedback");
+
+    if (hideFeedbackTs === null || Date.now() > parseInt(hideFeedbackTs, 10)) {
+      localStorage.removeItem("hideFeedback");
+      this.setState({ displayFeedbackLink: true });
+    }
+    console.log(hideFeedbackTs, typeof hideFeedbackTs);
     const resourcePath = this.props.match.params.resource;
     let resourceSheetId = null;
 
@@ -64,6 +60,8 @@ class AppContainer extends Component {
   }
 
   hideFeedbackLink = () => {
+    const weekMillis = 7 * 24 * 60 * 60 * 1000;
+    localStorage.setItem("hideFeedback", Date.now() + weekMillis);
     this.setState({ displayFeedbackLink: false });
   };
 
@@ -82,26 +80,26 @@ class AppContainer extends Component {
         },
         error => {
           console.log(error);
-        },
+        }
       );
     }
   };
 
   toggleSavedResourcesPane = () => {
-    this.setState({
-      isSavedResourcePaneOpen: !this.state.isSavedResourcePaneOpen,
-    });
+    this.setState(prevState => ({
+      isSavedResourcePaneOpen: !prevState.isSavedResourcePaneOpen,
+    }));
   };
 
   render() {
-    const { isFetchingResource } = this.props;
-
     if (!this.state.isValidPage) {
       return <NotFoundPage />;
     }
 
-    if (isFetchingResource) {
-      return <Loading />;
+    if (this.props.isFetchingResource) {
+      return (
+        <Loading toggleSavedResourcesPane={this.toggleSavedResourcesPane} />
+      );
     }
 
     return (
@@ -141,8 +139,15 @@ class AppContainer extends Component {
   }
 }
 
+AppContainer.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  isFetchingResource: PropTypes.bool.isRequired,
+};
+
 function mapStateToProps(state) {
   const { isFetchingResource } = state;
+
   return { isFetchingResource };
 }
 export default connect(mapStateToProps)(AppContainer);

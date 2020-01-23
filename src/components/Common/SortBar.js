@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-/**
- * @param sortOptions
- */
-export class SortBar extends React.Component {
+class SortBar extends React.Component {
   handleClick = e => {
     // Get new sort based on index of sortOption array
     if (this.props.sortOptions[e.target.value]) {
@@ -12,7 +10,7 @@ export class SortBar extends React.Component {
     }
   };
 
-  render () {
+  render() {
     return (
       <span>
         <b>Sort by: </b>
@@ -31,3 +29,10 @@ export class SortBar extends React.Component {
     );
   }
 }
+
+SortBar.propTypes = {
+  sortOptions: PropTypes.array.isRequired,
+  onSortChange: PropTypes.func.isRequired,
+};
+
+export default SortBar;

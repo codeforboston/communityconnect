@@ -1,27 +1,29 @@
-import React, { Component } from 'react';
-import { Marker, InfoWindow } from 'react-google-maps';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Marker, InfoWindow } from "react-google-maps";
 
-export class OrganizationMarker extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: this.props.open,
-    };
-  }
+class OrganizationMarker extends Component {
+  state = {
+    open: this.props.open,
+  };
 
   componentDidUpdate(prevProps) {
     if (prevProps.open !== this.props.open) {
-      this.setState({ open: this.props.open });
+      this.updateOpen();
     }
   }
-  //scrollToElement  and handleClickOfInfoWindow is currently non-functional
 
-  scrollToElement = e => {
+  // scrollToElement  and handleClickOfInfoWindow is currently non-functional
+  updateOpen = () => {
+    this.setState({ open: this.props.open });
+  };
+
+  scrollToElement = () => {
     this.setState({ open: true });
   };
 
   handleClickOfInfoWindow = e => {
-    var element = document.getElementById(e.currentTarget.id);
+    const element = document.getElementById(e.currentTarget.id);
     element.scrollIntoView();
   };
 
@@ -30,17 +32,16 @@ export class OrganizationMarker extends Component {
   };
 
   render() {
-    let { resource } = this.props;
     return (
       <Marker
         optimize={false}
-        position={resource.coordinates}
+        position={this.props.resource.coordinates}
         onClick={this.scrollToElement}
       >
         {this.state.open && (
           <InfoWindow onCloseClick={this.handleClose}>
             <div>
-              {resource.groupedResource.map(resource => (
+              {this.props.resource.groupedResources.map(resource => (
                 <div
                   key={resource.id}
                   id={resource.id}
@@ -61,5 +62,10 @@ export class OrganizationMarker extends Component {
     );
   }
 }
+
+OrganizationMarker.propTypes = {
+  open: PropTypes.bool.isRequired,
+  resource: PropTypes.object.isRequired,
+};
 
 export default OrganizationMarker;

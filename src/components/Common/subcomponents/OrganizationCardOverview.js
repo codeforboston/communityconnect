@@ -1,11 +1,11 @@
-import React from 'react';
-import ReadMoreAndLess from 'react-read-more-less';
+import React from "react";
+import PropTypes from "prop-types";
+import ReadMoreAndLess from "react-read-more-less";
 
-export const OrganizationCardOverview = ({ overview }) =>
+const OrganizationCardOverview = ({ overview }) =>
   overview ? (
     <div className="organization-card">
       <ReadMoreAndLess
-        ref={this.ReadMore}
         className="read-more-content"
         charLimit={250}
         readMoreText="Read more"
@@ -15,3 +15,12 @@ export const OrganizationCardOverview = ({ overview }) =>
       </ReadMoreAndLess>
     </div>
   ) : null;
+
+OrganizationCardOverview.propTypes = {
+  overview: PropTypes.string,
+};
+
+OrganizationCardOverview.defaultProps = {
+  overview: null,
+};
+export default OrganizationCardOverview;

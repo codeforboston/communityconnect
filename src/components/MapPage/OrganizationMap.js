@@ -1,55 +1,48 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Map from './Map';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Map from "./Map";
 
-const googleMapKey = 'AIzaSyAwKdrqS2GfCt9b2K1wAopDc9Ga0N1BVUM';
+const googleMapKey = "AIzaSyAwKdrqS2GfCt9b2K1wAopDc9Ga0N1BVUM";
 const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${googleMapKey}&v=3.exp&libraries=geometry,drawing,places`;
 
-class OrganizationMap extends Component {
-  markerHover = (key, event) => {
-    event.map.getCanvas().style.cursor = 'pointer';
-    this.setState({
-      hoveredItem: key,
-    });
-  };
+const OrganizationMap = ({ mapResources }) => (
+  <Map
+    googleMapURL={googleMapURL}
+    containerElement={<div style={{ height: "100%" }} />}
+    mapElement={<div style={{ height: "100%" }} />}
+    loadingElement={<div style={{ height: "100%" }} />}
+    resources={mapResources}
+  />
+);
 
-  markerEndHover = (key, event) => {
-    event.map.getCanvas().style.cursor = '';
-    this.setState({
-      hoveredItem: '',
-    });
-  };
+OrganizationMap.propTypes = {
+  mapResources: PropTypes.array.isRequired,
+};
 
-  render () {
-    return (
-      <Map
-        googleMapURL={googleMapURL}
-        containerElement={<div style={{ height: '100%' }} />}
-        mapElement={<div style={{ height: '100%' }} />}
-        loadingElement={<div style={{ height: '100%' }} />}
-        resource={this.props.mapResource}
-      />
-    );
-  }
-}
+function mapStateToProps(state) {
+  const currentResources =
+    state.savedResources.length > 0 ? state.savedResources : state.resources;
 
-function mapStateToProps (state) {
-  const currentResource =
-    state.savedResource.length > 0 ? state.savedResource : state.resource;
-  const locationArray = [];
-  currentResource.forEach(function (resource) {
-    if (!locationArray[resource.hashCoordinates]) {
-      locationArray[resource.hashCoordinates] = {
+  const locations = {};
+
+  currentResources.forEach(resource => {
+    if (!locations[resource.hashCoordinates]) {
+      locations[resource.hashCoordinates] = {
         coordinates: resource.coordinates,
-        groupedResource: [],
+        groupedResources: [],
         showInfo: false,
       };
     }
-    locationArray[resource.hashCoordinates].groupedResource.push(resource);
+
+    locations[resource.hashCoordinates].groupedResources.push(resource);
   });
-  const resource = Object.values(locationArray);
+
+  const resources = Object.values(locations);
+
   return {
-    mapResource: resource,
+    mapResources: resources,
   };
 }
+
 export default connect(mapStateToProps)(OrganizationMap);
