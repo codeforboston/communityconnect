@@ -11,7 +11,7 @@ import AppContainer from "./App/AppContainer";
 import PrintPage from "./components/PrintPage/PrintPageContainer";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import registerServiceWorker from "./registerServiceWorker";
-
+import HomePageLayout from "./components/HomePage/HomePage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/index.scss";
 
@@ -20,6 +20,7 @@ library.add(fab, fas);
 const getRoutes = store => (
   <div>
     <Switch>
+      <Route exact path="/home" component={HomePageLayout} />
       <Route exact path="/admin" component={AppContainer} />
 
       <Route

@@ -23,7 +23,10 @@ const envSheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 // const revereSheetId = '1QolGVE4wVWSKdiWeMaprQGVI6MsjuLZXM5XQ6mTtONA';
 
 function sheetIdFromPath(directory, path) {
-  return directory.find(x => x.path === path).sheetId;
+  if (directory.find(x => x.path === path)) {
+    return directory.find(x => x.path === path).sheetId;
+  }
+  else return null
 }
 
 class AppContainer extends Component {
