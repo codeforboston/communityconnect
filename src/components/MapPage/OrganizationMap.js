@@ -9,6 +9,7 @@ const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${googleMapKey
 const OrganizationMap = ({ mapResources }) => (
   <Map
     googleMapURL={googleMapURL}
+    googleMapKey={googleMapKey}
     containerElement={<div style={{ height: "100%" }} />}
     mapElement={<div style={{ height: "100%" }} />}
     loadingElement={<div style={{ height: "100%" }} />}
